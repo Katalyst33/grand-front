@@ -11,11 +11,12 @@
           sm:space-y-0 sm:grid sm:grid-cols-2
           xl:grid-cols-4 gap-4 ">
 
+<!--      :style="{ 'background-image': 'url(' + item.image+ ')' }"-->
       <div
           v-for="( item, index) in currentDeals"
           :key="index"
           :class="item.size"
-          :style="{ 'background-image': 'url(' + item.image+ ')' }"
+
           class="card">
         <div class="card-content">
           <h2 class="card-title font-bold">

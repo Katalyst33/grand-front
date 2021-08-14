@@ -6,11 +6,11 @@
           <div>
             <img class="h-44 w-auto  mx-auto" src="/png/brand-logo-full.png" alt="Workflow"/>
             <h2 class="title-2">
-             Create your account
+              Create your account
             </h2>
-         <div v-if="store.state.dev">
-           {{form}}
-         </div>
+            <div>
+              {{ form }}
+            </div>
 
 
           </div>
@@ -22,20 +22,20 @@
               <form action="#" method="POST" class="space-y-6">
                 <div>
                   <label class="block text-sm font-medium text-gray-700">
-                   Name
+                    Name
                   </label>
                   <div class="mt-1">
-                    <input v-model="form.name"  type="text" autocomplete="name" required=""
-                            class="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"/>
+                    <input v-model="form.name" type="text" autocomplete="name"
+                           class="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"/>
                   </div>
                 </div>
                 <div>
-                  <label for="email" class="block text-sm font-medium text-gray-700">
+                  <label class="block text-sm font-medium text-gray-700">
                     Email address
                   </label>
                   <div class="mt-1">
-                    <input v-model="form.email"  type="email" autocomplete="email" required=""
-                            class="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"/>
+                    <input v-model="form.email" type="email" autocomplete="email"
+                           class="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"/>
                   </div>
                 </div>
 
@@ -44,8 +44,8 @@
                     Password
                   </label>
                   <div class="mt-1">
-                    <input v-model="form.password"  type="password" autocomplete="current-password" required=""
-                            class="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"/>
+                    <input v-model="form.password" type="password" autocomplete="current-password"
+                           class="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"/>
                   </div>
                 </div>
                 <div class="space-y-1">
@@ -53,8 +53,8 @@
                     Confirm Password
                   </label>
                   <div class="mt-1">
-                    <input v-model="form.confirm"  type="password" autocomplete="current-password" required=""
-                            class="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"/>
+                    <input v-model="form.confirm" type="password" autocomplete="current-password"
+                           class="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm"/>
                   </div>
                 </div>
 
@@ -82,8 +82,11 @@
                   border-teal-500 hover:bg-teal-600 hover:text-white-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
                     Sign in with google
                   </button>
-                  <p class="text-gray-500 text-sm text-center">Already have an account ? <router-link :to="{name:'Login'}"
-                                                                                                    class="text-teal-500 font-medium"> Login now</router-link></p>
+                  <p class="text-gray-500 text-sm text-center">Already have an account ?
+                    <router-link :to="{name:'Login'}"
+                                 class="text-teal-500 font-medium"> Login now
+                    </router-link>
+                  </p>
 
                 </div>
 
@@ -99,13 +102,28 @@
   </section>
 </template>
 <script lang="ts">
-export default {
-  name: 'LoginPage',
-  inject: ['store'],
-  data() {
+
+import {defineComponent, ref} from "vue";
+import {userForm} from "../types";
+
+export default defineComponent({
+  name: "RegisterPage",
+
+  setup() {
+
+    const form = ref<userForm>({})
+
     return {
-      form:{}
+      form
     }
-  },
-}
+  }
+
+
+})
 </script>
+
+
+
+
+
+

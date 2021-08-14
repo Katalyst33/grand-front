@@ -4,7 +4,8 @@
       <h2 class="title-2 -mb-10">Our Services</h2>
       <div
           class="mt-12 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6 lg:max-w-4xl  xl:max-w-none xl:mx-0 xl:grid-cols-3">
-        <div v-for="item in services" class="card p-6" :style="{ 'background-image': 'url(' + item.img+ ')' }">
+<!--        :style="{ 'background-image': 'url(' + item.img+ ')' }"-->
+        <div v-for="item in services" class="card p-6" >
           <div class="card-content">
             <h2 class="card-title text-2xl font-bold">
               {{ item.title }}

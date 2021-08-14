@@ -9,11 +9,11 @@
           <div class="flex items-center">
 
             <AppLogo/>
-            <h1 class="text-white font-bold  block pl-2 big-font"> {{ appDetails.state.appData.companyName }}</h1>
+            <h1 class="text-white font-bold  block pl-2 big-font"> apppppp</h1>
           </div>
 
           <div  class="flex space-x-4 text-white py-4">
-            <div v-for="item in footerRoutes" :key="item">
+            <div v-for="(item, index) in footerRoutes" :key="index">
               <router-link :to="{name:item.href}"   class="text-gray-400 hover:text-white font-medium"> {{ item.name }}</router-link>
 
             </div>
@@ -43,7 +43,7 @@
 
           </div>
           <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
-            &copy; {{year}} {{appDetails.state.appData.companyName}}, Inc. All rights reserved.
+            &copy;, Inc. All rights reserved.
           </p>
         </div>
       </div>

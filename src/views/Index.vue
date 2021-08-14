@@ -7,7 +7,7 @@
 
     <ServiceCards/>
 
-    <CurrentDeals  />
+    <CurrentDeals   />
       </div>
 
   </div>

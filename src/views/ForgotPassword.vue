@@ -63,13 +63,31 @@
   </section>
 </template>
 <script lang="ts">
-export default {
+
+
+import {defineComponent, ref} from "vue";
+import {userForm} from "../types";
+
+export default  defineComponent({
+
   name: 'ForgotPassword',
-  inject: ['store'],
-  data() {
-    return {
-      form:{}
+
+
+  setup(){
+
+    const form = ref<userForm>({})
+    return{
+
+      form
+
     }
-  },
-}
+  }
+
+
+})
+
 </script>
+
+
+
+

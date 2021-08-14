@@ -1,9 +1,9 @@
 <template>
 
-  <MenuComponent/>
+  <MenuComponent />
   <router-view/>
 
-  <FooterSection/>
+  <FooterSection />
 
 </template>
 
