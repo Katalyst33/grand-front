@@ -10,3 +10,4 @@ dist-ssr
 yarn.lock
 build
 package-lock.json
+/.env

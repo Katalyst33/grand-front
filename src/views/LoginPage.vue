@@ -9,7 +9,7 @@
               Sign in to Account
             </h2>
 
-         <div v-if="store.state.dev">
+         <div >
            {{form}}
 
            </div>
@@ -77,9 +77,10 @@
                 </div>
 
                 <div class="space-y-2">
-                  <button type="submit"
-                          class="w-full  text-white flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium regular bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
-                    Sign in
+                  <button type="button"
+                          @click.prevent="LoginUser"
+                          class="w-full    login-button ">
+                    Log in
                   </button>
 
 
@@ -103,13 +104,35 @@
   </section>
 </template>
 <script lang="ts">
+import {$axios} from "../http";
+
 export default {
   name: 'LoginPage',
-  inject:['store'],
+
   data() {
     return {
-      form: {}
+      form: {
+        "email": "manager2@gmail.com",
+        "password": "123456789"
+
+      }
     }
   },
+
+  setup() {
+
+    function LoginUser() {
+
+      $axios.post('/login', {	"email": "manager2@gmail.com",
+        "password": "123456789"}).then((r)=> console.log(r)).catch((r)=> r)
+
+      console.log('hey data')
+
+    }
+    return{
+      LoginUser
+
+    }
+  }
 }
 </script>

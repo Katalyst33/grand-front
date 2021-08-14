@@ -13,6 +13,7 @@ import HelloWorld from './components/HelloWorld.vue'
 import MenuComponent from "./components/commons/MenuComponent.vue";
 import  store from "./store/store"
 import FooterSection from "./FooterSection.vue";
+import {$axios} from "./http";
 
 export default defineComponent({
   name: 'App',
@@ -23,8 +24,12 @@ export default defineComponent({
   },
 
   setup(){
+
+
+
+
     return{
-      store
+      store,
     }
   },
   provide: {store}
@@ -32,7 +37,9 @@ export default defineComponent({
 })
 </script>
 
-<style>
+<style lang="scss">
+
+@import "../src/assets/scss/buttons";
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
