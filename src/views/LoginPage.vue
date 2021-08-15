@@ -4,7 +4,7 @@
       <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
         <div class="mx-auto w-full max-w-sm lg:w-96">
           <div>
-            <img class="h-44 w-auto  mx-auto" src="/png/brand-logo-full.png" alt="Workflow"/>
+            <img class=" w-auto  mx-auto" src="/png/brand-logo-full.png" alt="Workflow"/>
             <h2 class="title-2 my-6">
               Sign in to Account
             </h2>

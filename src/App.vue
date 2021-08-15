@@ -37,7 +37,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 @import "../src/assets/scss/buttons";
 
@@ -45,7 +45,7 @@ export default defineComponent({
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f2f4f6;
+  background-color: #ff1ed1;
 
 
 

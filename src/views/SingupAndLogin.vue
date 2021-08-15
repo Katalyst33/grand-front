@@ -1,7 +1,5 @@
 <template>
-  <div>
-
-
+  <div class="">
     <LoginPage v-if="isLoginPage"/>
     <RegisterPage v-else-if="isRegisterPage"/>
     <ForgotPassword v-else/>
