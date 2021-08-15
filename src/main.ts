@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 
-import App from './App.vue'
+import Main from './Main.vue'
 
 
 import './assets/tailwind.css'
@@ -9,7 +9,7 @@ import router from "./router";
 
 import './assets/css/swiper.min.css'
 
-const app = createApp(App)
+const app = createApp(Main)
 
 app.use(router).mount('#app')
 

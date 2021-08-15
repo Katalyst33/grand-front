@@ -2,10 +2,15 @@ import {createRouter, createWebHistory} from "vue-router";
 import IndexPage from "./views/Index.vue";
 
 import AdminRoutes from "./admin/admin.router";
+import UserRoutes from "./user/user.router"
 
 
-import AboutPage from "./views/AboutPage.vue";
-import ServicePage from "./views/ServicePage.vue";
+const AboutPage = () => import("./views/AboutPage.vue");
+const ServicePage= () => import("./views/ServicePage.vue");
+// const componentName = () => import("./componentName.vue");
+// const componentName = () => import("./componentName.vue");
+// const componentName = () => import("./componentName.vue");
+
 import DealsPage from "./views/DealsPage.vue";
 import SignupAndLogin from "./views/SingupAndLogin.vue";
 import ContactPage from "./views/ContactPage.vue";
@@ -20,34 +25,41 @@ const NotFound = () => import("./views/NotFound.vue");
 const router = createRouter({
     history: createWebHistory(),
     routes: [
+        {
+            path: "/",
+            component: () => import("./App.vue"),
+            children: [
+                {
+                    path: '/',
+                    name: 'Home',
+                    component: IndexPage
+                },
+                {
+                    path: '/about',
+                    name: 'About',
+                    component: AboutPage
+                },
+                {
+                    path: '/service',
+                    name: 'Service',
+                    component: ServicePage
+                },
+                {
+                    path: '/all-deals',
+                    name: 'Deals',
+                    component: DealsPage
+                },
+                {
+                    path: '/contact-us',
+                    name: 'Contact',
+                    component: ContactPage
+                },
+
+            ]
+        },
 
         AdminRoutes,
-
-        {
-            path: '/',
-            name: 'Home',
-            component: IndexPage
-        },
-        {
-            path: '/about',
-            name: 'About',
-            component: AboutPage
-        },
-        {
-            path: '/service',
-            name: 'Service',
-            component: ServicePage
-        },
-        {
-            path: '/all-deals',
-            name: 'Deals',
-            component: DealsPage
-        },
-        {
-            path: '/contact-us',
-            name: 'Contact',
-            component: ContactPage
-        },
+        UserRoutes,
         {
             path: '/login',
             name:'Login',
