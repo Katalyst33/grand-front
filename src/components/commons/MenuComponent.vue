@@ -19,7 +19,7 @@
            <router-link :to="{name:'Home'}">
              <div class="flex items-center">
                <AppLogo  />
-               <h1 class="text-white font-bold text-xl block pl-2 big-font">GRANDEAGLE</h1>
+
 
              </div>
            </router-link>

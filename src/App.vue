@@ -26,7 +26,7 @@ export default defineComponent({
   setup(){
 
 
-
+console.log('where are u')
 
     return{
       store,
@@ -37,7 +37,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 @import "../src/assets/scss/buttons";
 
@@ -45,11 +45,7 @@ export default defineComponent({
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ff1ed1;
-
-
-
-
+  @apply bg-yellow-50
 }
 
 .title-2 {

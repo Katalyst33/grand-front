@@ -1,16 +1,17 @@
 <template>
   <section>
     <div class="min-h-screen flex flex-row-reverse">
-      <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+      <div class="flex-1 flex flex-col justify-center  px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
         <div class="mx-auto w-full max-w-sm lg:w-96">
           <div>
-            <img class="h-44 w-auto  mx-auto" src="/png/brand-logo-full.png" alt="Workflow"/>
-            <h2 class="title-2">
+            <img class=" w-auto  mx-auto h-20" src="/png/teal-logo.png" alt="Workflow"/>
+
+            <h2 class="tect">
               Create your account
             </h2>
-            <div>
+            <pre>
               {{ form }}
-            </div>
+            </pre>
 
 
           </div>
@@ -105,10 +106,11 @@
 
 import {defineComponent, ref} from "vue";
 import {userForm} from "../types";
+import AppLogo from "../AppLogo.vue";
 
 export default defineComponent({
   name: "RegisterPage",
-
+  components: {AppLogo},
   setup() {
 
     const form = ref<userForm>({})
