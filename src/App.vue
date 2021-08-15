@@ -9,9 +9,7 @@
 import { defineComponent } from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import MenuComponent from "./components/commons/MenuComponent.vue";
-import store from "./store/store";
 import FooterSection from "./FooterSection.vue";
-import { $axios } from "./http.Service";
 
 export default defineComponent({
   name: "App",
@@ -22,13 +20,8 @@ export default defineComponent({
   },
 
   setup() {
-    console.log("where are u");
-
-    return {
-      store,
-    };
+    return {};
   },
-  provide: { store },
 });
 </script>
 

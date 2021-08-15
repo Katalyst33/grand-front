@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="bg-green-500 p-10 text-white">User Dashbaord</h4>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "UserDashboard",
+  name: "Userlayout",
 
   setup() {
     return {};

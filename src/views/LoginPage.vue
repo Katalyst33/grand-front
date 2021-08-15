@@ -184,7 +184,6 @@ export default {
       $axios
         .post("/login", form.value)
         .then((r: any) => {
-          console.log(r);
           BrowserStore.set("ge_jwt", r.token);
 
           if (r.error) {

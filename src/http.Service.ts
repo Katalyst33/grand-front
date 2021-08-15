@@ -32,8 +32,6 @@ axios.interceptors.response.use((response: any) => {
 });
 const env = "development";
 
-console.log(env, "gggg");
-
 if (env === "development") {
   const envValue = "http://_??_:5300/api";
   const url = envValue.replace("_??_", window.location.hostname);

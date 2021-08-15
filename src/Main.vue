@@ -6,8 +6,6 @@
 </template>
 
 <script>
-import { $axios } from "./http.Service";
-
 import { setAppState, appState } from "./store/store";
 import { ref } from "vue";
 
