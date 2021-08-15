@@ -11,3 +11,8 @@ export type axiosResponse = {
   message?: string;
   error?: string;
 };
+
+export type loggedUser = {
+  email: string;
+  roles: string;
+};

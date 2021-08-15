@@ -1,25 +1,24 @@
 <template>
-  <router-view></router-view>
+  <div v-if="isLoaded">
+    {{ appState }}
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
 import { $axios } from "./http.Service";
 
+import { setAppState, appState } from "./store/store";
+import { ref } from "vue";
+
 export default {
   name: "Main",
 
   setup() {
-    function loadAppData() {
-      $axios
-        .get("/ping")
-        .then((r) => console.log(r))
-        .catch((r) => r);
+    const isLoaded = ref(false);
+    setAppState().then(() => (isLoaded.value = true));
 
-      console.log("jjj");
-    }
-
-    loadAppData();
-    return {};
+    return { isLoaded, appState };
   },
 };
 </script>
