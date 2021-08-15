@@ -1,0 +1,12 @@
+.login-button {
+ @apply bg-yellow-500 hover:bg-yellow-400 text-white p-3 border shadow-sm rounded-lg focus:ring-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 text-lg font-medium
+}
+
+.input-box {
+  @apply appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm;
+}
+
+
+.form-label{
+  @apply  font-medium text-gray-600 text-sm hover:text-gray-600
+}

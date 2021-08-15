@@ -1,12 +1,16 @@
 <template>
   <section>
-    <div class="min-h-screen bg-white flex ">
+    <div class="min-h-screen flex ">
       <div class="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
         <div class="mx-auto w-full max-w-sm lg:w-96">
           <div>
-            <img class="h-44 w-auto  mx-auto" src="/png/brand-logo-full.png" alt="Workflow"/>
+
+            <router-link :to="{name:'Home'}">
+            <img class="h-20 w-auto  mx-auto" src="/png/teal-logo.png" alt="Workflow"/>
+            </router-link>
+
             <h2 class="title-2">
-             Forgot Password
+             Forgot Password ?
             </h2>
             <p class="regular">
               Enter the email address you used when you joined and we'll send you instructions to reset your password.
@@ -37,19 +41,10 @@
                 </div>
 
 
+                <button class="login-button" type="submit">
+                  Reset Password
 
-
-                <div class="">
-                  <button type="submit"
-                          class="text-white px-10 flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium regular bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
-                   Reset Password
-                  </button>
-                  <div>
-
-                  </div>
-
-
-                </div>
+                </button>
 
               </form>
             </div>

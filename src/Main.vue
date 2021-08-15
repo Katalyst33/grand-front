@@ -3,23 +3,23 @@
 </template>
 
 <script>
-import {$axios} from "./http";
+import { $axios } from "./http.Service";
 
-export default { name: "Main" ,
+export default {
+  name: "Main",
 
   setup() {
-
     function loadAppData() {
+      $axios
+        .get("/ping")
+        .then((r) => console.log(r))
+        .catch((r) => r);
 
-      $axios.get('/ping').then((r)=> console.log(r)).catch((r)=>r)
-
-    console.log('jjj')
-
+      console.log("jjj");
     }
 
-    loadAppData()
-  return{}
-  }
-
+    loadAppData();
+    return {};
+  },
 };
 </script>
