@@ -13,14 +13,10 @@
       >
         <div class="mx-auto w-full max-w-sm lg:w-96">
           <div class="pt-4 sm:pt-0">
-            <img
-              class="w-auto h-20 mx-auto"
-              src="/png/teal-logo.png"
-              alt="Workflow"
-            />
-            <h2 class="my-6 text-center text-lg font-medium">
-              Sign in to Account
-            </h2>
+            <div class="py-4">
+              <LoginRegisterLogo />
+            </div>
+
             <div>
               <button
                 type="submit"
@@ -159,10 +155,11 @@ import { defineComponent, ref } from "vue";
 import { userForm } from "../types";
 import AppLogo from "../AppLogo.vue";
 import { $axios } from "../http.Service";
+import LoginRegisterLogo from "./LoginRegisterLogo.vue";
 
 export default defineComponent({
   name: "RegisterPage",
-  components: { AppLogo },
+  components: { LoginRegisterLogo, AppLogo },
   setup() {
     const form = ref<userForm>({
       email: "her@gmail.com",

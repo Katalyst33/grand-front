@@ -14,12 +14,9 @@
       >
         <div class="mx-auto w-full max-w-sm lg:w-96">
           <div>
-            <img
-              class="w-auto h-20 mx-auto"
-              src="/png/teal-logo.png"
-              alt="Workflow"
-            />
-            <h2 class="my-6 text-center text-lg font-medium">Login</h2>
+            <div class="py-4">
+              <LoginRegisterLogo />
+            </div>
 
             <div>
               <button
@@ -166,12 +163,13 @@ import { ref } from "vue";
 import { userForm } from "../types";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
 import { useRouter } from "vue-router";
+import LoginRegisterLogo from "./LoginRegisterLogo.vue";
 
 const BrowserStore = vueLocalStorage();
 
 export default {
   name: "LoginPage",
-
+  components: { LoginRegisterLogo },
   setup() {
     const form = ref<userForm>({
       email: "staff@gmail.com",

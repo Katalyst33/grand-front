@@ -5,8 +5,7 @@
       <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div class="flex flex-col items-center justify-between">
           <div class="flex items-center">
-            <AppLogo />
-            <h1 class="text-white font-bold block pl-2 big-font">apppppp</h1>
+            <CompanyLogo :app-state="appState" :text-color="textColor" />
           </div>
 
           <div class="flex space-x-4 text-white py-4">
@@ -71,12 +70,13 @@
   </section>
 </template>
 <script lang="ts">
-import { inject } from "vue";
-import AppLogo from "./AppLogo.vue";
+import { appState } from "./store/store";
+import { ref } from "vue";
+import CompanyLogo from "./CompanyLogo.vue";
 
 export default {
   name: "FooterSection",
-  components: { AppLogo },
+  components: { CompanyLogo },
 
   setup() {
     const footerRoutes = [
@@ -103,11 +103,15 @@ export default {
       },
     ];
 
+    const textColor = ref("text-white");
+
     const year = new Date().getFullYear();
 
     return {
       footerRoutes,
       year,
+      appState,
+      textColor,
     };
   },
 };

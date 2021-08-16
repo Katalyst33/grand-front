@@ -14,5 +14,14 @@ export type axiosResponse = {
 
 export type loggedUser = {
   email: string;
-  roles: string;
+  role: string;
+};
+
+export type appInfo = {
+  companyName: string;
+  contact: {
+    phone?: string;
+    email?: string;
+    address?: string;
+  };
 };

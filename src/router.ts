@@ -93,9 +93,6 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const isAuthenticated = BrowserStore.has("ge_jwt");
   const userRole = BrowserStore.get("user_role");
-  console.log(to.name);
-
-  console.log(isAuthenticated, userRole);
 
   const authMetas = ["staff", "admin"];
 

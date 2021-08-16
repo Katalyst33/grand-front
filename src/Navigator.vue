@@ -1,6 +1,6 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <Popover class="relative bg-white">
+  <Popover class="relative bg-yellow-50">
     <div
       class="absolute inset-0 shadow z-30 pointer-events-none"
       aria-hidden="true"
@@ -21,31 +21,26 @@
         "
       >
         <div>
-          <a href="#" class="flex">
-            <span class="sr-only">Workflow</span>
-            <AppLogo class="block lg:hidden" />
-            <img
-              class="h-8 w-auto sm:h-10"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-              alt=""
-            />
-          </a>
+          <span class="sr-only">company Name</span>
+
+          <CompanyLogo :app-state="appState" :text-color="textColor" />
         </div>
         <div class="-mr-2 -my-2 md:hidden">
+          <!--          mobile menu open-->
           <PopoverButton
             class="
-              bg-white
+              bg-yellow-600
               rounded-md
               p-2
               inline-flex
               items-center
               justify-center
-              text-gray-400
-              hover:text-gray-500 hover:bg-gray-100
+              text-white
+              hover:text-white hover:bg-yellow-500
               focus:outline-none
               focus:ring-2
               focus:ring-inset
-              focus:ring-indigo-500
+              focus:ring-yellow-500
             "
           >
             <span class="sr-only">Open menu</span>
@@ -60,10 +55,10 @@
               <PopoverButton
                 :class="[
                   open ? 'text-gray-900' : 'text-gray-500',
-                  'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
+                  'group bg-yellow-50 rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
                 ]"
               >
-                <span>Solutions</span>
+                <span>Services</span>
                 <ChevronDownIcon
                   :class="[
                     open ? 'text-gray-600' : 'text-gray-400',
@@ -449,33 +444,94 @@
             </Popover>
           </PopoverGroup>
           <div class="flex items-center md:ml-12">
-            <a
-              href="#"
-              class="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Sign in
-            </a>
-            <a
-              href="#"
-              class="
-                ml-8
-                inline-flex
-                items-center
-                justify-center
-                px-4
-                py-2
-                border border-transparent
-                rounded-md
-                shadow-sm
-                text-base
-                font-medium
-                text-white
-                bg-indigo-600
-                hover:bg-indigo-700
-              "
-            >
-              Sign up
-            </a>
+            <!--            //user action-->
+            <template v-if="appState.user.role">
+              <div class="flex items-center space-x-6">
+                <template v-if="appState.user.role !== 'user'">
+                  <router-link
+                    :to="{ name: 'AdminDashboard' }"
+                    class="
+                      ml-8
+                      inline-flex
+                      items-center
+                      justify-center
+                      px-4
+                      py-2
+                      border border-transparent
+                      rounded-md
+                      shadow-sm
+                      text-base
+                      font-medium
+                      text-white
+                      bg-red-500
+                      hover:bg-red-400
+                    "
+                  >
+                    <i class="far fa-user-circle pr-2"></i> Manager
+                  </router-link>
+                </template>
+                <template v-else>
+                  <router-link
+                    :to="{ name: 'UserDashboard' }"
+                    class="
+                      ml-8
+                      inline-flex
+                      items-center
+                      justify-center
+                      px-4
+                      py-2
+                      border border-transparent
+                      rounded-md
+                      shadow-sm
+                      text-base
+                      font-medium
+                      text-white
+                      bg-yellow-500
+                      hover:bg-yellow-400
+                    "
+                  >
+                    <i class="far fa-user-circle pr-2"></i> Dashboard
+                  </router-link>
+                </template>
+                <i class="fad fa-power-off text-red-500 font-bold text-2xl"></i>
+              </div>
+            </template>
+            <div v-else>
+              <div>
+                <a
+                  href="#"
+                  class="
+                    text-base
+                    font-medium
+                    text-gray-500
+                    hover:text-gray-900
+                  "
+                >
+                  Sign in
+                </a>
+                <a
+                  href="#"
+                  class="
+                    ml-8
+                    inline-flex
+                    items-center
+                    justify-center
+                    px-4
+                    py-2
+                    border border-transparent
+                    rounded-md
+                    shadow-sm
+                    text-base
+                    font-medium
+                    text-white
+                    bg-indigo-600
+                    hover:bg-indigo-700
+                  "
+                >
+                  Sign up
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -508,7 +564,7 @@
             rounded-lg
             shadow-lg
             ring-1 ring-black ring-opacity-5
-            bg-white
+            bg-yellow-50
             divide-y-2 divide-gray-50
           "
         >
@@ -524,22 +580,23 @@
               <div class="-mr-2">
                 <PopoverButton
                   class="
-                    bg-white
+                    bg-yellow-600
+                    text-white
                     rounded-md
                     p-2
                     inline-flex
                     items-center
                     justify-center
                     text-gray-400
-                    hover:text-gray-500 hover:bg-gray-100
+                    hover:bg-yellow-500
                     focus:outline-none
                     focus:ring-2
                     focus:ring-inset
-                    focus:ring-indigo-500
+                    focus:ring-yellow-500
                   "
                 >
                   <span class="sr-only">Close menu</span>
-                  <XIcon class="h-6 w-6" aria-hidden="true" />
+                  <i class="fas fa-times text-2xl text-white px-1"></i>
                 </PopoverButton>
               </div>
             </div>
@@ -739,10 +796,13 @@ import {
 } from "@heroicons/vue/outline";
 import { ChevronDownIcon } from "@heroicons/vue/solid";
 import AppLogo from "./AppLogo.vue";
+import CompanyLogo from "./CompanyLogo.vue";
+import { appState } from "./store/store";
+import { ref } from "vue";
 
 const solutions = [
   {
-    name: "Analytics",
+    name: "Visa Arrangements",
     description:
       "Get a better understanding of where your traffic is coming from.",
     href: "#",
@@ -808,6 +868,7 @@ const blogPosts = [
 
 export default {
   components: {
+    CompanyLogo,
     AppLogo,
     Popover,
     PopoverButton,
@@ -818,11 +879,15 @@ export default {
     XIcon,
   },
   setup() {
+    const textColor = ref("text-gray-600 md:hidden  lg:block");
+
     return {
       solutions,
       callsToAction,
       company,
       resources,
+      appState,
+      textColor,
       blogPosts,
     };
   },

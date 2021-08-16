@@ -140,7 +140,7 @@ export default defineComponent({
     function logOut() {
       logOutUser();
 
-      router.push({ name: "Login" });
+      window.location.href = "/login";
     }
 
     return {

@@ -230,26 +230,24 @@
                       </defs>
                     </svg>
                   </div>
-                  <h3 class="text-lg font-medium text-white">
-                    Contact information
-                  </h3>
-                  <p class="mt-6 text-base text-white max-w-3xl">
-                    Nullam risus blandit ac aliquam justo ipsum. Quam mauris
-                    volutpat massa dictumst amet. Sapien tortor lacus arcu.
-                  </p>
+
                   <dl class="mt-8 space-y-6">
                     <dt><span class="sr-only">Phone number</span></dt>
                     <dd class="flex items-center text-base text-yellow-50">
                       <!-- Heroicon name: outline/phone -->
 
                       <i class="far fa-phone-alt text-white text-lg"></i>
-                      <span class="ml-3 text-white">+1 (555) 123-4567</span>
+                      <span class="ml-3 text-white">{{
+                        appState.data.contact.phone
+                      }}</span>
                     </dd>
                     <dt><span class="sr-only">Email</span></dt>
                     <dd class="flex items-center text-base text-white">
                       <!-- Heroicon name: outline/mail -->
                       <i class="far fa-envelope-open"></i>
-                      <span class="ml-3">support@workcation.com</span>
+                      <span class="ml-3">{{
+                        appState.data.contact.email
+                      }}</span>
                     </dd>
                   </dl>
                   <ul class="mt-8 flex space-x-12" role="list">
@@ -566,12 +564,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { appState } from "../store/store";
 
 export default defineComponent({
-  name: "ComponentName",
+  name: "ContactPage",
 
   setup() {
-    return {};
+    return { appState };
   },
 });
 </script>
