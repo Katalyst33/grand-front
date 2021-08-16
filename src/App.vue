@@ -1,5 +1,6 @@
 <template>
   <MenuComponent />
+  <Navigator />
   <router-view />
 
   <FooterSection />
@@ -10,10 +11,12 @@ import { defineComponent } from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
 import MenuComponent from "./components/commons/MenuComponent.vue";
 import FooterSection from "./FooterSection.vue";
+import Navigator from "./Navigator.vue";
 
 export default defineComponent({
   name: "App",
   components: {
+    Navigator,
     FooterSection,
     MenuComponent,
     HelloWorld,
