@@ -93,20 +93,39 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const isAuthenticated = BrowserStore.has("ge_jwt");
   const userRole = BrowserStore.get("user_role");
+  console.log(to.name);
 
   console.log(isAuthenticated, userRole);
 
-  if (to.name === "userDashboard" && !isAuthenticated) {
+  const authMetas = ["staff", "admin"];
+
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (!isAuthenticated) {
+      next({
+        name: "Login",
+      });
+    } else if (
+      to.meta.role === "staff" &&
+      isAuthenticated &&
+      userRole === "user"
+    ) {
+      next({
+        name: "UserDashboard",
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+
+  /* if (to.name === "UserDashboard" && !isAuthenticated) {
     next({ name: "Login" });
   } else if (to.name === "Login" && isAuthenticated && userRole === "user") {
     next({ name: "userDashboard" });
-  } else if (to.name === "Login" && isAuthenticated && userRole === "staff") {
-    next({ name: "adminDashboard" });
   } else {
-    console.log("ddddd");
-
     next();
-  }
+  }*/
 });
 
 export default router;

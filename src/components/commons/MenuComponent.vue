@@ -52,11 +52,18 @@
                     >{{ item.name }}</router-link
                   >
                   <button
-                    @click="logOutUser()"
+                    @click="logOut"
                     class="bg-red-500 p-2 rounded-md text-white"
                   >
                     Logout
                   </button>
+
+                  <router-link :to="{ name: 'UserDashboard' }"
+                    >User profile</router-link
+                  >
+                  <router-link :to="{ name: 'AdminDashboard' }"
+                    >AdminAll users</router-link
+                  >
                 </div>
               </div>
               <!-- Desktop page links -->
@@ -104,6 +111,7 @@ import {
 } from "@headlessui/vue";
 import AppLogo from "../../AppLogo.vue";
 import { logOutUser } from "../../store/store";
+import { useRouter } from "vue-router";
 
 const navigation = [
   { name: "Home", href: "Home", current: true },
@@ -127,11 +135,18 @@ export default defineComponent({
 
   setup() {
     const open = ref(true);
+    const router = useRouter();
+
+    function logOut() {
+      logOutUser();
+
+      router.push({ name: "Login" });
+    }
 
     return {
       navigation,
       open,
-      logOutUser,
+      logOut,
     };
   },
 });

@@ -174,7 +174,7 @@ export default {
 
   setup() {
     const form = ref<userForm>({
-      email: "her@gmail.com",
+      email: "staff@gmail.com",
       password: "123456789",
     });
 
@@ -185,12 +185,16 @@ export default {
         .post("/login", form.value)
         .then((r: any) => {
           BrowserStore.set("ge_jwt", r.token);
+          BrowserStore.set("user_role", r.role);
 
           if (r.error) {
             router.push({ name: "Contact" });
+          } else if (BrowserStore.get("user_role") === "user") {
+            window.location.href = "/user/dashboard";
+          } else if (BrowserStore.get("user_role") !== "user") {
+            window.location.href = "/admin/dashboard";
           } else {
-            window.location.href = "/";
-            // router.push({name: 'Dashboard'});
+            window.location.href = "/user/dashboard";
           }
         })
         .catch((r) => r);
