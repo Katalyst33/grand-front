@@ -104,7 +104,7 @@ router.beforeEach((to, from, next) => {
     } else if (
       to.meta.role === "staff" &&
       isAuthenticated &&
-      userRole === "user"
+      !authMetas.includes(userRole)
     ) {
       next({
         name: "UserDashboard",

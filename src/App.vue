@@ -1,7 +1,9 @@
 <template>
   <MenuComponent />
   <Navigator />
-  <router-view />
+  <div class="container mx-auto">
+    <router-view />
+  </div>
 
   <FooterSection />
 </template>
