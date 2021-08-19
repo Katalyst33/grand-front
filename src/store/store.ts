@@ -33,8 +33,7 @@ export function setAppState() {
 }
 
 export function logOutUser() {
-  console.log("heyyyyy");
-
   BrowserStore.remove("user_role");
   BrowserStore.remove("ge_jwt");
+  window.location.href = "/login";
 }
