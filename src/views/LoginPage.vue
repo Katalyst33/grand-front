@@ -180,7 +180,7 @@ export default {
 
     function LoginUser() {
       $axios
-        .post("/login", form.value)
+        .post("client/login", form.value)
         .then((r: any) => {
           BrowserStore.set("ge_jwt", r.token);
           BrowserStore.set("user_role", r.role);
@@ -196,8 +196,6 @@ export default {
           }
         })
         .catch((r) => r);
-
-      console.log("hey data");
     }
     return {
       LoginUser,

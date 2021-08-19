@@ -1,17 +1,22 @@
 import axios from "axios";
 import izitoast from "izitoast";
-
-const appBaseURL = import.meta.env.VITE_API_URL;
-
 import "izitoast/dist/css/iziToast.css";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
-import { axiosResponse } from "./types";
+import * as process from "process";
 
 const BrowserStore = vueLocalStorage();
-
 if (BrowserStore.has("ge_jwt")) {
   axios.defaults.headers["ge-apiKey"] = BrowserStore.get("ge_jwt");
 }
+
+const { protocol, hostname, port } = window.location;
+
+const $port = port && port.length ? ":5300" : "";
+const domain = `${hostname}${$port}`;
+
+const url = `${protocol}//${domain}/api/`;
+
+axios.defaults.baseURL = url;
 
 axios.interceptors.response.use((response: any) => {
   if (response.data.message) {
@@ -30,19 +35,5 @@ axios.interceptors.response.use((response: any) => {
 
   return response.data;
 });
-const env = "development";
-
-if (env === "development") {
-  const envValue = "http://_??_:5300/api";
-  const url = envValue.replace("_??_", window.location.hostname);
-
-  axios.defaults.baseURL = url;
-} else if (env === "production") {
-  axios.defaults.baseURL = appBaseURL as string;
-}
-
-// @ts-ignore
-// axios.defaults.baseURL = appBaseURL ;
-// export default axios;
 
 export { axios as $axios };

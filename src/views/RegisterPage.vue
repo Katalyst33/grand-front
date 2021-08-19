@@ -169,7 +169,7 @@ export default defineComponent({
 
     function registerUser() {
       $axios
-        .post("/register", form.value)
+        .post("client/register", form.value)
         .then((r) => console.log(r))
         .catch((r) => r);
     }

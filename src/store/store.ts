@@ -21,7 +21,7 @@ const SET_APP_INFO = (appData: any) => {
 
 export function setAppState() {
   return $axios
-    .get(`/ping`)
+    .get(`client/ping`)
     .then((response: any) => {
       SET_APP_INFO(response.appData);
       if (response.user) {
@@ -29,9 +29,7 @@ export function setAppState() {
         BrowserStore.set("user_role", response.user.role);
       }
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch((err) => err);
 }
 
 export function logOutUser() {

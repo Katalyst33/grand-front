@@ -53,11 +53,11 @@ export default defineComponent({
 }
 
 .big-font {
-  font-family: bigJohn;
+  font-family: bigJohn, serif;
 }
 
 @font-face {
   font-family: bigJohn;
-  src: url("./fonts/BIG-JOHN.woff");
+  src: url("./font/BIG-JOHN.woff");
 }
 </style>
