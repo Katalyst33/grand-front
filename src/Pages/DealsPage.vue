@@ -26,6 +26,8 @@ import { $axios } from "../http.Service";
 export default defineComponent({
   name: "DealsPage",
 
+
+
   setup() {
     const isLoaded = ref(false),
       allDeals = ref([]);
