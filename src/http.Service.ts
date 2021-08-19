@@ -2,7 +2,6 @@ import axios from "axios";
 import izitoast from "izitoast";
 import "izitoast/dist/css/iziToast.css";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
-import * as process from "process";
 
 const BrowserStore = vueLocalStorage();
 if (BrowserStore.has("ge_jwt")) {
