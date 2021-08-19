@@ -223,235 +223,225 @@
             >
               Docs
             </a>
-            <!--            second big menu-->
-            <div v-if="false">
-              <Popover v-slot="{ open }">
-                <PopoverButton
+            <Popover v-slot="{ open }">
+              <PopoverButton
+                :class="[
+                  open ? 'text-gray-900' : 'text-gray-500',
+                  'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
+                ]"
+              >
+                <span>More</span>
+                <ChevronDownIcon
                   :class="[
-                    open ? 'text-gray-900' : 'text-gray-500',
-                    'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
+                    open ? 'text-gray-600' : 'text-gray-400',
+                    'ml-2 h-5 w-5 group-hover:text-gray-500',
                   ]"
-                >
-                  <span>More</span>
-                  <ChevronDownIcon
-                    :class="[
-                      open ? 'text-gray-600' : 'text-gray-400',
-                      'ml-2 h-5 w-5 group-hover:text-gray-500',
-                    ]"
-                    aria-hidden="true"
-                  />
-                </PopoverButton>
+                  aria-hidden="true"
+                />
+              </PopoverButton>
 
-                <transition
-                  enter-active-class="transition ease-out duration-200"
-                  enter-from-class="opacity-0 -translate-y-1"
-                  enter-to-class="opacity-100 translate-y-0"
-                  leave-active-class="transition ease-in duration-150"
-                  leave-from-class="opacity-100 translate-y-0"
-                  leave-to-class="opacity-0 -translate-y-1"
+              <transition
+                enter-active-class="transition ease-out duration-200"
+                enter-from-class="opacity-0 -translate-y-1"
+                enter-to-class="opacity-100 translate-y-0"
+                leave-active-class="transition ease-in duration-150"
+                leave-from-class="opacity-100 translate-y-0"
+                leave-to-class="opacity-0 -translate-y-1"
+              >
+                <PopoverPanel
+                  class="
+                    hidden
+                    md:block
+                    absolute
+                    z-10
+                    top-full
+                    inset-x-0
+                    transform
+                    shadow-lg
+                  "
                 >
-                  <PopoverPanel
+                  <div class="absolute inset-0 flex">
+                    <div class="bg-white w-1/2" />
+                    <div class="bg-gray-50 w-1/2" />
+                  </div>
+                  <div
                     class="
-                      hidden
-                      md:block
-                      absolute
-                      z-10
-                      top-full
-                      inset-x-0
-                      transform
-                      shadow-lg
+                      relative
+                      max-w-7xl
+                      mx-auto
+                      grid grid-cols-1
+                      lg:grid-cols-2
                     "
                   >
-                    <div class="absolute inset-0 flex">
-                      <div class="bg-white w-1/2" />
-                      <div class="bg-gray-50 w-1/2" />
-                    </div>
-                    <div
+                    <nav
                       class="
-                        relative
-                        max-w-7xl
-                        mx-auto
-                        grid grid-cols-1
-                        lg:grid-cols-2
+                        grid
+                        gap-y-10
+                        px-4
+                        py-8
+                        bg-white
+                        sm:grid-cols-2 sm:gap-x-8 sm:py-12 sm:px-6
+                        lg:px-8
+                        xl:pr-12
                       "
                     >
-                      <nav
-                        class="
-                          grid
-                          gap-y-10
-                          px-4
-                          py-8
-                          bg-white
-                          sm:grid-cols-2 sm:gap-x-8 sm:py-12 sm:px-6
-                          lg:px-8
-                          xl:pr-12
-                        "
-                      >
-                        <div>
-                          <h3
-                            class="
-                              text-sm
-                              font-medium
-                              tracking-wide
-                              text-gray-500
-                              uppercase
-                            "
+                      <div>
+                        <h3
+                          class="
+                            text-sm
+                            font-medium
+                            tracking-wide
+                            text-gray-500
+                            uppercase
+                          "
+                        >
+                          Company
+                        </h3>
+                        <ul class="mt-5 space-y-6">
+                          <li
+                            v-for="item in company"
+                            :key="item.name"
+                            class="flow-root"
                           >
-                            Company
-                          </h3>
-                          <ul class="mt-5 space-y-6">
-                            <li
-                              v-for="item in company"
-                              :key="item.name"
-                              class="flow-root"
+                            <a
+                              :href="item.href"
+                              class="
+                                -m-3
+                                p-3
+                                flex
+                                items-center
+                                rounded-md
+                                text-base
+                                font-medium
+                                text-gray-900
+                                hover:bg-gray-50
+                              "
                             >
-                              <a
-                                :href="item.href"
-                                class="
-                                  -m-3
-                                  p-3
-                                  flex
-                                  items-center
-                                  rounded-md
-                                  text-base
-                                  font-medium
-                                  text-gray-900
-                                  hover:bg-gray-50
-                                "
-                              >
-                                <component
-                                  :is="item.icon"
-                                  class="flex-shrink-0 h-6 w-6 text-gray-400"
-                                  aria-hidden="true"
+                              <component
+                                :is="item.icon"
+                                class="flex-shrink-0 h-6 w-6 text-gray-400"
+                                aria-hidden="true"
+                              />
+                              <span class="ml-4">{{ item.name }}</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h3
+                          class="
+                            text-sm
+                            font-medium
+                            tracking-wide
+                            text-gray-500
+                            uppercase
+                          "
+                        >
+                          Resources
+                        </h3>
+                        <ul class="mt-5 space-y-6">
+                          <li
+                            v-for="item in resources"
+                            :key="item.name"
+                            class="flow-root"
+                          >
+                            <a
+                              :href="item.href"
+                              class="
+                                -m-3
+                                p-3
+                                flex
+                                items-center
+                                rounded-md
+                                text-base
+                                font-medium
+                                text-gray-900
+                                hover:bg-gray-50
+                              "
+                            >
+                              <component
+                                :is="item.icon"
+                                class="flex-shrink-0 h-6 w-6 text-gray-400"
+                                aria-hidden="true"
+                              />
+                              <span class="ml-4">{{ item.name }}</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </nav>
+                    <div
+                      class="
+                        bg-gray-50
+                        px-4
+                        py-8
+                        sm:py-12 sm:px-6
+                        lg:px-8
+                        xl:pl-12
+                      "
+                    >
+                      <div>
+                        <h3
+                          class="
+                            text-sm
+                            font-medium
+                            tracking-wide
+                            text-gray-500
+                            uppercase
+                          "
+                        >
+                          From the blog
+                        </h3>
+                        <ul class="mt-6 space-y-6">
+                          <li
+                            v-for="post in blogPosts"
+                            :key="post.id"
+                            class="flow-root"
+                          >
+                            <a
+                              :href="post.href"
+                              class="-m-3 p-3 flex rounded-lg hover:bg-gray-100"
+                            >
+                              <div class="hidden sm:block flex-shrink-0">
+                                <img
+                                  class="w-32 h-20 object-cover rounded-md"
+                                  :src="post.imageUrl"
+                                  alt=""
                                 />
-                                <span class="ml-4">{{ item.name }}</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h3
-                            class="
-                              text-sm
-                              font-medium
-                              tracking-wide
-                              text-gray-500
-                              uppercase
-                            "
-                          >
-                            Resources
-                          </h3>
-                          <ul class="mt-5 space-y-6">
-                            <li
-                              v-for="item in resources"
-                              :key="item.name"
-                              class="flow-root"
-                            >
-                              <a
-                                :href="item.href"
-                                class="
-                                  -m-3
-                                  p-3
-                                  flex
-                                  items-center
-                                  rounded-md
-                                  text-base
-                                  font-medium
-                                  text-gray-900
-                                  hover:bg-gray-50
-                                "
-                              >
-                                <component
-                                  :is="item.icon"
-                                  class="flex-shrink-0 h-6 w-6 text-gray-400"
-                                  aria-hidden="true"
-                                />
-                                <span class="ml-4">{{ item.name }}</span>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </nav>
-                      <div
-                        class="
-                          bg-gray-50
-                          px-4
-                          py-8
-                          sm:py-12 sm:px-6
-                          lg:px-8
-                          xl:pl-12
-                        "
-                      >
-                        <div>
-                          <h3
-                            class="
-                              text-sm
-                              font-medium
-                              tracking-wide
-                              text-gray-500
-                              uppercase
-                            "
-                          >
-                            From the blog
-                          </h3>
-                          <ul class="mt-6 space-y-6">
-                            <li
-                              v-for="post in blogPosts"
-                              :key="post.id"
-                              class="flow-root"
-                            >
-                              <a
-                                :href="post.href"
-                                class="
-                                  -m-3
-                                  p-3
-                                  flex
-                                  rounded-lg
-                                  hover:bg-gray-100
-                                "
-                              >
-                                <div class="hidden sm:block flex-shrink-0">
-                                  <img
-                                    class="w-32 h-20 object-cover rounded-md"
-                                    :src="post.imageUrl"
-                                    alt=""
-                                  />
-                                </div>
-                                <div class="w-0 flex-1 sm:ml-8">
-                                  <h4
-                                    class="
-                                      text-base
-                                      font-medium
-                                      text-gray-900
-                                      truncate
-                                    "
-                                  >
-                                    {{ post.name }}
-                                  </h4>
-                                  <p class="mt-1 text-sm text-gray-500">
-                                    {{ post.preview }}
-                                  </p>
-                                </div>
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
-                        <div class="mt-6 text-sm font-medium">
-                          <a
-                            href="#"
-                            class="text-indigo-600 hover:text-indigo-500"
-                          >
-                            View all posts
-                            <span aria-hidden="true">&rarr;</span></a
-                          >
-                        </div>
+                              </div>
+                              <div class="w-0 flex-1 sm:ml-8">
+                                <h4
+                                  class="
+                                    text-base
+                                    font-medium
+                                    text-gray-900
+                                    truncate
+                                  "
+                                >
+                                  {{ post.name }}
+                                </h4>
+                                <p class="mt-1 text-sm text-gray-500">
+                                  {{ post.preview }}
+                                </p>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="mt-6 text-sm font-medium">
+                        <a
+                          href="#"
+                          class="text-indigo-600 hover:text-indigo-500"
+                        >
+                          View all posts
+                          <span aria-hidden="true">&rarr;</span></a
+                        >
                       </div>
                     </div>
-                  </PopoverPanel>
-                </transition>
-              </Popover>
-            </div>
-            <!--            second big menu-->
+                  </div>
+                </PopoverPanel>
+              </transition>
+            </Popover>
           </PopoverGroup>
           <div class="flex items-center md:ml-12">
             <!--            //user action-->
@@ -483,16 +473,27 @@
                 <template v-else>
                   <router-link
                     :to="{ name: 'UserDashboard' }"
-                    class="ml-8 btn-user-dash"
+                    class="
+                      ml-8
+                      inline-flex
+                      items-center
+                      justify-center
+                      px-4
+                      py-2
+                      border border-transparent
+                      rounded-md
+                      shadow-sm
+                      text-base
+                      font-medium
+                      text-white
+                      bg-yellow-500
+                      hover:bg-yellow-400
+                    "
                   >
                     <i class="far fa-user-circle pr-2"></i> Dashboard
                   </router-link>
                 </template>
-                <div class="cursor-pointer" @click="logOutUser">
-                  <i
-                    class="fad fa-power-off text-red-500 font-bold text-2xl"
-                  ></i>
-                </div>
+                <i class="fad fa-power-off text-red-500 font-bold text-2xl"></i>
               </div>
             </template>
             <div v-else>
@@ -796,7 +797,7 @@ import {
 import { ChevronDownIcon } from "@heroicons/vue/solid";
 import AppLogo from "./AppLogo.vue";
 import CompanyLogo from "./CompanyLogo.vue";
-import { appState, logOutUser } from "./store/store";
+import { appState } from "./store/store";
 import { ref } from "vue";
 
 const solutions = [
@@ -888,7 +889,6 @@ export default {
       appState,
       textColor,
       blogPosts,
-      logOutUser,
     };
   },
 };

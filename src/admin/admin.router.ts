@@ -4,7 +4,7 @@ const AdminDashboard = () => import("./AdminDashboard.vue");
 
 export default <RouteRecordRaw>{
   path: "/admin",
-  component: () => import("./AdminLayout.vue"),
+  component: () => import("./AdminDashboard.vue"),
   meta: { requiresAuth: true, role: "staff" },
   children: [
     {

@@ -1,6 +1,6 @@
 <template>
-  <div class="mx-10">
-    <h3 class="text-red-500 text-2xl p-4">Admin Dashboard</h3>
+  <div>
+    <h3 class="bg-red-500 text-white p-4">Admin only Dashboard</h3>
   </div>
 </template>
 

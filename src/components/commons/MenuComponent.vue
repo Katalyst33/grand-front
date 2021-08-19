@@ -139,6 +139,8 @@ export default defineComponent({
 
     function logOut() {
       logOutUser();
+
+      window.location.href = "/login";
     }
 
     return {
