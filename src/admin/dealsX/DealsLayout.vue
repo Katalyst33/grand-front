@@ -3,7 +3,7 @@
     <div class="flex space-x-4">
       <p>Deals layout</p>
       <p>Create Deals</p>
-      <p>View Deals</p>
+      <p>View Deal</p>
     </div>
 
     <router-view></router-view>
