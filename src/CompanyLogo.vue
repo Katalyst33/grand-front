@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center">
+  <router-link :to="{ name: 'Home' }" class="flex items-center">
     <svg
       class="h-[2.8rem]"
       xmlns="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@
     <h1 :class="textColor" class="font-bold block pl-2 big-font">
       {{ appState.data.companyName }}
     </h1>
-  </div>
+  </router-link>
 </template>
 <script lang="ts">
 export default {

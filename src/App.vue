@@ -1,5 +1,5 @@
 <template>
-  <MenuComponent />
+  <MenuComponent v-if="false" />
   <GuestNavigator />
   <div class="container mx-auto">
     <router-view />

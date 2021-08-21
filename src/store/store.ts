@@ -35,8 +35,6 @@ export function setAppState() {
 
 export function closeMenu(state: boolean) {
   appState.showMobileMenu = state;
-  console.log(appState.showMobileMenu);
-  console.log("i close menu");
 }
 
 export function logOutUser() {

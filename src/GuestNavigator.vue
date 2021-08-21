@@ -509,8 +509,8 @@
               </a>
             </div>
             <div class="mt-6">
-              <a
-                href="#"
+              <router-link
+                :to="{ name: 'Register' }"
                 class="
                   w-full
                   flex
@@ -529,13 +529,16 @@
                 "
               >
                 Sign up
-              </a>
+              </router-link>
               <p class="mt-6 text-center text-base font-medium text-gray-500">
                 Existing customer?
                 {{ " " }}
-                <a href="#" class="text-indigo-600 hover:text-indigo-500">
+                <router-link
+                  :to="{ name: 'Login' }"
+                  class="text-indigo-600 hover:text-indigo-500"
+                >
                   Sign in
-                </a>
+                </router-link>
               </p>
             </div>
           </div>
@@ -612,7 +615,7 @@ const solutions = [
 ];
 const callsToAction = [
   { name: "Watch Demo", href: "#", icon: PlayIcon },
-  { name: "View All Products", href: "#", icon: CheckCircleIcon },
+  { name: "View All Products", href: "Deals", icon: CheckCircleIcon },
   { name: "Contact Sales", href: "#", icon: PhoneIcon },
 ];
 const company = [
