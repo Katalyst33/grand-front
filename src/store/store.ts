@@ -9,6 +9,7 @@ const BrowserStore = vueLocalStorage();
 export const appState = reactive({
   data: {} as appInfo,
   user: {} as loggedUser,
+  showMobileMenu: true,
 });
 
 const SET_AUTH_USER = (user: loggedUser) => {
@@ -23,7 +24,6 @@ export function setAppState() {
   return $axios
     .get(`client/ping`)
     .then((response: any) => {
-      console.log(response);
       SET_APP_INFO(response.appData);
       if (response.user) {
         SET_AUTH_USER(response.user);
@@ -31,6 +31,12 @@ export function setAppState() {
       }
     })
     .catch((err) => err);
+}
+
+export function closeMenu(state: boolean) {
+  appState.showMobileMenu = state;
+  console.log(appState.showMobileMenu);
+  console.log("i close menu");
 }
 
 export function logOutUser() {

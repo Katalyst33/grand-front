@@ -16,7 +16,7 @@ import DealsPage from "./Pages/DealsPage.vue";
 import SignupAndLogin from "./views/SingupAndLogin.vue";
 import ContactPage from "./views/ContactPage.vue";
 import DemoPage from "./components/DemoPage.vue";
-import { appState } from "./store/store";
+import { appState, closeMenu } from "./store/store";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
 
 // const componentName = () => import("./componentName.vue");
@@ -98,7 +98,6 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const isAuthenticated = BrowserStore.has("ge_jwt");
   const userRole = BrowserStore.get("user_role");
-
   const authMetas = ["staff", "admin"];
 
   if (to.matched.some((record) => record.meta.requiresAuth)) {
@@ -120,14 +119,6 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
-
-  /* if (to.name === "UserDashboard" && !isAuthenticated) {
-    next({ name: "Login" });
-  } else if (to.name === "Login" && isAuthenticated && userRole === "user") {
-    next({ name: "userDashboard" });
-  } else {
-    next();
-  }*/
 });
 
 export default router;

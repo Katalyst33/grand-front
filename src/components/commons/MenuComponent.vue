@@ -114,7 +114,7 @@ import { logOutUser } from "../../store/store";
 import { useRouter } from "vue-router";
 
 const navigation = [
-  { name: "Home", href: "Home", current: true },
+  { name: "Home", href: "Home", current: false },
   { name: "Our Services ", href: "Service", current: false },
   { name: "Deals", href: "Deals", current: false },
   { name: "Login", href: "Login", current: false },
