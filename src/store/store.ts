@@ -23,6 +23,7 @@ export function setAppState() {
   return $axios
     .get(`client/ping`)
     .then((response: any) => {
+      console.log(response);
       SET_APP_INFO(response.appData);
       if (response.user) {
         SET_AUTH_USER(response.user);
