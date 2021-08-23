@@ -1,16 +1,13 @@
 <template>
-  <div class="bg-red-500 p-10 text-white text-2xl text-center">NOT FOUND !!!!</div>
-
-  <div>
-{{$route.name}}
-    <br>
-    <br>
-
+  <div class="bg-red-500 p-10 text-white text-2xl text-center">
+    <h1>{{ $route.name }}</h1>
+    <br />
+    <br />
+    <!--    <router-link class="underline" :to="{ name: 'Home' }">Home</router-link>-->
   </div>
-
 </template>
 <script lang="ts">
 export default {
-  name: 'DemoComponent'
-}
+  name: "DemoComponent",
+};
 </script>
