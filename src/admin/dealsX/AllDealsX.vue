@@ -62,39 +62,43 @@
                     uppercase
                     tracking-wider
                   "
-                >
-                  Price
-                </th>
+                ></th>
                 <th scope="col" class="relative px-6 py-3">
                   <span class="sr-only">Edit</span>
                 </th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              <tr v-for="deal in allDeals.data" :key="deal.email">
+              <tr v-for="(deal, index) in allDeals" :key="index">
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="flex-shrink-0 h-10 w-10">
                       <img
                         class="h-10 w-10 rounded-full"
-                        src="https://www.countryflags.io/be/flat/64.png"
+                        :src="`https://www.countryflags.io/${deal.countryCode}/flat/64.png`"
                         alt=""
                       />
                     </div>
                     <div class="ml-4">
-                      <div class="text-sm font-medium text-gray-900">
-                        {{ deal.name }}
-                      </div>
+                      <router-link
+                        :to="{
+                          name: 'ViewDealPageX',
+                          params: { dealId: deal.uuid },
+                        }"
+                        class="text-sm font-medium text-gray-900"
+                      >
+                        {{ deal.country }}
+                      </router-link>
                       <div class="text-sm text-gray-500">
-                        {{ deal.email }}
+                        {{ deal.countryCode }}
                       </div>
                     </div>
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm text-gray-900">{{ deal.title }}</div>
-                  <div class="text-sm text-gray-500 truncate">
-                    {{ deal.description }}
+                  <div class="text-sm text-gray-500">
+                    {{ trimString(deal.description) }}...
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
@@ -114,7 +118,7 @@
                   </span>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {{ deal.price }}
+                  {{ deal.role }}
                 </td>
                 <td
                   class="
@@ -136,28 +140,35 @@
       </div>
     </div>
   </div>
-  <div></div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import { $axios } from "../../http.Service";
+import { DealsData } from "../../types";
 
 export default defineComponent({
   name: "AdminAllDeals",
 
   setup() {
-    const allDeals = ref({});
+    const allDeals = ref([]);
+
+    function trimString(stringText: string) {
+      return stringText.substring(0, 50);
+    }
 
     function getAllDeals() {
       $axios
         .get("manager/deals")
-        .then((r) => (allDeals.value = r.data))
+        .then((r) => {
+          allDeals.value = r.data.data;
+          console.log(allDeals.value);
+        })
         .catch((e) => e);
     }
 
     getAllDeals();
-    return { allDeals };
+    return { allDeals, trimString };
   },
 });
 </script>

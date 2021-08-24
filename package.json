@@ -14,6 +14,7 @@
     "@trapcode/browser-storage": "^2.1.6",
     "axios": "^0.21.1",
     "chance": "^1.1.7",
+    "gsap": "^3.7.1",
     "izitoast": "^1.4.0",
     "moment": "^2.29.1",
     "swiper": "^6.6.1",
@@ -25,7 +26,7 @@
   "devDependencies": {
     "@heroicons/vue": "^1.0.3",
     "@tailwindcss/forms": "^0.3.2",
-    "@types/node": "^16.4.10",
+    "@types/node": "^16.7.1",
     "@vitejs/plugin-vue": "^1.2.2",
     "@vue/compiler-sfc": "^3.0.5",
     "autoprefixer": "^10.2.5",

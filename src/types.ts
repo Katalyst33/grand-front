@@ -25,3 +25,18 @@ export type appInfo = {
     address?: string;
   };
 };
+
+export type DealsData = {
+  country: string;
+  countryCode: string;
+  createdAt: Date;
+  description: string;
+  enabled: boolean;
+  expiresIn: Date;
+  included: [];
+  price: number;
+  title: string;
+  updatedAt: string;
+  _id: string;
+  uuid: string;
+};

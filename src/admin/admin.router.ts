@@ -3,6 +3,7 @@ const AdminLayout = () => import("./AdminLayout.vue");
 const AdminDashboard = () => import("./AdminDashboard.vue");
 const AllDeals = () => import("./dealsX/AllDealsX.vue");
 const DealsLayout = () => import("./dealsX/DealsLayout.vue");
+const ViewDealPageX = () => import("./dealsX/ViewDealPageX.vue");
 
 export default <RouteRecordRaw>{
   path: "/admin",
@@ -24,6 +25,11 @@ export default <RouteRecordRaw>{
           path: "/all-deals/manage",
           name: "AllDealsX",
           component: AllDeals,
+        },
+        {
+          path: "/deal-x/:dealId",
+          name: "ViewDealPageX",
+          component: ViewDealPageX,
         },
       ],
     },

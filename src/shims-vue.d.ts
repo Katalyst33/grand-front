@@ -7,3 +7,4 @@ declare module "*.vue" {
 declare module "vue-json-pretty";
 declare module "process";
 declare module "vue-json-viewer";
+// declare module "crypto";

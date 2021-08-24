@@ -32,6 +32,7 @@ export default defineComponent({
 
 <style lang="scss">
 @import "assets/scss/input-buttons";
+@import "assets/scss/Typography";
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

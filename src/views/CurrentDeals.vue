@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section v-if="isLoaded">
     <h2 class="title-2 -mb-10">Current Deals</h2>
 
     <div
@@ -11,19 +11,22 @@
         gap-4
       "
     >
-      <div
-        v-for="(item, index) in currentDeals"
+      <router-link
+        :to="{ name: 'ViewDealPage', params: { dealId: item.uuid } }"
+        v-for="(item, index) in allDeals.slice(1, 5)"
         :key="index"
-        :class="item.size"
         :style="{ 'background-image': 'url(' + item.image + ')' }"
-        class="card"
+        class="card bg-red-200"
       >
-        <div class="card-content">
+        <router-link
+          :to="{ name: 'ViewDealPage', params: { dealId: item.uuid } }"
+          class="card-content"
+        >
           <h2 class="card-title font-bold">
-            {{ item.title }}
+            {{ item.country }}
           </h2>
           <p class="my-2 text-base">
-            {{ item.text }}
+            {{ item.title }}
           </p>
           <div
             class="
@@ -51,17 +54,17 @@
               items-center
             "
           >
-            <img
-              :src="`https://www.countryflags.io/${item.countryFlag}/flat/32.png`"
-            />
             <p class="pl-2 font-medium uppercase">{{ item.countryName }}</p>
           </div>
-        </div>
-      </div>
+        </router-link>
+      </router-link>
     </div>
   </section>
 </template>
 <script lang="ts">
+import { ref } from "vue";
+import { $axios } from "../http.Service";
+
 export default {
   name: "CurrentDeals",
 
@@ -114,6 +117,24 @@ export default {
         },
       ],
     };
+  },
+
+  setup() {
+    const isLoaded = ref(false),
+      allDeals = ref([]);
+
+    function getAllDeals() {
+      $axios
+        .get("client/deals")
+        .then((r) => {
+          isLoaded.value = true;
+          allDeals.value = r.data.data;
+        })
+        .catch((e) => e);
+    }
+    getAllDeals();
+
+    return { isLoaded, allDeals };
   },
 };
 </script>

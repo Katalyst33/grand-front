@@ -260,11 +260,7 @@
                     <i class="far fa-user-circle pr-2"></i> Dashboard
                   </router-link>
                 </template>
-                <div class="cursor-pointer" @click="logOutUser">
-                  <i
-                    class="fad fa-power-off text-red-500 font-bold text-2xl"
-                  ></i>
-                </div>
+                <LogOutComponent />
               </div>
             </template>
             <div v-else>
@@ -579,6 +575,7 @@ import AppLogo from "./AppLogo.vue";
 import CompanyLogo from "./CompanyLogo.vue";
 import { appState, closeMenu, logOutUser } from "./store/store";
 import { ref } from "vue";
+import LogOutComponent from "./components/LogOutComponent.vue";
 
 const solutions = [
   {
@@ -654,6 +651,7 @@ const blogPosts = [
 
 export default {
   components: {
+    LogOutComponent,
     CompanyLogo,
     AppLogo,
     Popover,

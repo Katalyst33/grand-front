@@ -5,23 +5,28 @@
       <li>
         <router-link :to="{ name: 'AllDealsX' }">Deals</router-link>
       </li>
-      <li>ALl User</li>
-      <li class="cursor-pointer" @click="logOutUser">
-        <i class="fad fa-power-off text-red-500 font-bold text-2xl"></i>
+      <li>
+        <router-link :to="{ name: 'UserDashboard' }">
+          UserDashboard</router-link
+        >
       </li>
     </ul>
+    <LogOutComponent />
   </div>
 
-  <router-view></router-view>
+  <div class="container mx-auto">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import { logOutUser } from "../store/store";
+import LogOutComponent from "../components/LogOutComponent.vue";
 
 export default defineComponent({
   name: "AdminLayout",
-
+  components: { LogOutComponent },
   setup() {
     return { logOutUser };
   },
