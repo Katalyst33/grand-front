@@ -24,14 +24,31 @@
           <div
             v-for="(deal, index) in allDeals"
             :key="index"
-            class="flex flex-col rounded-lg shadow-lg overflow-hidden relative"
+            class="
+              group
+              flex flex-col
+              rounded-lg
+              shadow-lg
+              overflow-hidden
+              relative
+            "
           >
             <div class="flex-shrink-0">
               <router-link
                 :to="{ name: 'ViewDealPage', params: { dealId: deal.uuid } }"
               >
                 <img
-                  class="h-48 w-full object-cover"
+                  class="
+                    h-48
+                    w-full
+                    object-cover
+                    group-hover:border-yellow-400
+                    transition
+                    duration-500
+                    ease-in-out
+                    border-yellow-50 border-2
+                    rounded-lg
+                  "
                   :src="deal.image"
                   alt=""
                 />
@@ -40,7 +57,7 @@
             <div
               class="
                 bg-white
-                border-yellow-500 border-t-4
+                border-yellow-400 border-t-4
                 rounded-full
                 p-2
                 absolute
@@ -55,16 +72,22 @@
                 text-gray-900
               "
             >
-              <img class="h-6" :src="`/svg/${deal.countryCode}.svg`" />
+              <img
+                class="h-6 rounded-md object-cover"
+                :src="`/svg/${deal.countryCode}.svg`"
+              />
               <p>{{ deal.countryCode }} {{ deal.country }}</p>
             </div>
             <div class="flex-1 bg-white p-6 flex flex-col justify-between">
               <div class="flex-1">
                 <a class="block mt-2">
                   <p class="mt-3 text-base text-gray-700">
-                    {{ deal.title }}
+                    {{ deal.title }}, {{ deal.title }}...
                   </p>
                 </a>
+                <p class="mt-3 text-base text-yellow-600 text-2xl">
+                  $ {{ deal.price }}
+                </p>
                 <div class="text-sm font-medium text-gray-400 pt-4 uppercase">
                   <span
                     class="
@@ -118,16 +141,12 @@
               </div>
               <div class="mt-6 flex items-center">
                 <div class="flex-shrink-0"></div>
-                <div class="ml-3">
+                <div class="flex space-x-2">
                   <p class="text-sm font-medium text-gray-900">
-                    <a class="hover:underline"> f jnhb </a>
+                    <i class="fal fa-clock"></i>
                   </p>
                   <div class="flex space-x-1 text-sm text-gray-500">
-                    <time v-if="false" :datetime="post.datetime">
-                      {{ post.date }}
-                    </time>
-                    <span aria-hidden="true"> &middot; </span>
-                    <span> gfhgjhk read </span>
+                    <p>{{ deal.expiresIn }}</p>
                   </div>
                 </div>
               </div>
