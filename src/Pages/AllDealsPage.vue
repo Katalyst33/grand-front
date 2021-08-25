@@ -1,12 +1,7 @@
 <template>
   <div v-if="isLoaded">
-    <h1>Deals page !!!</h1>
-
-    <div class="relative pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
-      <div class="absolute inset-0">
-        <div class="h-1/3 sm:h-2/3" />
-      </div>
-      <div class="relative max-w-7xl mx-auto">
+    <div class="relative pb-20 pt-10 lg:pb-28">
+      <div class="relative">
         <div class="text-center">
           <h2
             class="
@@ -24,29 +19,77 @@
           </p>
         </div>
         <div
-          class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none"
+          class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none"
         >
           <div
             v-for="(deal, index) in allDeals"
             :key="index"
-            class="flex flex-col rounded-lg shadow-lg overflow-hidden"
+            class="flex flex-col rounded-lg shadow-lg overflow-hidden relative"
           >
             <div class="flex-shrink-0">
-              <img class="h-48 w-full object-cover" :src="deal.image" alt="" />
+              <router-link
+                :to="{ name: 'ViewDealPage', params: { dealId: deal.uuid } }"
+              >
+                <img
+                  class="h-48 w-full object-cover"
+                  :src="deal.image"
+                  alt=""
+                />
+              </router-link>
+            </div>
+            <div
+              class="
+                bg-white
+                border-yellow-500 border-t-4
+                rounded-full
+                p-2
+                absolute
+                top-40
+                left-4
+                mt-2
+                flex
+                items-center
+                space-x-2
+                text-xl
+                font-semibold
+                text-gray-900
+              "
+            >
+              <img class="h-6" :src="`/svg/${deal.countryCode}.svg`" />
+              <p>{{ deal.countryCode }} {{ deal.country }}</p>
             </div>
             <div class="flex-1 bg-white p-6 flex flex-col justify-between">
               <div class="flex-1">
-                <div class="text-sm font-medium text-gray-400 uppercase">
-                  <p class="hover:underline">{{ deal.activity }}</p>
-                </div>
                 <a class="block mt-2">
-                  <p class="text-xl font-semibold text-gray-900">
-                    {{ deal.country }}
-                  </p>
-                  <p class="mt-3 text-base text-gray-500">
-                    {{ deal.description }}
+                  <p class="mt-3 text-base text-gray-700">
+                    {{ deal.title }}
                   </p>
                 </a>
+                <div class="text-sm font-medium text-gray-400 pt-4 uppercase">
+                  <span
+                    class="
+                      inline-flex
+                      items-center
+                      px-2
+                      py-0.5
+                      rounded-full
+                      text-xs
+                      font-medium
+                      bg-yellow-300
+                      text-yellow-600
+                    "
+                  >
+                    <svg
+                      class="mr-1.5 h-2 w-2 text-yellow-500"
+                      fill="currentColor"
+                      viewBox="0 0 8 8"
+                    >
+                      <circle cx="4" cy="4" r="3" />
+                    </svg>
+                    {{ deal.activity }}
+                  </span>
+                </div>
+
                 <div class="flex -space-x-1 overflow-hidden pt-4">
                   <img
                     class="inline-block h-6 w-6 rounded-full ring-2 ring-white"
@@ -68,7 +111,9 @@
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                     alt=""
                   />
-                  <p class="pl-2 text-gray-500">+5 Applications</p>
+                  <p class="pl-2 text-gray-500">
+                    +{{ Math.floor(Math.random() * 10 + 1) }} Viewing
+                  </p>
                 </div>
               </div>
               <div class="mt-6 flex items-center">

@@ -1,7 +1,21 @@
 <template>
   <div>
-    <div>Single Deals</div>
-    {{ singleDeal }}
+    <div class="pb-24 border border-1 border-yellow-500 rounded">
+      <div>{{ singleDeal.expiresIn }}</div>
+      <div>{{ singleDeal.country }}</div>
+    </div>
+    <div class="grid grid-cols-3 space-x-4 pt-10">
+      <div class="col-span-2 border border-1 border-yellow-500 rounded">
+        <div>{{ singleDeal.title }}</div>
+        <div>{{ singleDeal.description }}</div>
+      </div>
+      <div class="border border-1 border-yellow-500 rounded">
+        <div>
+          {{ singleDeal.included }}
+        </div>
+        <div>{{ singleDeal.price }}</div>
+      </div>
+    </div>
   </div>
 </template>
 

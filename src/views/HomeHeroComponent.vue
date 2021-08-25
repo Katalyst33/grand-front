@@ -32,7 +32,7 @@
                     "
                   >
                     <span class="block text-white text-7xl big-font"
-                      >Fly to London</span
+                      >School in the United Kingdom</span
                     >
                   </h1>
                   <p
