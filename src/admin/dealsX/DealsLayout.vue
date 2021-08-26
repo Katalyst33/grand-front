@@ -1,8 +1,13 @@
 <template>
   <div>
     <div class="flex space-x-4">
-      <p>Deals layout</p>
-      <p>Create Deals</p>
+      <p>
+        <router-link :to="{ name: 'AllDealsX' }">All Deals layout</router-link>
+      </p>
+      <p>
+        <router-link :to="{ name: 'AddDeal' }">Create Deals</router-link>
+      </p>
+
       <p>View Deal</p>
     </div>
 

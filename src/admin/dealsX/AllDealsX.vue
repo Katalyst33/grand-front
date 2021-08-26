@@ -82,7 +82,7 @@
                     <div class="ml-4">
                       <router-link
                         :to="{
-                          name: 'ViewDealPageX',
+                          name: 'UpdateDeal',
                           params: { dealId: deal.uuid },
                         }"
                         class="text-sm font-medium text-gray-900"
@@ -143,12 +143,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
+import { defineComponent, ref } from "vue";
 import { $axios } from "../../http.Service";
-import { DealsData } from "../../types";
 
 export default defineComponent({
-  name: "AdminAllDeals",
+  name: "AllDealsX",
 
   setup() {
     const allDeals = ref<any>([]);

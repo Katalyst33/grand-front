@@ -2,7 +2,7 @@
   <MenuComponent v-if="false" />
   <GuestNavigator />
   <HomeHeroComponent v-if="$route.name === 'Home'" />
-  <BlogHeroSection v-if="$route.name === 'ViewDealPage'" />
+  <ViewDealHero v-if="$route.name === 'ViewDealPage'" />
 
   <div class="container mx-auto">
     <router-view v-if="isLoaded" />
@@ -17,13 +17,13 @@ import MenuComponent from "@/components/commons/MenuComponent.vue";
 import FooterSection from "@/FooterSection.vue";
 import GuestNavigator from "@/GuestNavigator.vue";
 import HomeHeroComponent from "@/views/HomeHeroComponent.vue";
-import BlogHeroSection from "@/layout/BlogHeroSection.vue";
 import { dealStore, getAllDeals } from "./store/dealStore";
+import ViewDealHero from "./layout/ViewDealHero.vue";
 
 export default defineComponent({
   name: "App",
   components: {
-    BlogHeroSection,
+    ViewDealHero,
     HomeHeroComponent,
     GuestNavigator,
     FooterSection,
@@ -33,8 +33,6 @@ export default defineComponent({
   setup() {
     const isLoaded = ref(false);
     getAllDeals().then(() => (isLoaded.value = true));
-
-    console.log(dealStore.promotedDeals);
 
     return { isLoaded };
   },

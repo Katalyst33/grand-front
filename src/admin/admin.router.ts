@@ -1,9 +1,11 @@
 import { RouteRecordRaw } from "vue-router";
+import AddAndUpdate from "./dealsX/AddAndUpdateDealX.vue";
 const AdminLayout = () => import("./AdminLayout.vue");
 const AdminDashboard = () => import("./AdminDashboard.vue");
-const AllDeals = () => import("./dealsX/AllDealsX.vue");
+const AllDealsX = () => import("./dealsX/AllDealsX.vue");
 const DealsLayout = () => import("./dealsX/DealsLayout.vue");
 const ViewDealPageX = () => import("./dealsX/ViewDealPageX.vue");
+const AddAndUpdateDealX = () => import("./dealsX/AddAndUpdateDealX.vue");
 
 export default <RouteRecordRaw>{
   path: "/admin",
@@ -16,20 +18,26 @@ export default <RouteRecordRaw>{
       component: AdminDashboard,
     },
     {
-      path: "/deals",
+      path: "/manage",
 
       component: DealsLayout,
 
       children: [
         {
-          path: "/all-deals/manage",
+          path: "/all-deals/",
           name: "AllDealsX",
-          component: AllDeals,
+          component: AllDealsX,
+        },
+
+        {
+          path: "/add-deal/",
+          name: "AddDeal",
+          component: AddAndUpdateDealX,
         },
         {
-          path: "/deal-x/:dealId",
-          name: "ViewDealPageX",
-          component: ViewDealPageX,
+          path: "/view-deal/:dealId",
+          name: "UpdateDeal",
+          component: AddAndUpdateDealX,
         },
       ],
     },
