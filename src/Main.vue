@@ -1,6 +1,6 @@
 <template>
   <div v-if="isLoaded">
-    <div v-if="false" class="bg-gray-900">
+    <div class="bg-gray-900">
       <code class="text-green-400"> {{ appState.user }}</code>
     </div>
     <router-view></router-view>

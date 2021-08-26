@@ -31,9 +31,11 @@ export type DealData = {
   countryCode: string;
   description: string;
   enabled: boolean;
-  expiresIn: Date;
-  included: [];
+  activity: string;
+  expiresIn: string;
+  included: string;
   price: number;
   title: string;
   uuid: string;
+  image: string;
 };

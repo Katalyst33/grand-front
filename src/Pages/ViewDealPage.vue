@@ -12,7 +12,7 @@
         </div>
         <div class="border border-1 border-yellow-500 rounded">
           <div>
-            {{ singleDealStore.deal.included }}
+            <p v-html="singleDealStore.deal.included"></p>
           </div>
           <div>{{ singleDealStore.deal.price }}</div>
         </div>
