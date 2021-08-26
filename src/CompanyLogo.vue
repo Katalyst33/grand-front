@@ -26,10 +26,15 @@
   </router-link>
 </template>
 <script lang="ts">
+import { PropType } from "vue";
+
 export default {
   name: "CompanyLogo",
   props: {
-    appState: {},
+    appState: {
+      type: Object,
+      required: true,
+    },
     textColor: {},
   },
 };

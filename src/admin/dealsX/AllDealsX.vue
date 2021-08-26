@@ -151,7 +151,7 @@ export default defineComponent({
   name: "AdminAllDeals",
 
   setup() {
-    const allDeals = ref([]);
+    const allDeals = ref<any>([]);
 
     function trimString(stringText: string) {
       return stringText.substring(0, 50);

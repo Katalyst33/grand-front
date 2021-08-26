@@ -1,31 +1,42 @@
 <template>
   <MenuComponent v-if="false" />
   <GuestNavigator />
+  <HomeHeroComponent v-if="$route.name === 'Home'" />
+  <BlogHeroSection v-if="$route.name === 'ViewDealPage'" />
+
   <div class="container mx-auto">
-    <router-view />
+    <router-view v-if="isLoaded" />
   </div>
 
   <FooterSection />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
-import MenuComponent from "./components/commons/MenuComponent.vue";
-import FooterSection from "./FooterSection.vue";
-import GuestNavigator from "./GuestNavigator.vue";
+import { defineComponent, ref } from "vue";
+import MenuComponent from "@/components/commons/MenuComponent.vue";
+import FooterSection from "@/FooterSection.vue";
+import GuestNavigator from "@/GuestNavigator.vue";
+import HomeHeroComponent from "@/views/HomeHeroComponent.vue";
+import BlogHeroSection from "@/layout/BlogHeroSection.vue";
+import { dealStore, getAllDeals } from "./store/dealStore";
 
 export default defineComponent({
   name: "App",
   components: {
+    BlogHeroSection,
+    HomeHeroComponent,
     GuestNavigator,
     FooterSection,
     MenuComponent,
-    HelloWorld,
   },
 
   setup() {
-    return {};
+    const isLoaded = ref(false);
+    getAllDeals().then(() => (isLoaded.value = true));
+
+    console.log(dealStore.promotedDeals);
+
+    return { isLoaded };
   },
 });
 </script>

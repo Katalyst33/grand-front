@@ -1,73 +1,22 @@
 <template>
-  <section v-if="isLoaded">
+  <section>
     <h2 class="title-2 -mb-10">Current Deals</h2>
-
-    <div
-      class="
-        mt-12
-        space-y-4
-        sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-2
-        xl:grid-cols-4
-        gap-4
-      "
-    >
-      <router-link
-        :to="{ name: 'ViewDealPage', params: { dealId: item.uuid } }"
-        v-for="(item, index) in allDeals.slice(1, 5)"
-        :key="index"
-        :style="{ 'background-image': 'url(' + item.image + ')' }"
-        class="card bg-red-200"
-      >
-        <router-link
-          :to="{ name: 'ViewDealPage', params: { dealId: item.uuid } }"
-          class="card-content"
-        >
-          <h2 class="card-title font-bold">
-            {{ item.country }}
-          </h2>
-          <p class="my-2 text-base">
-            {{ item.title }}
-          </p>
-          <div
-            class="
-              absolute
-              top-0
-              left-0
-              text-lg text-black
-              px-2
-              flex
-              items-center
-            "
-          >
-            <i class="far fa-star text-yellow-500"></i>
-          </div>
-          <div
-            class="
-              absolute
-              top-0
-              right-0
-              text-lg
-              bg-yellow-500
-              text-black
-              px-2
-              flex
-              items-center
-            "
-          >
-            <p class="pl-2 font-medium uppercase">{{ item.countryName }}</p>
-          </div>
-        </router-link>
-      </router-link>
-    </div>
   </section>
+  <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none">
+    <template v-if="dealStore.isLoadingDeals">
+      <DealsTileComponent :deal-store="dealStore.promotedDeals" />
+    </template>
+  </div>
 </template>
 <script lang="ts">
 import { ref } from "vue";
 import { $axios } from "../http.Service";
+import DealsTileComponent from "../Pages/DealsTileComponent.vue";
+import { dealStore, getAllDeals } from "../store/dealStore";
 
 export default {
   name: "CurrentDeals",
-
+  components: { DealsTileComponent },
   data() {
     return {
       currentDeals: [
@@ -120,21 +69,8 @@ export default {
   },
 
   setup() {
-    const isLoaded = ref(false),
-      allDeals = ref([]);
-
-    function getAllDeals() {
-      $axios
-        .get("client/deals")
-        .then((r) => {
-          isLoaded.value = true;
-          allDeals.value = r.data.data;
-        })
-        .catch((e) => e);
-    }
-    getAllDeals();
-
-    return { isLoaded, allDeals };
+    console.log(dealStore.promotedDeals);
+    return { dealStore };
   },
 };
 </script>

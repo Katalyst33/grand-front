@@ -11,11 +11,7 @@
           xl:max-w-none xl:mx-0 xl:grid-cols-3
         "
       >
-        <div
-          v-for="item in services"
-          class="card p-6"
-          :style="{ 'background-image': 'url(' + item.img + ')' }"
-        >
+        <div v-for="item in services" class="card p-6">
           <div class="card-content">
             <h2 class="card-title text-2xl font-bold">
               {{ item.title }}
@@ -34,38 +30,37 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "ServiceCards",
-  data() {
-    return {
-      imageUrl: "/hero/register.jpg",
-      services: [
-        {
-          img: "/hero/register.jpg",
-          title: "Visa Arrangement",
-          text: "Guaranteed Student visas and Travel visa to over 30 countries, We make prepare you for visa interviews to get you qulified. ",
-          href: "Service",
-        },
-        {
-          img: "/hero/register.jpg",
-          title: "Flight Booking",
-          text: "get more information here",
-          href: "Service",
-        },
-        {
-          img: "/hero/register.jpg",
-          title: "Hotel Booking",
-          text: "get more information here",
-          href: "Service",
-        },
-      ],
-    };
-  },
 
   setup() {
-    return {};
+    const imageUrl = ref<any>("/hero/register.jpg");
+    const services = ref<any>([
+      {
+        img: "/hero/register.jpg",
+        title: "Visa Arrangement",
+        text: "Guaranteed Student visas and Travel visa to over 30 countries, We make prepare you for visa interviews to get you qulified. ",
+        href: "Service",
+      },
+      {
+        img: "/hero/register.jpg",
+        title: "Flight Booking",
+        text: "get more information here",
+        href: "Service",
+      },
+      {
+        img: "/hero/register.jpg",
+        title: "Hotel Booking",
+        text: "get more information here",
+        href: "Service",
+      },
+    ]);
+    return {
+      imageUrl,
+      services,
+    };
   },
 });
 </script>

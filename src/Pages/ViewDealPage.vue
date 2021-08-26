@@ -29,7 +29,7 @@ export default defineComponent({
 
   setup() {
     const route = useRoute(),
-      singleDeal = ref({});
+      singleDeal = ref<any>({});
 
     const code = computed(() => route.params.dealId);
 

@@ -7,7 +7,10 @@
 export default {
   name: "Test",
   props: {
-    appState: {},
+    appState: {
+      type: Object,
+      required: true,
+    },
   },
 };
 </script>
