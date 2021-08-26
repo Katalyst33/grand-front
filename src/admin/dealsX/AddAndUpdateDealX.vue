@@ -106,13 +106,25 @@
               </div>
             </div>
             <div>
-              <label class="form-label">Title:</label>
+              <label class="form-label">Price:</label>
               <div class="mt-1">
                 <input
-                  v-model="post.title"
+                  v-model="post.price"
                   class="form-input"
                   placeholder="Title"
-                  type="text"
+                  type="number"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="form-label">Promoted:</label>
+              {{ post.promoted }}
+              <div class="mt-1">
+                <input
+                  v-model="post.promoted"
+                  class="form-input"
+                  placeholder="Title"
+                  type="number"
                 />
               </div>
             </div>
@@ -142,7 +154,7 @@ export default defineComponent({
   name: "AddAndUpdateDealX",
 
   setup() {
-    const post = ref<DealData>({});
+    const post = ref<any>({});
 
     const isLoaded = ref(false),
       route = useRoute(),
@@ -161,8 +173,9 @@ export default defineComponent({
     }
 
     function UpdateDeal() {
+      console.log("hahahahh");
       $axios
-        .post(`manager/deals/${code.value}`, post.value)
+        .patch(`manager/deals/${code.value}`, post.value)
         .then((r) => console.log(r))
         .catch((e) => e);
     }
