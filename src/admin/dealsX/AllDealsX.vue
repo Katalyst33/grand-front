@@ -75,7 +75,7 @@
                     <div class="flex-shrink-0 h-10 w-10">
                       <img
                         class="h-10 w-10 rounded-full"
-                        :src="`https://www.countryflags.io/${deal.countryCode}/flat/64.png`"
+                        :src="`/svg/${deal.country.code}.svg`"
                         alt=""
                       />
                     </div>
@@ -85,11 +85,11 @@
                           name: 'UpdateDeal',
                           params: { dealId: deal.uuid },
                         }"
-                        class="text-sm font-medium text-gray-900"
+                        class="text-sm font-medium text-yellow-700"
                       >
-                        {{ deal.country }}
+                        {{ deal.country.name }}
                       </router-link>
-                      <div class="text-sm text-gray-500">
+                      <div class="text-sm text-gray-900">
                         {{ deal.countryCode }}
                       </div>
                     </div>
@@ -161,7 +161,6 @@ export default defineComponent({
         .get("manager/deals")
         .then((r) => {
           allDeals.value = r.data.data;
-          console.log(allDeals.value);
         })
         .catch((e) => e);
     }

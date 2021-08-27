@@ -45,9 +45,9 @@
     >
       <img
         class="h-6 rounded-md object-cover"
-        :src="`/svg/${deal.countryCode}.svg`"
+        :src="`/svg/${deal.country.code}.svg`"
       />
-      <p>{{ deal.countryCode }} {{ deal.country }}</p>
+      <p>{{ deal.country.name }}</p>
     </div>
     <div class="flex-1 bg-white p-6 flex flex-col justify-between">
       <div class="flex-1">

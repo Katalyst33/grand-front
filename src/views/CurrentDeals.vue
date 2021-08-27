@@ -7,6 +7,9 @@
       <DealsTileComponent :deal-store="dealStore.promotedDeals" />
     </template>
   </div>
+  <h3 class="text-lg text-center mt-10">
+    More Deals <i class="far fa-arrow-right"></i>
+  </h3>
 </template>
 <script lang="ts">
 import { ref } from "vue";

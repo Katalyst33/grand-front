@@ -3,9 +3,7 @@
     <div class="flex items-center justify-between">
       <ul class="flex space-x-4">
         <li>
-          <router-link :to="{ name: 'AllDealsX' }"
-            >All Deals layout</router-link
-          >
+          <router-link :to="{ name: 'AllDealsX' }">All Deals</router-link>
         </li>
         <li>
           <router-link :to="{ name: 'AddDeal' }">Create Deals</router-link>
