@@ -4,6 +4,7 @@
   {{ post }}
 
   <form>
+    <h1 class="text-2xl font-regular">{{ post.title }}</h1>
     <div class="grid grid-cols-3 space-x-4">
       <div class="col-span-2">
         <div class="tileTab">
@@ -43,7 +44,7 @@
               <input
                 v-model="post.activity"
                 class="form-input"
-                placeholder="Title"
+                placeholder="Activity"
                 type="text"
               />
             </div>
@@ -78,7 +79,7 @@
                 <input
                   v-model="post.country"
                   class="form-input"
-                  placeholder="Title"
+                  placeholder="Country"
                   type="text"
                 />
               </div>
@@ -89,7 +90,7 @@
                 <input
                   v-model="post.countryCode"
                   class="form-input"
-                  placeholder="Title"
+                  placeholder="Country Code"
                   type="text"
                 />
               </div>
@@ -100,7 +101,7 @@
                 <input
                   v-model="post.expiresIn"
                   class="form-input"
-                  placeholder="Title"
+                  placeholder="expires in"
                   type="text"
                 />
               </div>
@@ -111,7 +112,7 @@
                 <input
                   v-model="post.price"
                   class="form-input"
-                  placeholder="Title"
+                  placeholder="price"
                   type="number"
                 />
               </div>
@@ -128,15 +129,15 @@
                 />
               </div>
             </div>
+            <button
+              @click.prevent="UpdateDeal"
+              class="bg-red-500 p-2 rounded-md mt-10"
+            >
+              Update
+            </button>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="pt-20">
-      <button @click.prevent="UpdateDeal" class="bg-red-500 p-2 rounded-md">
-        Update
-      </button>
     </div>
   </form>
 

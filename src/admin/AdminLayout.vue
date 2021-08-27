@@ -16,7 +16,7 @@
     </div>
 
     <div class="container mx-auto">
-      <router-view></router-view>
+      <router-view class="py-10"></router-view>
     </div>
   </div>
 </template>
@@ -41,7 +41,7 @@ export default defineComponent({
 }
 
 .form-label {
-  @apply text-lg;
+  @apply text-sm;
 }
 
 .form-input {

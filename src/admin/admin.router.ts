@@ -6,6 +6,7 @@ const AllDealsX = () => import("./dealsX/AllDealsX.vue");
 const DealsLayout = () => import("./dealsX/DealsLayout.vue");
 const ViewDealPageX = () => import("./dealsX/ViewDealPageX.vue");
 const AddAndUpdateDealX = () => import("./dealsX/AddAndUpdateDealX.vue");
+const DealStatus = () => import("./dealsX/DealStatus.vue");
 
 export default <RouteRecordRaw>{
   path: "/admin",
@@ -24,7 +25,7 @@ export default <RouteRecordRaw>{
 
       children: [
         {
-          path: "/all-deals/",
+          path: "/all-dealsx/",
           name: "AllDealsX",
           component: AllDealsX,
         },
@@ -35,9 +36,14 @@ export default <RouteRecordRaw>{
           component: AddAndUpdateDealX,
         },
         {
-          path: "/view-deal/:dealId",
+          path: "/update-deal/:dealId",
           name: "UpdateDeal",
           component: AddAndUpdateDealX,
+        },
+        {
+          path: "/deal-status/:dealId",
+          name: "DealStatus",
+          component: DealStatus,
         },
       ],
     },

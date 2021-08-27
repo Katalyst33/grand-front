@@ -32,7 +32,7 @@ export type DealData = {
   description: string;
   enabled: boolean;
   activity: string;
-  expiresIn: string;
+  expiresIn: Date;
   included: string;
   price: number;
   title: string;
