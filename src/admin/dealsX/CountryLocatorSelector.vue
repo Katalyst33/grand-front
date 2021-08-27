@@ -1,11 +1,14 @@
 <template>
+  {{ searchQuery }}
+  {{ computedCountry }}
+  <input v-model="searchQuery" type="text" />
   <Listbox as="div" v-model="props.post.country">
     <ListboxLabel class="font-label"> Country: </ListboxLabel>
     <div class="mt-1 relative">
       <ListboxButton
         class="
           relative
-          w-name
+          w-full w-name
           bg-white
           border border-gray-300
           rounded-md
@@ -24,11 +27,11 @@
       >
         <span class="flex items-center">
           <img
-            :src="`/svg/${selected.code}.svg`"
+            :src="`/svg/${props.post.country.code}.svg`"
             alt=""
             class="flex-shrink-0 h-6 w-6 rounded-name"
           />
-          <span class="ml-3 block truncate">{{ selected.name }}</span>
+          <span class="ml-3 block truncate">{{ props.post.country.name }}</span>
         </span>
         <span
           class="
@@ -71,7 +74,7 @@
         >
           <ListboxOption
             as="template"
-            v-for="(country, index) in country"
+            v-for="(country, index) in allCountries"
             :key="index"
             :value="country"
             v-slot="{ active, selected }"
@@ -115,7 +118,7 @@
   </Listbox>
 </template>
 <script lang="ts" setup>
-import { defineProps, ref } from "vue";
+import { computed, defineProps, ref } from "vue";
 import {
   Listbox,
   ListboxButton,
@@ -124,6 +127,7 @@ import {
   ListboxOptions,
 } from "@headlessui/vue";
 import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
+import { allCountries } from "../../db/countryList";
 
 const props = defineProps<{
   post: {
@@ -133,61 +137,56 @@ const props = defineProps<{
     };
   };
 }>();
+const searchQuery = ref("");
 
-// :src="`/svg/${deal.countryCode}.svg`"
-const country = [
-  {
-    name: "Nigeria",
-    code: "NG",
-  },
-  {
-    name: "United States",
-    code: "US",
-  },
+const AllCountries = ref(allCountries);
 
-  {
-    name: "United Kingdom",
+const computedCountry = computed(() => {
+  if (searchQuery.value) {
+    return AllCountries.value.filter((item: { name: string; code: string }) => {
+      return searchQuery.value
+        .toLowerCase()
+        .split("")
+        .every((v) => {
+          return (
+            item.name.toLowerCase().includes(v) ||
+            item.code.toLowerCase().includes(v)
+          );
+        });
+    });
+  } else {
+    return AllCountries.value.sort((a, b) => {
+      let fa = a.name.toLowerCase(),
+        fb = b.name.toLowerCase();
 
-    code: "GB",
-  },
-  {
-    name: "Australia",
+      if (fa < fb) {
+        return -1;
+      }
+      if (fa > fb) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+});
 
-    code: "AU",
-  },
-  {
-    name: "United states of America",
+/*const computedCountry = computed(() => {
+  const SortedCountires = {};
+  return allCountries.sort((a, b) => {
+    let fa = a.name.toLowerCase(),
+      fb = b.name.toLowerCase();
 
-    code: "US",
-  },
-  {
-    name: "Dubai",
-    code: "AE",
-  },
-  {
-    name: "Ireland",
-    code: "IE",
-  },
-  {
-    name: "Turkey",
-    code: "TR",
-  },
-  {
-    name: "Ukraine",
-    code: "UA",
-  },
-  {
-    name: "South Africa",
-    code: "ZA",
-  },
-  {
-    name: "Maldives",
-    code: "MV",
-  },
-  {
-    name: "Singapore",
-    code: "SG",
-  },
-];
+    if (fa < fb) {
+      return -1;
+    }
+    if (fa > fb) {
+      return 1;
+    }
+    return 0;
+  });
+});*/
+
+// let matchingStrings = [];
+
 const selected = ref(props.post.country);
 </script>
