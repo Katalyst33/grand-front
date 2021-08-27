@@ -1,9 +1,6 @@
 <template>
-  <div>{{ props.post.country }}</div>
   <Listbox as="div" v-model="props.post.country">
-    <ListboxLabel class="block text-sm font-medium text-gray-700">
-      Assigned to
-    </ListboxLabel>
+    <ListboxLabel class="font-label"> Country: </ListboxLabel>
     <div class="mt-1 relative">
       <ListboxButton
         class="
@@ -147,10 +144,7 @@ const country = [
     name: "United States",
     code: "US",
   },
-  {
-    name: "Nigeria",
-    code: "NG",
-  },
+
   {
     name: "United Kingdom",
 
@@ -196,5 +190,4 @@ const country = [
   },
 ];
 const selected = ref(props.post.country);
-console.log(props.post.country);
 </script>

@@ -42,26 +42,6 @@
           <div class="tileTab">
             <CountryLocatorSelector :post="post" />
             <div>
-              <div>
-                <label class="form-label">Country:</label>
-                <div class="mt-1">
-                  <input
-                    v-model="post.country"
-                    class="form-input"
-                    type="text"
-                  />
-                </div>
-              </div>
-              <div>
-                <label class="form-label">Country Code:</label>
-                <div class="mt-1">
-                  <input
-                    v-model="post.countryCode"
-                    class="form-input"
-                    type="text"
-                  />
-                </div>
-              </div>
               <DealTimePickerComponent :post="post" />
               <div>
                 <label class="form-label">Price:</label>
