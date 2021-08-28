@@ -1,36 +1,30 @@
 <template>
   <div>
-    <p class="text-red-500">
-      {{ readTime }}
-      <br />
-      <br />
-      end
-      {{ readDate(range.end) }}
-      <br />
-      <br />
-      start
-      {{ range.start }}
+    <p class="text-gray-600 font-medium">
+      {{ formattedDate(rawTime) }}
     </p>
   </div>
 </template>
 <script lang="ts" setup>
 import dayjs from "dayjs";
-import { defineProps, ref } from "vue";
+import { computed, defineProps, ref } from "vue";
 import { formatDistance, subDays } from "date-fns";
+import { format } from "date-fns/fp";
+import moment from "moment/moment";
 
 const props = defineProps<{
-  range: {
-    end: string;
-    start: string;
-  };
+  rawTime: Date;
 }>();
 
-function readDate(date: string) {
-  formatDistance(subDays(new Date(date), 3), new Date(), { addSuffix: true });
+/*const formattedDate = computed(() => {
+  return moment();
+});*/
+
+function formattedDate(rawTime: Date) {
+  return moment(rawTime).format("MMM Do YY");
 }
 
-const readTime = ref(
-  formatDistance(subDays(new Date(), 1), new Date(), { addSuffix: true })
-);
-console.log(props.range);
+console.log(props.rawTime);
+
+console.log(moment().format("MMM Do YY"));
 </script>

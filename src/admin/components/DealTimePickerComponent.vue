@@ -1,37 +1,25 @@
 <template>
   <div>
-    <HumanDateTimeComponent :range="range" />
+    start
+    <HumanDateTimeComponent :rawTime="post.duration.start" />
+    end
+    <HumanDateTimeComponent :rawTime="post.duration.end" />
+    <!--    <HumanDateTimeComponent :range="range" />-->
 
-    <DatePicker v-model="range" is-range />
+    <!--    <DatePicker v-model="range" is-range />-->
   </div>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import { DatePicker } from "v-calendar";
 import HumanDateTimeComponent from "./HumanDateTimeComponent.vue";
+import { computed, defineProps } from "vue";
 
-export default {
-  name: "DealTimePickerComponent",
-  components: {
-    HumanDateTimeComponent,
-    DatePicker,
-  },
-  props: {
-    post: {},
-  },
-  data() {
-    return {
-      range: {
-        end: new Date(2021, 8, 27),
-        start: new Date(2021, 8, 29),
-      },
+const props = defineProps<{
+  post: {
+    duration: {
+      end: Date | null;
+      start: Date;
     };
-  },
-  setup() {
-    const currentDate = {
-      start: new Date(2020, 0, 1),
-      end: new Date(2020, 0, 5),
-    };
-    return { currentDate };
-  },
-};
+  };
+}>();
 </script>

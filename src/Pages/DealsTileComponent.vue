@@ -117,7 +117,8 @@
             <i class="fal fa-clock"></i>
           </p>
           <div class="flex space-x-1 text-sm text-gray-500">
-            <p>{{ deal.expiresIn }}</p>
+            <HumanDateTimeComponent :raw-time="deal.duration.start" /> -
+            <HumanDateTimeComponent :raw-time="deal.duration.end" />
           </div>
         </div>
       </div>
@@ -127,9 +128,12 @@
 <script lang="ts">
 import { ref } from "vue";
 import { dealStore } from "../store/dealStore";
+import { formatDistance, subDays } from "date-fns";
+import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
 
 export default {
   name: "DealsTileComponent",
+  components: { HumanDateTimeComponent },
   props: {
     dealStore: {
       type: Object,
