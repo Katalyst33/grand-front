@@ -23,8 +23,4 @@ const props = defineProps<{
 function formattedDate(rawTime: Date) {
   return moment(rawTime).format("MMM Do YY");
 }
-
-console.log(props.rawTime);
-
-console.log(moment().format("MMM Do YY"));
 </script>

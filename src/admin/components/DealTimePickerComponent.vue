@@ -6,7 +6,7 @@
     <HumanDateTimeComponent :rawTime="post.duration.end" />
     <!--    <HumanDateTimeComponent :range="range" />-->
 
-    <!--    <DatePicker v-model="range" is-range />-->
+    <DatePicker v-model="props.post.duration" is-range />
   </div>
 </template>
 <script lang="ts" setup>
@@ -22,4 +22,6 @@ const props = defineProps<{
     };
   };
 }>();
+
+console.log(props.post.duration, "heyy");
 </script>
