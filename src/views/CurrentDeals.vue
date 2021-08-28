@@ -72,7 +72,6 @@ export default {
   },
 
   setup() {
-    console.log(dealStore.promotedDeals);
     return { dealStore };
   },
 };

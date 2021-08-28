@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="text-gray-600 font-medium">
+    <p class="">
       {{ formattedDate(rawTime) }}
     </p>
   </div>

@@ -99,6 +99,12 @@
                   <div class="text-sm text-gray-900">{{ deal.title }}</div>
                   <div class="text-sm text-gray-500">
                     {{ trimString(deal.description) }}...
+                    <br />
+                    <div class="flex space-x-2">
+                      <HumanDateTimeComponent :raw-time="deal.duration.start" />
+                      <p>-</p>
+                      <HumanDateTimeComponent :raw-time="deal.duration.end" />
+                    </div>
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
@@ -145,10 +151,11 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { $axios } from "../../http.Service";
+import HumanDateTimeComponent from "../components/HumanDateTimeComponent.vue";
 
 export default defineComponent({
   name: "AllDealsX",
-
+  components: { HumanDateTimeComponent },
   setup() {
     const allDeals = ref<any>([]);
 

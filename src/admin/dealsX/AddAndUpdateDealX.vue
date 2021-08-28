@@ -88,17 +88,16 @@ export default defineComponent({
     DealTimePickerComponent,
   },
   setup() {
-    const post = ref<DealData>({});
+    const post = ref(<DealData>{});
 
     const isLoaded = ref(false),
-      route = useRoute(),
-      deal = ref({});
+      route = useRoute();
 
     const code = computed(() => route.params.dealId);
     function getOneDeal() {
       $axios
         .get(`manager/deals/${code.value}`)
-        .then((r) => {
+        .then((r: any) => {
           post.value = r;
           isLoaded.value = true;
         })

@@ -27,12 +27,15 @@ export type appInfo = {
 };
 
 export type DealData = {
+  activity: string;
   country: string;
   enabled: boolean;
   promoted: boolean;
   description: string;
-  activity: string;
-  expiresIn: Date;
+  duration: {
+    start: Date;
+    end: Date;
+  };
   included: string;
   price: number;
   title: string;

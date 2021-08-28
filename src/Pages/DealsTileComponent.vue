@@ -126,9 +126,6 @@
   </div>
 </template>
 <script lang="ts">
-import { ref } from "vue";
-import { dealStore } from "../store/dealStore";
-import { formatDistance, subDays } from "date-fns";
 import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
 
 export default {
