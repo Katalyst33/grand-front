@@ -4,7 +4,10 @@ import { useRoute } from "vue-router";
 import { DealData } from "../types";
 
 export const dealStore = reactive({
-  allDeals: {},
+  allDeals: {} as {
+    data: [];
+    lastPage: number;
+  },
   promotedDeals: {},
   isLoadingDeals: false,
 });
@@ -25,9 +28,19 @@ const SET_ONE_DEAL = (oneDeal: any) => {
   singleDealStore.isLoadingDeal = true;
 };
 
-export function getAllDeals() {
+export function getAllDeals(search?: string, sort?: any) {
+  let params = {} as any;
+  if (search) {
+    params.search = search;
+  }
+
+  if (sort) {
+    params.sort = sort.direction ? sort.field + ",asc" : sort.field;
+  }
   return $axios
-    .get("client/deals")
+    .get("client/deals", {
+      params,
+    })
     .then((r) => {
       if (r.data.allDeals.data) {
         SET_DEALS(r.data);

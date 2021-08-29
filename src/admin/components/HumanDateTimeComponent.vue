@@ -1,15 +1,12 @@
 <template>
   <div>
     <p class="">
-      {{ formattedDate(rawTime) }}
+      {{ formattedDate(props.rawTime) }}
     </p>
   </div>
 </template>
 <script lang="ts" setup>
-import dayjs from "dayjs";
-import { computed, defineProps, ref } from "vue";
-import { formatDistance, subDays } from "date-fns";
-import { format } from "date-fns/fp";
+import { defineProps } from "vue";
 import moment from "moment/moment";
 
 const props = defineProps<{

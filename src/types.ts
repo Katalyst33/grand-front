@@ -28,7 +28,10 @@ export type appInfo = {
 
 export type DealData = {
   activity: string;
-  country: string;
+  country: {
+    name: string;
+    code: string;
+  };
   enabled: boolean;
   promoted: boolean;
   description: string;

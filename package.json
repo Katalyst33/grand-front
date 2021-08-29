@@ -17,7 +17,6 @@
     "chance": "^1.1.7",
     "cron": "^1.8.2",
     "date-fns": "^2.23.0",
-    "dayjs": "^1.10.6",
     "gsap": "^3.7.1",
     "izitoast": "^1.4.0",
     "moment": "^2.29.1",
@@ -26,7 +25,8 @@
     "vue": "^3.2.6",
     "vue-awesome-swiper": "^4.1.1",
     "vue-izitoast": "^1.2.1",
-    "vue-router": "4"
+    "vue-router": "4",
+    "yarn": "^1.22.11"
   },
   "devDependencies": {
     "@heroicons/vue": "^1.0.4",

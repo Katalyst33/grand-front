@@ -1,7 +1,6 @@
 <template>
   <div>Update the admin</div>
 
-  {{ post }}
   <template v-if="isLoaded">
     <form>
       <h1 class="text-2xl font-regular">{{ post.title }}</h1>
@@ -40,9 +39,9 @@
         </div>
         <div>
           <div class="tileTab">
-            <CountryLocatorSelector :post="post" />
+            <CountryLocatorSelector :country="post.country" />
             <div>
-              <DealTimePickerComponent :post="post" />
+              <DealTimePickerComponent :duration="post.duration" />
               <div>
                 <label class="form-label">Price:</label>
                 <div class="mt-1">
@@ -72,7 +71,6 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref } from "vue";
-import { singleDealStore } from "../../store/dealStore";
 import { $axios } from "../../http.Service";
 import { useRoute } from "vue-router";
 import { DealData } from "../../types";
@@ -115,7 +113,8 @@ export default defineComponent({
         .catch((e) => e);
     }
 
-    return { singleDealStore, post, UpdateDeal, isLoaded };
+    console.log;
+    return { post, UpdateDeal, isLoaded };
   },
 });
 </script>

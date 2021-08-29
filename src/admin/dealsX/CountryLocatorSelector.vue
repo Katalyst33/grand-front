@@ -2,7 +2,7 @@
   {{ searchQuery }}
   {{ computedCountry }}
   <input v-model="searchQuery" type="text" />
-  <Listbox as="div" v-model="props.post.country">
+  <Listbox as="div" v-model="props.country">
     <ListboxLabel class="font-label"> Country: </ListboxLabel>
     <div class="mt-1 relative">
       <ListboxButton
@@ -27,11 +27,11 @@
       >
         <span class="flex items-center">
           <img
-            :src="`/svg/${props.post.country.code}.svg`"
+            :src="`/svg/${props.country.code}.svg`"
             alt=""
             class="flex-shrink-0 h-6 w-6 rounded-name"
           />
-          <span class="ml-3 block truncate">{{ props.post.country.name }}</span>
+          <span class="ml-3 block truncate">{{ props.country.name }}</span>
         </span>
         <span
           class="
@@ -130,11 +130,9 @@ import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
 import { allCountries } from "../../db/countryList";
 
 const props = defineProps<{
-  post: {
-    country: {
-      name: string;
-      code: string;
-    };
+  country: {
+    name: string;
+    code: string;
   };
 }>();
 const searchQuery = ref("");
@@ -188,5 +186,5 @@ const computedCountry = computed(() => {
 
 // let matchingStrings = [];
 
-const selected = ref(props.post.country);
+const selected = ref(props.country);
 </script>

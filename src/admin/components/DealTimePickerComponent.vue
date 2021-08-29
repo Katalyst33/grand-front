@@ -1,12 +1,12 @@
 <template>
   <div>
     start
-    <HumanDateTimeComponent :rawTime="post.duration.start" />
+    <HumanDateTimeComponent :rawTime="props.duration.start" />
     end
-    <HumanDateTimeComponent :rawTime="post.duration.end" />
+    <HumanDateTimeComponent :rawTime="props.duration.end" />
     <!--    <HumanDateTimeComponent :range="range" />-->
 
-    <DatePicker v-model="props.post.duration" is-range />
+    <DatePicker v-model="props.duration" is-range />
   </div>
 </template>
 <script lang="ts" setup>
@@ -15,13 +15,11 @@ import HumanDateTimeComponent from "./HumanDateTimeComponent.vue";
 import { computed, defineProps } from "vue";
 
 const props = defineProps<{
-  post: {
-    duration: {
-      end: Date | null;
-      start: Date;
-    };
+  duration: {
+    end: Date;
+    start: Date;
   };
 }>();
 
-console.log(props.post.duration, "heyy");
+// console.log(props);
 </script>
