@@ -4,7 +4,7 @@
   </section>
   <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none">
     <template v-if="dealStore.isLoadingDeals">
-      <DealsTileComponent :deal-store="dealStore.promotedDeals" />
+      <DealsTileComponent :deal-store="dealStore.promotedDestinations" />
     </template>
   </div>
   <h3 class="text-lg text-center mt-10">
@@ -15,7 +15,10 @@
 import { ref } from "vue";
 import { $axios } from "../http.Service";
 import DealsTileComponent from "../Pages/DealsTileComponent.vue";
-import { dealStore, getAllDeals } from "../store/dealStore";
+import {
+  destinationStore,
+  getAllDestinations,
+} from "../store/destinationStore";
 
 export default {
   name: "CurrentDeals",
@@ -72,7 +75,7 @@ export default {
   },
 
   setup() {
-    return { dealStore };
+    return { dealStore: destinationStore };
   },
 };
 </script>

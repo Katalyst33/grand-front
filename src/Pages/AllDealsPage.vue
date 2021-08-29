@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
 import DealsTileComponent from "./DealsTileComponent.vue";
-import { dealStore, getAllDeals } from "../store/dealStore";
+import {
+  destinationStore,
+  getAllDestinations,
+} from "../store/destinationStore";
 import SearchBarComponent from "../components/SearchBarComponent.vue";
 </script>
 
@@ -36,7 +39,9 @@ import SearchBarComponent from "../components/SearchBarComponent.vue";
         <div
           class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none"
         >
-          <DealsTileComponent :deal-store="dealStore.allDeals.data" />
+          <DealsTileComponent
+            :destination-store="destinationStore.allDestinations.data"
+          />
         </div>
       </div>
     </div>

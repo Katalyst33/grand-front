@@ -3,15 +3,15 @@
     <div v-if="singleDealStore.isLoadingDeal">
       <div class="grid lg:grid-cols-3 space-x-2">
         <div class="lg:col-span-2 tileTab">
-          <div>{{ singleDealStore.deal.title }}</div>
-          <div>{{ singleDealStore.deal.description }}</div>
+          <div>{{ singleDestinationStore.destination.title }}</div>
+          <div>{{ singleDestinationStore.destination.description }}</div>
         </div>
         <div class="tileTab">
           <div>
-            <p v-html="singleDealStore.deal.included"></p>
+            <p v-html="singleDealStore.destination.included"></p>
           </div>
           <h1 class="text-yellow-600 text-3xl">
-            N {{ singleDealStore.deal.price }}
+            N {{ singleDestinationStore.destination.price }}
           </h1>
         </div>
       </div>
@@ -22,8 +22,8 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 
-import { getOneDeal, singleDealStore } from "../store/dealStore";
-import ViewDealHero from "../layout/ViewDealHero.vue";
+import { getOneDeal, singleDestinationStore } from "../store/destinationStore";
+import ViewDealHero from "../layout/ViewDestinationHero.vue";
 
 export default defineComponent({
   name: "ViewDealPage",
@@ -33,7 +33,7 @@ export default defineComponent({
     getOneDeal().then(() => (isLoaded.value = true));
 
     console.log();
-    return { isLoaded, singleDealStore };
+    return { isLoaded, singleDealStore: singleDestinationStore };
   },
 });
 </script>

@@ -17,8 +17,8 @@ import MenuComponent from "@/components/commons/MenuComponent.vue";
 import FooterSection from "@/FooterSection.vue";
 import GuestNavigator from "@/GuestNavigator.vue";
 import HomeHeroComponent from "@/views/HomeHeroComponent.vue";
-import { dealStore, getAllDeals } from "./store/dealStore";
-import ViewDealHero from "./layout/ViewDealHero.vue";
+import { destinationStore, getAllDestinations } from "./store/destinationStore";
+import ViewDealHero from "./layout/ViewDestinationHero.vue";
 
 export default defineComponent({
   name: "App",
@@ -32,7 +32,7 @@ export default defineComponent({
 
   setup() {
     const isLoaded = ref(false);
-    getAllDeals().then(() => (isLoaded.value = true));
+    getAllDestinations().then(() => (isLoaded.value = true));
 
     return { isLoaded };
   },

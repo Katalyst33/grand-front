@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>i am deal status</h3>
+    <h3>i am destination status</h3>
   </div>
 </template>
 

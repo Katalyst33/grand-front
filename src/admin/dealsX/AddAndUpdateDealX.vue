@@ -73,7 +73,7 @@
 import { computed, defineComponent, ref } from "vue";
 import { $axios } from "../../http.Service";
 import { useRoute } from "vue-router";
-import { DealData } from "../../types";
+import { DestinationType } from "../../types";
 import DealTimePickerComponent from "../components/DealTimePickerComponent.vue";
 import PromotedToggleComponent from "../components/PromotedToggleComponent.vue";
 import CountryLocatorSelector from "./CountryLocatorSelector.vue";
@@ -86,7 +86,7 @@ export default defineComponent({
     DealTimePickerComponent,
   },
   setup() {
-    const post = ref(<DealData>{});
+    const post = ref(<DestinationType>{});
 
     const isLoaded = ref(false),
       route = useRoute();

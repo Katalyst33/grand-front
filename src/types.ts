@@ -26,7 +26,7 @@ export type appInfo = {
   };
 };
 
-export type DealData = {
+export type DestinationType = {
   activity: string;
   country: {
     name: string;

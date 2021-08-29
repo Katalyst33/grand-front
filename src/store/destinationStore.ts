@@ -1,34 +1,34 @@
 import { computed, reactive, readonly, ref } from "vue";
 import { $axios } from "../http.Service";
 import { useRoute } from "vue-router";
-import { DealData } from "../types";
+import { DestinationType } from "../types";
 
-export const dealStore = reactive({
-  allDeals: {} as {
+export const destinationStore = reactive({
+  allDestinations: {} as {
     data: [];
     lastPage: number;
   },
-  promotedDeals: {},
+  promotedDestinations: {},
   isLoadingDeals: false,
 });
 
-export const singleDealStore = reactive({
-  deal: {} as DealData,
+export const singleDestinationStore = reactive({
+  destination: {} as DestinationType,
   isLoadingDeal: false,
 });
 
 const SET_DEALS = (allDeals: any) => {
-  dealStore.allDeals = allDeals.allDeals;
-  dealStore.promotedDeals = allDeals.promotedDeals;
-  dealStore.isLoadingDeals = true;
+  destinationStore.allDestinations = allDeals.allDeals;
+  destinationStore.promotedDestinations = allDeals.promotedDeals;
+  destinationStore.isLoadingDeals = true;
 };
 
 const SET_ONE_DEAL = (oneDeal: any) => {
-  singleDealStore.deal = oneDeal;
-  singleDealStore.isLoadingDeal = true;
+  singleDestinationStore.destination = oneDeal;
+  singleDestinationStore.isLoadingDeal = true;
 };
 
-export function getAllDeals(search?: string, sort?: any) {
+export function getAllDestinations(search?: string, sort?: any) {
   let params = {} as any;
   if (search) {
     params.search = search;

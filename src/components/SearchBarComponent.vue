@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { reactive, ref, watch } from "vue";
 import { $axios } from "../http.Service";
-import { getAllDeals } from "../store/dealStore";
+import { getAllDestinations } from "../store/destinationStore";
 
 const sort = reactive({ field: "createdAt", direction: true });
 const searchQuery = ref<string | undefined>(undefined);
@@ -12,13 +12,13 @@ function runSort(by: string) {
   } else {
     sort.field = by;
   }
-  getAllDeals(searchQuery.value, sort);
+  getAllDestinations(searchQuery.value, sort);
 }
 
 let timeOut = -1;
 
 function searchDestinations(searchQuery: string) {
-  getAllDeals(searchQuery);
+  getAllDestinations(searchQuery);
 }
 
 watch(searchQuery, () => {

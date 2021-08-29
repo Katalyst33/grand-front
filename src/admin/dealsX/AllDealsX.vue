@@ -69,7 +69,7 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              <tr v-for="(deal, index) in allDeals" :key="index">
+              <tr v-for="(destination, index) in allDeals" :key="index">
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="flex-shrink-0 h-10 w-10">
@@ -87,18 +87,20 @@
                         }"
                         class="text-sm font-medium text-yellow-700"
                       >
-                        {{ deal.country.name }}
+                        {{ destination.country.name }}
                       </router-link>
                       <div class="text-sm text-gray-900">
-                        {{ deal.countryCode }}
+                        {{ destination.countryCode }}
                       </div>
                     </div>
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">{{ deal.title }}</div>
+                  <div class="text-sm text-gray-900">
+                    {{ destination.title }}
+                  </div>
                   <div class="text-sm text-gray-500">
-                    {{ trimString(deal.description) }}...
+                    {{ trimString(destination.description) }}...
                     <br />
                     <div class="flex space-x-2">
                       <HumanDateTimeComponent :raw-time="deal.duration.start" />
@@ -124,7 +126,7 @@
                   </span>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {{ deal.role }}
+                  {{ destination.role }}
                 </td>
                 <td
                   class="
@@ -157,23 +159,23 @@ export default defineComponent({
   name: "AllDealsX",
   components: { HumanDateTimeComponent },
   setup() {
-    const allDeals = ref<any>([]);
+    const allDestinations = ref<any>([]);
 
     function trimString(stringText: string) {
       return stringText.substring(0, 50);
     }
 
-    function getAllDeals() {
+    function getAllDestinations() {
       $axios
         .get("manager/deals")
         .then((r) => {
-          allDeals.value = r.data.data;
+          allDestinations.value = r.data.data;
         })
         .catch((e) => e);
     }
 
     getAllDeals();
-    return { allDeals, trimString };
+    return { allDestinations, trimString };
   },
 });
 </script>

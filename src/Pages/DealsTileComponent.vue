@@ -1,12 +1,12 @@
 <template>
   <div
-    v-for="(deal, index) in dealStore"
+    v-for="(destination, index) in destinationStore"
     :key="index"
     class="group flex flex-col rounded-lg shadow-lg overflow-hidden relative"
   >
     <div class="flex-shrink-0">
       <router-link
-        :to="{ name: 'ViewDealPage', params: { dealId: deal.uuid } }"
+        :to="{ name: 'ViewDealPage', params: { dealId: destination.uuid } }"
       >
         <img
           class="
@@ -20,7 +20,7 @@
             border-yellow-50 border-2
             rounded-lg
           "
-          :src="deal.image"
+          :src="destination.image"
           alt=""
         />
       </router-link>
@@ -45,19 +45,19 @@
     >
       <img
         class="h-6 rounded-md object-cover"
-        :src="`/svg/${deal.country.code}.svg`"
+        :src="`/svg/${destination.country.code}.svg`"
       />
-      <p>{{ deal.country.name }}</p>
+      <p>{{ destination.country.name }}</p>
     </div>
     <div class="flex-1 bg-white p-6 flex flex-col justify-between">
       <div class="flex-1">
         <a class="block mt-2">
           <p class="mt-3 text-base text-gray-700">
-            {{ deal.title }}, {{ deal.title }}...
+            {{ destination.title }}, {{ destination.title }}...
           </p>
         </a>
         <p class="mt-3 text-base text-yellow-600 text-2xl">
-          $ {{ deal.price }}
+          $ {{ destination.price }}
         </p>
         <div class="text-sm font-medium text-gray-400 pt-4 uppercase">
           <span
@@ -80,7 +80,7 @@
             >
               <circle cx="4" cy="4" r="3" />
             </svg>
-            {{ deal.activity }}
+            {{ destination.activity }}
           </span>
         </div>
 
@@ -117,8 +117,8 @@
             <i class="fal fa-clock"></i>
           </p>
           <div class="flex space-x-1 text-sm text-gray-500">
-            <HumanDateTimeComponent :raw-time="deal.duration.start" /> -
-            <HumanDateTimeComponent :raw-time="deal.duration.end" />
+            <HumanDateTimeComponent :raw-time="destination.duration.start" /> -
+            <HumanDateTimeComponent :raw-time="destination.duration.end" />
           </div>
         </div>
       </div>
@@ -127,15 +127,13 @@
 </template>
 <script lang="ts">
 import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
+import { DestinationType } from "../types";
 
 export default {
   name: "DealsTileComponent",
   components: { HumanDateTimeComponent },
   props: {
-    dealStore: {
-      type: Object,
-      required: true,
-    },
+    destinationStore: {} as DestinationType,
   },
 };
 </script>

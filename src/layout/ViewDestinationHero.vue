@@ -30,7 +30,7 @@
                       "
                     >
                       <span class="block text-white">
-                        {{ singleDealStore.deal.title }}
+                        {{ singleDestinationStore.destination.title }}
                       </span>
                       <span v-if="false" class="block text-indigo-200"
                         >customer support</span
@@ -112,13 +112,13 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { singleDealStore } from "../store/dealStore";
+import { singleDestinationStore } from "../store/destinationStore";
 
 export default defineComponent({
   name: "ViewDealHero",
 
   setup() {
-    return { singleDealStore };
+    return { singleDealStore: singleDestinationStore };
   },
 });
 </script>
