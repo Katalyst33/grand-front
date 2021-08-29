@@ -4,6 +4,8 @@
     :key="index"
     class="group flex flex-col rounded-lg shadow-lg overflow-hidden relative"
   >
+
+
     <div class="flex-shrink-0">
       <router-link
         :to="{ name: 'ViewDealPage', params: { dealId: destination.uuid } }"
