@@ -118,7 +118,7 @@ export default defineComponent({
   name: "ViewDealHero",
 
   setup() {
-    return { singleDealStore: singleDestinationStore };
+    return { singleDestinationStore };
   },
 });
 </script>

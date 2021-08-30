@@ -1,5 +1,6 @@
 <template>
   <div></div>
+
   <Switch
     class="-mt-40"
     v-model="destination.promoted"
@@ -42,6 +43,7 @@
 <script lang="ts">
 import { Switch } from "@headlessui/vue";
 import { ref } from "vue";
+import { destinationStore } from "../../store/destinationStore";
 export default {
   components: {
     Switch,
@@ -54,10 +56,11 @@ export default {
     },
   },
   setup() {
-    const enabled = ref(false);
+    const enabled = ref(true);
 
     return {
       enabled,
+      destinationStore,
     };
   },
 };

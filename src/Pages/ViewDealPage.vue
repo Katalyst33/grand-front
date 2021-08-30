@@ -1,6 +1,6 @@
 <template>
   <div class="mt-36">
-    <div v-if="singleDealStore.isLoadingDeal">
+    <div v-if="singleDestinationStore.isLoadingDeal">
       <div class="grid lg:grid-cols-3 space-x-2">
         <div class="lg:col-span-2 tileTab">
           <div>{{ singleDestinationStore.destination.title }}</div>
@@ -8,7 +8,7 @@
         </div>
         <div class="tileTab">
           <div>
-            <p v-html="singleDealStore.destination.included"></p>
+            <p v-html="singleDestinationStore.destination.included"></p>
           </div>
           <h1 class="text-yellow-600 text-3xl">
             N {{ singleDestinationStore.destination.price }}
@@ -36,7 +36,7 @@ export default defineComponent({
     getOneDestination().then(() => (isLoaded.value = true));
 
     console.log();
-    return { isLoaded, singleDealStore: singleDestinationStore };
+    return { isLoaded, singleDestinationStore };
   },
 });
 </script>
