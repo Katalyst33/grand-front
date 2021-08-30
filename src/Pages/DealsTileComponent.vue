@@ -4,8 +4,6 @@
     :key="index"
     class="group flex flex-col rounded-lg shadow-lg overflow-hidden relative"
   >
-
-
     <div class="flex-shrink-0">
       <router-link
         :to="{ name: 'ViewDealPage', params: { dealId: destination.uuid } }"
@@ -71,12 +69,12 @@
               rounded-full
               text-xs
               font-medium
-              bg-yellow-300
-              text-yellow-600
+              bg-[#44BDEB]
+              text-[#18424C]
             "
           >
             <svg
-              class="mr-1.5 h-2 w-2 text-yellow-500"
+              class="mr-1.5 h-2 w-2 text-white"
               fill="currentColor"
               viewBox="0 0 8 8"
             >
@@ -86,7 +84,7 @@
           </span>
         </div>
 
-        <div class="flex -space-x-1 overflow-hidden pt-4">
+        <div v-if="false" class="flex -space-x-1 overflow-hidden pt-4">
           <img
             class="inline-block h-6 w-6 rounded-full ring-2 ring-white"
             src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"

@@ -1,7 +1,10 @@
-import { computed, reactive, readonly, ref } from "vue";
+import { computed, reactive, readonly, ref, watch } from "vue";
 import { $axios } from "../http.Service";
 import { useRoute } from "vue-router";
 import { DestinationType } from "../types";
+
+const sort = reactive({ field: "createdAt", direction: true });
+const searchQuery = ref<string | undefined>(undefined);
 
 export const destinationStore = reactive({
   allDestinations: {} as {
@@ -9,7 +12,9 @@ export const destinationStore = reactive({
     lastPage: number;
   },
   promotedDestinations: {},
-  isLoadingDeals: false,
+  isLoadingDestinations: false,
+  searchDestinationQuery: searchQuery,
+  sortDestination: sort,
 });
 
 export const singleDestinationStore = reactive({
@@ -20,7 +25,7 @@ export const singleDestinationStore = reactive({
 const SET_DEALS = (allDeals: any) => {
   destinationStore.allDestinations = allDeals.allDeals;
   destinationStore.promotedDestinations = allDeals.promotedDeals;
-  destinationStore.isLoadingDeals = true;
+  destinationStore.isLoadingDestinations = true;
 };
 
 const SET_ONE_DEAL = (oneDeal: any) => {
@@ -49,7 +54,7 @@ export function getAllDestinations(search?: string, sort?: any) {
     .catch((e) => e);
 }
 
-export function getOneDeal() {
+export function getOneDestination() {
   const route = useRoute();
 
   const code = computed(() => route.params.dealId);
@@ -63,3 +68,29 @@ export function getOneDeal() {
     })
     .catch((e) => e);
 }
+
+export function runSort(by: string) {
+  if (sort.field === by) {
+    sort.direction = !sort.direction;
+  } else {
+    sort.field = by;
+  }
+  getAllDestinations(searchQuery.value, sort)
+    .then((r) => r)
+    .catch((e) => e);
+}
+
+let timeOut = -1;
+
+function searchDestinations(searchQuery: string) {
+  getAllDestinations(searchQuery)
+    .then((r) => r)
+    .catch((e) => e);
+}
+
+watch(searchQuery, () => {
+  clearTimeout(timeOut);
+  timeOut = setTimeout(() => {
+    searchDestinations(searchQuery.value!);
+  }, 500);
+});

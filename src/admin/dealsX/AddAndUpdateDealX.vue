@@ -92,7 +92,7 @@ export default defineComponent({
       route = useRoute();
 
     const code = computed(() => route.params.dealId);
-    function getOneDeal() {
+    function getOneDestination() {
       $axios
         .get(`manager/deals/${code.value}`)
         .then((r: any) => {

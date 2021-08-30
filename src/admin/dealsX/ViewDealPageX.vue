@@ -19,7 +19,7 @@ export default defineComponent({
 
     const code = computed(() => route.params.dealId);
 
-    function getOneDeal() {
+    function getOneDestination() {
       $axios
         .get(`client/deals/${code.value}`)
         .then((r) => {

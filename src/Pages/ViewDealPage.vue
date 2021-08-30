@@ -22,7 +22,10 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 
-import { getOneDeal, singleDestinationStore } from "../store/destinationStore";
+import {
+  getOneDestination,
+  singleDestinationStore,
+} from "../store/destinationStore";
 import ViewDealHero from "../layout/ViewDestinationHero.vue";
 
 export default defineComponent({
@@ -30,7 +33,7 @@ export default defineComponent({
   components: { ViewDealHero },
   setup() {
     const isLoaded = ref(false);
-    getOneDeal().then(() => (isLoaded.value = true));
+    getOneDestination().then(() => (isLoaded.value = true));
 
     console.log();
     return { isLoaded, singleDealStore: singleDestinationStore };

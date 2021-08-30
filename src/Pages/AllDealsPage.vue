@@ -1,10 +1,7 @@
 <script lang="ts" setup>
-import { reactive, ref } from "vue";
 import DealsTileComponent from "./DealsTileComponent.vue";
-import {
-  destinationStore,
-  getAllDestinations,
-} from "../store/destinationStore";
+
+import { destinationStore } from "../store/destinationStore";
 import SearchBarComponent from "../components/SearchBarComponent.vue";
 </script>
 
