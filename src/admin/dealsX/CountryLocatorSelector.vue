@@ -1,141 +1,84 @@
 <template>
-  {{ searchQuery }}
-  {{ computedCountry }}
-  <input v-model="searchQuery" type="text" />
-  <Listbox as="div" v-model="props.country">
-    <ListboxLabel class="font-label"> Country: </ListboxLabel>
-    <div class="mt-1 relative">
-      <ListboxButton
-        class="
-          relative
-          w-full w-name
-          bg-white
-          border border-gray-300
-          rounded-md
-          shadow-sm
-          pl-3
-          pr-10
-          py-2
-          text-left
-          cursor-pointer
-          focus:outline-none
-          focus:ring-1
-          focus:ring-yellow-500
-          focus:border-yellow-500
-          sm:text-sm
-        "
+  <div class="py-2">
+    <div>
+      <p class="form-label">Change Country:</p>
+      <div
+        class="cursor-pointer hover:bg-yellow-50"
+        @click="isSearching = true"
       >
-        <span class="flex items-center">
-          <img
-            :src="`/svg/${props.country.code}.svg`"
-            alt=""
-            class="flex-shrink-0 h-6 w-6 rounded-name"
-          />
-          <span class="ml-3 block truncate">{{ props.country.name }}</span>
-        </span>
-        <span
-          class="
-            ml-3
-            absolute
-            inset-y-0
-            right-0
-            flex
-            items-center
-            pr-2
-            pointer-events-none
-          "
-        >
-          <SelectorIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
-        </span>
-      </ListboxButton>
-
-      <transition
-        leave-active-class="transition ease-in duration-100"
-        leave-from-class="opacity-100"
-        leave-to-class="opacity-0"
-      >
-        <ListboxOptions
-          class="
-            absolute
-            z-10
-            mt-1
-            w-name
-            bg-white
-            shadow-lg
-            max-h-56
-            rounded-md
-            py-1
-            text-base
-            ring-1 ring-black ring-opacity-5
-            overflow-auto
-            focus:outline-none
-            sm:text-sm
-          "
-        >
-          <ListboxOption
-            as="template"
-            v-for="(country, index) in allCountries"
-            :key="index"
-            :value="country"
-            v-slot="{ active, selected }"
+        <div v-if="!isSearching" class="flex items-center justify-between">
+          <div
+            class="flex items-center space-x-2 space-y-1 py-1 cursor-pointer"
           >
-            <li
-              :class="[
-                active ? 'text-white bg-yellow-500' : 'text-gray-900',
-                'cursor-pointer select-none relative py-2 pl-3 pr-9',
-              ]"
-            >
-              <div class="flex items-center">
-                <img
-                  :src="`/svg/${country.code}.svg`"
-                  alt=""
-                  class="flex-shrink-0 h-6 w-6 rounded-name cursor-pointer"
-                />
-                <span
-                  :class="[
-                    selected ? 'font-semibold' : 'font-normal',
-                    'ml-3 block truncate',
-                  ]"
-                >
-                  {{ country.name }}
-                </span>
-              </div>
-
-              <span
-                v-if="selected"
-                :class="[
-                  active ? 'text-white' : 'text-yellow-500',
-                  'absolute inset-y-0 right-0 flex items-center pr-4 cursor-pointer',
-                ]"
-              >
-                <CheckIcon class="h-5 w-5" aria-hidden="true" />
-              </span>
-            </li>
-          </ListboxOption>
-        </ListboxOptions>
-      </transition>
+            <img
+              :src="`/svg/${props.destination.country.code}.svg`"
+              alt=""
+              class="flex-shrink-0 h-6 w-6 rounded-name"
+            />
+            <h3>{{ props.destination.country.name }}</h3>
+          </div>
+          <div class="cursor-pointer hover:text-yellow-600">
+            <i class="fal fa-globe-americas"></i>Search..
+          </div>
+        </div>
+      </div>
     </div>
-  </Listbox>
+    <div v-if="isSearching">
+      <input
+        class="rounded-full w-full border-gray-300"
+        v-model="searchQuery"
+        type="text"
+      />
+      <div>
+        <div v-for="(country, index) in computedCountry" :key="index">
+          <div
+            @click="selectCountry(country)"
+            class="
+              flex
+              items-center
+              space-x-2 space-y-1
+              border-b
+              py-1
+              cursor-pointer
+              hover:bg-gray-100
+            "
+          >
+            <img
+              :src="`/svg/${country.code}.svg`"
+              alt=""
+              class="flex-shrink-0 h-6 w-6 rounded-name"
+            />
+            <h3>{{ country.name }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <script lang="ts" setup>
 import { computed, defineProps, ref } from "vue";
-import {
-  Listbox,
-  ListboxButton,
-  ListboxLabel,
-  ListboxOption,
-  ListboxOptions,
-} from "@headlessui/vue";
-import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
+
 import { allCountries } from "../../db/countryList";
+import { CountryType } from "../../types";
 
 const props = defineProps<{
-  country: {
-    name: string;
-    code: string;
+  destination: {
+    country: {
+      code: string;
+      name: string;
+    };
   };
 }>();
 const searchQuery = ref("");
+
+const isSearching = ref(false);
+
+function selectCountry(country: CountryType) {
+  props.destination.country.name = country.name;
+  props.destination.country.code = country.code;
+  searchQuery.value = "";
+  isSearching.value = false;
+}
 
 const AllCountries = ref(allCountries);
 

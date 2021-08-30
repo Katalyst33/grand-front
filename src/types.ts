@@ -45,3 +45,8 @@ export type DestinationType = {
   uuid: string;
   image: string;
 };
+
+export type CountryType = {
+  name: string;
+  code: string;
+};

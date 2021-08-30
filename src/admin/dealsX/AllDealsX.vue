@@ -69,13 +69,13 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              <tr v-for="(destination, index) in allDeals" :key="index">
+              <tr v-for="(destination, index) in allDestinations" :key="index">
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="flex-shrink-0 h-10 w-10">
                       <img
                         class="h-10 w-10 rounded-full"
-                        :src="`/svg/${deal.country.code}.svg`"
+                        :src="`/svg/${destination.country.code}.svg`"
                         alt=""
                       />
                     </div>
@@ -83,14 +83,14 @@
                       <router-link
                         :to="{
                           name: 'UpdateDeal',
-                          params: { dealId: deal.uuid },
+                          params: { dealId: destination.uuid },
                         }"
                         class="text-sm font-medium text-yellow-700"
                       >
                         {{ destination.country.name }}
                       </router-link>
                       <div class="text-sm text-gray-900">
-                        {{ destination.countryCode }}
+                        {{ destination.country.code }}
                       </div>
                     </div>
                   </div>
@@ -103,9 +103,13 @@
                     {{ trimString(destination.description) }}...
                     <br />
                     <div class="flex space-x-2">
-                      <HumanDateTimeComponent :raw-time="deal.duration.start" />
+                      <HumanDateTimeComponent
+                        :raw-time="destination.duration.start"
+                      />
                       <p>-</p>
-                      <HumanDateTimeComponent :raw-time="deal.duration.end" />
+                      <HumanDateTimeComponent
+                        :raw-time="destination.duration.end"
+                      />
                     </div>
                   </div>
                 </td>
@@ -150,34 +154,27 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { defineComponent, ref } from "vue";
 import { $axios } from "../../http.Service";
 import HumanDateTimeComponent from "../components/HumanDateTimeComponent.vue";
 
-export default defineComponent({
-  name: "AllDealsX",
-  components: { HumanDateTimeComponent },
-  setup() {
-    const allDestinations = ref<any>([]);
+const allDestinations = ref<any>([]);
 
-    function trimString(stringText: string) {
-      return stringText.substring(0, 50);
-    }
+function trimString(stringText: string) {
+  return stringText.substring(0, 50);
+}
 
-    function getAllDestinations() {
-      $axios
-        .get("manager/deals")
-        .then((r) => {
-          allDestinations.value = r.data.data;
-        })
-        .catch((e) => e);
-    }
+function getAllDestinations() {
+  $axios
+    .get("manager/deals")
+    .then((r) => {
+      allDestinations.value = r.data.data;
+    })
+    .catch((e) => e);
+}
 
-    getAllDeals();
-    return { allDestinations, trimString };
-  },
-});
+getAllDestinations();
 </script>
 
 <style scoped></style>
