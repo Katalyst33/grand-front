@@ -1,7 +1,4 @@
 <template>
-  <div>Update the admin</div>
-  {{ destination }}
-
   <template v-if="isLoaded">
     <form>
       <h1 class="text-2xl font-regular">{{ destination.title }}</h1>
