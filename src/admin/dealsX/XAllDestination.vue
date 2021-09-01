@@ -82,8 +82,8 @@
                     <div class="ml-4">
                       <router-link
                         :to="{
-                          name: 'UpdateDeal',
-                          params: { dealId: destination.uuid },
+                          name: 'UpdateDestination',
+                          params: { destinationId: destination.uuid },
                         }"
                         class="text-sm font-medium text-yellow-700"
                       >
@@ -99,8 +99,8 @@
                   <div class="text-sm text-gray-900">
                     <router-link
                       :to="{
-                        name: 'UpdateDeal',
-                        params: { dealId: destination.uuid },
+                        name: 'UpdateDestination',
+                        params: { destinationId: destination.uuid },
                       }"
                       class="text-sm font-medium text-yellow-700"
                     >

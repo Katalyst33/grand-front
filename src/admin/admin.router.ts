@@ -29,13 +29,13 @@ export default <RouteRecordRaw>{
         },
 
         {
-          path: "/add-deal/",
-          name: "AddDeal",
+          path: "/add-destination/",
+          name: "AddDestination",
           component: XAddAndUpdate,
         },
         {
-          path: "/update-deal/:dealId",
-          name: "UpdateDeal",
+          path: "/update-destination/:destinationId",
+          name: "UpdateDestination",
           component: XAddAndUpdate,
         },
         {

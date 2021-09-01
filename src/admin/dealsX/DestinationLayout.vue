@@ -6,7 +6,9 @@
           <router-link :to="{ name: 'AllDestinationX' }">All Deals</router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'AddDeal' }">Create Deals</router-link>
+          <router-link :to="{ name: 'AddDestination' }"
+            >Create Deals</router-link
+          >
         </li>
       </ul>
 
