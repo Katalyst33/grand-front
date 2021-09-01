@@ -60,6 +60,10 @@ import { computed, defineProps, ref } from "vue";
 
 import { allCountries } from "../../db/countryList";
 import { CountryType } from "../../types";
+import {
+  getOneDestination,
+  singleDestinationStore,
+} from "../../store/destinationStore";
 
 const props = defineProps<{
   destination: {

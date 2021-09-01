@@ -11,6 +11,8 @@
   "dependencies": {
     "@fortawesome/fontawesome-pro": "^5.15.3",
     "@headlessui/vue": "^1.4.0",
+    "@ilovepdf/ilovepdf-js": "^0.1.0",
+    "@ilovepdf/ilovepdf-nodejs": "^0.1.1",
     "@popperjs/core": "^2.9.3",
     "@trapcode/browser-storage": "^2.1.6",
     "axios": "^0.21.1",
@@ -35,6 +37,7 @@
     "@vitejs/plugin-vue": "^1.6.0",
     "@vue/compiler-sfc": "^3.2.6",
     "autoprefixer": "^10.3.2",
+    "dotenv": "^10.0.0",
     "prettier": "^2.2.1",
     "sass": "^1.38.1",
     "tailwindcss": "^2.1.2",

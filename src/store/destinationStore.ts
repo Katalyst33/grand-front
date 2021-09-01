@@ -8,7 +8,7 @@ const searchQuery = ref<string | undefined>(undefined);
 
 export const destinationStore = reactive({
   allDestinations: {} as {
-    data: [];
+    data: [] | DestinationType;
     lastPage: number;
   },
   promotedDestinations: {},
@@ -18,7 +18,16 @@ export const destinationStore = reactive({
 });
 
 export const singleDestinationStore = reactive({
-  destination: {} as DestinationType,
+  destination: {
+    country: {
+      name: "_No Destination",
+      code: "NDT",
+    },
+    duration: {
+      start: new Date(),
+      end: new Date(),
+    },
+  } as DestinationType,
   isLoadingDeal: false,
 });
 
@@ -28,7 +37,7 @@ const SET_DEALS = (allDeals: any) => {
   destinationStore.isLoadingDestinations = true;
 };
 
-const SET_ONE_DEAL = (oneDeal: any) => {
+const SET_ONE_DESTINATION = (oneDeal: any) => {
   singleDestinationStore.destination = oneDeal;
   singleDestinationStore.isLoadingDeal = true;
 };
@@ -63,12 +72,23 @@ export function getOneDestination() {
     .get(`client/deals/${code.value}`)
     .then((r) => {
       if (r) {
-        SET_ONE_DEAL(r);
+        SET_ONE_DESTINATION(r);
       }
     })
     .catch((e) => e);
 }
+export function getOneDestinationX() {
+  const route = useRoute();
 
+  const code = computed(() => route.params.dealId);
+
+  return $axios
+    .get(`manager/deals/${code.value}`)
+    .then((r: any) => {
+      SET_ONE_DESTINATION(r);
+    })
+    .catch((e) => e);
+}
 export function runSort(by: string) {
   if (sort.field === by) {
     sort.direction = !sort.direction;
@@ -80,7 +100,7 @@ export function runSort(by: string) {
     .catch((e) => e);
 }
 
-let timeOut = -1;
+let timeOut: NodeJS.Timeout | number = -1;
 
 function searchDestinations(searchQuery: string) {
   getAllDestinations(searchQuery)
@@ -89,7 +109,7 @@ function searchDestinations(searchQuery: string) {
 }
 
 watch(searchQuery, () => {
-  clearTimeout(timeOut);
+  clearTimeout(timeOut as NodeJS.Timeout);
   timeOut = setTimeout(() => {
     searchDestinations(searchQuery.value!);
   }, 500);

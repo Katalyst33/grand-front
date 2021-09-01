@@ -1,24 +1,26 @@
 <template>
-  <ul class="text-sm font-medium space-y-4">
-    <div class="dropdown">
-      <div class="cursor-pointer flex items-center">
-        <span class="fad fa-power-off text-red-500 font-bold text-2xl"></span>
-        <span>LogOut</span>
+  <div>
+    <ul class="text-sm font-medium space-y-4">
+      <div class="dropdown">
+        <div class="cursor-pointer flex items-center">
+          <span class="fad fa-power-off text-red-500 font-bold text-2xl"></span>
+          <span>LogOut</span>
+        </div>
+        <div class="dropdown-content bg-gray-500">
+          <ul>
+            <li>
+              <router-link :to="{ name: 'AdminDashboard' }">Admin</router-link>
+            </li>
+            <li>
+              <router-link :to="{ name: 'UserDashboard' }">User</router-link>
+            </li>
+            <li><router-link :to="{ name: 'Home' }">Home</router-link></li>
+            <li class="cursor-pointer" @click="logOutUser">LogOut</li>
+          </ul>
+        </div>
       </div>
-      <div class="dropdown-content">
-        <ul>
-          <li>
-            <router-link :to="{ name: 'AdminDashboard' }">Admin</router-link>
-          </li>
-          <li>
-            <router-link :to="{ name: 'UserDashboard' }">User</router-link>
-          </li>
-          <li><router-link :to="{ name: 'Home' }">Home</router-link></li>
-          <li class="cursor-pointer" @click="logOutUser">LogOut</li>
-        </ul>
-      </div>
-    </div>
-  </ul>
+    </ul>
+  </div>
 </template>
 <script lang="ts">
 import { logOutUser } from "../store/store";

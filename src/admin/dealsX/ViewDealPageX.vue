@@ -19,7 +19,7 @@ export default defineComponent({
 
     const code = computed(() => route.params.dealId);
 
-    function getOneDestination() {
+    function getOneDestinationX() {
       $axios
         .get(`client/deals/${code.value}`)
         .then((r) => {
@@ -29,7 +29,7 @@ export default defineComponent({
         .catch((e) => e);
     }
 
-    getOneDeal();
+    getOneDestination();
 
     return { singleDeal };
   },

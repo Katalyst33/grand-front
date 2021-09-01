@@ -1,29 +1,48 @@
+<script lang="ts" setup>
+import { onMounted, ref } from "vue";
+
+import fs from "fs";
+import dotenv from "dotenv";
+import CompressTask from "@ilovepdf/ilovepdf-js-core/tasks/CompressTask";
+
+const formData = ref();
+const file = ref("");
+const url = ref("");
+const imageData = new FormData();
+
+function onFileChange(e: any) {
+  file.value = e.target.files[0];
+  url.value = URL.createObjectURL(file.value);
+  console.log(file.value);
+}
+
+function processFile() {
+  // Load env vars.
+}
+</script>
+
 <template>
   <div>
-    <div class="bg-green-500 p-10 text-white">
-      <h1>User Dashboard</h1>
+    <div class="">
+      {{ formData }}
 
-      <ul class="flex justify-between py-4">
-        <li>Profile</li>
-        <li>Item</li>
-        <li><router-link :to="{ name: 'Home' }">Home</router-link></li>
+      {{ file }}
 
-        <LogOutComponent />
-      </ul>
+      <input
+        type="file"
+        accept="image/*"
+        formenctype="multipart/form-data"
+        @change.prevent="onFileChange"
+      />
+
+      <button @click.prevent="processFile" class="p-1 bg-red-500 rounded px-4">
+        run
+      </button>
+
+      Select images:
+      <input type="file" accept="image/*" name="images" multiple />
+
+      <img :src="`/uploads/new-doc.jpeg`" />
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-import { logOutUser } from "../store/store";
-import LogOutComponent from "../components/LogOutComponent.vue";
-
-export default defineComponent({
-  name: "UserDashboard",
-  components: { LogOutComponent },
-  setup() {
-    return { logOutUser };
-  },
-});
-</script>

@@ -7,7 +7,10 @@ export const allCountries = [
     name: "United States",
     code: "US",
   },
-
+  {
+    name: "_No Destination",
+    code: "NDT",
+  },
   {
     name: "United Kingdom",
 

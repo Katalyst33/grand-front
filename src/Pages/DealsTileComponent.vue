@@ -1,6 +1,6 @@
 <template>
   <div
-    v-for="(destination, index) in destinationStore"
+    v-for="(destination, index) in destinationStore.allDestinations.data"
     :key="index"
     class="group flex flex-col rounded-lg shadow-lg overflow-hidden relative"
   >
@@ -83,32 +83,6 @@
             {{ destination.activity }}
           </span>
         </div>
-
-        <div v-if="false" class="flex -space-x-1 overflow-hidden pt-4">
-          <img
-            class="inline-block h-6 w-6 rounded-full ring-2 ring-white"
-            src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-            alt=""
-          />
-          <img
-            class="inline-block h-6 w-6 rounded-full ring-2 ring-white"
-            src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-            alt=""
-          />
-          <img
-            class="inline-block h-6 w-6 rounded-full ring-2 ring-white"
-            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80"
-            alt=""
-          />
-          <img
-            class="inline-block h-6 w-6 rounded-full ring-2 ring-white"
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-            alt=""
-          />
-          <p class="pl-2 text-gray-500">
-            +{{ Math.floor(Math.random() * 10 + 1) }} Viewing
-          </p>
-        </div>
       </div>
       <div class="mt-6 flex items-center">
         <div class="flex-shrink-0"></div>
@@ -125,15 +99,8 @@
     </div>
   </div>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
 import { DestinationType } from "../types";
-
-export default {
-  name: "DealsTileComponent",
-  components: { HumanDateTimeComponent },
-  props: {
-    destinationStore: {} as DestinationType,
-  },
-};
+import { destinationStore } from "../store/destinationStore";
 </script>

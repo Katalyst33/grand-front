@@ -97,7 +97,15 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="text-sm text-gray-900">
-                    {{ destination.title }}
+                    <router-link
+                      :to="{
+                        name: 'UpdateDeal',
+                        params: { dealId: destination.uuid },
+                      }"
+                      class="text-sm font-medium text-yellow-700"
+                    >
+                      {{ destination.title }}
+                    </router-link>
                   </div>
                   <div class="text-sm text-gray-500">
                     {{ trimString(destination.description) }}...

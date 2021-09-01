@@ -12,7 +12,7 @@ const ViewDealPage = () => import("./Pages/ViewDealPage.vue");
 // const componentName = () => import("./componentName.vue");
 // const componentName = () => import("./componentName.vue");
 
-import DealsPage from "./Pages/AllDealsPage.vue";
+import DealsPage from "./Pages/AllDestinationsPage.vue";
 import SignupAndLogin from "./views/SingupAndLogin.vue";
 import ContactPage from "./views/ContactPage.vue";
 import DemoPage from "./components/DemoPage.vue";

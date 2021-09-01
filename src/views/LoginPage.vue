@@ -180,7 +180,7 @@ export default {
 
     function LoginUser() {
       $axios
-        .destination("client/login", form.value)
+        .post("client/login", form.value)
         .then((r: any) => {
           BrowserStore.set("ge_jwt", r.token);
           BrowserStore.set("user_role", r.role);
