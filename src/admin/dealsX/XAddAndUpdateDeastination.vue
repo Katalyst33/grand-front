@@ -80,7 +80,7 @@
                 />
               </div>
               <button
-                @click.prevent="UpdateDeal"
+                @click.prevent="updateDestination"
                 class="bg-red-500 p-2 rounded-md mt-10"
               >
                 Update
@@ -119,7 +119,7 @@ const destination = ref(<DestinationType>{});
 const isLoaded = ref(false),
   route = useRoute();
 
-if (route.name === "UpdateDeal") {
+if (route.name === "updateDestination") {
   getOneDestinationX().then(() => (isLoaded.value = true));
 } else {
   console.log("NEW !!");
@@ -128,7 +128,7 @@ if (route.name === "UpdateDeal") {
 }
 const code = computed(() => route.params.dealId);
 
-function UpdateDeal() {
+function updateDestination() {
   $axios
     .patch(`manager/deals/${code.value}`, singleDestinationStore.destination)
     .then((r) => console.log(r))

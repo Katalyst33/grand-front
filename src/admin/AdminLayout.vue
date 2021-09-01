@@ -4,7 +4,7 @@
       <ul class="flex justify-between text-xl uppercase">
         <li>User</li>
         <li>
-          <router-link :to="{ name: 'AllDealsX' }">Deals</router-link>
+          <router-link :to="{ name: 'AllDestinationX' }">Deals</router-link>
         </li>
         <li>
           <router-link :to="{ name: 'UserDashboard' }">
