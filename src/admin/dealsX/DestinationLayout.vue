@@ -12,10 +12,20 @@
         </li>
       </ul>
 
-      <template v-if="$route.name === 'UpdateDeal'">
-        <ul class="flex space-x-4">
+      <button @click="clearStore" class="bg-red-500 px-4">Clear</button>
+
+      <template v-if="$route.name === 'UpdateDestination'">
+        <ul v-is="isLoaded" class="flex space-x-4">
           <li>
-            <router-link :to="{ name: 'DealStatus' }">Statistics</router-link>
+            <router-link
+              :to="{
+                name: 'DestinationStatus',
+                params: {
+                  destinationId: singleDestinationStore.destination.uuid,
+                },
+              }"
+              >Statistics</router-link
+            >
           </li>
         </ul>
       </template>
@@ -25,16 +35,17 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import $Router from "../../router";
+import {
+  clearStore,
+  singleDestinationStore,
+} from "../../store/destinationStore";
 
-export default defineComponent({
-  name: "ComponentName",
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-  setup() {
-    return {};
-  },
-});
+const isLoaded = ref(false);
 </script>
 
 <style scoped>

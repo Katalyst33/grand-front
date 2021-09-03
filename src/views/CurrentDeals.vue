@@ -15,11 +15,13 @@
   </div>
 </template>
 <script lang="ts" setup>
-import DealsTileComponent from "../Pages/DealsTileComponent.vue";
+import DealsTileComponent from "../Pages/DestinationTileComponent.vue";
 import {
   destinationStore,
   getAllDestinations,
 } from "../store/destinationStore";
+
+getAllDestinations();
 </script>
 
 <style lang="scss" scoped>

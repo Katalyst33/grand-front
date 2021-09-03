@@ -110,17 +110,8 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
 import { singleDestinationStore } from "../store/destinationStore";
-
-export default defineComponent({
-  name: "ViewDealHero",
-
-  setup() {
-    return { singleDestinationStore };
-  },
-});
 </script>
 
 <style scoped></style>

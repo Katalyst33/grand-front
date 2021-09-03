@@ -114,24 +114,4 @@ const computedCountry = computed(() => {
     });
   }
 });
-
-/*const computedCountry = computed(() => {
-  const SortedCountires = {};
-  return allCountries.sort((a, b) => {
-    let fa = a.name.toLowerCase(),
-      fb = b.name.toLowerCase();
-
-    if (fa < fb) {
-      return -1;
-    }
-    if (fa > fb) {
-      return 1;
-    }
-    return 0;
-  });
-});*/
-
-// let matchingStrings = [];
-
-const selected = ref(props.country);
 </script>

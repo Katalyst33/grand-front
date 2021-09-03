@@ -8,7 +8,7 @@ import UserRoutes from "./user/user.router";
 
 const AboutPage = () => import("./views/AboutPage.vue");
 const ServicePage = () => import("./views/ServicePage.vue");
-const ViewDealPage = () => import("./Pages/ViewDealPage.vue");
+const ViewDestinationPage = () => import("./Pages/ViewDealPage.vue");
 // const componentName = () => import("./componentName.vue");
 // const componentName = () => import("./componentName.vue");
 
@@ -50,9 +50,9 @@ const router = createRouter({
           component: DealsPage,
         },
         {
-          path: "/deal/:dealId",
-          name: "ViewDealPage",
-          component: ViewDealPage,
+          path: "/destination/:destinationId",
+          name: "ViewDestinationPage",
+          component: ViewDestinationPage,
         },
         {
           path: "/contact-us",

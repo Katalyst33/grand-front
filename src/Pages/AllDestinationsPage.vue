@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import DealsTileComponent from "./DealsTileComponent.vue";
+import DealsTileComponent from "./DestinationTileComponent.vue";
 
 import { destinationStore } from "../store/destinationStore";
 import SearchBarComponent from "../components/SearchBarComponent.vue";

@@ -1,5 +1,7 @@
 <template>
-  {{ singleDestinationStore.destination }}
+  <template v-if="isLoaded">
+    {{ singleDestinationStore.destination }}
+  </template>
   <template v-if="singleDestinationStore.isLoadingDeal || isLoaded">
     <form>
       <h1 class="text-2xl font-regular">
@@ -102,31 +104,40 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineComponent, ref } from "vue";
+import { computed, defineComponent, onMounted, ref } from "vue";
 import { $axios } from "../../http.Service";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { DestinationType } from "../../types";
 import DealTimePickerComponent from "../components/DealTimePickerComponent.vue";
 import PromotedToggleComponent from "../components/PromotedToggleComponent.vue";
 import CountryLocatorSelector from "./CountryLocatorSelector.vue";
 import {
+  clearStore,
   getOneDestinationX,
   singleDestinationStore,
 } from "../../store/destinationStore";
+import { log } from "util";
 
 const destination = ref(<DestinationType>{});
 
 const isLoaded = ref(false),
   route = useRoute();
+console.log("1111");
+destination.value = {} as DestinationType;
 
-if (route.name === "updateDestination") {
+if (route.name === "UpdateDestination") {
   getOneDestinationX().then(() => (isLoaded.value = true));
 } else {
-  console.log("NEW !!");
-  destination.value = {} as DestinationType;
+  clearStore();
   isLoaded.value = true;
+  // window.location.href = "/add-destination/";
 }
-const code = computed(() => route.params.dealId);
+
+if (route.name === "AddDestination") {
+  clearStore();
+}
+
+const code = computed(() => route.params.destinationId);
 
 function updateDestination() {
   $axios

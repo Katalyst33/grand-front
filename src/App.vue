@@ -2,7 +2,7 @@
   <MenuComponent v-if="false" />
   <GuestNavigator />
   <HomeHeroComponent v-if="$route.name === 'Home'" />
-  <ViewDealHero v-if="$route.name === 'ViewDealPage'" />
+  <ViewDestinationHero v-if="$route.name === 'ViewDestinationPage'" />
 
   <div class="container mx-auto">
     <router-view v-if="isLoaded" />
@@ -11,32 +11,16 @@
   <FooterSection />
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { defineComponent, ref } from "vue";
 import MenuComponent from "@/components/commons/MenuComponent.vue";
 import FooterSection from "@/FooterSection.vue";
 import GuestNavigator from "@/GuestNavigator.vue";
 import HomeHeroComponent from "@/views/HomeHeroComponent.vue";
-import { destinationStore, getAllDestinations } from "./store/destinationStore";
-import ViewDealHero from "./layout/ViewDestinationHero.vue";
-
-export default defineComponent({
-  name: "App",
-  components: {
-    ViewDealHero,
-    HomeHeroComponent,
-    GuestNavigator,
-    FooterSection,
-    MenuComponent,
-  },
-
-  setup() {
-    const isLoaded = ref(false);
-    getAllDestinations().then(() => (isLoaded.value = true));
-
-    return { isLoaded };
-  },
-});
+import { getAllDestinations } from "./store/destinationStore";
+import ViewDestinationHero from "./layout/ViewDestinationHero.vue";
+const isLoaded = ref(false);
+getAllDestinations().then(() => (isLoaded.value = true));
 </script>
 
 <style lang="scss">

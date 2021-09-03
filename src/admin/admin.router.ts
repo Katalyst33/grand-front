@@ -7,7 +7,7 @@ const DealsLayout = () => import("./dealsX/DestinationLayout.vue");
 const DealStatus = () => import("./dealsX/DealStatus.vue");
 
 export default <RouteRecordRaw>{
-  path: "/admin",
+  path: "/manager",
   component: AdminLayout,
   meta: { requiresAuth: true, role: "staff" },
   children: [
@@ -39,8 +39,8 @@ export default <RouteRecordRaw>{
           component: XAddAndUpdate,
         },
         {
-          path: "/deal-status/:dealId",
-          name: "DealStatus",
+          path: "/deal-status/:destinationId",
+          name: "DestinationStatus",
           component: DealStatus,
         },
       ],

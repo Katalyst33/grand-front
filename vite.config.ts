@@ -4,33 +4,6 @@ import vue from "@vitejs/plugin-vue";
 import * as path from "path";
 const target = `http://localhost:5300`;
 
-// https://vitejs.dev/config/
-/*export default defineConfig({
-  plugins: [vue()],
-  server: {
-    port: 3400,
-    proxy: {
-      "/files": target,
-      "/assets": target,
-      "/api": {
-        target,
-        ws: false,
-        changeOrigin: true,
-      },
-      "/storage": {
-        target,
-        ws: false,
-        changeOrigin: true,
-      },
-    },
-  },
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "/src"),
-    },
-  },
-});*/
-
 // @ts-ignore
 export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };

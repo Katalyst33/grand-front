@@ -8,7 +8,7 @@ const searchQuery = ref<string | undefined>(undefined);
 
 export const destinationStore = reactive({
   allDestinations: {} as {
-    data: [] | DestinationType;
+    data: DestinationType[] | DestinationType;
     lastPage: number;
   },
   promotedDestinations: {},
@@ -41,6 +41,25 @@ const SET_ONE_DESTINATION = (oneDeal: any) => {
   singleDestinationStore.destination = oneDeal;
   singleDestinationStore.isLoadingDeal = true;
 };
+
+const CLEAR_ONE_DESTINATION = () => {
+  singleDestinationStore.destination = {
+    country: {
+      name: "_No Destination",
+      code: "NDT",
+    },
+    duration: {
+      start: new Date(),
+      end: new Date(),
+    },
+  } as DestinationType;
+  singleDestinationStore.isLoadingDeal = true;
+};
+
+export function clearStore() {
+  console.log(" i ran");
+  CLEAR_ONE_DESTINATION();
+}
 
 export function getAllDestinations(search?: string, sort?: any) {
   let params = {} as any;
@@ -80,7 +99,7 @@ export function getOneDestination() {
 export function getOneDestinationX() {
   const route = useRoute();
 
-  const code = computed(() => route.params.dealId);
+  const code = computed(() => route.params.destinationId);
 
   return $axios
     .get(`manager/deals/${code.value}`)

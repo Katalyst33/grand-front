@@ -6,7 +6,10 @@
   >
     <div class="flex-shrink-0">
       <router-link
-        :to="{ name: 'ViewDealPage', params: { dealId: destination.uuid } }"
+        :to="{
+          name: 'ViewDestinationPage',
+          params: { destinationId: destination.uuid },
+        }"
       >
         <img
           class="

@@ -190,7 +190,7 @@ export default {
           } else if (BrowserStore.get("user_role") === "user") {
             window.location.href = "/user/dashboard";
           } else if (BrowserStore.get("user_role") !== "user") {
-            window.location.href = "/admin/dashboard";
+            window.location.href = "/manager/dashboard";
           } else {
             window.location.href = "/user/dashboard";
           }
