@@ -22,7 +22,7 @@ function uploadDocuments() {
 
 <template>
   <DragAndDrop v-if="false" />
-  <h3>Document Uploader !!!</h3>
+  <h3>Document Uploader !!</h3>
 
   <form action="/multiple_upload" enctype="multipart/form-data" method="POST">
     <div>
