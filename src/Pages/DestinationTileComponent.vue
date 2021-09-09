@@ -4,7 +4,15 @@
     :key="index"
     class="group flex flex-col rounded-lg shadow-lg overflow-hidden relative"
   >
-    <div class="flex-shrink-0">
+    <div class="relative flex-shrink-0">
+      <button
+        v-if="appState.user.role === 'staff'"
+        @click="toViewDestination(destination)"
+        class="bg-yellow-500 p-4 absolute top-0"
+      >
+        <i class="far fa-eye"></i>
+      </button>
+
       <router-link
         :to="{
           name: 'ViewDestinationPage',
@@ -106,4 +114,17 @@
 import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
 import { DestinationType } from "../types";
 import { destinationStore } from "../store/destinationStore";
+import { useRoute, useRouter } from "vue-router";
+import { appState } from "../store/store";
+
+const router = useRouter();
+
+function toViewDestination(destination: DestinationType) {
+  console.log("navigation", destination.uuid);
+
+  router.push({
+    name: "UpdateDestination",
+    params: { destinationId: destination.uuid },
+  });
+}
 </script>

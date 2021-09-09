@@ -30,6 +30,7 @@ function uploadDocuments() {
   imageData.append("image", file.value);
   imageData.append("bodyInfo", labelType.value);
   console.log(imageData, "appp");
+
   $axios
 
     .patch(`/profile/upload/${appState.user.reference}/image`, imageData)
@@ -104,10 +105,17 @@ function uploadDocuments() {
   </form>
 
   <div>
-    <div v-for="(image, index) in profileStore.profileData.images" :key="index">
-      {{ image }}
+    <div>
+      <div
+        v-for="(image, index) in profileStore.profileData.images"
+        :key="index"
+      >
+        {{ image }}
 
-      <img style="width: 100px" :src="`${appUrl}/uploads/${image}`" />
+        <div class="">
+          <img style="width: 100px" :src="`${appUrl}/uploads/${image}`" />
+        </div>
+      </div>
     </div>
   </div>
 </template>

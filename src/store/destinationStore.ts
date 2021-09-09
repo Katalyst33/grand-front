@@ -31,6 +31,10 @@ export const singleDestinationStore = reactive({
   isLoadingDeal: false,
 });
 
+export const searchDestinationStore = reactive({
+  isSearching: false,
+});
+
 const SET_DEALS = (allDeals: any) => {
   destinationStore.allDestinations = allDeals.allDeals;
   destinationStore.promotedDestinations = allDeals.promotedDeals;
@@ -71,7 +75,7 @@ export function getAllDestinations(search?: string, sort?: any) {
     params.sort = sort.direction ? sort.field + ",asc" : sort.field;
   }
   return $axios
-    .get("client/deals", {
+    .get("/client/deals", {
       params,
     })
     .then((r) => {
@@ -85,7 +89,7 @@ export function getAllDestinations(search?: string, sort?: any) {
 export function getOneDestination() {
   const route = useRoute();
 
-  const code = computed(() => route.params.dealId);
+  const code = computed(() => route.params.destinationId);
 
   return $axios
     .get(`client/deals/${code.value}`)
@@ -125,6 +129,11 @@ function searchDestinations(searchQuery: string) {
   getAllDestinations(searchQuery)
     .then((r) => r)
     .catch((e) => e);
+}
+
+export function isSearching() {
+  searchDestinationStore.isSearching = !searchDestinationStore.isSearching;
+  console.log("is Searching ");
 }
 
 watch(searchQuery, () => {

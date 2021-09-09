@@ -5,6 +5,7 @@
       class="absolute inset-0 shadow z-30 pointer-events-none"
       aria-hidden="true"
     />
+
     <div class="relative z-20">
       <div
         class="
@@ -226,6 +227,22 @@
             </router-link>
           </PopoverGroup>
           <div class="flex items-center md:ml-12">
+            <div class="bg-red-500 p-4">
+              {{ searchDestinationStore }}
+            </div>
+            <button @click="isSearching" class="p-2">
+              <svg
+                class="text-yellow-900 h-8 fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                xml:space="preserve"
+              >
+                <path
+                  d="M21.8 20.6 17.7 16c1.2-1.4 1.9-3.2 2-5 .1-2.1-.5-4.2-1.8-5.8s-3.2-2.8-5.2-3.1c-2-.4-4.2 0-6 1.1C5 4.2 3.6 5.9 3 7.9s-.5 4.2.4 6.1c.8 1.9 2.4 3.4 4.3 4.3s4.1 1 6.1.4c.4-.1.7-.6.5-1-.1-.4-.6-.7-1-.5-1.6.5-3.4.4-4.9-.3-1.5-.7-2.8-1.9-3.5-3.5-.8-1.6-.8-3.4-.3-5s1.6-3 3-3.8c1.4-.9 3.2-1.2 4.8-.9s3.2 1.2 4.2 2.5 1.6 3 1.5 4.7-.8 3.3-2 4.5c-.3.3-.3.8.1 1.1l5.2 4.6c.2.1.4.1.5 0s.1-.4-.1-.5z"
+                />
+              </svg>
+            </button>
+
             <!--            //user action-->
             <template v-if="appState.user.role">
               <div class="flex items-center space-x-6">
@@ -544,7 +561,7 @@
   </Popover>
 </template>
 
-<script>
+<script lang="ts" setup>
 import {
   Popover,
   PopoverButton,
@@ -574,8 +591,11 @@ import { ChevronDownIcon } from "@heroicons/vue/solid";
 import AppLogo from "./AppLogo.vue";
 import CompanyLogo from "./CompanyLogo.vue";
 import { appState, closeMenu, logOutUser } from "./store/store";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import LogOutComponent from "./components/LogOutComponent.vue";
+import { isSearching, searchDestinationStore } from "./store/destinationStore";
+
+console.log("dd");
 
 const solutions = [
   {
@@ -649,39 +669,13 @@ const blogPosts = [
   },
 ];
 
-export default {
-  components: {
-    LogOutComponent,
-    CompanyLogo,
-    AppLogo,
-    Popover,
-    PopoverButton,
-    PopoverGroup,
-    PopoverPanel,
-    ChevronDownIcon,
-    MenuIcon,
-    XIcon,
+/*
+watch: {
+  "$route.name"() {
+    closeMenu(false);
   },
-  watch: {
-    "$route.name"() {
-      closeMenu(false);
-    },
-  },
+},
+*/
 
-  setup() {
-    const textColor = ref("text-gray-600 md:hidden  lg:block");
-
-    return {
-      closeMenu,
-      solutions,
-      callsToAction,
-      company,
-      resources,
-      appState,
-      textColor,
-      blogPosts,
-      logOutUser,
-    };
-  },
-};
+const textColor = ref("text-gray-600 md:hidden  lg:block");
 </script>

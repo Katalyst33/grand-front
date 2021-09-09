@@ -10,7 +10,7 @@ import { defineProps } from "vue";
 import moment from "moment/moment";
 
 const props = defineProps<{
-  rawTime: Date;
+  rawTime: any;
 }>();
 
 /*const formattedDate = computed(() => {
