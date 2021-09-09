@@ -230,6 +230,7 @@
             <div class="bg-red-500 p-4">
               {{ searchDestinationStore }}
             </div>
+
             <button @click="isSearching" class="p-2">
               <svg
                 class="text-yellow-900 h-8 fill-current"
