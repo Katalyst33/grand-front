@@ -12,12 +12,12 @@ export default <RouteRecordRaw>{
   },
   children: [
     {
-      path: "/dashboard",
+      path: "dashboard",
       name: "UserDashboard",
       component: UserDashboard,
     },
     {
-      path: "/documents-upload/",
+      path: "documents-upload",
       name: "DocumentsUpload",
       component: DocumentsUpload,
     },

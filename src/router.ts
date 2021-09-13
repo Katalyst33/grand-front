@@ -9,8 +9,6 @@ import UserRoutes from "./user/user.router";
 const AboutPage = () => import("./views/AboutPage.vue");
 const ServicePage = () => import("./views/ServicePage.vue");
 const ViewDestinationPage = () => import("./Pages/ViewDestinationPage.vue");
-// const componentName = () => import("./componentName.vue");
-// const componentName = () => import("./componentName.vue");
 
 import DestinationsPage from "./Pages/AllDestinationsPage.vue";
 import SignupAndLogin from "./views/SingupAndLogin.vue";

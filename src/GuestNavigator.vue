@@ -220,7 +220,7 @@
               Pricing
             </a>
             <router-link
-              :to="{ name: 'Deals' }"
+              :to="{ name: 'Destinations' }"
               class="text-base font-medium text-gray-500 hover:text-gray-900"
             >
               Deals
@@ -630,7 +630,7 @@ const solutions = [
 ];
 const callsToAction = [
   { name: "Watch Demo", href: "#", icon: PlayIcon },
-  { name: "View All Products", href: "Deals", icon: CheckCircleIcon },
+  { name: "View All Products", href: "Destinations", icon: CheckCircleIcon },
   { name: "Contact Sales", href: "#", icon: PhoneIcon },
 ];
 const company = [

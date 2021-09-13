@@ -7,12 +7,13 @@
   <div class="container mx-auto">
     <router-view v-if="isLoaded" />
   </div>
-
+  {{ x }}
   <FooterSection />
 </template>
 
 <script lang="ts" setup>
-import { computed, defineComponent, ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
+import { useWindowScroll } from "@vueuse/core";
 import MenuComponent from "@/components/commons/MenuComponent.vue";
 import FooterSection from "@/FooterSection.vue";
 import GuestNavigator from "@/GuestNavigator.vue";
@@ -25,6 +26,9 @@ const isLoaded = ref(false);
 getAllDestinations().then(() => (isLoaded.value = true));
 
 const route = useRoute();
+const { x, y } = useWindowScroll();
+
+console.log(x, y);
 
 const hasMeta = computed(() => {
   if (route.meta.title) {
@@ -36,13 +40,15 @@ const hasMeta = computed(() => {
 
 watch(route, () => console.log(hasMeta.value));
 
+console.log(import.meta.env.VITE_COMPANY_NAME, "end");
+
 useHead({
   // Can be static or computed
   title: computed(() => {
     if (route.meta.title) {
       return route.meta.title as string;
     } else {
-      return `no title`;
+      return `${import.meta.env.VITE_COMPANY_NAME} | Destinations`;
     }
   }),
   meta: [
@@ -84,5 +90,13 @@ useHead({
 @font-face {
   font-family: bigJohn;
   src: url("./font/BIG-JOHN.woff");
+}
+
+.scroller {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  width: 10000px;
+  height: 10000px;
 }
 </style>

@@ -8,7 +8,7 @@
     </template>
   </div>
   <div class="text-centre flex justify-center pt-4">
-    <router-link :to="{ name: 'Deals' }">
+    <router-link :to="{ name: 'Destinations' }">
       <span class="text-lg text-center mt-10 pt-4">More Deals</span>
       <i class="far fa-arrow-right pl-2"></i>
     </router-link>
