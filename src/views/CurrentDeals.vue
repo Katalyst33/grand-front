@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2 class="title-2 -mb-10">Current Deals</h2>
+    <h2 class="title-2 -mb-10">Trending Destinations</h2>
   </section>
   <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none">
     <template v-if="destinationStore.isLoadingDestinations">

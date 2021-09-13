@@ -1,6 +1,6 @@
 <template>
   <div
-    v-for="(destination, index) in destinationStore.allDestinations.data"
+    v-for="(destination, index) in isTrendingPage"
     :key="index"
     class="group flex flex-col rounded-lg shadow-lg overflow-hidden relative"
   >
@@ -116,8 +116,19 @@ import { DestinationType } from "../types";
 import { destinationStore } from "../store/destinationStore";
 import { useRoute, useRouter } from "vue-router";
 import { appState } from "../store/store";
+import { computed } from "vue";
 
 const router = useRouter();
+
+const route = useRoute();
+
+const isTrendingPage = computed(() => {
+  if (route.name === "Home") {
+    return destinationStore.promotedDestinations;
+  } else {
+    return destinationStore.allDestinations.data;
+  }
+});
 
 function toViewDestination(destination: DestinationType) {
   console.log("navigation", destination.uuid);

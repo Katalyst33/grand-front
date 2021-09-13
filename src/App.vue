@@ -7,7 +7,6 @@
   <div class="container mx-auto">
     <router-view v-if="isLoaded" />
   </div>
-  {{ x }}
   <FooterSection />
 </template>
 
@@ -72,7 +71,7 @@ useHead({
 }
 
 .title-2 {
-  @apply text-3xl font-extrabold;
+  @apply text-3xl font-medium;
 }
 
 .regular {
@@ -90,13 +89,5 @@ useHead({
 @font-face {
   font-family: bigJohn;
   src: url("./font/BIG-JOHN.woff");
-}
-
-.scroller {
-  position: absolute;
-  top: 100%;
-  left: 100%;
-  width: 10000px;
-  height: 10000px;
 }
 </style>
