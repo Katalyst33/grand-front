@@ -12,12 +12,14 @@ const ViewDestinationPage = () => import("./Pages/ViewDestinationPage.vue");
 // const componentName = () => import("./componentName.vue");
 // const componentName = () => import("./componentName.vue");
 
-import DealsPage from "./Pages/AllDestinationsPage.vue";
+import DestinationsPage from "./Pages/AllDestinationsPage.vue";
 import SignupAndLogin from "./views/SingupAndLogin.vue";
 import ContactPage from "./views/ContactPage.vue";
 import DemoPage from "./components/DemoPage.vue";
 import { appState, closeMenu } from "./store/store";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
+
+const appName = import.meta.env.VITE_COMPANY_NAME;
 
 // const componentName = () => import("./componentName.vue");
 const NotFound = () => import("./views/NotFound.vue");
@@ -45,14 +47,22 @@ const router = createRouter({
           component: ServicePage,
         },
         {
-          path: "/all-deals",
-          name: "Deals",
-          component: DealsPage,
+          path: "/all-destinations",
+          name: "Destinations",
+          component: DestinationsPage,
+          meta: {
+            title: `${appName}| All Destinations`,
+            description: `Find your next destination`,
+          },
         },
         {
           path: "/destination/:destinationId",
           name: "ViewDestinationPage",
           component: ViewDestinationPage,
+          meta: {
+            title: `${appName}| View Destination`,
+            description: `vieeee`,
+          },
         },
         {
           path: "/contact-us",

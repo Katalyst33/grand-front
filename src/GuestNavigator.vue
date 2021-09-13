@@ -595,8 +595,6 @@ import { ref, watch } from "vue";
 import LogOutComponent from "./components/LogOutComponent.vue";
 import { isSearching, searchDestinationStore } from "./store/destinationStore";
 
-console.log("dd");
-
 const solutions = [
   {
     name: "Visa Arrangements",
@@ -668,14 +666,6 @@ const blogPosts = [
       "https://images.unsplash.com/1/apple-gear-looking-pretty.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80",
   },
 ];
-
-/*
-watch: {
-  "$route.name"() {
-    closeMenu(false);
-  },
-},
-*/
 
 const textColor = ref("text-gray-600 md:hidden  lg:block");
 </script>
