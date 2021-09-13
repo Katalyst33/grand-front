@@ -11,7 +11,6 @@ export default <RouteRecordRaw>{
     role: "user",
   },
 
-
   children: [
     {
       path: "dashboard",
