@@ -10,6 +10,8 @@ export default <RouteRecordRaw>{
     requiresAuth: true,
     role: "user",
   },
+
+
   children: [
     {
       path: "dashboard",
