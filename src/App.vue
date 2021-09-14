@@ -39,8 +39,6 @@ const hasMeta = computed(() => {
 
 watch(route, () => console.log(hasMeta.value));
 
-console.log(import.meta.env.VITE_COMPANY_NAME, "end");
-
 useHead({
   // Can be static or computed
   title: computed(() => {

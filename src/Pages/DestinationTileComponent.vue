@@ -8,7 +8,7 @@
       <button
         v-if="appState.user.role === 'staff'"
         @click="toViewDestination(destination)"
-        class="bg-yellow-500 p-4 absolute top-0"
+        class="bg-red-500 p-4 absolute top-0 opacity-50"
       >
         <i class="far fa-eye"></i>
       </button>

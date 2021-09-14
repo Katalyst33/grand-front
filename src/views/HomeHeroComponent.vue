@@ -1,4 +1,3 @@
-\
 <template>
   <section>
     <div>
@@ -12,7 +11,7 @@
                 <div class="absolute inset-0">
                   <img
                     class="h-full w-full object-cover"
-                    src="/hero/student.png"
+                    src="/hero/student.jpg"
                   />
                   <div
                     class="absolute inset-0 bg-gray-400 mix-blend-multiply"
@@ -204,28 +203,6 @@
     </div>
   </section>
 </template>
-<script lang="ts">
-export default {
-  name: "HomeHeroComponent",
-
-  data() {
-    return {
-      swiperOptions: {
-        pagination: {
-          el: ".swiper-pagination",
-        },
-      },
-      /* slide:[
-         {
-           image:'',
-           href:'',
-           title:'',
-           text:''
-         }
-       ]*/
-    };
-  },
-};
-</script>
+<script lang="ts" setup></script>
 
 <style scoped></style>
