@@ -18,6 +18,9 @@
           <li><router-link :to="{ name: 'Home' }">Home</router-link></li>
 
           <LogOutComponent />
+
+
+
         </ul>
       </div>
     </div>
