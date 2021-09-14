@@ -61,7 +61,6 @@ const CLEAR_ONE_DESTINATION = () => {
 };
 
 export function clearStore() {
-  console.log(" i ran");
   CLEAR_ONE_DESTINATION();
 }
 

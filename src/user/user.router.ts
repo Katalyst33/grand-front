@@ -2,6 +2,7 @@ import { RouteRecordRaw } from "vue-router";
 
 const UserDashboard = () => import("./UserDashboard.vue");
 const DocumentsUpload = () => import("./DocumentsUpload.vue");
+const UserInformation = () => import("./UserInformation.vue");
 
 export default <RouteRecordRaw>{
   path: "/user",
@@ -10,16 +11,22 @@ export default <RouteRecordRaw>{
     requiresAuth: true,
     role: "user",
   },
+
   children: [
     {
-      path: "/dashboard",
+      path: "dashboard",
       name: "UserDashboard",
       component: UserDashboard,
     },
     {
-      path: "/documents-upload/",
+      path: "documents-upload",
       name: "DocumentsUpload",
       component: DocumentsUpload,
+    },
+    {
+      path: "user-information",
+      name: "UserInformation",
+      component: UserInformation,
     },
   ],
 };

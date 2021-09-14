@@ -7,20 +7,54 @@
   <div class="container mx-auto">
     <router-view v-if="isLoaded" />
   </div>
-
   <FooterSection />
 </template>
 
 <script lang="ts" setup>
-import { defineComponent, ref } from "vue";
+import { computed, ref, watch } from "vue";
+import { useWindowScroll } from "@vueuse/core";
 import MenuComponent from "@/components/commons/MenuComponent.vue";
 import FooterSection from "@/FooterSection.vue";
 import GuestNavigator from "@/GuestNavigator.vue";
 import HomeHeroComponent from "@/views/HomeHeroComponent.vue";
 import { getAllDestinations } from "./store/destinationStore";
 import ViewDestinationHero from "./layout/ViewDestinationHero.vue";
+import { useRoute } from "vue-router";
+import { useHead } from "@vueuse/head";
 const isLoaded = ref(false);
 getAllDestinations().then(() => (isLoaded.value = true));
+
+const route = useRoute();
+const { x, y } = useWindowScroll();
+
+console.log(x, y);
+
+const hasMeta = computed(() => {
+  if (route.meta.title) {
+    console.log("has meta");
+  } else {
+    console.log("mo meta");
+  }
+});
+
+watch(route, () => console.log(hasMeta.value));
+
+useHead({
+  // Can be static or computed
+  title: computed(() => {
+    if (route.meta.title) {
+      return route.meta.title as string;
+    } else {
+      return `${import.meta.env.VITE_COMPANY_NAME} | Destinations`;
+    }
+  }),
+  meta: [
+    {
+      name: `description`,
+      content: computed(() => route.meta.description as string),
+    },
+  ],
+});
 </script>
 
 <style lang="scss">
@@ -35,7 +69,7 @@ getAllDestinations().then(() => (isLoaded.value = true));
 }
 
 .title-2 {
-  @apply text-3xl font-extrabold;
+  @apply text-3xl font-medium;
 }
 
 .regular {

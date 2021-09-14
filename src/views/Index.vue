@@ -8,24 +8,9 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import { defineComponent } from "vue";
 import ServiceCards from "../components/ServiceCards.vue";
 import CurrentDeals from "./CurrentDeals.vue";
 import HomeHeroComponent from "./HomeHeroComponent.vue";
-
-export default defineComponent({
-  name: "HomePage",
-  components: { HomeHeroComponent, CurrentDeals, ServiceCards },
-
-  data() {
-    return {
-      imageUrl: "/hero/register.jpg",
-    };
-  },
-
-  setup() {
-    return {};
-  },
-});
 </script>

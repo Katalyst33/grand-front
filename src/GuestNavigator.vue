@@ -220,7 +220,7 @@
               Pricing
             </a>
             <router-link
-              :to="{ name: 'Deals' }"
+              :to="{ name: 'Destinations' }"
               class="text-base font-medium text-gray-500 hover:text-gray-900"
             >
               Deals
@@ -596,8 +596,6 @@ import { ref, watch } from "vue";
 import LogOutComponent from "./components/LogOutComponent.vue";
 import { isSearching, searchDestinationStore } from "./store/destinationStore";
 
-console.log("dd");
-
 const solutions = [
   {
     name: "Visa Arrangements",
@@ -633,7 +631,7 @@ const solutions = [
 ];
 const callsToAction = [
   { name: "Watch Demo", href: "#", icon: PlayIcon },
-  { name: "View All Products", href: "Deals", icon: CheckCircleIcon },
+  { name: "View All Products", href: "Destinations", icon: CheckCircleIcon },
   { name: "Contact Sales", href: "#", icon: PhoneIcon },
 ];
 const company = [
@@ -669,14 +667,6 @@ const blogPosts = [
       "https://images.unsplash.com/1/apple-gear-looking-pretty.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80",
   },
 ];
-
-/*
-watch: {
-  "$route.name"() {
-    closeMenu(false);
-  },
-},
-*/
 
 const textColor = ref("text-gray-600 md:hidden  lg:block");
 </script>

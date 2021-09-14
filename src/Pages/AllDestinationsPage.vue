@@ -3,6 +3,7 @@ import DealsTileComponent from "./DestinationTileComponent.vue";
 
 import { destinationStore } from "../store/destinationStore";
 import SearchBarComponent from "../components/SearchBarComponent.vue";
+import { useHead } from "@vueuse/head";
 </script>
 
 <template>

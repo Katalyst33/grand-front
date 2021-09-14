@@ -89,8 +89,8 @@ export default {
         name: "Our Services",
       },
       {
-        href: "Deals",
-        name: "Deals",
+        href: "Destinations",
+        name: "Destinations",
       },
 
       {
