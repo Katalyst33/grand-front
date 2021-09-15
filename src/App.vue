@@ -45,7 +45,8 @@ useHead({
     if (route.meta.title) {
       return route.meta.title as string;
     } else {
-      return `${import.meta.env.VITE_COMPANY_NAME} | Destinations`;
+      return `GrandEagle | Destinations`;
+      // return `${import.meta.env.VITE_COMPANY_NAME} | Destinations`;
     }
   }),
   meta: [
