@@ -10,3 +10,4 @@ declare module "vue-json-viewer";
 // declare module "crypto";
 
 declare module "dropzone";
+declare module "@glidejs/glide";

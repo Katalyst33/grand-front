@@ -1,6 +1,6 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div v-if="false">
+  <div>
     <Popover class="relative bg-yellow-50">
       <div
         class="absolute inset-0 shadow z-30 pointer-events-none"
