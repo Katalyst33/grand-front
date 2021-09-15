@@ -33,7 +33,7 @@ export function setAppState() {
     .catch((err) => err);
 }
 
-export function closeMenu(state: boolean) {
+export function closeMenu(state: boolean = false) {
   appState.showMobileMenu = state;
 }
 

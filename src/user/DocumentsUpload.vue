@@ -21,7 +21,7 @@ function changeImage() {
   console.log(imageInput.value);
 }
 
-function onFileChange(e) {
+function onFileChange(e: any) {
   file.value = e.target.files[0];
   url.value = URL.createObjectURL(file.value);
 }
@@ -83,7 +83,6 @@ function uploadDocuments() {
       <button
         @click.prevent="uploadDocuments"
         class="bg-gray-600 text-white p-2 rounded-md"
-        type=""
       >
         upload
       </button>

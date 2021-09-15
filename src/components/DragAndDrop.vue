@@ -62,11 +62,7 @@ export default {
 
     const startDrag = (
       event: {
-        dataTransfer: {
-          dropEffect: string;
-          effectAllowed: string;
-          setData: (arg0: string, arg1: any) => void;
-        };
+        dataTransfer: any;
       },
       item: { id: any }
     ) => {
@@ -78,8 +74,8 @@ export default {
 
     const onDrop = (event: any, list: any) => {
       const itemID = event.dataTransfer.getData("itemID");
-      const item = items.value.find((item) => item.id == itemID);
-      item.list! = list;
+      const item = items.value.find((item: any) => item.id == itemID);
+      item.list! = list | undefined;
     };
 
     return {

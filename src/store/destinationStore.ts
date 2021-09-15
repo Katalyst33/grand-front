@@ -11,7 +11,7 @@ export const destinationStore = reactive({
     data: DestinationType[] | DestinationType;
     lastPage: number;
   },
-  promotedDestinations: {},
+  promotedDestinations: {} as DestinationType,
   isLoadingDestinations: false,
   searchDestinationQuery: searchQuery,
   sortDestination: sort,

@@ -1,255 +1,303 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <Popover class="relative bg-yellow-50">
-    <div
-      class="absolute inset-0 shadow z-30 pointer-events-none"
-      aria-hidden="true"
-    />
-
-    <div class="relative z-20">
+  <div v-if="false">
+    <Popover class="relative bg-yellow-50">
       <div
-        class="
-          max-w-7xl
-          mx-auto
-          flex
-          justify-between
-          items-center
-          px-4
-          py-5
-          sm:px-6 sm:py-4
-          lg:px-8
-          md:justify-start md:space-x-10
-        "
-      >
-        <div>
-          <span class="sr-only">company Name</span>
+        class="absolute inset-0 shadow z-30 pointer-events-none"
+        aria-hidden="true"
+      />
 
-          <CompanyLogo :app-state="appState" :text-color="textColor" />
-        </div>
-        <div class="-mr-2 -my-2 md:hidden">
-          <!--          mobile menu open-->
-          <PopoverButton
-            class="
-              bg-yellow-600
-              rounded-md
-              p-2
-              inline-flex
-              items-center
-              justify-center
-              text-white
-              hover:text-white hover:bg-yellow-500
-              focus:outline-none
-              focus:ring-2
-              focus:ring-inset
-              focus:ring-yellow-500
-            "
-            @click="closeMenu(true)"
-          >
-            <span class="sr-only">Open menu</span>
-            <MenuIcon class="h-6 w-6" aria-hidden="true" />
-          </PopoverButton>
-        </div>
+      <div class="relative z-20">
         <div
-          class="hidden md:flex-1 md:flex md:items-center md:justify-between"
+          class="
+            max-w-7xl
+            mx-auto
+            flex
+            justify-between
+            items-center
+            px-4
+            py-5
+            sm:px-6 sm:py-4
+            lg:px-8
+            md:justify-start md:space-x-10
+          "
         >
-          <PopoverGroup as="nav" class="flex space-x-10">
-            <Popover v-slot="{ open }">
-              <PopoverButton
-                :class="[
-                  open ? 'text-gray-900' : 'text-gray-500',
-                  'group bg-yellow-50 rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
-                ]"
-              >
-                <span>Services</span>
-                <ChevronDownIcon
-                  :class="[
-                    open ? 'text-gray-600' : 'text-gray-400',
-                    'ml-2 h-5 w-5 group-hover:text-gray-500',
-                  ]"
-                  aria-hidden="true"
-                />
-              </PopoverButton>
+          <div>
+            <span class="sr-only">company Name</span>
 
-              <transition
-                enter-active-class="transition ease-out duration-200"
-                enter-from-class="opacity-0 -translate-y-1"
-                enter-to-class="opacity-100 translate-y-0"
-                leave-active-class="transition ease-in duration-150"
-                leave-from-class="opacity-100 translate-y-0"
-                leave-to-class="opacity-0 -translate-y-1"
-              >
-                <PopoverPanel
-                  class="
-                    hidden
-                    md:block
-                    absolute
-                    z-10
-                    top-full
-                    inset-x-0
-                    transform
-                    shadow-lg
-                    bg-white
-                  "
+            <CompanyLogo :app-state="appState" :text-color="textColor" />
+          </div>
+          <div class="-mr-2 -my-2 md:hidden">
+            <!--          mobile menu open-->
+            <PopoverButton
+              class="
+                bg-yellow-600
+                rounded-md
+                p-2
+                inline-flex
+                items-center
+                justify-center
+                text-white
+                hover:text-white hover:bg-yellow-500
+                focus:outline-none
+                focus:ring-2
+                focus:ring-inset
+                focus:ring-yellow-500
+              "
+              @click="closeMenu(true)"
+            >
+              <span class="sr-only">Open menu</span>
+              <MenuIcon class="h-6 w-6" aria-hidden="true" />
+            </PopoverButton>
+          </div>
+          <div
+            class="hidden md:flex-1 md:flex md:items-center md:justify-between"
+          >
+            <PopoverGroup as="nav" class="flex space-x-10">
+              <Popover v-slot="{ open }">
+                <PopoverButton
+                  :class="[
+                    open ? 'text-gray-900' : 'text-gray-500',
+                    'group bg-yellow-50 rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
+                  ]"
                 >
-                  <div
+                  <span>Services</span>
+                  <ChevronDownIcon
+                    :class="[
+                      open ? 'text-gray-600' : 'text-gray-400',
+                      'ml-2 h-5 w-5 group-hover:text-gray-500',
+                    ]"
+                    aria-hidden="true"
+                  />
+                </PopoverButton>
+
+                <transition
+                  enter-active-class="transition ease-out duration-200"
+                  enter-from-class="opacity-0 -translate-y-1"
+                  enter-to-class="opacity-100 translate-y-0"
+                  leave-active-class="transition ease-in duration-150"
+                  leave-from-class="opacity-100 translate-y-0"
+                  leave-to-class="opacity-0 -translate-y-1"
+                >
+                  <PopoverPanel
                     class="
-                      max-w-7xl
-                      mx-auto
-                      grid
-                      gap-y-6
-                      px-4
-                      py-6
-                      sm:grid-cols-2 sm:gap-8 sm:px-6 sm:py-8
-                      lg:grid-cols-4 lg:px-8 lg:py-12
-                      xl:py-16
+                      hidden
+                      md:block
+                      absolute
+                      z-10
+                      top-full
+                      inset-x-0
+                      transform
+                      shadow-lg
+                      bg-white
                     "
                   >
-                    <a
-                      v-for="item in solutions"
-                      :key="item.name"
-                      :href="item.href"
-                      class="
-                        -m-3
-                        p-3
-                        flex flex-col
-                        justify-between
-                        rounded-lg
-                        hover:bg-gray-50
-                      "
-                    >
-                      <div class="flex md:h-full lg:flex-col">
-                        <div class="flex-shrink-0">
-                          <span
-                            class="
-                              inline-flex
-                              items-center
-                              justify-center
-                              h-10
-                              w-10
-                              rounded-md
-                              bg-indigo-500
-                              text-white
-                              sm:h-12 sm:w-12
-                            "
-                          >
-                            <component
-                              :is="item.icon"
-                              class="h-6 w-6"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </div>
-                        <div
-                          class="
-                            ml-4
-                            md:flex-1 md:flex md:flex-col md:justify-between
-                            lg:ml-0 lg:mt-4
-                          "
-                        >
-                          <div>
-                            <p class="text-base font-medium text-gray-900">
-                              {{ item.name }}
-                            </p>
-                            <p class="mt-1 text-sm text-gray-500">
-                              {{ item.description }}
-                            </p>
-                          </div>
-                          <p
-                            class="
-                              mt-2
-                              text-sm
-                              font-medium
-                              text-indigo-600
-                              lg:mt-4
-                            "
-                          >
-                            Learn more <span aria-hidden="true">&rarr;</span>
-                          </p>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="bg-gray-50">
                     <div
                       class="
                         max-w-7xl
                         mx-auto
-                        space-y-6
+                        grid
+                        gap-y-6
                         px-4
-                        py-5
-                        sm:flex sm:space-y-0 sm:space-x-10 sm:px-6
-                        lg:px-8
+                        py-6
+                        sm:grid-cols-2 sm:gap-8 sm:px-6 sm:py-8
+                        lg:grid-cols-4 lg:px-8 lg:py-12
+                        xl:py-16
                       "
                     >
-                      <div
-                        v-for="item in callsToAction"
+                      <a
+                        v-for="item in solutions"
                         :key="item.name"
-                        class="flow-root"
+                        :href="item.href"
+                        class="
+                          -m-3
+                          p-3
+                          flex flex-col
+                          justify-between
+                          rounded-lg
+                          hover:bg-gray-50
+                        "
                       >
-                        <a
-                          :href="item.href"
-                          class="
-                            -m-3
-                            p-3
-                            flex
-                            items-center
-                            rounded-md
-                            text-base
-                            font-medium
-                            text-gray-900
-                            hover:bg-gray-100
-                          "
+                        <div class="flex md:h-full lg:flex-col">
+                          <div class="flex-shrink-0">
+                            <span
+                              class="
+                                inline-flex
+                                items-center
+                                justify-center
+                                h-10
+                                w-10
+                                rounded-md
+                                bg-indigo-500
+                                text-white
+                                sm:h-12 sm:w-12
+                              "
+                            >
+                              <component
+                                :is="item.icon"
+                                class="h-6 w-6"
+                                aria-hidden="true"
+                              />
+                            </span>
+                          </div>
+                          <div
+                            class="
+                              ml-4
+                              md:flex-1 md:flex md:flex-col md:justify-between
+                              lg:ml-0 lg:mt-4
+                            "
+                          >
+                            <div>
+                              <p class="text-base font-medium text-gray-900">
+                                {{ item.name }}
+                              </p>
+                              <p class="mt-1 text-sm text-gray-500">
+                                {{ item.description }}
+                              </p>
+                            </div>
+                            <p
+                              class="
+                                mt-2
+                                text-sm
+                                font-medium
+                                text-indigo-600
+                                lg:mt-4
+                              "
+                            >
+                              Learn more <span aria-hidden="true">&rarr;</span>
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="bg-gray-50">
+                      <div
+                        class="
+                          max-w-7xl
+                          mx-auto
+                          space-y-6
+                          px-4
+                          py-5
+                          sm:flex sm:space-y-0 sm:space-x-10 sm:px-6
+                          lg:px-8
+                        "
+                      >
+                        <div
+                          v-for="item in callsToAction"
+                          :key="item.name"
+                          class="flow-root"
                         >
-                          <component
-                            :is="item.icon"
-                            class="flex-shrink-0 h-6 w-6 text-gray-400"
-                            aria-hidden="true"
-                          />
-                          <span class="ml-3">{{ item.name }}</span>
-                        </a>
+                          <a
+                            :href="item.href"
+                            class="
+                              -m-3
+                              p-3
+                              flex
+                              items-center
+                              rounded-md
+                              text-base
+                              font-medium
+                              text-gray-900
+                              hover:bg-gray-100
+                            "
+                          >
+                            <component
+                              :is="item.icon"
+                              class="flex-shrink-0 h-6 w-6 text-gray-400"
+                              aria-hidden="true"
+                            />
+                            <span class="ml-3">{{ item.name }}</span>
+                          </a>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </PopoverPanel>
-              </transition>
-            </Popover>
-            <a
-              href="#"
-              class="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Pricing
-            </a>
-            <router-link
-              :to="{ name: 'Destinations' }"
-              class="text-base font-medium text-gray-500 hover:text-gray-900"
-            >
-              Deals
-            </router-link>
-          </PopoverGroup>
-          <div class="flex items-center md:ml-12">
-            <div class="bg-red-500 p-4">
-              {{ searchDestinationStore }}
-            </div>
-
-            <button @click="isSearching" class="p-2">
-              <svg
-                class="text-yellow-900 h-8 fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                xml:space="preserve"
+                  </PopoverPanel>
+                </transition>
+              </Popover>
+              <a
+                href="#"
+                class="text-base font-medium text-gray-500 hover:text-gray-900"
               >
-                <path
-                  d="M21.8 20.6 17.7 16c1.2-1.4 1.9-3.2 2-5 .1-2.1-.5-4.2-1.8-5.8s-3.2-2.8-5.2-3.1c-2-.4-4.2 0-6 1.1C5 4.2 3.6 5.9 3 7.9s-.5 4.2.4 6.1c.8 1.9 2.4 3.4 4.3 4.3s4.1 1 6.1.4c.4-.1.7-.6.5-1-.1-.4-.6-.7-1-.5-1.6.5-3.4.4-4.9-.3-1.5-.7-2.8-1.9-3.5-3.5-.8-1.6-.8-3.4-.3-5s1.6-3 3-3.8c1.4-.9 3.2-1.2 4.8-.9s3.2 1.2 4.2 2.5 1.6 3 1.5 4.7-.8 3.3-2 4.5c-.3.3-.3.8.1 1.1l5.2 4.6c.2.1.4.1.5 0s.1-.4-.1-.5z"
-                />
-              </svg>
-            </button>
+                Pricing
+              </a>
+              <router-link
+                :to="{ name: 'Destinations' }"
+                class="text-base font-medium text-gray-500 hover:text-gray-900"
+              >
+                Deals
+              </router-link>
+            </PopoverGroup>
+            <div class="flex items-center md:ml-12">
+              <div class="bg-red-500 p-4">
+                {{ searchDestinationStore }}
+              </div>
 
-            <!--            //user action-->
-            <template v-if="appState.user.role">
-              <div class="flex items-center space-x-6">
-                <template v-if="appState.user.role !== 'user'">
+              <button @click="isSearching" class="p-2">
+                <svg
+                  class="text-yellow-900 h-8 fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  xml:space="preserve"
+                >
+                  <path
+                    d="M21.8 20.6 17.7 16c1.2-1.4 1.9-3.2 2-5 .1-2.1-.5-4.2-1.8-5.8s-3.2-2.8-5.2-3.1c-2-.4-4.2 0-6 1.1C5 4.2 3.6 5.9 3 7.9s-.5 4.2.4 6.1c.8 1.9 2.4 3.4 4.3 4.3s4.1 1 6.1.4c.4-.1.7-.6.5-1-.1-.4-.6-.7-1-.5-1.6.5-3.4.4-4.9-.3-1.5-.7-2.8-1.9-3.5-3.5-.8-1.6-.8-3.4-.3-5s1.6-3 3-3.8c1.4-.9 3.2-1.2 4.8-.9s3.2 1.2 4.2 2.5 1.6 3 1.5 4.7-.8 3.3-2 4.5c-.3.3-.3.8.1 1.1l5.2 4.6c.2.1.4.1.5 0s.1-.4-.1-.5z"
+                  />
+                </svg>
+              </button>
+
+              <!--            //user action-->
+              <template v-if="appState.user.role">
+                <div class="flex items-center space-x-6">
+                  <template v-if="appState.user.role !== 'user'">
+                    <router-link
+                      :to="{ name: 'AdminDashboard' }"
+                      class="
+                        ml-8
+                        inline-flex
+                        items-center
+                        justify-center
+                        px-4
+                        py-2
+                        border border-transparent
+                        rounded-md
+                        shadow-sm
+                        text-base
+                        font-medium
+                        text-white
+                        bg-red-500
+                        hover:bg-red-400
+                      "
+                    >
+                      <i class="far fa-user-circle pr-2"></i> Manager
+                    </router-link>
+                  </template>
+                  <template v-else>
+                    <router-link
+                      :to="{ name: 'UserDashboard' }"
+                      class="ml-8 btn-user-dash"
+                    >
+                      <i class="far fa-user-circle pr-2"></i> Dashboard
+                    </router-link>
+                  </template>
+                  <LogOutComponent />
+                </div>
+              </template>
+              <div v-else>
+                <div>
                   <router-link
-                    :to="{ name: 'AdminDashboard' }"
+                    :to="{ name: 'Login' }"
+                    class="
+                      text-base
+                      font-medium
+                      text-gray-500
+                      hover:text-gray-900
+                    "
+                  >
+                    Sign in
+                  </router-link>
+                  <router-link
+                    :to="{ name: 'Register' }"
+                    href="#"
                     class="
                       ml-8
                       inline-flex
@@ -263,43 +311,225 @@
                       text-base
                       font-medium
                       text-white
-                      bg-red-500
-                      hover:bg-red-400
+                      bg-indigo-600
+                      hover:bg-indigo-700
                     "
                   >
-                    <i class="far fa-user-circle pr-2"></i> Manager
+                    Sign up
                   </router-link>
-                </template>
-                <template v-else>
-                  <router-link
-                    :to="{ name: 'UserDashboard' }"
-                    class="ml-8 btn-user-dash"
-                  >
-                    <i class="far fa-user-circle pr-2"></i> Dashboard
-                  </router-link>
-                </template>
-                <LogOutComponent />
+                </div>
               </div>
-            </template>
-            <div v-else>
-              <div>
-                <router-link
-                  :to="{ name: 'Login' }"
-                  class="
-                    text-base
-                    font-medium
-                    text-gray-500
-                    hover:text-gray-900
-                  "
-                >
-                  Sign in
-                </router-link>
-                <router-link
-                  :to="{ name: 'Register' }"
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <transition
+        enter-active-class="duration-200 ease-out"
+        enter-from-class="opacity-0 scale-95"
+        enter-to-class="opacity-100 scale-100"
+        leave-active-class="duration-100 ease-in"
+        leave-from-class="opacity-100 scale-100"
+        leave-to-class="opacity-0 scale-95"
+      >
+        <PopoverPanel
+          focus
+          class="
+            absolute
+            z-30
+            top-0
+            inset-x-0
+            p-2
+            transition
+            transform
+            origin-top-right
+            md:hidden
+          "
+        >
+          <div
+            v-if="appState.showMobileMenu"
+            class="
+              rounded-lg
+              shadow-lg
+              ring-1 ring-black ring-opacity-5
+              bg-red-50
+              divide-y-2 divide-gray-50
+            "
+          >
+            <div class="pt-5 pb-6 px-5 sm:pb-8">
+              <div class="flex items-center justify-between">
+                <div>
+                  <img
+                    class="h-8 w-auto"
+                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                    alt="Workflow"
+                  />
+                </div>
+                <div class="-mr-2">
+                  <PopoverButton
+                    class="
+                      bg-yellow-600
+                      text-white
+                      rounded-md
+                      p-2
+                      inline-flex
+                      items-center
+                      justify-center
+                      text-gray-400
+                      hover:bg-yellow-500
+                      focus:outline-none
+                      focus:ring-2
+                      focus:ring-inset
+                      focus:ring-yellow-500
+                    "
+                  >
+                    <span class="sr-only">Close menu</span>
+                    <i
+                      @click="closeMenu"
+                      class="fas fa-times text-2xl text-white px-1"
+                    ></i>
+                  </PopoverButton>
+                </div>
+              </div>
+              <div class="mt-6 sm:mt-8">
+                <nav>
+                  <div class="grid gap-7 sm:grid-cols-2 sm:gap-y-8 sm:gap-x-4">
+                    <a
+                      v-for="item in solutions"
+                      :key="item.name"
+                      :href="item.href"
+                      class="
+                        -m-3
+                        flex
+                        items-center
+                        p-3
+                        rounded-lg
+                        hover:bg-gray-50
+                      "
+                    >
+                      <div
+                        class="
+                          flex-shrink-0 flex
+                          items-center
+                          justify-center
+                          h-10
+                          w-10
+                          rounded-md
+                          bg-indigo-500
+                          text-white
+                          sm:h-12 sm:w-12
+                        "
+                      >
+                        <component
+                          :is="item.icon"
+                          class="h-6 w-6"
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <div class="ml-4 text-base font-medium text-gray-900">
+                        {{ item.name }}
+                      </div>
+                    </a>
+                  </div>
+                  <div class="mt-8 text-base">
+                    <a
+                      href="#"
+                      class="font-medium text-indigo-600 hover:text-indigo-500"
+                    >
+                      View all products
+                      <span aria-hidden="true">&rarr;</span></a
+                    >
+                  </div>
+                </nav>
+              </div>
+            </div>
+            <div class="py-6 px-5">
+              <div class="grid grid-cols-2 gap-4">
+                <a
                   href="#"
                   class="
-                    ml-8
-                    inline-flex
+                    rounded-md
+                    text-base
+                    font-medium
+                    text-gray-900
+                    hover:text-gray-700
+                  "
+                >
+                  Pricing
+                </a>
+
+                <router-link
+                  :to="{ name: 'Deals' }"
+                  href="#"
+                  class="
+                    rounded-md
+                    text-base
+                    font-medium
+                    text-gray-900
+                    hover:text-gray-700
+                  "
+                >
+                  Deals
+                </router-link>
+
+                <a
+                  href="#"
+                  class="
+                    rounded-md
+                    text-base
+                    font-medium
+                    text-gray-900
+                    hover:text-gray-700
+                  "
+                >
+                  Company
+                </a>
+
+                <a
+                  href="#"
+                  class="
+                    rounded-md
+                    text-base
+                    font-medium
+                    text-gray-900
+                    hover:text-gray-700
+                  "
+                >
+                  Resources
+                </a>
+
+                <a
+                  href="#"
+                  class="
+                    rounded-md
+                    text-base
+                    font-medium
+                    text-gray-900
+                    hover:text-gray-700
+                  "
+                >
+                  Blog
+                </a>
+
+                <a
+                  href="#"
+                  class="
+                    rounded-md
+                    text-base
+                    font-medium
+                    text-gray-900
+                    hover:text-gray-700
+                  "
+                >
+                  Contact Sales
+                </a>
+              </div>
+              <div class="mt-6">
+                <router-link
+                  :to="{ name: 'Register' }"
+                  class="
+                    w-full
+                    flex
                     items-center
                     justify-center
                     px-4
@@ -316,250 +546,23 @@
                 >
                   Sign up
                 </router-link>
+                <p class="mt-6 text-center text-base font-medium text-gray-500">
+                  Existing customer?
+                  {{ " " }}
+                  <router-link
+                    :to="{ name: 'Login' }"
+                    class="text-indigo-600 hover:text-indigo-500"
+                  >
+                    Sign in
+                  </router-link>
+                </p>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <transition
-      enter-active-class="duration-200 ease-out"
-      enter-from-class="opacity-0 scale-95"
-      enter-to-class="opacity-100 scale-100"
-      leave-active-class="duration-100 ease-in"
-      leave-from-class="opacity-100 scale-100"
-      leave-to-class="opacity-0 scale-95"
-    >
-      <PopoverPanel
-        focus
-        class="
-          absolute
-          z-30
-          top-0
-          inset-x-0
-          p-2
-          transition
-          transform
-          origin-top-right
-          md:hidden
-        "
-      >
-        <div
-          v-if="appState.showMobileMenu"
-          class="
-            rounded-lg
-            shadow-lg
-            ring-1 ring-black ring-opacity-5
-            bg-red-50
-            divide-y-2 divide-gray-50
-          "
-        >
-          <div class="pt-5 pb-6 px-5 sm:pb-8">
-            <div class="flex items-center justify-between">
-              <div>
-                <img
-                  class="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                  alt="Workflow"
-                />
-              </div>
-              <div class="-mr-2">
-                <PopoverButton
-                  class="
-                    bg-yellow-600
-                    text-white
-                    rounded-md
-                    p-2
-                    inline-flex
-                    items-center
-                    justify-center
-                    text-gray-400
-                    hover:bg-yellow-500
-                    focus:outline-none
-                    focus:ring-2
-                    focus:ring-inset
-                    focus:ring-yellow-500
-                  "
-                >
-                  <span class="sr-only">Close menu</span>
-                  <i
-                    @click="closeMenu"
-                    class="fas fa-times text-2xl text-white px-1"
-                  ></i>
-                </PopoverButton>
-              </div>
-            </div>
-            <div class="mt-6 sm:mt-8">
-              <nav>
-                <div class="grid gap-7 sm:grid-cols-2 sm:gap-y-8 sm:gap-x-4">
-                  <a
-                    v-for="item in solutions"
-                    :key="item.name"
-                    :href="item.href"
-                    class="
-                      -m-3
-                      flex
-                      items-center
-                      p-3
-                      rounded-lg
-                      hover:bg-gray-50
-                    "
-                  >
-                    <div
-                      class="
-                        flex-shrink-0 flex
-                        items-center
-                        justify-center
-                        h-10
-                        w-10
-                        rounded-md
-                        bg-indigo-500
-                        text-white
-                        sm:h-12 sm:w-12
-                      "
-                    >
-                      <component
-                        :is="item.icon"
-                        class="h-6 w-6"
-                        aria-hidden="true"
-                      />
-                    </div>
-                    <div class="ml-4 text-base font-medium text-gray-900">
-                      {{ item.name }}
-                    </div>
-                  </a>
-                </div>
-                <div class="mt-8 text-base">
-                  <a
-                    href="#"
-                    class="font-medium text-indigo-600 hover:text-indigo-500"
-                  >
-                    View all products <span aria-hidden="true">&rarr;</span></a
-                  >
-                </div>
-              </nav>
-            </div>
-          </div>
-          <div class="py-6 px-5">
-            <div class="grid grid-cols-2 gap-4">
-              <a
-                href="#"
-                class="
-                  rounded-md
-                  text-base
-                  font-medium
-                  text-gray-900
-                  hover:text-gray-700
-                "
-              >
-                Pricing
-              </a>
-
-              <router-link
-                :to="{ name: 'Deals' }"
-                href="#"
-                class="
-                  rounded-md
-                  text-base
-                  font-medium
-                  text-gray-900
-                  hover:text-gray-700
-                "
-              >
-                Deals
-              </router-link>
-
-              <a
-                href="#"
-                class="
-                  rounded-md
-                  text-base
-                  font-medium
-                  text-gray-900
-                  hover:text-gray-700
-                "
-              >
-                Company
-              </a>
-
-              <a
-                href="#"
-                class="
-                  rounded-md
-                  text-base
-                  font-medium
-                  text-gray-900
-                  hover:text-gray-700
-                "
-              >
-                Resources
-              </a>
-
-              <a
-                href="#"
-                class="
-                  rounded-md
-                  text-base
-                  font-medium
-                  text-gray-900
-                  hover:text-gray-700
-                "
-              >
-                Blog
-              </a>
-
-              <a
-                href="#"
-                class="
-                  rounded-md
-                  text-base
-                  font-medium
-                  text-gray-900
-                  hover:text-gray-700
-                "
-              >
-                Contact Sales
-              </a>
-            </div>
-            <div class="mt-6">
-              <router-link
-                :to="{ name: 'Register' }"
-                class="
-                  w-full
-                  flex
-                  items-center
-                  justify-center
-                  px-4
-                  py-2
-                  border border-transparent
-                  rounded-md
-                  shadow-sm
-                  text-base
-                  font-medium
-                  text-white
-                  bg-indigo-600
-                  hover:bg-indigo-700
-                "
-              >
-                Sign up
-              </router-link>
-              <p class="mt-6 text-center text-base font-medium text-gray-500">
-                Existing customer?
-                {{ " " }}
-                <router-link
-                  :to="{ name: 'Login' }"
-                  class="text-indigo-600 hover:text-indigo-500"
-                >
-                  Sign in
-                </router-link>
-              </p>
-            </div>
-          </div>
-        </div>
-      </PopoverPanel>
-    </transition>
-  </Popover>
+        </PopoverPanel>
+      </transition>
+    </Popover>
+  </div>
 </template>
 
 <script lang="ts" setup>
