@@ -58,7 +58,7 @@
                 <PopoverButton
                   :class="[
                     open ? 'text-gray-900' : 'text-gray-500',
-                    'group bg-yellow-50 rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
+                    'group bg-yellow-50 rounded-md inline-flex items-center text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500',
                   ]"
                 >
                   <span>Services</span>
@@ -128,7 +128,7 @@
                                 h-10
                                 w-10
                                 rounded-md
-                                bg-indigo-500
+                                bg-yellow-500
                                 text-white
                                 sm:h-12 sm:w-12
                               "
@@ -160,7 +160,7 @@
                                 mt-2
                                 text-sm
                                 font-medium
-                                text-indigo-600
+                                text-yellow-600
                                 lg:mt-4
                               "
                             >
@@ -311,8 +311,8 @@
                       text-base
                       font-medium
                       text-white
-                      bg-indigo-600
-                      hover:bg-indigo-700
+                      bg-yellow-600
+                      hover:bg-yellow-700
                     "
                   >
                     Sign up
@@ -361,7 +361,7 @@
                 <div>
                   <img
                     class="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                    src="https://tailwindui.com/img/logos/workflow-mark-yellow-600.svg"
                     alt="Workflow"
                   />
                 </div>
@@ -415,7 +415,7 @@
                           h-10
                           w-10
                           rounded-md
-                          bg-indigo-500
+                          bg-yellow-500
                           text-white
                           sm:h-12 sm:w-12
                         "
@@ -434,7 +434,7 @@
                   <div class="mt-8 text-base">
                     <a
                       href="#"
-                      class="font-medium text-indigo-600 hover:text-indigo-500"
+                      class="font-medium text-yellow-600 hover:text-yellow-500"
                     >
                       View all products
                       <span aria-hidden="true">&rarr;</span></a
@@ -540,8 +540,8 @@
                     text-base
                     font-medium
                     text-white
-                    bg-indigo-600
-                    hover:bg-indigo-700
+                    bg-yellow-600
+                    hover:bg-yellow-700
                   "
                 >
                   Sign up
@@ -551,7 +551,7 @@
                   {{ " " }}
                   <router-link
                     :to="{ name: 'Login' }"
-                    class="text-indigo-600 hover:text-indigo-500"
+                    class="text-yellow-600 hover:text-yellow-500"
                   >
                     Sign in
                   </router-link>
