@@ -42,20 +42,6 @@ import {
   destinationStore,
   getAllDestinations,
 } from "../store/destinationStore";
-import { onMounted } from "vue";
-
-onMounted(() => {
-  const selectedDiv = document.querySelector(".glide") as HTMLElement | null;
-
-  new Glide(selectedDiv, {
-    type: "carousel",
-    startAt: 1,
-    peek: 50,
-    perView: 1,
-    autoplay: 1000,
-  }).mount();
-  // console.log(selectedDiv);
-});
 
 getAllDestinations();
 </script>

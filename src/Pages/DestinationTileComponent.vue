@@ -131,61 +131,13 @@
 <script lang="ts" setup>
 import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
 import { DestinationType } from "../types";
-import { destinationStore } from "../store/destinationStore";
+import { destinationStore, toViewDestination } from "../store/destinationStore";
 import { useRoute, useRouter } from "vue-router";
 import { appState } from "../store/store";
 import { computed, onMounted, ref } from "vue";
-import Glide from "@glidejs/glide";
-import {
-  Breakpoints,
-  images,
-  Controls,
-} from "@glidejs/glide/dist/glide.modular.esm";
+
 import SliderCOmponent from "../components/SliderCOmponent.vue";
 const router = useRouter();
 
 const route = useRoute();
-const sliderIndex = ref(0);
-
-const isTrendingPage = computed(() => {
-  if (route.name === "Home") {
-    return destinationStore.promotedDestinations;
-  } else {
-    return destinationStore.allDestinations.data;
-  }
-});
-
-function toViewDestination(destination: DestinationType) {
-  console.log("navigation", destination.uuid);
-
-  router.push({
-    name: "UpdateDestination",
-    params: { destinationId: destination.uuid },
-  });
-}
-
-onMounted(() => {
-  const selectedDiv = document.querySelector(".glide") as HTMLElement | null;
-
-  new Glide(selectedDiv, {
-    type: "slider",
-    startAt: 1,
-    // perView: 3,
-    focusAt: "center",
-    autoplay: 3000,
-    breakpoints: {
-      1024: {
-        startAt: 0,
-        perView: 3,
-        dragThreshold: 120,
-      },
-      600: {
-        startAt: 0,
-        perView: 2,
-        dragThreshold: 120,
-      },
-    },
-  }).mount({ Breakpoints });
-  console.log(selectedDiv);
-});
 </script>

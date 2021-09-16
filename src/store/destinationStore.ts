@@ -1,7 +1,9 @@
 import { computed, reactive, readonly, ref, watch } from "vue";
 import { $axios } from "../http.Service";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { DestinationType } from "../types";
+
+const router = useRouter();
 
 const sort = reactive({ field: "createdAt", direction: true });
 const searchQuery = ref<string | undefined>(undefined);
@@ -11,7 +13,7 @@ export const destinationStore = reactive({
     data: DestinationType[] | DestinationType;
     lastPage: number;
   },
-  promotedDestinations: {} as DestinationType,
+  promotedDestinations: {} as any,
   isLoadingDestinations: false,
   searchDestinationQuery: searchQuery,
   sortDestination: sort,
@@ -141,3 +143,12 @@ watch(searchQuery, () => {
     searchDestinations(searchQuery.value!);
   }, 500);
 });
+
+export function toViewDestination(destination: DestinationType) {
+  console.log("navigation", destination.uuid);
+
+  router.push({
+    name: "UpdateDestination",
+    params: { destinationId: destination.uuid },
+  });
+}

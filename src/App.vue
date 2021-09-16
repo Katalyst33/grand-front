@@ -27,18 +27,6 @@ getAllDestinations().then(() => (isLoaded.value = true));
 const route = useRoute();
 const { x, y } = useWindowScroll();
 
-console.log(x, y);
-
-const hasMeta = computed(() => {
-  if (route.meta.title) {
-    console.log("has meta");
-  } else {
-    console.log("mo meta");
-  }
-});
-
-watch(route, () => console.log(hasMeta.value));
-
 useHead({
   // Can be static or computed
   title: computed(() => {

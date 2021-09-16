@@ -9,7 +9,6 @@ const BrowserStore = vueLocalStorage();
 if (BrowserStore.has("ge_jwt")) {
   axios.defaults.headers["ge-apiKey"] = BrowserStore.get("ge_jwt");
 
-  console.log(window.location.hostname, "hn");
   if (env === "development") {
     const envValue = "http://_??_:5300";
     const url = envValue.replace("_??_", window.location.hostname);

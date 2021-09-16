@@ -347,7 +347,7 @@
           "
         >
           <div
-            v-if="appState.showMobileMenu"
+            v-if="!appState.showMobileMenu"
             class="
               rounded-lg
               shadow-lg
@@ -385,7 +385,7 @@
                   >
                     <span class="sr-only">Close menu</span>
                     <i
-                      @click="closeMenu"
+                      @click="closeMenu(false)"
                       class="fas fa-times text-2xl text-white px-1"
                     ></i>
                   </PopoverButton>

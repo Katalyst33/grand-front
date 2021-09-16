@@ -1,3 +1,4 @@
+<!--
 <template>
   <div
     class="drop-zone"
@@ -75,7 +76,7 @@ export default {
     const onDrop = (event: any, list: any) => {
       const itemID = event.dataTransfer.getData("itemID");
       const item = items.value.find((item: any) => item.id == itemID);
-      item.list! = list | undefined;
+      item.list! = list as any;
     };
 
     return {
@@ -107,3 +108,4 @@ export default {
   margin-bottom: 0;
 }
 </style>
+-->
