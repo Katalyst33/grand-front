@@ -35,10 +35,7 @@ import { useHead } from "@vueuse/head";
 
           <!--          search query-->
         </div>
-        <div
-          v-if="destinationStore.isLoadingDestinations"
-          class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none"
-        >
+        <div v-if="destinationStore.isLoadingDestinations">
           <DealsTileComponent />
         </div>
       </div>
