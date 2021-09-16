@@ -603,12 +603,12 @@ const solutions = [
   {
     name: "Visa Arrangements",
     description:
-      "Get a better understanding of where your traffic is coming from.",
+      "Get a better understanding of what it takes to pass your visa interviews.",
     href: "#",
     icon: ChartBarIcon,
   },
   {
-    name: "Engagement",
+    name: "Accomodation",
     description: "Speak directly to your customers in a more meaningful way.",
     href: "#",
     icon: CursorClickIcon,
@@ -633,7 +633,6 @@ const solutions = [
   },
 ];
 const callsToAction = [
-  { name: "Watch Demo", href: "#", icon: PlayIcon },
   { name: "View All Products", href: "Destinations", icon: CheckCircleIcon },
   { name: "Contact Sales", href: "#", icon: PhoneIcon },
 ];
