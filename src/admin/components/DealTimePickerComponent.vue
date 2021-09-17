@@ -26,7 +26,11 @@
         <i class="fas fa-times"></i> Close
       </div>
       <div v-if="isSelecting">
-        <DatePicker v-model="props.destination.duration" is-range />
+        <DatePicker
+          v-model="props.destination.duration"
+          is-range
+          destination=""
+        />
       </div>
     </div>
   </div>
@@ -34,16 +38,16 @@
 <script lang="ts" setup>
 import { DatePicker } from "v-calendar";
 import HumanDateTimeComponent from "./HumanDateTimeComponent.vue";
-import { computed, defineProps, ref } from "vue";
+import { ref } from "vue";
 
-const props = defineProps<{
-  destination: {
+const props = {
+  destination: {} as {
     duration: {
       end: Date;
       start: Date;
     };
-  };
-}>();
+  },
+};
 
 const isSelecting = ref(false);
 </script>

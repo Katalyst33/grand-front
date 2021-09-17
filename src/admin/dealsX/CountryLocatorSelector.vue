@@ -56,23 +56,20 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, defineProps, ref } from "vue";
+import { computed, ref } from "vue";
 
 import { allCountries } from "../../db/countryList";
 import { CountryType } from "../../types";
-import {
-  getOneDestination,
-  singleDestinationStore,
-} from "../../store/destinationStore";
 
-const props = defineProps<{
-  destination: {
+const props = {
+  destination: {} as {
     country: {
       code: string;
       name: string;
     };
-  };
-}>();
+  },
+};
+
 const searchQuery = ref("");
 
 const isSearching = ref(false);
