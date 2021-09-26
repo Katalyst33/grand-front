@@ -1,6 +1,6 @@
 <template>
   <div v-show="route.name === 'Home'">
-    <SliderCOmponent />
+    <SliderComponent />
   </div>
 
   <div v-show="route.name === 'Destinations'">
@@ -131,13 +131,19 @@
 <script lang="ts" setup>
 import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
 import { DestinationType } from "../types";
-import { destinationStore, toViewDestination } from "../store/destinationStore";
+import { destinationStore } from "../store/destinationStore";
 import { useRoute, useRouter } from "vue-router";
 import { appState } from "../store/store";
-import { computed, onMounted, ref } from "vue";
 
-import SliderCOmponent from "../components/SliderCOmponent.vue";
+import SliderComponent from "../components/SliderCOmponent.vue";
 const router = useRouter();
 
 const route = useRoute();
+
+function toViewDestination(destination: DestinationType) {
+  router.push({
+    name: "UpdateDestination",
+    params: { destinationId: destination.uuid },
+  });
+}
 </script>

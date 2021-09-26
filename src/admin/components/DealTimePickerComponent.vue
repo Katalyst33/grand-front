@@ -40,14 +40,14 @@ import { DatePicker } from "v-calendar";
 import HumanDateTimeComponent from "./HumanDateTimeComponent.vue";
 import { ref } from "vue";
 
-const props = {
-  destination: {} as {
+const props = defineProps<{
+  destination: {
     duration: {
       end: Date;
       start: Date;
     };
-  },
-};
+  };
+}>();
 
 const isSelecting = ref(false);
 </script>

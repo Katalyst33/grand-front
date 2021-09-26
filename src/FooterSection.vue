@@ -7,8 +7,19 @@
           <div class="flex items-center">
             <CompanyLogo :app-state="appState" :text-color="textColor" />
           </div>
-
-          <div class="flex space-x-4 text-white py-4">
+        </div>
+        <div class="flex justify-center">
+          <div class="flex flex-col text-white">
+            <div v-for="(item, index) in footerRoutes" :key="index">
+              <router-link
+                :to="{ name: item.href }"
+                class="text-gray-400 hover:text-white font-medium"
+              >
+                {{ item.name }}</router-link
+              >
+            </div>
+          </div>
+          <div class="flex flex-col text-white">
             <div v-for="(item, index) in footerRoutes" :key="index">
               <router-link
                 :to="{ name: item.href }"

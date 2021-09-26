@@ -28,11 +28,13 @@
     "moment": "^2.29.1",
     "swiper": "^7.0.0",
     "v-calendar": "^3.0.0-alpha.5",
+    "vee-validate": "^4.4.11",
     "vue": "^3.2.6",
     "vue-awesome-swiper": "^4.1.1",
     "vue-izitoast": "^1.2.1",
     "vue-router": "4",
-    "yarn": "^1.22.11"
+    "yarn": "^1.22.11",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@heroicons/vue": "^1.0.4",

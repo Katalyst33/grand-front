@@ -3,7 +3,7 @@ import { $axios } from "../http.Service";
 import { useRoute, useRouter } from "vue-router";
 import { DestinationType } from "../types";
 
-const router = useRouter();
+// const router = useRouter();
 
 const sort = reactive({ field: "createdAt", direction: true });
 const searchQuery = ref<string | undefined>(undefined);
@@ -15,6 +15,7 @@ export const destinationStore = reactive({
   },
   promotedDestinations: {} as any,
   isLoadingDestinations: false,
+  isLoadingSpinner: false,
   searchDestinationQuery: searchQuery,
   sortDestination: sort,
 });
@@ -134,21 +135,15 @@ function searchDestinations(searchQuery: string) {
 
 export function isSearching() {
   searchDestinationStore.isSearching = !searchDestinationStore.isSearching;
-  console.log("is Searching ");
 }
 
 watch(searchQuery, () => {
+  destinationStore.isLoadingSpinner = true;
+
   clearTimeout(timeOut as NodeJS.Timeout);
   timeOut = setTimeout(() => {
+    destinationStore.isLoadingSpinner = false;
+
     searchDestinations(searchQuery.value!);
   }, 500);
 });
-
-export function toViewDestination(destination: DestinationType) {
-  console.log("navigation", destination.uuid);
-
-  router.push({
-    name: "UpdateDestination",
-    params: { destinationId: destination.uuid },
-  });
-}

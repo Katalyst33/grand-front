@@ -61,14 +61,14 @@ import { computed, ref } from "vue";
 import { allCountries } from "../../db/countryList";
 import { CountryType } from "../../types";
 
-const props = {
-  destination: {} as {
+const props = defineProps<{
+  destination: {
     country: {
       code: string;
       name: string;
     };
-  },
-};
+  };
+}>();
 
 const searchQuery = ref("");
 

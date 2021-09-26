@@ -38,7 +38,7 @@
                 items-center
                 justify-center
                 text-white
-                hover:text-white hover:bg-yellow-500
+                hover:text-white hover:bg-red-500
                 focus:outline-none
                 focus:ring-2
                 focus:ring-inset

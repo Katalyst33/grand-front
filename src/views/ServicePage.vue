@@ -1,43 +1,26 @@
 <template>
-  <div class="text-3xl">About This service</div>
+  <div ref="animator" class="hey dom-node-demo el py-10">
+    <div>About This service</div>
+  </div>
+  <div></div>
+
+  <button @click="runAnime" class="bg-red-500 p-1 rounded">Trigger</button>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
+<script lang="ts" setup>
+import { onMounted, ref } from "vue";
 
-export default defineComponent({
-  name: "ServicePage",
-  data() {
-    return {
-      cards: [
-        {
-          title: "red",
-          color: "bg-red-500 col-span-2 lg:col-span-3",
-        },
-        {
-          title: "yellow",
-          color: "bg-yellow-500",
-        },
-        {
-          title: "blue",
-          color: "bg-blue-500",
-        },
-        {
-          title: "green",
-          color: "bg-green-500",
-        },
-        {
-          title: "gray",
-          color: "bg-gray-500 md:col-span-1 lg:col-span-2",
-        },
-      ],
-    };
-  },
+const animator = ref(null);
 
-  setup() {
-    return {};
-  },
+onMounted(() => {
+  console.log(animator.value);
 });
+
+function runAnime() {
+  // let elementum = document.getElementById("hey") as HTMLElement | null;
+}
+
+onMounted(() => {});
 </script>
 
 <style scoped></style>

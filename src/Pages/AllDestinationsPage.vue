@@ -20,7 +20,7 @@ import { useHead } from "@vueuse/head";
               sm:text-4xl
             "
           >
-            Ongoing Deals
+            All Destinations
           </h2>
 
           <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
@@ -36,7 +36,7 @@ import { useHead } from "@vueuse/head";
           <!--          search query-->
         </div>
         <div v-if="destinationStore.isLoadingDestinations">
-          <DealsTileComponent />
+          <DealsTileComponent v-if="!destinationStore.isLoadingSpinner" />
         </div>
       </div>
     </div>

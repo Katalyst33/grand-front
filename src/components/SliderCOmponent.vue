@@ -6,15 +6,20 @@ import {
   Breakpoints,
 } from "@glidejs/glide/dist/glide.modular.esm";
 import { ref } from "vue";
-import { destinationStore, toViewDestination } from "../store/destinationStore";
+import { destinationStore } from "../store/destinationStore";
 import { appState } from "../store/store";
 import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
+import { DestinationType } from "../types";
+import { useRouter } from "vue-router";
 const sliderIndex = ref(0);
 let slider: any;
+
+const router = useRouter();
+
 setTimeout(() => {
   slider = new Glide(".techie", {
     type: "carousel",
-    autoplay: 1000,
+    autoplay: 4000,
     hoverpause: false,
     perView: 3,
     focusAt: "center",
@@ -46,6 +51,15 @@ function slidePrev() {
 function updateSliderIndex($index: number) {
   slider.index = $index;
 }
+
+function toViewDestination(destination: DestinationType) {
+  console.log("navigation", destination.uuid);
+
+  router.push({
+    name: "UpdateDestination",
+    params: { destinationId: destination.uuid },
+  });
+}
 </script>
 
 <template>
@@ -60,7 +74,7 @@ function updateSliderIndex($index: number) {
             group
             flex flex-col
             rounded-lg
-            shadow-lg
+            shadow-md
             overflow-hidden
             relative
           "
@@ -176,34 +190,6 @@ function updateSliderIndex($index: number) {
           </div>
         </div>
       </ul>
-    </div>
-    <div class="glide__arrows">
-      <button
-        class="glide__arrow glide__arrow--left absolute inset-y-0 left-3"
-        @click="slidePrev"
-      >
-        <i
-          class="
-            fal
-            fa-arrow-circle-left fa-4x
-            opacity-80
-            text-primary text-shadow-lg
-          "
-        ></i>
-      </button>
-      <button
-        class="glide__arrow glide__arrow--right absolute inset-y-0 right-3"
-        @click="slideNext"
-      >
-        <i
-          class="
-            fal
-            fa-arrow-circle-right fa-4x
-            opacity-80
-            text-primary text-shadow-lg
-          "
-        ></i>
-      </button>
     </div>
   </div>
 </template>

@@ -42,12 +42,12 @@ function addToCart(destination: any) {
             <div class="flex justify-between">
               <button
                 @click="addToCart(singleDestinationStore.destination)"
-                class="bg-red-400 py-2 px-2 rounded-md"
+                class="bg-red-400 rounded-md"
               >
                 Add to Cart
               </button>
 
-              <div v-if="appState.user.email" class="p-4 bg-green-500">
+              <div v-if="appState.user.email" class="p-4">
                 <button
                   @click="addToWishlist(singleDestinationStore.destination)"
                   class="bg-red-400 py-2 px-2 rounded-md"
