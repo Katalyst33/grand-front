@@ -1,26 +1,19 @@
 <template>
   <div class="" v-if="isLoaded">
     <div class="bg-gray-900">
-      <code class="text-green-400"> {{ appState.user }}</code>
+      <code class="text-green-400">
+        {{ appState.user }} {{ appState.state }}</code
+      >
     </div>
     <router-view></router-view>
   </div>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { setAppState, appState } from "./store/store";
 import { ref } from "vue";
-
-export default {
-  name: "Main",
-
-  setup() {
-    const isLoaded = ref(false);
-    setAppState().then(() => (isLoaded.value = true));
-
-    return { isLoaded, appState };
-  },
-};
+const isLoaded = ref(false);
+setAppState().then(() => (isLoaded.value = true));
 </script>
 
 <style>

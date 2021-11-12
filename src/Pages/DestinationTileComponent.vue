@@ -1,3 +1,24 @@
+<script setup lang="ts">
+import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
+import { DestinationType } from "../types";
+import { destinationStore } from "../store/destinationStore";
+import { useRoute, useRouter } from "vue-router";
+import { appState } from "../store/store";
+
+import SliderComponent from "../components/SliderCOmponent.vue";
+import { formatPrice } from "../lib/util";
+const router = useRouter();
+
+const route = useRoute();
+
+function toViewDestination(destination: DestinationType) {
+  router.push({
+    name: "UpdateDestination",
+    params: { destinationId: destination.uuid },
+  });
+}
+</script>
+
 <template>
   <div v-show="route.name === 'Home'">
     <SliderComponent />
@@ -68,9 +89,11 @@
           "
         >
           <img
-            class="h-6 rounded-md object-cover"
-            :src="`/svg/${destination.country.code}.svg`"
+            class="flex-shrink-0 h-6 w-6 rounded-name"
+            :src="`/country_flags/${destination.country.code}.svg`"
+            alt="countryflag"
           />
+
           <p>{{ destination.country.name }}</p>
         </div>
         <div class="flex-1 bg-white p-6 flex flex-col justify-between">
@@ -81,7 +104,7 @@
               </p>
             </a>
             <p class="mt-3 text-base text-yellow-600 text-2xl">
-              $ {{ destination.price }}
+              $ {{ formatPrice(destination.price) }}
             </p>
             <div class="text-sm font-medium text-gray-400 pt-4 uppercase">
               <span
@@ -128,22 +151,3 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
-import { DestinationType } from "../types";
-import { destinationStore } from "../store/destinationStore";
-import { useRoute, useRouter } from "vue-router";
-import { appState } from "../store/store";
-
-import SliderComponent from "../components/SliderCOmponent.vue";
-const router = useRouter();
-
-const route = useRoute();
-
-function toViewDestination(destination: DestinationType) {
-  router.push({
-    name: "UpdateDestination",
-    params: { destinationId: destination.uuid },
-  });
-}
-</script>

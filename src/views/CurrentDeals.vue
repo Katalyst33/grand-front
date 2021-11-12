@@ -20,7 +20,7 @@
     </div>
   </section>
   <section>
-    <h2 class="title-2 -mb-10">Trending Destinations</h2>
+    <h2 class="title-2 py-4 big-font">Trending Destinations</h2>
   </section>
 
   <template v-if="destinationStore.isLoadingDestinations">

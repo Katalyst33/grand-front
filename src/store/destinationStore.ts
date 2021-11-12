@@ -102,6 +102,7 @@ export function getOneDestination() {
     })
     .catch((e) => e);
 }
+
 export function getOneDestinationX() {
   const route = useRoute();
 
@@ -114,6 +115,7 @@ export function getOneDestinationX() {
     })
     .catch((e) => e);
 }
+
 export function runSort(by: string) {
   if (sort.field === by) {
     sort.direction = !sort.direction;

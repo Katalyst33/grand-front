@@ -61,7 +61,8 @@ useHead({
 }
 
 .title-2 {
-  @apply text-3xl font-medium;
+  font-family: bigJohn, serif;
+  @apply text-2xl font-normal text-gray-700;
 }
 
 .regular {

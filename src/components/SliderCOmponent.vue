@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Glide from "@glidejs/glide";
+
 import {
   Images,
   Controls,
@@ -11,6 +12,7 @@ import { appState } from "../store/store";
 import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
 import { DestinationType } from "../types";
 import { useRouter } from "vue-router";
+import { formatPrice } from "../lib/util";
 const sliderIndex = ref(0);
 let slider: any;
 
@@ -130,8 +132,9 @@ function toViewDestination(destination: DestinationType) {
             "
           >
             <img
-              class="h-6 rounded-md object-cover"
-              :src="`/svg/${destination.country.code}.svg`"
+              class="flex-shrink-0 h-6 w-6 rounded-name"
+              :src="`/country_flags/${destination.country.code}.svg`"
+              alt="countryflag"
             />
             <p>{{ destination.country.name }}</p>
           </div>
@@ -143,7 +146,7 @@ function toViewDestination(destination: DestinationType) {
                 </p>
               </a>
               <p class="mt-3 text-base text-yellow-600 text-2xl">
-                $ {{ destination.price }}
+                $ {{ formatPrice(destination.price) }}
               </p>
               <div class="text-sm font-medium text-gray-400 pt-4 uppercase">
                 <span
