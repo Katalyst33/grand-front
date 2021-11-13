@@ -15,7 +15,7 @@
       <button @click="clearStore" class="bg-red-500 px-4">Clear</button>
 
       <template v-if="$route.name === 'UpdateDestination'">
-        <ul v-is="isLoaded" class="flex space-x-4">
+        <ul v-if="isLoaded" class="flex space-x-4">
           <li>
             <router-link
               :to="{

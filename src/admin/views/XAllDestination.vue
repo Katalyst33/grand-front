@@ -1,4 +1,16 @@
 <template>
+  <section>
+    <ul class="flex space-x-4">
+      <li>
+        <router-link :to="{ name: 'AllDestinationX' }">All Deals</router-link>
+      </li>
+      <li>
+        <router-link :to="{ name: 'AddDestination' }">Create Deals</router-link>
+      </li>
+    </ul>
+
+    <button @click="clearStore" class="bg-red-500 px-4">Clear</button>
+  </section>
   <div class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -67,14 +79,14 @@
                 </th>
               </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
+            <tbody v-if="isLoaded" class="bg-white divide-y divide-gray-200">
               <tr v-for="(destination, index) in allDestinations" :key="index">
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="flex-shrink-0 h-10 w-10">
                       <img
                         class="h-10 w-10 rounded-full"
-                        :src="`/svg/${destination.country.code}.svg`"
+                        :src="`/country_flags/${destination.country.code}.svg`"
                         alt=""
                       />
                     </div>
@@ -165,9 +177,12 @@
 import { defineComponent, ref } from "vue";
 import { $axios } from "../../http.Service";
 import HumanDateTimeComponent from "../components/HumanDateTimeComponent.vue";
+import DestinationLayout from "../dealsX/DestinationLayout.vue";
+import { clearStore } from "../../store/destinationStore";
 
 const allDestinations = ref<any>([]);
 
+const isLoaded = ref(false);
 function trimString(stringText: string) {
   return stringText.substring(0, 50);
 }
@@ -176,6 +191,7 @@ function getAllDestinations() {
   $axios
     .get("manager/deals")
     .then((r) => {
+      isLoaded.value = true;
       allDestinations.value = r.data.data;
     })
     .catch((e) => e);

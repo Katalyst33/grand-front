@@ -2,9 +2,13 @@
   <div id="appX">
     <div class="bg-gray-300 p-6">
       <ul class="flex justify-between text-xl uppercase">
-        <li>User</li>
         <li>
-          <router-link :to="{ name: 'AllDestinationX' }">Deals</router-link>
+          <router-link :to="{ name: 'AllUsers' }"> ALL User</router-link>
+        </li>
+        <li>
+          <router-link :to="{ name: 'AllDestinationX' }"
+            >Destinations</router-link
+          >
         </li>
         <li>
           <router-link :to="{ name: 'UserDashboard' }">
@@ -16,7 +20,7 @@
     </div>
 
     <div class="container mx-auto">
-      <router-view class="py-10"></router-view>
+      <router-view class="py-10 h-screen"></router-view>
     </div>
   </div>
 </template>
@@ -47,10 +51,11 @@ export default defineComponent({
 .form-input {
   @apply shadow-sm
   focus:ring-yellow-500 focus:border-yellow-500
+    bg-yellow-50
   block
   w-full
   sm:text-sm
   border-gray-300
-  rounded-md;
+  rounded-sm;
 }
 </style>

@@ -10,7 +10,7 @@ export const appState = reactive({
   data: {} as appInfo,
   user: {} as loggedUser,
   showMobileMenu: true,
-  state: import.meta.env.DEV,
+  isDev: import.meta.env.DEV,
 });
 
 const SET_AUTH_USER = (user: loggedUser) => {

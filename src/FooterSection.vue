@@ -1,11 +1,6 @@
 <template>
   <section>
     <footer class="bg-gray-800 mt-20" aria-labelledby="footerHeading">
-      <img class="h-2" src="/country_flags/ad.svg" />
-      <p class="text-white">
-        yhjk <span class="flag-icon flag-icon-gr"></span>
-        <span class="flag-icon flag-icon-gr flag-icon-squared"></span>
-      </p>
       <h2 id="footerHeading" class="sr-only">Footer</h2>
       <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div class="flex flex-col items-center justify-between">
@@ -14,17 +9,7 @@
           </div>
         </div>
         <div class="flex justify-center">
-          <div class="flex flex-col text-white">
-            <div v-for="(item, index) in footerRoutes" :key="index">
-              <router-link
-                :to="{ name: item.href }"
-                class="text-gray-400 hover:text-white font-medium"
-              >
-                {{ item.name }}</router-link
-              >
-            </div>
-          </div>
-          <div class="flex flex-col text-white">
+          <div class="flex flex-row space-x-4 text-white">
             <div v-for="(item, index) in footerRoutes" :key="index">
               <router-link
                 :to="{ name: item.href }"

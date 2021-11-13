@@ -111,7 +111,7 @@ export function getOneDestinationX() {
   return $axios
     .get(`manager/deals/${code.value}`)
     .then((r: any) => {
-      SET_ONE_DESTINATION(r);
+      SET_ONE_DESTINATION(r!.data);
     })
     .catch((e) => e);
 }

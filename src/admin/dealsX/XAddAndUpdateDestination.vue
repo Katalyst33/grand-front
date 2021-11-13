@@ -55,15 +55,18 @@
         <div>
           <div class="tileTab">
             <CountryLocatorSelector
+              v-if="false"
               :destination="singleDestinationStore.destination"
             />
 
             <div class="">
-              <DealTimePickerComponent
-                class="border-t border-b py-2"
-                :destination="singleDestinationStore.destination"
-              />
-
+              <div>
+                <DealTimePickerComponent
+                  class="border border-yellow-300 rounded p-2"
+                  :destination="singleDestinationStore.destination"
+                />
+                <p class="text-sm">Click to edit date</p>
+              </div>
               <div class="border-b py-4">
                 <label class="form-label">Price:</label>
                 <div class="mt-1">
@@ -81,6 +84,7 @@
                   :destination="singleDestinationStore.destination"
                 />
               </div>
+
               <button
                 @click.prevent="updateDestination"
                 class="bg-red-500 p-2 rounded-md mt-10"
@@ -104,7 +108,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineComponent, onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 import { $axios } from "../../http.Service";
 import { useRoute, useRouter } from "vue-router";
 import { DestinationType } from "../../types";
@@ -116,13 +120,12 @@ import {
   getOneDestinationX,
   singleDestinationStore,
 } from "../../store/destinationStore";
-import { log } from "util";
 
 const destination = ref(<DestinationType>{});
 
 const isLoaded = ref(false),
   route = useRoute();
-console.log("1111");
+
 destination.value = {} as DestinationType;
 
 if (route.name === "UpdateDestination") {
@@ -142,7 +145,7 @@ const code = computed(() => route.params.destinationId);
 function updateDestination() {
   $axios
     .patch(`manager/deals/${code.value}`, singleDestinationStore.destination)
-    .then((r) => console.log(r))
+    .then((r) => r)
     .catch((e) => e);
 }
 

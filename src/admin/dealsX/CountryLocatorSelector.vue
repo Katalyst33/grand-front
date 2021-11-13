@@ -25,7 +25,7 @@
     </div>
     <div v-if="isSearching">
       <div>
-        <div v-for="(country, index) in computedCountry" :key="index">
+        <div v-for="(country, index) in allCountries" :key="index">
           <div
             @click="selectCountry(country)"
             class="
@@ -40,7 +40,7 @@
           >
             <img
               class="flex-shrink-0 h-6 w-6 rounded-name"
-              :src="`https://www.countryflags.io/${country.code}/flat/64.png`"
+              :src="`/svg/${destination.country.code}.svg`"
               alt="countryflag"
             />
 
@@ -79,7 +79,7 @@
           <span class="flex items-center">
             <img
               class="flex-shrink-0 h-6 w-6 rounded-name"
-              :src="`https://www.countryflags.io/${selected.code}/flat/64.png`"
+              :src="`/svg/${item.code}.svg`"
               alt="countryflag"
             />
 
@@ -140,7 +140,7 @@
                 <div class="flex items-center">
                   <img
                     class="flex-shrink-0 h-6 w-6 rounded-name"
-                    :src="`https://www.countryflags.io/${item.code}/flat/64.png`"
+                    :src="`/svg/${destination.country.code}.svg`"
                     alt="countryflag"
                   />
 

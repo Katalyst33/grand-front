@@ -7,7 +7,8 @@ const env = process.env.NODE_ENV;
 
 const BrowserStore = vueLocalStorage();
 if (BrowserStore.has("ge_jwt")) {
-  axios.defaults.headers["ge-apiKey"] = BrowserStore.get("ge_jwt");
+  // @ts-ignore
+  axios.defaults.headers["ge-apiKey"] = BrowserStore.get("ge_jwt") as any;
 
   if (env === "development") {
     const envValue = "http://_??_:5300";
@@ -28,22 +29,29 @@ const url = `${protocol}//${domain}/api/`;
 
 axios.defaults.baseURL = url;
 
-axios.interceptors.response.use((response: any) => {
-  if (response.data.message) {
-    izitoast.show({
-      color: "green",
-      position: "topCenter",
-      message: response.data.message,
-    });
-  } else if (response.data.error) {
-    izitoast.show({
-      color: "red",
-      position: "topCenter",
-      message: response.data.error,
-    });
-  }
+axios.interceptors.response.use(
+  (res) => {
+    if (res.data.message) {
+      izitoast.show({
+        color: "green",
+        position: "topCenter",
+        message: res.data.message,
+      });
+    }
 
-  return response.data;
-});
+    return res;
+  },
+  (err) => {
+    if (err.response && err.response.data.error) {
+      izitoast.show({
+        color: "red",
+        position: "topCenter",
+        message: err.response.data.error,
+      });
+    }
+
+    return Promise.reject(err);
+  }
+);
 
 export { axios as $axios };
