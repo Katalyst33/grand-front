@@ -246,9 +246,9 @@
               </button>
 
               <!--            //user action-->
-              <template v-if="appState.user.role">
+              <template v-if="appState.user?.role">
                 <div class="flex items-center space-x-6">
-                  <template v-if="appState.user.role !== 'user'">
+                  <template v-if="appState.user?.role !== 'user'">
                     <router-link
                       :to="{ name: 'AdminDashboard' }"
                       class="

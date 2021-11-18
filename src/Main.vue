@@ -1,5 +1,5 @@
 <template>
-  <div class="" v-if="isLoaded">
+  <div class="" v-if="appState.isLoaded">
     <div v-if="appState.isDev" class="bg-gray-900">
       <code class="text-green-400">
         {{ appState.user }} {{ appState.isDev }}</code
@@ -13,7 +13,9 @@
 import { setAppState, appState } from "./store/store";
 import { ref } from "vue";
 const isLoaded = ref(false);
-setAppState().then(() => (isLoaded.value = true));
+setAppState();
+
+console.log(appState, "appstate");
 </script>
 
 <style>

@@ -11,21 +11,22 @@ export const appState = reactive({
   user: {} as loggedUser,
   showMobileMenu: true,
   isDev: import.meta.env.DEV,
+  isLoaded: false,
 });
 
 const SET_AUTH_USER = (user: loggedUser) => {
   appState.user = user;
 };
 
-const SET_APP_INFO = (appData: any) => {
-  appState.data = appData;
-};
-
 export function setAppState() {
-  return $axios
+  $axios
     .get(`client/ping`)
     .then((response: any) => {
-      SET_APP_INFO(response.appData);
+      appState.data = response.data.appData;
+      appState.user = response.data.user;
+
+      appState.isLoaded = true;
+
       if (response.user) {
         SET_AUTH_USER(response.user);
         BrowserStore.set("user_role", response.user.role);
