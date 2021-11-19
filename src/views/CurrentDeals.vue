@@ -2,11 +2,8 @@
   <section>
     <h2 class="title-2 py-4 big-font">Trending Destinations</h2>
   </section>
-  {{ destinationStore.isLoadingDestinations }}
-  {{ destinationStore.allDestinations }}
-  <template v-if="destinationStore.isLoadingDestinations">
-    <DealsTileComponent />
-  </template>
+  {{ destinationStore }}
+  <DealsTileComponent v-if="false" />
 
   <div class="text-centre flex justify-center pt-4">
     <router-link :to="{ name: 'Destinations' }">
@@ -19,16 +16,10 @@
 import Glide from "@glidejs/glide";
 
 import DealsTileComponent from "../Pages/DestinationTileComponent.vue";
-import {
-  destinationStore,
-  getAllDestinations,
-} from "../store/destinationStore";
-import { ref } from "vue";
+import { destinationStore } from "../store/destinationStore";
+import { getAllDestinations2, localStore } from "../http/http.DataRequest";
 
-getAllDestinations();
-const destinationData = ref(destinationStore);
-
-console.log(destinationData.value.allDestinations, "epmty data ??");
+getAllDestinations2();
 </script>
 
 <style lang="scss" scoped>

@@ -4,6 +4,7 @@ import { useRoute, useRouter } from "vue-router";
 import { DestinationType } from "../types";
 
 import BrowserStorage from "@trapcode/browser-storage";
+import { localStore } from "../http/http.DataRequest";
 
 // const router = useRouter();
 
@@ -11,11 +12,8 @@ const sort = reactive({ field: "createdAt", direction: true });
 const searchQuery = ref<string | undefined>(undefined);
 
 export const destinationStore = reactive({
-  allDestinations: {} as {
-    data: DestinationType[] | DestinationType;
-    lastPage: number;
-  },
-  promotedDestinations: {} as any,
+  allDestinations: localStore.getObject("all_destinations"),
+  promotedDestinations: [] as DestinationType[] | DestinationType,
   isLoadingDestinations: false,
   isLoadingSpinner: false,
   searchDestinationQuery: searchQuery,
