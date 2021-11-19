@@ -11,11 +11,8 @@
 
 <script lang="ts" setup>
 import { setAppState, appState } from "./store/store";
-import { ref } from "vue";
-const isLoaded = ref(false);
-setAppState();
 
-console.log(appState, "appstate");
+setAppState();
 </script>
 
 <style>

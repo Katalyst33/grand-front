@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
 import { DestinationType } from "../types";
-import { destinationStore } from "../store/destinationStore";
+import {
+  destinationStore,
+  getAllDestinations,
+} from "../store/destinationStore";
 import { useRoute, useRouter } from "vue-router";
 import { appState } from "../store/store";
 
 import SliderComponent from "../components/SliderCOmponent.vue";
 import { formatPrice } from "../lib/util";
 const router = useRouter();
-
 const route = useRoute();
 
 function toViewDestination(destination: DestinationType) {
@@ -23,11 +25,10 @@ function toViewDestination(destination: DestinationType) {
   <div v-show="route.name === 'Home'">
     <SliderComponent />
   </div>
-
-  <div v-show="route.name === 'Destinations'">
+  <div v-if="false">
     <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none">
       <div
-        v-for="(destination, index) in destinationStore.allDestinations.data"
+        v-for="(destination, index) in destinationStore.allDestinations"
         :key="index"
         class="
           group

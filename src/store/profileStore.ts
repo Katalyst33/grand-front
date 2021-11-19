@@ -1,4 +1,4 @@
-import { $axios } from "../http.Service";
+import { $axios } from "../http/http.Service";
 import { reactive } from "vue";
 import { appState } from "./store";
 import { ProfileType } from "../types";
@@ -13,7 +13,7 @@ const SET_PROFILE = (profile: any) => {
   profileStore.isLoadingProfile = true;
 };
 export function getProfile() {
-  return $axios
+  $axios
     .get(`/profile/data/${appState.user.reference}`)
     .then((r) => {
       if (r) {

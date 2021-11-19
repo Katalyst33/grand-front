@@ -158,7 +158,7 @@
   </section>
 </template>
 <script lang="ts">
-import { $axios } from "../http.Service";
+import { $axios } from "../http/http.Service";
 import { ref } from "vue";
 import { userForm } from "../types";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";

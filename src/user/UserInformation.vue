@@ -1,24 +1,24 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import { useField, useForm } from "vee-validate";
-import * as yup from "yup";
+// import { useField, useForm } from "vee-validate";
+// import * as yup from "yup";
 const isLoaded = ref(false);
 
 // Define a validation schema
-const schema = yup.object({
+/*const schema = yup.object({
   email: yup.string().required().email(),
   name: yup.string().required(),
   password: yup.string().required().min(8),
-});
+});*/
 
 // Create a form context with the validation schema
-useForm({
+/*useForm({
   validationSchema: schema,
-});
+});*/
 
 // No need to define rules for fields
-const { value: email, errorMessage: emailError } = useField("email");
-const { value: password, errorMessage: passwordError } = useField("password");
+// const { value: email, errorMessage: emailError } = useField("email");
+// const { value: password, errorMessage: passwordError } = useField("password");
 </script>
 
 <template>

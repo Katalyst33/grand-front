@@ -175,7 +175,7 @@
 
 <script lang="ts" setup>
 import { defineComponent, ref } from "vue";
-import { $axios } from "../../http.Service";
+import { $axios } from "../../http/http.Service";
 import HumanDateTimeComponent from "../components/HumanDateTimeComponent.vue";
 import DestinationLayout from "../dealsX/DestinationLayout.vue";
 import { clearStore } from "../../store/destinationStore";

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { $axios } from "../http.Service";
+import { $axios } from "../http/http.Service";
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import { singleDestinationStore } from "../store/destinationStore";

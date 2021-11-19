@@ -9,8 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-import { defineComponent } from "vue";
 import ServiceCards from "../components/ServiceCards.vue";
 import CurrentDeals from "./CurrentDeals.vue";
-import HomeHeroComponent from "./HomeHeroComponent.vue";
 </script>

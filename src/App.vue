@@ -1,11 +1,10 @@
 <template>
-  <MenuComponent v-if="false" />
   <GuestNavigator />
   <HomeHeroComponent v-if="$route.name === 'Home'" />
   <ViewDestinationHero v-if="$route.name === 'ViewDestinationPage'" />
 
   <div class="container mx-auto">
-    <router-view v-if="isLoaded" />
+    <router-view />
   </div>
   <FooterSection />
 </template>
@@ -13,17 +12,15 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from "vue";
 import { useWindowScroll } from "@vueuse/core";
-import MenuComponent from "@/components/commons/MenuComponent.vue";
 import FooterSection from "@/FooterSection.vue";
 import GuestNavigator from "@/GuestNavigator.vue";
 import HomeHeroComponent from "@/views/HomeHeroComponent.vue";
-import { getAllDestinations } from "./store/destinationStore";
+import { destinationStore, getAllDestinations } from "./store/destinationStore";
 import ViewDestinationHero from "./layout/ViewDestinationHero.vue";
 import { useRoute } from "vue-router";
 import { useHead } from "@vueuse/head";
+import { appState } from "./store/store";
 const isLoaded = ref(false);
-getAllDestinations().then(() => (isLoaded.value = true));
-
 const route = useRoute();
 const { x, y } = useWindowScroll();
 

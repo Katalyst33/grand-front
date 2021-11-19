@@ -1,28 +1,9 @@
 <template>
-  <section v-if="false">
-    <div class="glide">
-      <div class="glide__track" data-glide-el="track">
-        <ul style="font-size: 100px" class="glide__slides">
-          <li class="glide__slide bg-red-500">0</li>
-          <li class="glide__slide bg-red-500">1</li>
-          <li class="glide__slide bg-red-500">2</li>
-          <li class="glide__slide bg-red-500">3</li>
-          <li class="glide__slide bg-red-500">4</li>
-          <li class="glide__slide bg-red-500">5</li>
-          <li class="glide__slide bg-red-500">6</li>
-          <li class="glide__slide bg-red-500">7</li>
-        </ul>
-      </div>
-      <div data-glide-el="controls">
-        <button data-glide-dir="<">Start</button>
-        <button data-glide-dir=">">End</button>
-      </div>
-    </div>
-  </section>
   <section>
     <h2 class="title-2 py-4 big-font">Trending Destinations</h2>
   </section>
-
+  {{ destinationStore.isLoadingDestinations }}
+  {{ destinationStore.allDestinations }}
   <template v-if="destinationStore.isLoadingDestinations">
     <DealsTileComponent />
   </template>
@@ -42,8 +23,12 @@ import {
   destinationStore,
   getAllDestinations,
 } from "../store/destinationStore";
+import { ref } from "vue";
 
 getAllDestinations();
+const destinationData = ref(destinationStore);
+
+console.log(destinationData.value.allDestinations, "epmty data ??");
 </script>
 
 <style lang="scss" scoped>

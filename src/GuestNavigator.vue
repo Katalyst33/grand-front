@@ -228,10 +228,6 @@
               </router-link>
             </PopoverGroup>
             <div class="flex items-center md:ml-12">
-              <div class="bg-red-500 p-4">
-                {{ searchDestinationStore }}
-              </div>
-
               <button @click="isSearching" class="p-2">
                 <svg
                   class="text-yellow-900 h-8 fill-current"

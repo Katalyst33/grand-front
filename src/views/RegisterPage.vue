@@ -154,7 +154,7 @@
 import { defineComponent, ref } from "vue";
 import { userForm } from "../types";
 import AppLogo from "../AppLogo.vue";
-import { $axios } from "../http.Service";
+import { $axios } from "../http/http.Service";
 import LoginRegisterLogo from "./LoginRegisterLogo.vue";
 
 export default defineComponent({

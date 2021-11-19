@@ -18,13 +18,10 @@
           <li><router-link :to="{ name: 'Home' }">Home</router-link></li>
 
           <LogOutComponent />
-
-
-
         </ul>
       </div>
     </div>
-    <div v-if="isLoaded">
+    <div>
       <router-view></router-view>
     </div>
   </div>
@@ -33,12 +30,8 @@
 <script lang="ts" setup>
 import LogOutComponent from "../components/LogOutComponent.vue";
 import { getProfile } from "../store/profileStore";
-import { appState } from "../store/store";
-import { ref } from "vue";
 
-const isLoaded = ref(false);
-
-getProfile().then(() => (isLoaded.value = true));
+getProfile();
 </script>
 
 <style scoped></style>

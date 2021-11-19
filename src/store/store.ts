@@ -1,6 +1,6 @@
 import { reactive, readonly } from "vue";
 import BrowserStorage from "@trapcode/browser-storage";
-import { $axios } from "../http.Service";
+import { $axios } from "../http/http.Service";
 import { appInfo, loggedUser } from "../types";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
 import router from "../router";
@@ -24,7 +24,6 @@ export function setAppState() {
     .then((response: any) => {
       appState.data = response.data.appData;
       appState.user = response.data.user;
-
       appState.isLoaded = true;
 
       if (response.user) {

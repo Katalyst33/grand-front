@@ -1,7 +1,9 @@
 import { computed, reactive, readonly, ref, watch } from "vue";
-import { $axios } from "../http.Service";
+import { $axios } from "../http/http.Service";
 import { useRoute, useRouter } from "vue-router";
 import { DestinationType } from "../types";
+
+import BrowserStorage from "@trapcode/browser-storage";
 
 // const router = useRouter();
 
@@ -38,12 +40,6 @@ export const searchDestinationStore = reactive({
   isSearching: false,
 });
 
-const SET_DEALS = (allDeals: any) => {
-  destinationStore.allDestinations = allDeals.allDeals;
-  destinationStore.promotedDestinations = allDeals.promotedDeals;
-  destinationStore.isLoadingDestinations = true;
-};
-
 const SET_ONE_DESTINATION = (oneDeal: any) => {
   singleDestinationStore.destination = oneDeal;
   singleDestinationStore.isLoadingDeal = true;
@@ -67,23 +63,29 @@ export function clearStore() {
   CLEAR_ONE_DESTINATION();
 }
 
+const SET_DESTINATIONS = (destination: any) => {
+  destinationStore.allDestinations = destination.data;
+  // destinationStore.isLoadingDestinations = destination.proceed;
+};
 export function getAllDestinations(search?: string, sort?: any) {
   let params = {} as any;
   if (search) {
     params.search = search;
   }
-
   if (sort) {
     params.sort = sort.direction ? sort.field + ",asc" : sort.field;
   }
-  return $axios
+  $axios
     .get("/client/deals", {
       params,
     })
     .then((r) => {
-      if (r.data.allDeals.data) {
-        SET_DEALS(r.data);
-      }
+      SET_DESTINATIONS(r.data);
+      // destinationStore.allDestinations = r.data;
+      // destinationStore.promotedDestinations = r.data.data.promotedDestinations;
+      // destinationStore.isLoadingDestinations = true;
+      console.log(r.data.data, "destinationsss");
+      return r;
     })
     .catch((e) => e);
 }
@@ -93,7 +95,7 @@ export function getOneDestination() {
 
   const code = computed(() => route.params.destinationId);
 
-  return $axios
+  $axios
     .get(`client/deals/${code.value}`)
     .then((r) => {
       if (r) {
@@ -108,7 +110,7 @@ export function getOneDestinationX() {
 
   const code = computed(() => route.params.destinationId);
 
-  return $axios
+  $axios
     .get(`manager/deals/${code.value}`)
     .then((r: any) => {
       SET_ONE_DESTINATION(r!.data);
@@ -122,17 +124,13 @@ export function runSort(by: string) {
   } else {
     sort.field = by;
   }
-  getAllDestinations(searchQuery.value, sort)
-    .then((r) => r)
-    .catch((e) => e);
+  getAllDestinations(searchQuery.value, sort);
 }
 
 let timeOut: NodeJS.Timeout | number = -1;
 
 function searchDestinations(searchQuery: string) {
-  getAllDestinations(searchQuery)
-    .then((r) => r)
-    .catch((e) => e);
+  getAllDestinations(searchQuery);
 }
 
 export function isSearching() {
