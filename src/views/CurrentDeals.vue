@@ -2,8 +2,7 @@
   <section>
     <h2 class="title-2 py-4 big-font">Trending Destinations</h2>
   </section>
-  {{ destinationStore }}
-  <DealsTileComponent v-if="false" />
+  <DealsTileComponent />
 
   <div class="text-centre flex justify-center pt-4">
     <router-link :to="{ name: 'Destinations' }">
@@ -17,7 +16,7 @@ import Glide from "@glidejs/glide";
 
 import DealsTileComponent from "../Pages/DestinationTileComponent.vue";
 import { destinationStore } from "../store/destinationStore";
-import { getAllDestinations2, localStore } from "../http/http.DataRequest";
+import { getAllDestinations2 } from "../http/http.DataRequest";
 
 getAllDestinations2();
 </script>

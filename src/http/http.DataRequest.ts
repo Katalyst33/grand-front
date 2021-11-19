@@ -19,6 +19,7 @@ export function getAllDestinations2(search?: string, sort?: any) {
     .then((r: any) => {
       localStore.setObject("all_destinations", r.data.data);
       Object.assign("all_destinations", r.data.data);
+      console.log(localStore.getObject("all_destinations"), "??");
     })
 
     .catch((err) => err);

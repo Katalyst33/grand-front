@@ -69,7 +69,8 @@ function toViewDestination(destination: DestinationType) {
     <div class="glide__track" data-glide-el="track">
       <ul class="glide__slides h-screen-80">
         <div
-          v-for="(destination, index) in destinationStore.promotedDestinations"
+          v-for="(destination, index) in destinationStore.allDestinations
+            .promotedDeals"
           :key="index"
           class="
             glide__slide
