@@ -12,10 +12,14 @@ const sort = reactive({ field: "createdAt", direction: true });
 const searchQuery = ref<string | undefined>(undefined);
 
 export const destinationStore = reactive({
-  allDestinations: localStore.getObject("all_destinations"),
-  promotedDestinations: [] as DestinationType[] | DestinationType,
-  isLoadingDestinations: false,
-  isLoadingSpinner: false,
+  allDestinations:
+    localStore.getObject("all_destinations").data.allDestinations,
+  promotedDestinations:
+    localStore.getObject("all_destinations").data.promotedDestinations,
+  // promotedDestinations: localStore.getObject("all_destinations").promotedDeals,
+  // promotedDestinations: [] as DestinationType[] | DestinationType,
+  isLoadingDestinations: localStore.getObject("all_destinations").proceed,
+  isLoadingSpinner: true,
   searchDestinationQuery: searchQuery,
   sortDestination: sort,
 });
@@ -61,10 +65,6 @@ export function clearStore() {
   CLEAR_ONE_DESTINATION();
 }
 
-const SET_DESTINATIONS = (destination: any) => {
-  destinationStore.allDestinations = destination.data;
-  // destinationStore.isLoadingDestinations = destination.proceed;
-};
 export function getAllDestinations(search?: string, sort?: any) {
   let params = {} as any;
   if (search) {
@@ -74,15 +74,18 @@ export function getAllDestinations(search?: string, sort?: any) {
     params.sort = sort.direction ? sort.field + ",asc" : sort.field;
   }
   $axios
-    .get("/client/deals", {
+    .get("/client/destinations", {
       params,
     })
-    .then((r) => {
-      SET_DESTINATIONS(r.data);
-      // destinationStore.allDestinations = r.data;
+    .then((r: any) => {
+      localStore.setObject("all_destinations", r.data);
+      // destinationStore.allDestinations = r.data.data.allDestinations;
+
       // destinationStore.promotedDestinations = r.data.data.promotedDestinations;
-      // destinationStore.isLoadingDestinations = true;
-      console.log(r.data.data, "destinationsss");
+
+      /*
+      destinationStore.isLoadingDestinations = true;*/
+      // console.log(r.data.data, "destinationsss");
       return r;
     })
     .catch((e) => e);
@@ -96,8 +99,9 @@ export function getOneDestination() {
   $axios
     .get(`client/deals/${code.value}`)
     .then((r) => {
+      console.log(r.data, "single");
       if (r) {
-        SET_ONE_DESTINATION(r);
+        SET_ONE_DESTINATION(r.data);
       }
     })
     .catch((e) => e);

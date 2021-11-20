@@ -15,10 +15,20 @@
 import Glide from "@glidejs/glide";
 
 import DealsTileComponent from "../Pages/DestinationTileComponent.vue";
-import { destinationStore } from "../store/destinationStore";
+import {
+  destinationStore,
+  getAllDestinations,
+} from "../store/destinationStore";
 import { getAllDestinations2 } from "../http/http.DataRequest";
+import { onMounted } from "vue";
 
-getAllDestinations2();
+// onMounted(() => getAllDestinations2());
+
+// console.log( "tetDX");
+
+// getAllDestinations();
+
+// console.log(destinationStore);
 </script>
 
 <style lang="scss" scoped>

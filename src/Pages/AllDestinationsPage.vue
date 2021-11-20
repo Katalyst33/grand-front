@@ -36,7 +36,7 @@ import { useHead } from "@vueuse/head";
           <!--          search query-->
         </div>
         <div v-if="destinationStore.isLoadingDestinations">
-          <DealsTileComponent v-if="!destinationStore.isLoadingSpinner" />
+          <DealsTileComponent v-if="destinationStore.isLoadingSpinner" />
         </div>
       </div>
     </div>

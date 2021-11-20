@@ -10,7 +10,7 @@ import ViewDestinationHero from "../layout/ViewDestinationHero.vue";
 import { appState } from "../store/store";
 
 const isLoaded = ref(false);
-getOneDestination().then(() => (isLoaded.value = true));
+getOneDestination();
 
 console.log(singleDestinationStore);
 

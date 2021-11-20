@@ -5,7 +5,7 @@ import { destinationStore } from "../store/destinationStore";
 import { useRoute, useRouter } from "vue-router";
 import { appState } from "../store/store";
 
-import SliderComponent from "../components/SliderCOmponent.vue";
+import SliderComponent from "../components/SliderComponent.vue";
 import { formatPrice } from "../lib/util";
 const router = useRouter();
 const route = useRoute();
@@ -26,8 +26,7 @@ function toViewDestination(destination: DestinationType) {
     <div v-else>
       <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none">
         <div
-          v-for="(destination, index) in destinationStore.allDestinations
-            .allDestinations.data"
+          v-for="(destination, index) in destinationStore.allDestinations.data"
           :key="index"
           class="
             group
