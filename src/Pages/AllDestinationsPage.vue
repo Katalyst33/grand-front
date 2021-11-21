@@ -13,7 +13,8 @@ import { useRoute, useRouter } from "vue-router";
 import { formatPrice } from "../lib/util";
 import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
 import { appState } from "../store/store";
-import { ref } from "vue";
+import { computed, ref, watch } from "vue";
+import Paginator from "../components/paginator/Paginator.vue";
 const router = useRouter();
 const route = useRoute();
 
@@ -23,6 +24,12 @@ function toViewDestination(destination: DestinationType) {
     params: { destinationId: destination.uuid },
   });
 }
+
+const page = computed(() => {
+  return route.query.page;
+});
+
+console.log(page, "page");
 </script>
 
 <template>
@@ -196,5 +203,6 @@ function toViewDestination(destination: DestinationType) {
         </div>
       </div>
     </div>
+    <section></section>
   </div>
 </template>

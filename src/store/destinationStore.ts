@@ -17,7 +17,7 @@ export const destinationStore = reactive({
   isLoadingSpinner: false,
   searchDestinationQuery: searchQuery,
   sortDestination: sort,
-});
+} as any);
 
 export const singleDestinationStore = reactive({
   destination: localStore.getObject("oneDestination", {
