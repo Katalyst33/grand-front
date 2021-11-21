@@ -19,7 +19,6 @@ import {
   destinationStore,
   getAllDestinations,
 } from "../store/destinationStore";
-import { getAllDestinations2 } from "../http/http.DataRequest";
 import { onMounted } from "vue";
 
 // onMounted(() => getAllDestinations2());

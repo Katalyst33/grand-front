@@ -29,7 +29,11 @@ const page = computed(() => {
   return route.query.page;
 });
 
-console.log(page, "page");
+watch(page, () => {
+  getAllDestinations("", "");
+  destinationStore.paginationQuery = page.value;
+  console.log("haba", page.value);
+});
 </script>
 
 <template>
@@ -203,6 +207,42 @@ console.log(page, "page");
         </div>
       </div>
     </div>
-    <section></section>
+    <section>
+      <Paginator
+        v-model="destinationStore.paginationQuery"
+        class="pt-10"
+        :data="destinationStore.allDestinations"
+      />
+
+      {{ page }}
+    </section>
   </div>
 </template>
+
+<style lang="scss">
+.Paginator > .pagination {
+  @apply block w-full mt-2 px-3;
+
+  .pagination-previous,
+  .pagination-next {
+    @apply px-3 py-1 text-sm border border-gray-500 hover:bg-gray-600 hover:text-gray-50 rounded text-gray-500 cursor-pointer;
+  }
+
+  .pagination-list {
+    @apply block list-none;
+  }
+
+  .pagination-link {
+    @apply px-3 py-1.5 text-sm border border-gray-500 hover:bg-gray-500 hover:text-gray-50 rounded text-gray-500 cursor-pointer;
+    @apply inline-block;
+  }
+
+  .pagination-link.is-current {
+    @apply bg-gray-800 text-white font-bold border-white;
+  }
+
+  .pagination-ellipsis {
+    @apply text-gray-500;
+  }
+}
+</style>

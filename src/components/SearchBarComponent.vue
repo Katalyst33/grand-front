@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { destinationStore, runSort } from "../store/destinationStore";
+import { computed } from "vue";
 </script>
 
 <template>

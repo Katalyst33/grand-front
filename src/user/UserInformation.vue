@@ -1,28 +1,29 @@
+<!--
 <script lang="ts" setup>
 import { ref } from "vue";
-// import { useField, useForm } from "vee-validate";
-// import * as yup from "yup";
+import { useField, useForm } from "vee-validate";
+import * as yup from "yup";
 const isLoaded = ref(false);
 
 // Define a validation schema
-/*const schema = yup.object({
+const schema = yup.object({
   email: yup.string().required().email(),
   name: yup.string().required(),
   password: yup.string().required().min(8),
-});*/
+});
 
 // Create a form context with the validation schema
-/*useForm({
+useForm({
   validationSchema: schema,
-});*/
+});
 
 // No need to define rules for fields
-// const { value: email, errorMessage: emailError } = useField("email");
-// const { value: password, errorMessage: passwordError } = useField("password");
+const { value: email, errorMessage: emailError } = useField("email");
+const { value: password, errorMessage: passwordError } = useField("password");
 </script>
 
 <template>
-  <div class="flex justify-center">
+  <div v-if="false" class="flex justify-center">
     <div>
       <div class="p-4">
         <button
@@ -58,7 +59,7 @@ const isLoaded = ref(false);
                 pointer-events-none
               "
             >
-              <!-- Heroicon name: solid/exclamation-circle -->
+              &lt;!&ndash; Heroicon name: solid/exclamation-circle &ndash;&gt;
               <svg
                 class="h-5 w-5 text-red-500"
                 xmlns="http://www.w3.org/2000/svg"
@@ -119,3 +120,4 @@ const isLoaded = ref(false);
   rounded-md;
 }
 </style>
+-->

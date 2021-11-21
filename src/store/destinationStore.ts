@@ -12,6 +12,7 @@ const searchQuery = ref<string | undefined>(undefined);
 export const destinationStore = reactive({
   allDestinations: {},
   promotedDestinations: {} as DestinationType[] | DestinationType,
+  paginationQuery: null,
 
   isLoadingDestinations: false,
   isLoadingSpinner: false,
@@ -58,10 +59,9 @@ const CLEAR_ONE_DESTINATION = () => {
 
 export function clearStore() {
   CLEAR_ONE_DESTINATION();
-  console.log("cleeer");
 }
 
-export function getAllDestinations(search?: string, sort?: any) {
+export function getAllDestinations(search?: string, sort?: any, page?: number) {
   let params = {} as any;
   if (search) {
     params.search = search;
@@ -69,6 +69,10 @@ export function getAllDestinations(search?: string, sort?: any) {
   if (sort) {
     params.sort = sort.direction ? sort.field + ",asc" : sort.field;
   }
+  if (page) {
+    params.page = destinationStore.paginationQuery;
+  }
+
   $axios
     .get("/client/destinations", {
       params,
@@ -78,6 +82,7 @@ export function getAllDestinations(search?: string, sort?: any) {
       destinationStore.promotedDestinations = r.data.data.promotedDestinations;
       destinationStore.isLoadingDestinations = true;
       localStore.setObject("all_destinations", r.data);
+      console.log(destinationStore.paginationQuery, "page in paginnor");
       console.log(r.data);
     })
     .catch((e) => e);
@@ -136,4 +141,8 @@ watch(searchQuery, () => {
     destinationStore.isLoadingSpinner = false;
     getAllDestinations(searchQuery.value);
   }, 500);
+});
+
+watch(destinationStore.paginationQuery, () => {
+  getAllDestinations("", "", destinationStore.paginationQuery);
 });

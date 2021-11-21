@@ -1,8 +1,10 @@
+<script lang="ts" setup>
+import { clearStore } from "../store/destinationStore";
+</script>
 <template>
   <div id="appX">
     <div class="bg-gray-300 p-6">
       <div>
-
         <div class="flex items-center justify-between">
           <ul class="flex space-x-4">
             <li>
