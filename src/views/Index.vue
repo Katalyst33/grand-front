@@ -3,11 +3,12 @@
     <div class="container mx-auto px-2">
       <ServiceCards />
 
-      <CurrentDeals />
+      <CurrentDealSlide />
+
+      <div></div>
     </div>
   </div>
 </template>
-
 <script lang="ts" setup>
 import ServiceCards from "../components/ServiceCards.vue";
 import CurrentDeals from "./CurrentDeals.vue";
@@ -15,8 +16,5 @@ import {
   destinationStore,
   getAllDestinations,
 } from "../store/destinationStore";
-import { onMounted, ref } from "vue";
-getAllDestinations();
-
-console.log(destinationStore.isLoadingDestinations, "dx??");
+import CurrentDealSlide from "./CurrentDealSlide.vue";
 </script>

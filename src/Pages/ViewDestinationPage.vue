@@ -12,7 +12,7 @@ import { appState } from "../store/store";
 const isLoaded = ref(false);
 getOneDestination();
 
-console.log(singleDestinationStore);
+console.log(singleDestinationStore.destination);
 
 function addToWishlist(destination: any) {
   console.log(destination, "wish");

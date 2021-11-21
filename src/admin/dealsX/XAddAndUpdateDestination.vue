@@ -1,8 +1,5 @@
 <template>
-  <template v-if="isLoaded">
-    {{ singleDestinationStore.destination }}
-  </template>
-  <template v-if="singleDestinationStore.isLoadingDeal || isLoaded">
+  <template v-if="singleDestinationStore.isLoadingDeal">
     <form>
       <h1 class="text-2xl font-regular">
         {{ singleDestinationStore.destination.title }}
@@ -55,12 +52,14 @@
         <div>
           <div class="tileTab">
             <CountryLocatorSelector
+              v-if="false"
               :destination="singleDestinationStore.destination"
             />
 
             <div class="">
               <div>
                 <DealTimePickerComponent
+                  v-if="false"
                   class="border border-yellow-300 rounded p-2"
                   :destination="singleDestinationStore.destination"
                 />
@@ -80,6 +79,7 @@
               <div class="border-b">
                 <label class="form-label">Promoted:</label>
                 <PromotedToggleComponent
+                  v-if="false"
                   :destination="singleDestinationStore.destination"
                 />
               </div>
@@ -102,12 +102,10 @@
       </div>
     </form>
   </template>
-
-  <div></div>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { $axios } from "../../http/http.Service";
 import { useRoute, useRouter } from "vue-router";
 import { DestinationType } from "../../types";
@@ -116,7 +114,9 @@ import PromotedToggleComponent from "../components/PromotedToggleComponent.vue";
 import CountryLocatorSelector from "./CountryLocatorSelector.vue";
 import {
   clearStore,
+  getOneDestination,
   getOneDestinationX,
+  localStore,
   singleDestinationStore,
 } from "../../store/destinationStore";
 
@@ -127,13 +127,19 @@ const isLoaded = ref(false),
 
 destination.value = {} as DestinationType;
 
-if (route.name === "UpdateDestination") {
-  getOneDestinationX().then(() => (isLoaded.value = true));
-} else {
-  clearStore();
-  isLoaded.value = true;
-  // window.location.href = "/add-destination/";
-}
+onMounted(() => {
+  if (route.name === "UpdateDestination") {
+    // getOneDestination();
+    getOneDestinationX();
+
+    console.log(singleDestinationStore.destination, "xxx");
+  } else {
+    console.log("clear destination");
+    clearStore();
+    isLoaded.value = true;
+    // window.location.href = "/add-destination/";
+  }
+});
 
 if (route.name === "AddDestination") {
   clearStore();

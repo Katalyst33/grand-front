@@ -1,6 +1,24 @@
 <template>
   <div id="appX">
     <div class="bg-gray-300 p-6">
+      <div>
+        <div class="flex items-center justify-between">
+          <ul class="flex space-x-4">
+            <li>
+              <router-link :to="{ name: 'AllDestinationX' }"
+                >All Deals</router-link
+              >
+            </li>
+            <li>
+              <router-link :to="{ name: 'AddDestination' }"
+                >Create Deals</router-link
+              >
+            </li>
+          </ul>
+
+          <button @click="clearStore" class="bg-red-500 px-4">Clear</button>
+        </div>
+      </div>
       <ul class="flex justify-between text-xl uppercase">
         <li>
           <router-link :to="{ name: 'AllUsers' }"> ALL User</router-link>
@@ -20,7 +38,7 @@
     </div>
 
     <div class="container mx-auto">
-      <router-view class="py-10 h-screen"></router-view>
+      <router-view class="py-10 h-screen" />
     </div>
   </div>
 </template>
@@ -29,6 +47,7 @@
 import { defineComponent } from "vue";
 import { logOutUser } from "../store/store";
 import LogOutComponent from "../components/LogOutComponent.vue";
+import { getOneDestinationX } from "../store/destinationStore";
 
 export default defineComponent({
   name: "AdminLayout",
@@ -51,7 +70,7 @@ export default defineComponent({
 .form-input {
   @apply shadow-sm
   focus:ring-yellow-500 focus:border-yellow-500
-    bg-yellow-50
+
   block
   w-full
   sm:text-sm

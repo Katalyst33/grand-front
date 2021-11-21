@@ -24,6 +24,8 @@ const isLoaded = ref(false);
 const route = useRoute();
 const { x, y } = useWindowScroll();
 
+getAllDestinations();
+
 useHead({
   // Can be static or computed
   title: computed(() => {

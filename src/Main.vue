@@ -11,6 +11,7 @@
 
 <script lang="ts" setup>
 import { setAppState, appState } from "./store/store";
+import { getAllDestinations } from "./store/destinationStore";
 
 setAppState();
 </script>

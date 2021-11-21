@@ -18,38 +18,30 @@ export default <RouteRecordRaw>{
       component: AdminDashboard,
     },
     {
-      path: "/manage",
+      path: "/all-destination-x/",
+      name: "AllDestinationX",
+      component: AllDestination,
+    },
+    {
+      path: "/all-users/",
+      name: "AllUsers",
+      component: AllUsers,
+    },
 
-      component: DealsLayout,
-
-      children: [
-        {
-          path: "/all-destination-x/",
-          name: "AllDestinationX",
-          component: AllDestination,
-        },
-        {
-          path: "/all-users/",
-          name: "AllUsers",
-          component: AllUsers,
-        },
-
-        {
-          path: "/add-destination/",
-          name: "AddDestination",
-          component: XAddAndUpdate,
-        },
-        {
-          path: "/update-destination/:destinationId",
-          name: "UpdateDestination",
-          component: XAddAndUpdate,
-        },
-        {
-          path: "/deal-status/:destinationId",
-          name: "DestinationStatus",
-          component: DealStatus,
-        },
-      ],
+    {
+      path: "/add-destination/",
+      name: "AddDestination",
+      component: XAddAndUpdate,
+    },
+    {
+      path: "/update-destination/:destinationId",
+      name: "UpdateDestination",
+      component: XAddAndUpdate,
+    },
+    {
+      path: "/deal-status/:destinationId",
+      name: "DestinationStatus",
+      component: DealStatus,
     },
   ],
 };

@@ -9,10 +9,6 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "AdminDashboard",
-
-  setup() {
-    return {};
-  },
 });
 </script>
 

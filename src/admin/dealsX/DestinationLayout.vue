@@ -1,36 +1,5 @@
 <template>
   <div>
-    <div class="flex items-center justify-between">
-      <ul class="flex space-x-4">
-        <li>
-          <router-link :to="{ name: 'AllDestinationX' }">All Deals</router-link>
-        </li>
-        <li>
-          <router-link :to="{ name: 'AddDestination' }"
-            >Create Deals</router-link
-          >
-        </li>
-      </ul>
-
-      <button @click="clearStore" class="bg-red-500 px-4">Clear</button>
-
-      <template v-if="$route.name === 'UpdateDestination'">
-        <ul v-if="isLoaded" class="flex space-x-4">
-          <li>
-            <router-link
-              :to="{
-                name: 'DestinationStatus',
-                params: {
-                  destinationId: singleDestinationStore.destination.uuid,
-                },
-              }"
-              >Statistics</router-link
-            >
-          </li>
-        </ul>
-      </template>
-    </div>
-
     <router-view></router-view>
   </div>
 </template>

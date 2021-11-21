@@ -4,28 +4,23 @@ import { useRoute, useRouter } from "vue-router";
 import { DestinationType } from "../types";
 
 import BrowserStorage from "@trapcode/browser-storage";
-import { localStore } from "../http/http.DataRequest";
-
-// const router = useRouter();
+export const localStore = BrowserStorage.getLocalStore();
 
 const sort = reactive({ field: "createdAt", direction: true });
 const searchQuery = ref<string | undefined>(undefined);
 
 export const destinationStore = reactive({
-  allDestinations:
-    localStore.getObject("all_destinations").data.allDestinations,
-  promotedDestinations:
-    localStore.getObject("all_destinations").data.promotedDestinations,
-  // promotedDestinations: localStore.getObject("all_destinations").promotedDeals,
-  // promotedDestinations: [] as DestinationType[] | DestinationType,
-  isLoadingDestinations: localStore.getObject("all_destinations").proceed,
-  isLoadingSpinner: true,
+  allDestinations: {},
+  promotedDestinations: {} as DestinationType[] | DestinationType,
+
+  isLoadingDestinations: false,
+  isLoadingSpinner: false,
   searchDestinationQuery: searchQuery,
   sortDestination: sort,
 });
 
 export const singleDestinationStore = reactive({
-  destination: {
+  destination: localStore.getObject("oneDestination", {
     country: {
       name: "_No Destination",
       code: "NDT",
@@ -34,7 +29,7 @@ export const singleDestinationStore = reactive({
       start: new Date(),
       end: new Date(),
     },
-  } as DestinationType,
+  }) as DestinationType,
   isLoadingDeal: false,
 });
 
@@ -63,6 +58,7 @@ const CLEAR_ONE_DESTINATION = () => {
 
 export function clearStore() {
   CLEAR_ONE_DESTINATION();
+  console.log("cleeer");
 }
 
 export function getAllDestinations(search?: string, sort?: any) {
@@ -78,15 +74,11 @@ export function getAllDestinations(search?: string, sort?: any) {
       params,
     })
     .then((r: any) => {
+      destinationStore.allDestinations = r.data.data.allDestinations;
+      destinationStore.promotedDestinations = r.data.data.promotedDestinations;
+      destinationStore.isLoadingDestinations = true;
       localStore.setObject("all_destinations", r.data);
-      // destinationStore.allDestinations = r.data.data.allDestinations;
-
-      // destinationStore.promotedDestinations = r.data.data.promotedDestinations;
-
-      /*
-      destinationStore.isLoadingDestinations = true;*/
-      // console.log(r.data.data, "destinationsss");
-      return r;
+      console.log(r.data);
     })
     .catch((e) => e);
 }
@@ -99,7 +91,6 @@ export function getOneDestination() {
   $axios
     .get(`client/deals/${code.value}`)
     .then((r) => {
-      console.log(r.data, "single");
       if (r) {
         SET_ONE_DESTINATION(r.data);
       }
@@ -115,7 +106,9 @@ export function getOneDestinationX() {
   $axios
     .get(`manager/deals/${code.value}`)
     .then((r: any) => {
-      SET_ONE_DESTINATION(r!.data);
+      if (r) {
+        SET_ONE_DESTINATION(r.data);
+      }
     })
     .catch((e) => e);
 }
@@ -131,10 +124,6 @@ export function runSort(by: string) {
 
 let timeOut: NodeJS.Timeout | number = -1;
 
-function searchDestinations(searchQuery: string) {
-  getAllDestinations(searchQuery);
-}
-
 export function isSearching() {
   searchDestinationStore.isSearching = !searchDestinationStore.isSearching;
 }
@@ -145,7 +134,6 @@ watch(searchQuery, () => {
   clearTimeout(timeOut as NodeJS.Timeout);
   timeOut = setTimeout(() => {
     destinationStore.isLoadingSpinner = false;
-
-    searchDestinations(searchQuery.value!);
+    getAllDestinations(searchQuery.value);
   }, 500);
 });
