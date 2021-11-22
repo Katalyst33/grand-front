@@ -12,14 +12,14 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from "vue";
 import { useWindowScroll } from "@vueuse/core";
-import FooterSection from "@/FooterSection.vue";
-import GuestNavigator from "@/GuestNavigator.vue";
-import HomeHeroComponent from "@/views/HomeHeroComponent.vue";
 import { destinationStore, getAllDestinations } from "./store/destinationStore";
 import ViewDestinationHero from "./layout/ViewDestinationHero.vue";
 import { useRoute } from "vue-router";
 import { useHead } from "@vueuse/head";
 import { appState } from "./store/store";
+import FooterSection from "./FooterSection.vue";
+import GuestNavigator from "./GuestNavigator.vue";
+import HomeHeroComponent from "./views/HomeHeroComponent.vue";
 const isLoaded = ref(false);
 const route = useRoute();
 const { x, y } = useWindowScroll();
