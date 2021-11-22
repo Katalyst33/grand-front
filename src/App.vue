@@ -1,6 +1,8 @@
 <template>
   <GuestNavigationMenu />
-  <HomeHeroComponent v-if="$route.name === 'Home'" />
+
+  <BannerSlider v-if="$route.name === 'Home'" />
+
   <ViewDestinationHero v-if="$route.name === 'ViewDestinationPage'" />
 
   <div class="container mx-auto">
@@ -17,9 +19,9 @@ import ViewDestinationHero from "./layout/ViewDestinationHero.vue";
 import { useRoute } from "vue-router";
 import { useHead } from "@vueuse/head";
 import FooterSection from "./FooterSection.vue";
-import GuestNavigator from "./GuestNavigator.vue";
 import HomeHeroComponent from "./views/HomeHeroComponent.vue";
-import GuestNavigationMenu from "./GuestNavigationMenu.vue";
+import GuestNavigationMenu from "./layout/GuestNavigationMenu.vue";
+import BannerSlider from "./BannerSlider.vue";
 
 const isLoaded = ref(false);
 const route = useRoute();

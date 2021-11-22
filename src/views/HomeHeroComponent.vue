@@ -4,6 +4,7 @@
       <main class="relative pb-10">
         <div>
           <!-- Hero card -->
+
           <div class="relative">
             <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100"></div>
             <div class="">
@@ -82,90 +83,7 @@
             </div>
           </div>
         </div>
-        <section v-if="false" class="absolute flex justify-center">
-          <div class="flex justify-center -mt-10">
-            <div class="bg-red-500">
-              <div>
-                <label
-                  for="first_name"
-                  class="block text-sm font-medium text-warm-gray-900"
-                  >First name</label
-                >
-                <div class="mt-1">
-                  <input
-                    type="text"
-                    name="first_name"
-                    id="first_name"
-                    autocomplete="given-name"
-                    class="
-                      py-3
-                      px-4
-                      block
-                      w-full
-                      shadow-sm
-                      text-warm-gray-900
-                      focus:ring-teal-500 focus:border-teal-500
-                      border-warm-gray-300
-                      rounded-md
-                    "
-                  />
-                </div>
-              </div>
 
-              <div>
-                <label
-                  for="email"
-                  class="block text-sm font-medium text-gray-700"
-                  >Email</label
-                >
-                <div class="mt-1 relative rounded-md shadow-sm">
-                  <div
-                    class="
-                      absolute
-                      inset-y-0
-                      left-0
-                      pl-3
-                      flex
-                      items-center
-                      pointer-events-none
-                    "
-                  >
-                    <!-- Heroicon name: solid/mail -->
-                    <svg
-                      class="h-5 w-5 text-gray-400"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                      />
-                      <path
-                        d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                      />
-                    </svg>
-                  </div>
-                  <input
-                    type="text"
-                    name="email"
-                    id="email"
-                    class="
-                      focus:ring-indigo-500 focus:border-indigo-500
-                      block
-                      w-full
-                      pl-10
-                      sm:text-sm
-                      border-gray-300
-                      rounded-md
-                    "
-                    placeholder="you@example.com"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
         <!-- More main page content here... -->
       </main>
     </div>

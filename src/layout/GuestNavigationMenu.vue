@@ -773,12 +773,12 @@ import {
   XIcon,
 } from "@heroicons/vue/outline";
 import { ChevronDownIcon } from "@heroicons/vue/solid";
-import CompanyLogo from "./CompanyLogo.vue";
-import { appState } from "./store/store";
+import CompanyLogo from "../CompanyLogo.vue";
+import { appState } from "../store/store";
 import { ref } from "vue";
-import LogOutComponent from "./components/LogOutComponent.vue";
-import { destinationStore } from "./store/destinationStore";
-import { formatPrice } from "./lib/util";
+import LogOutComponent from "../components/LogOutComponent.vue";
+import { destinationStore } from "../store/destinationStore";
+import { formatPrice } from "../lib/util";
 
 const solutions = [
   {
