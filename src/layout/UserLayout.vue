@@ -1,19 +1,3 @@
-<!--<ul class="flex justify-between py-4 text-gray-500 px-10">
-<li>
-  <router-link :to="{ name: 'UserInformation' }"
-  >User Information</router-link
-  >
-</li>
-
-<li>
-  <router-link :to="{ name: 'UserDashboard' }">Dashboard</router-link>
-</li>
-<li>
-  <router-link :to="{ name: 'DocumentsUpload' }">Uploads</router-link>
-</li>
-<li><router-link :to="{ name: 'Home' }">Home</router-link></li>
-</ul>-->
-
 <template>
   <div>
     <TransitionRoot as="template" :show="appState.sidebarOpen">
@@ -319,13 +303,14 @@ import { useRoute } from "vue-router";
 
 const navigation = [
   {
-    name: "User Dashboard",
+    name: "Account",
     href: "UserInformation",
     icon: "fad fa-tachometer-alt-fast",
   },
+
   {
-    name: "Dashboard",
-    href: "UserDashboard",
+    name: "Documents",
+    href: "DocumentsUpload",
     icon: "fad fa-users",
   },
 ];
