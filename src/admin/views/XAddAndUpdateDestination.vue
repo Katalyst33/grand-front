@@ -1,5 +1,8 @@
 <template>
   <template v-if="singleDestinationStore.isLoadingDeal">
+
+
+
     <form>
       <h1 class="text-2xl font-regular">
         {{ singleDestinationStore.destination.title }}
@@ -54,8 +57,6 @@
             <CountryLocatorSelector
               :destination="singleDestinationStore.destination"
             />
-
-
 
             <div class="">
               <div>
