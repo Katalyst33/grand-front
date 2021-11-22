@@ -4,7 +4,7 @@ import { DatePicker } from "v-calendar";
 import "@popperjs/core";
 import "./assets/tailwind.css";
 import "@fortawesome/fontawesome-pro/css/all.min.css";
-import router from "./router";
+import router from "./router/router";
 import "./assets/css/swiper.min.css";
 import { createHead } from "@vueuse/head";
 

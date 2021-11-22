@@ -178,12 +178,14 @@
           </nav>
 
           <nav>
-            <div class="px-6">
-              <span class="block"> {{ appState.user.email }}</span>
-
-              <span class="block"> {{ appState.user.role }}</span>
+            <div class="px-6 bg-red-500 text-white">
+              <span
+                v-if="appState.user.role === 'admin'"
+                class="block uppercase font-medium tracking-wide"
+              >
+                administrator</span
+              >
             </div>
-            <LogOutComponent />
           </nav>
         </div>
       </div>

@@ -86,15 +86,22 @@ import { reactive } from "vue";
 
 const destinationTest = [
   {
-    title: "vacation",
+    title: "Take a vacation you Deserve",
     img: "/hero/vacation.jpg",
     text: ` Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
                 lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
                 fugiat aliqua.`,
   },
   {
-    title: "Accomadation",
+    title: "Book Your Accomadation",
     img: "/hero/accomodation.jpg",
+    text: ` Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
+                lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
+                fugiat aliqua.`,
+  },
+  {
+    title: "School in the United Kingdom",
+    img: "/hero/student.jpg",
     text: ` Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
                 lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
                 fugiat aliqua.`,

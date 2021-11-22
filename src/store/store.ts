@@ -3,7 +3,7 @@ import BrowserStorage from "@trapcode/browser-storage";
 import { $axios } from "../http/http.Service";
 import { appInfo, loggedUser } from "../types";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
-import router from "../router";
+import router from "../router/router";
 const BrowserStore = vueLocalStorage();
 
 export const appState = reactive({

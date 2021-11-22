@@ -1,33 +1,33 @@
 import { createRouter, createWebHistory } from "vue-router";
 const BrowserStore = vueLocalStorage();
 
-import IndexPage from "./views/Index.vue";
+import IndexPage from "../views/Index.vue";
 
-import AdminRoutes from "./admin/admin.router";
-import UserRoutes from "./user/user.router";
+import AdminRoutes from "../admin/admin.router";
+import UserRoutes from "../user/user.router";
 
-const AboutPage = () => import("./views/AboutPage.vue");
-const ServicePage = () => import("./views/ServicePage.vue");
-const ViewDestinationPage = () => import("./Pages/ViewDestinationPage.vue");
+const AboutPage = () => import("../views/AboutPage.vue");
+const ServicePage = () => import("../views/ServicePage.vue");
+const ViewDestinationPage = () => import("../Pages/ViewDestinationPage.vue");
 
-import DestinationsPage from "./Pages/AllDestinationsPage.vue";
-import SignupAndLogin from "./views/SingupAndLogin.vue";
-import ContactPage from "./views/ContactPage.vue";
-import DemoPage from "./components/DemoPage.vue";
-import { appState, closeMenu } from "./store/store";
+import DestinationsPage from "../Pages/AllDestinationsPage.vue";
+import SignupAndLogin from "../views/SingupAndLogin.vue";
+import ContactPage from "../views/ContactPage.vue";
+import DemoPage from "../components/DemoPage.vue";
+import { appState, closeMenu } from "../store/store";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
 
 const appName = import.meta.env.VITE_COMPANY_NAME;
 
 // const componentName = () => import("./componentName.vue");
-const NotFound = () => import("./views/NotFound.vue");
+const NotFound = () => import("../views/NotFound.vue");
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: "/",
-      component: () => import("./App.vue"),
+      component: () => import("../App.vue"),
       children: [
         {
           path: "/",
