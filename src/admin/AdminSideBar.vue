@@ -69,6 +69,10 @@
                 </button>
               </div>
             </TransitionChild>
+            <div class="text-red-500 text-center -mt-5 tracking-wide">
+              MANAGER
+            </div>
+
             <div class="flex-shrink-0 flex items-center px-4">
               <CompanyLogo :app-state="appState" :text-color="'text-black'" />
             </div>
@@ -131,6 +135,9 @@
           overflow-y-auto
         "
       >
+        <div class="text-red-500 font-medium text-center -mt-5 tracking-wide">
+          MANAGER
+        </div>
         <div class="flex items-center flex-shrink-0 px-4">
           <CompanyLogo :app-state="appState" :text-color="'text-black'" />
         </div>
@@ -178,12 +185,11 @@
           </nav>
 
           <nav>
-            <div class="px-6 bg-red-500 text-white">
+            <div class="px-6 text-red-400">
               <span
-                v-if="appState.user.role === 'admin'"
-                class="block uppercase font-medium tracking-wide"
+                class="block uppercase text-center font-medium tracking-wide"
               >
-                administrator</span
+                manager</span
               >
             </div>
           </nav>
