@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full">
+  <div class="h-full h-screen">
     <div>
       <section>
         <ul class="flex space-x-4">

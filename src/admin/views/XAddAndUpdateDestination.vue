@@ -4,8 +4,8 @@
       <h1 class="text-2xl font-regular">
         {{ singleDestinationStore.destination.title }}
       </h1>
-      <div class="grid grid-cols-3 space-x-4">
-        <div class="col-span-2">
+      <div class="grid lg:grid-cols-3">
+        <div class="lg:col-span-2 mb-4 lg:mx-4">
           <div class="tileTab">
             <div>
               <label class="form-label">Title:</label>
@@ -111,7 +111,7 @@ import { useRoute, useRouter } from "vue-router";
 import { DestinationType } from "../../types";
 import DealTimePickerComponent from "../components/DealTimePickerComponent.vue";
 import PromotedToggleComponent from "../components/PromotedToggleComponent.vue";
-import CountryLocatorSelector from "./CountryLocatorSelector.vue";
+import CountryLocatorSelector from "../components/CountryLocatorSelector.vue";
 import {
   clearStore,
   getOneDestination,

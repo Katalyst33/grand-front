@@ -69,8 +69,7 @@ const router = createRouter({
         },
       ],
     },
-    AdminRoutes,
-    UserRoutes,
+
     {
       path: "/login",
       name: "Login",
@@ -100,10 +99,13 @@ const router = createRouter({
       },
       component: NotFound,
     },
+    AdminRoutes,
+    UserRoutes,
   ],
 });
 
 router.beforeEach((to, from, next) => {
+  appState.sidebarOpen = false;
   const isAuthenticated = BrowserStore.has("ge_jwt");
   const userRole = BrowserStore.get("user_role");
   const authMetas = ["staff", "admin"];

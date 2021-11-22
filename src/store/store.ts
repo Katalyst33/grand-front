@@ -12,6 +12,7 @@ export const appState = reactive({
   showMobileMenu: true,
   isDev: import.meta.env.DEV,
   isLoaded: false,
+  sidebarOpen: true,
 });
 
 const SET_AUTH_USER = (user: loggedUser) => {

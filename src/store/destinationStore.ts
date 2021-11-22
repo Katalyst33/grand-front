@@ -82,8 +82,6 @@ export function getAllDestinations(search?: string, sort?: any, page?: number) {
       destinationStore.promotedDestinations = r.data.data.promotedDestinations;
       destinationStore.isLoadingDestinations = true;
       localStore.setObject("all_destinations", r.data);
-      console.log(destinationStore.paginationQuery, "page in paginnor");
-      console.log(r.data);
     })
     .catch((e) => e);
 }
@@ -141,8 +139,4 @@ watch(searchQuery, () => {
     destinationStore.isLoadingSpinner = false;
     getAllDestinations(searchQuery.value);
   }, 500);
-});
-
-watch(destinationStore.paginationQuery, () => {
-  getAllDestinations("", "", destinationStore.paginationQuery);
 });

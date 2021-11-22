@@ -71,6 +71,18 @@
           </div>
 
           <div class="">
+            <nav v-if="appState.isDev" class="flex justify-between py-1">
+              <button @click.prevent="normalUser" class="user-buttons">
+                Normal User
+              </button>
+              <button @click.prevent="staffUser" class="user-buttons">
+                Staff User
+              </button>
+              <button @click.prevent="adminUser" class="user-buttons">
+                Admin User
+              </button>
+            </nav>
+
             <div class="">
               <form action="#" method="POST" class="space-y-6">
                 <div>
@@ -164,6 +176,7 @@ import { userForm } from "../types";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
 import { useRouter } from "vue-router";
 import LoginRegisterLogo from "./LoginRegisterLogo.vue";
+import { appState } from "../store/store";
 
 const BrowserStore = vueLocalStorage();
 
@@ -172,11 +185,31 @@ export default {
   components: { LoginRegisterLogo },
   setup() {
     const form = ref<userForm>({
-      email: "staff@gmail.com",
-      password: "123456789",
+      email: "",
+      password: "",
     });
 
     const router = useRouter();
+
+    function normalUser() {
+      form.value = {
+        email: "her@gmail.com",
+        password: "123456789",
+      };
+    }
+
+    function staffUser() {
+      form.value = {
+        email: "staff@gmail.com",
+        password: "123456789",
+      };
+    }
+    function adminUser() {
+      form.value = {
+        email: "admin@gmail.com",
+        password: "123456789",
+      };
+    }
 
     function LoginUser() {
       $axios
@@ -199,9 +232,27 @@ export default {
         .catch((r) => r);
     }
     return {
+      appState,
+
+      normalUser,
       LoginUser,
+      staffUser,
+      adminUser,
       form,
     };
   },
 };
 </script>
+
+<style scoped>
+.user-buttons {
+  @apply bg-red-200
+
+    text-gray-700
+  text-xs
+  px-2
+  py-1
+  rounded-full
+  border border-red-500;
+}
+</style>

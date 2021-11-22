@@ -1,10 +1,9 @@
 import { RouteRecordRaw } from "vue-router";
-import XAddAndUpdate from "./dealsX/XAddAndUpdateDestination.vue";
-const AdminLayout = () => import("./AdminLayout.vue");
+import XAddAndUpdate from "./views/XAddAndUpdateDestination.vue";
+const AdminLayout = () => import("../layout/AdminLayout.vue");
 const AdminDashboard = () => import("./AdminDashboard.vue");
 const AllDestination = () => import("./views/XAllDestination.vue");
 const AllUsers = () => import("./views/AllUsers.vue");
-const DealsLayout = () => import("./dealsX/DestinationLayout.vue");
 const DealStatus = () => import("./dealsX/DealStatus.vue");
 
 export default <RouteRecordRaw>{
@@ -16,27 +15,42 @@ export default <RouteRecordRaw>{
       path: "dashboard",
       name: "AdminDashboard",
       component: AdminDashboard,
+      meta: {
+        title: "Admin Dashboard",
+      },
     },
     {
-      path: "/all-destination-x/",
+      path: "all-destination-x",
       name: "AllDestinationX",
       component: AllDestination,
+      meta: {
+        title: "All Destinations",
+      },
     },
     {
-      path: "/all-users/",
+      path: "all-users",
       name: "AllUsers",
       component: AllUsers,
+      meta: {
+        title: "All Users",
+      },
     },
 
     {
-      path: "/add-destination/",
+      path: "/add-destination",
       name: "AddDestination",
       component: XAddAndUpdate,
+      meta: {
+        title: "Add Destination",
+      },
     },
     {
       path: "/update-destination/:destinationId",
       name: "UpdateDestination",
       component: XAddAndUpdate,
+      meta: {
+        title: "Update Destination",
+      },
     },
     {
       path: "/deal-status/:destinationId",
