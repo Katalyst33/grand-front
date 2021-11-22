@@ -1,6 +1,7 @@
 <template>
   <template v-if="singleDestinationStore.isLoadingDeal">
     <form>
+      {{ singleDestinationStore }}
       <h1 class="text-2xl font-regular">
         {{ singleDestinationStore.destination.title }}
       </h1>
@@ -52,15 +53,12 @@
         <div>
           <div class="tileTab">
             <CountryLocatorSelector
-              v-if="false"
               :destination="singleDestinationStore.destination"
             />
 
             <div class="">
               <div>
                 <DealTimePickerComponent
-                  v-if="false"
-                  class="border border-yellow-300 rounded p-2"
                   :destination="singleDestinationStore.destination"
                 />
                 <p class="text-sm">Click to edit date</p>
@@ -79,7 +77,6 @@
               <div class="border-b">
                 <label class="form-label">Promoted:</label>
                 <PromotedToggleComponent
-                  v-if="false"
                   :destination="singleDestinationStore.destination"
                 />
               </div>

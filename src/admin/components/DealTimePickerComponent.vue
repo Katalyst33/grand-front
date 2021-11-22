@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div class="relative border border-yellow-300 rounded p-2">
     <h3 class="form-label">Select Date:</h3>
     <div class="relative">
       <div

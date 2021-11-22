@@ -40,7 +40,7 @@
           >
             <img
               class="flex-shrink-0 h-6 w-6 rounded-name"
-              :src="`/svg/${destination.country.code}.svg`"
+              :src="`/country_flags/${destination.country.code}.svg`"
               alt="countryflag"
             />
 
@@ -50,7 +50,7 @@
       </div>
     </div>
   </div>
-  <div>
+  <div v-if="false">
     <Listbox as="div" v-model="selected">
       <ListboxLabel class="block text-sm font-medium text-gray-700">
         Assigned to
@@ -79,7 +79,7 @@
           <span class="flex items-center">
             <img
               class="flex-shrink-0 h-6 w-6 rounded-name"
-              :src="`/svg/${item.code}.svg`"
+              :src="`/country_flags/${item.code}.svg`"
               alt="countryflag"
             />
 
@@ -173,11 +173,19 @@
 </template>
 <script lang="ts" setup>
 import { computed, ref } from "vue";
-
+import {
+  Listbox,
+  ListboxButton,
+  ListboxLabel,
+  ListboxOption,
+  ListboxOptions,
+} from "@headlessui/vue";
+import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
 import { allCountries } from "../../db/countryList";
 
 const selected = ref(allCountries[10]);
 
+const isSearching = ref(false);
 const props = defineProps<{
   destination: {
     country: {

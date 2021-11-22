@@ -34,7 +34,7 @@
               w-full
               pt-5
               pb-4
-              bg-white
+              bg-gray-800
             "
           >
             <TransitionChild
@@ -69,12 +69,9 @@
                 </button>
               </div>
             </TransitionChild>
-            <div class="text-red-500 text-center -mt-5 tracking-wide">
-              MANAGER
-            </div>
 
             <div class="flex-shrink-0 flex items-center px-4">
-              <CompanyLogo :app-state="appState" :text-color="'text-black'" />
+              <CompanyLogo :app-state="appState" :text-color="'text-white'" />
             </div>
             <div
               class="
@@ -92,9 +89,9 @@
                   :to="{ name: item.href }"
                   :class="[
                     route.name === item.href
-                      ? 'bg-gray-100 text-gray-900'
-                      : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                    'group flex items-center px-2 py-2 text-base font-medium rounded-md',
+                      ? 'bg-yellow-100 text-black'
+                      : 'text-white hover:bg-yellow-100 hover:text-gray-900',
+                    'group flex items-center px-2 py-2 text-base  rounded-md',
                   ]"
                 >
                   <component
@@ -110,6 +107,24 @@
                   <i class="pr-4" :class="item.icon"></i>
                   {{ item.name }}
                 </router-link>
+                <div
+                  class="space-y-4 pt-2"
+                  v-if="appState.user.role === 'admin'"
+                >
+                  <router-link
+                    :to="{ name: 'Configuration' }"
+                    class="text-white pl-2 text-sm font-medium block"
+                    ><i class="fad fa-cogs pr-3"></i>Configuration
+                  </router-link>
+                  <button
+                    @click.prevent="logOutUser"
+                    class="flex items-center pl-2 text-sm font-medium block"
+                  >
+                    <i class="fad fa-power-off text-lg text-red-500 pr-2"></i>
+
+                    <span class="text-white"> Log Out </span>
+                  </button>
+                </div>
               </nav>
               <nav class="flex-shrink-0 flex">
                 <MenuActions />
@@ -131,15 +146,12 @@
           flex flex-col flex-grow
           border-r border-gray-200
           pt-5
-          bg-white
+          bg-gray-800
           overflow-y-auto
         "
       >
-        <div class="text-red-500 font-medium text-center -mt-5 tracking-wide">
-          MANAGER
-        </div>
         <div class="flex items-center flex-shrink-0 px-4">
-          <CompanyLogo :app-state="appState" :text-color="'text-black'" />
+          <CompanyLogo :app-state="appState" :text-color="'text-white'" />
         </div>
         <div class="mt-5 flex-grow flex flex-col">
           <nav class="flex-1 px-2 pb-4 space-y-1">
@@ -149,8 +161,8 @@
               :to="{ name: item.href }"
               :class="[
                 route.name === item.href
-                  ? 'bg-gray-100 text-gray-900'
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                  ? 'bg-yellow-100 text-black'
+                  : 'text-white hover:bg-yellow-100 hover:text-gray-900',
                 'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
               ]"
             >
@@ -170,7 +182,7 @@
             <div class="space-y-4 pt-2" v-if="appState.user.role === 'admin'">
               <router-link
                 :to="{ name: 'Configuration' }"
-                class="text-gray-500 pl-2 text-sm font-medium block"
+                class="text-white pl-2 text-sm font-medium block"
                 ><i class="fad fa-cogs pr-3"></i>Configuration
               </router-link>
               <button
@@ -179,18 +191,14 @@
               >
                 <i class="fad fa-power-off text-lg text-red-500 pr-2"></i>
 
-                <span> Log Out </span>
+                <span class="text-white"> Log Out </span>
               </button>
             </div>
           </nav>
 
           <nav>
             <div class="px-6 text-red-400">
-              <span
-                class="block uppercase text-center font-medium tracking-wide"
-              >
-                manager</span
-              >
+              <!--              footer option-->
             </div>
           </nav>
         </div>

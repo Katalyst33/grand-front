@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-yellow-50">
+  <div>
     hgfgjhkjl Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam
     assumenda at atque consequuntur cumque delectus dignissimos dolores enim
     expedita facilis fugit impedit iure laboriosam laborum maiores molestiae
