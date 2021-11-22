@@ -157,12 +157,32 @@
                 ]"
                 aria-hidden="true"
               />
-              <i class="pr-4" :class="item.icon"></i>
-
+              <i class="pr-3" :class="item.icon"></i>
               {{ item.name }}
             </router-link>
+            <div class="space-y-4 pt-2" v-if="appState.user.role === 'admin'">
+              <router-link
+                :to="{ name: 'Configuration' }"
+                class="text-gray-500 pl-2 text-sm font-medium block"
+                ><i class="fad fa-cogs pr-3"></i>Configuration
+              </router-link>
+              <button
+                @click.prevent="logOutUser"
+                class="flex items-center pl-2 text-sm font-medium block"
+              >
+                <i class="fad fa-power-off text-lg text-red-500 pr-2"></i>
+
+                <span> Log Out </span>
+              </button>
+            </div>
           </nav>
+
           <nav>
+            <div class="px-6">
+              <span class="block"> {{ appState.user.email }}</span>
+
+              <span class="block"> {{ appState.user.role }}</span>
+            </div>
             <LogOutComponent />
           </nav>
         </div>
@@ -180,7 +200,7 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import { FolderIcon, HomeIcon, UsersIcon, XIcon } from "@heroicons/vue/outline";
-import { appState } from "../store/store";
+import { appState, logOutUser } from "../store/store";
 import { useRoute } from "vue-router";
 import MenuActions from "./MenuActions.vue";
 import LogOutComponent from "../components/LogOutComponent.vue";
@@ -207,7 +227,6 @@ const navigation = [
     href: "AddDestination",
     icon: "fad fa-globe-stand",
   },
-  { name: "Configuration", href: "Configuration", icon: "fad fa-cogs" },
 ];
 
 export default {
@@ -232,6 +251,7 @@ export default {
       route,
       navigation,
       sidebarOpen,
+      logOutUser,
     };
   },
 };

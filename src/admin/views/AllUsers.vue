@@ -69,7 +69,7 @@
                         {{ item.name }}
                       </div>
                       <div class="flex text-sm text-gray-500">
-                        <h3 class="font-bold">{{ item.email }}</h3>
+                        <h3 class="font-medium">{{ item.email }}</h3>
                         <div class="pl-2">
                           <template v-if="item.role === 'admin'">
                             <i class="fad fa-user-cog text-red-500"></i>

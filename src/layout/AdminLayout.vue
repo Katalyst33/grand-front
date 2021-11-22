@@ -142,13 +142,13 @@ import { appState } from "../store/store";
                     :key="item.name"
                     v-slot="{ active }"
                   >
-                    <a
-                      :href="item.href"
+                    <router-link
+                      :to="{ name: item.href }"
                       :class="[
                         active ? 'bg-gray-100' : '',
                         'block px-4 py-2 text-sm text-gray-700',
                       ]"
-                      >{{ item.name }}</a
+                      >{{ item.name }}</router-link
                     >
                   </MenuItem>
                 </MenuItems>
@@ -164,6 +164,7 @@ import { appState } from "../store/store";
             <div>
               <h1 class="text-xl pl-10 pb-2 text-gray-500"></h1>
             </div>
+
             <router-view class="h-screen my-auto"></router-view>
 
             <!-- /End replace -->
@@ -180,21 +181,25 @@ import { logOutUser } from "../store/store";
 import LogOutComponent from "../components/LogOutComponent.vue";
 import { getOneDestinationX } from "../store/destinationStore";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
+  { name: "Your Profile", href: "UserDashboard" },
+  { name: "Configuration", href: "Configuration" },
 ];
 export default defineComponent({
   name: "AdminLayout",
   components: { LogOutComponent, Menu, MenuButton, MenuItem, MenuItems },
 
   setup() {
+    console.log(useRoute().name, "");
+    console.log(useRouter().currentRoute.value, "");
+
     const route = useRoute();
     const currentRoute = computed(() => {
-      console.log(route.name, "");
-      return route.name;
+      console.log(useRoute().name, "");
+      console.log(useRouter().currentRoute.value, "");
+
+      return useRoute().name;
     });
     console.log(route.name, "ho??");
     return { logOutUser, currentRoute, userNavigation };

@@ -1,15 +1,5 @@
 <template>
   <div class="pl-6">
-    <ul>
-      <li>
-        <router-link :to="{ name: 'AdminDashboard' }">Admin</router-link>
-      </li>
-      <li>
-        <router-link :to="{ name: 'UserDashboard' }">User</router-link>
-      </li>
-      <li><router-link :to="{ name: 'Home' }">Home</router-link></li>
-      <li class="cursor-pointer" @click="logOutUser">LogOut</li>
-    </ul>
     <button
       @click.prevent="logOutUser"
       class="cursor-pointer flex items-center py-4"
