@@ -103,7 +103,7 @@
                     ]"
                     aria-hidden="true"
                   />
-                  <i class="fad fa-cogs pr-4"></i>
+                  <i class="pr-4" :class="item.icon"></i>
                   {{ item.name }}
                 </router-link>
               </nav>
@@ -148,7 +148,7 @@
               ]"
             >
               <component
-                :is="item.icon"
+                :is="null"
                 :class="[
                   route.name === item.href
                     ? 'text-gray-500'
@@ -157,6 +157,8 @@
                 ]"
                 aria-hidden="true"
               />
+              <i class="pr-4" :class="item.icon"></i>
+
               {{ item.name }}
             </router-link>
           </nav>
@@ -185,19 +187,27 @@ import LogOutComponent from "../components/LogOutComponent.vue";
 import CompanyLogo from "../CompanyLogo.vue";
 
 const navigation = [
-  { name: "Dashboard", href: "AdminDashboard", icon: HomeIcon },
+  {
+    name: "Dashboard",
+    href: "AdminDashboard",
+    icon: "fad fa-tachometer-alt-fast",
+  },
   {
     name: "Users",
     href: "AllUsers",
-    icon: UsersIcon,
+    icon: "fad fa-users",
   },
   {
     name: "Destinations",
     href: "AllDestinationX",
-    icon: UsersIcon,
+    icon: "fad fa-globe-americas",
   },
-  { name: "Add Destination", href: "AddDestination", icon: FolderIcon },
-  { name: "Configuration", href: "AddDestination", icon: FolderIcon },
+  {
+    name: "Add Destination",
+    href: "AddDestination",
+    icon: "fad fa-globe-stand",
+  },
+  { name: "Configuration", href: "Configuration", icon: "fad fa-cogs" },
 ];
 
 export default {

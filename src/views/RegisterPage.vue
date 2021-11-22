@@ -68,7 +68,7 @@
               </div>
             </div>
 
-            <div>
+            <div v-if="appState.isDev">
               {{ form }}
             </div>
           </div>
@@ -156,15 +156,16 @@ import { userForm } from "../types";
 import AppLogo from "../AppLogo.vue";
 import { $axios } from "../http/http.Service";
 import LoginRegisterLogo from "./LoginRegisterLogo.vue";
+import { appState } from "../store/store";
 
 export default defineComponent({
   name: "RegisterPage",
   components: { LoginRegisterLogo, AppLogo },
   setup() {
     const form = ref<userForm>({
-      email: "her@gmail.com",
-      password: "123456789",
-      repeat_password: "123456789",
+      email: "",
+      password: appState.isDev ? "123456789" : "",
+      repeat_password: appState.isDev ? "123456789" : "",
     });
 
     function registerUser() {
@@ -177,6 +178,7 @@ export default defineComponent({
     return {
       form,
       registerUser,
+      appState,
     };
   },
 });

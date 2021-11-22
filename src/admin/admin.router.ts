@@ -3,6 +3,7 @@ import XAddAndUpdate from "./views/XAddAndUpdateDestination.vue";
 const AdminLayout = () => import("../layout/AdminLayout.vue");
 const AdminDashboard = () => import("./AdminDashboard.vue");
 const AllDestination = () => import("./views/XAllDestination.vue");
+const Configuration = () => import("./views/Configuration.vue");
 const AllUsers = () => import("./views/AllUsers.vue");
 const DealStatus = () => import("./dealsX/DealStatus.vue");
 
@@ -56,6 +57,14 @@ export default <RouteRecordRaw>{
       path: "/deal-status/:destinationId",
       name: "DestinationStatus",
       component: DealStatus,
+    },
+    {
+      path: "Configuration",
+      name: "Configuration",
+      component: Configuration,
+      meta: {
+        title: "Configuration",
+      },
     },
   ],
 };

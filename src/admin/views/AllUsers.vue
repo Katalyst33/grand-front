@@ -21,7 +21,7 @@
                     tracking-wider
                   "
                 >
-                  Name
+                  email
                 </th>
                 <th
                   scope="col"
@@ -35,7 +35,7 @@
                     tracking-wider
                   "
                 >
-                  Title
+                  Last Seen
                 </th>
                 <th
                   scope="col"
@@ -49,24 +49,7 @@
                     tracking-wider
                   "
                 >
-                  Status
-                </th>
-                <th
-                  scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-left text-xs
-                    font-medium
-                    text-gray-500
-                    uppercase
-                    tracking-wider
-                  "
-                >
-                  Role
-                </th>
-                <th scope="col" class="relative px-6 py-3">
-                  <span class="sr-only">Edit</span>
+                  joined
                 </th>
               </tr>
             </thead>
@@ -85,8 +68,16 @@
                       <div class="text-sm font-medium text-gray-900">
                         {{ item.name }}
                       </div>
-                      <div class="text-sm text-gray-500">
-                        {{ item.email }}
+                      <div class="flex text-sm text-gray-500">
+                        <h3 class="font-bold">{{ item.email }}</h3>
+                        <div class="pl-2">
+                          <template v-if="item.role === 'admin'">
+                            <i class="fad fa-user-cog text-red-500"></i>
+                          </template>
+                          <template v-if="item.role === 'staff'">
+                            <i class="fas fa-user-tie text-yellow-500"></i>
+                          </template>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -95,6 +86,7 @@
                   <div class="text-sm text-gray-900">{{ item.title }}</div>
                   <div class="text-sm text-gray-500">
                     {{ item.department }}
+                    last seen
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
@@ -112,22 +104,6 @@
                   >
                     Active
                   </span>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {{ item.role }}
-                </td>
-                <td
-                  class="
-                    px-6
-                    py-4
-                    whitespace-nowrap
-                    text-right text-sm
-                    font-medium
-                  "
-                >
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                    >Edit</a
-                  >
                 </td>
               </tr>
             </tbody>
