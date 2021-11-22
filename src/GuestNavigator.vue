@@ -31,7 +31,7 @@
             <!--          mobile menu open-->
             <PopoverButton
               class="
-                bg-yellow-600
+                bg-blue-600
                 rounded-md
                 p-2
                 inline-flex
@@ -343,7 +343,7 @@
           "
         >
           <div
-            v-if="!appState.showMobileMenu"
+            v-if="true"
             class="
               rounded-lg
               shadow-lg

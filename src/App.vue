@@ -1,5 +1,5 @@
 <template>
-  <GuestNavigator />
+  <GuestNavigationMenu />
   <HomeHeroComponent v-if="$route.name === 'Home'" />
   <ViewDestinationHero v-if="$route.name === 'ViewDestinationPage'" />
 
@@ -10,16 +10,17 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch } from "vue";
+import { computed, ref } from "vue";
 import { useWindowScroll } from "@vueuse/core";
-import { destinationStore, getAllDestinations } from "./store/destinationStore";
+import { getAllDestinations } from "./store/destinationStore";
 import ViewDestinationHero from "./layout/ViewDestinationHero.vue";
 import { useRoute } from "vue-router";
 import { useHead } from "@vueuse/head";
-import { appState } from "./store/store";
 import FooterSection from "./FooterSection.vue";
 import GuestNavigator from "./GuestNavigator.vue";
 import HomeHeroComponent from "./views/HomeHeroComponent.vue";
+import GuestNavigationMenu from "./GuestNavigationMenu.vue";
+
 const isLoaded = ref(false);
 const route = useRoute();
 const { x, y } = useWindowScroll();

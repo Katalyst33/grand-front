@@ -191,12 +191,12 @@ export default defineComponent({
   components: { LogOutComponent, Menu, MenuButton, MenuItem, MenuItems },
 
   setup() {
-    console.log(useRoute().name, "");
-    console.log(useRouter().currentRoute.value, "");
+    console.log(useRoute().name, "dd");
+    console.log(useRouter().currentRoute.value, "gdfhgjhk");
 
     const route = useRoute();
     const currentRoute = computed(() => {
-      console.log(useRoute().name, "");
+      console.log(useRoute().name, "route");
       console.log(useRouter().currentRoute.value, "");
 
       return useRoute().name;
