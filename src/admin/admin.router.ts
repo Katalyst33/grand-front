@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from "vue-router";
-import XAddAndUpdate from "./views/XAddAndUpdateDestination.vue";
+const XAddAndUpdate = () => import("./views/XAddAndUpdateDestination.vue");
 const AdminLayout = () => import("../layout/AdminLayout.vue");
 const AdminDashboard = () => import("./AdminDashboard.vue");
 const AllDestination = () => import("./views/XAllDestination.vue");

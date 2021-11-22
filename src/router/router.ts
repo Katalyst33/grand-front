@@ -10,9 +10,9 @@ const AboutPage = () => import("../views/AboutPage.vue");
 const ServicePage = () => import("../views/ServicePage.vue");
 const ViewDestinationPage = () => import("../Pages/ViewDestinationPage.vue");
 
-import DestinationsPage from "../Pages/AllDestinationsPage.vue";
-import SignupAndLogin from "../views/SingupAndLogin.vue";
-import ContactPage from "../views/ContactPage.vue";
+const DestinationsPage = () => import("../Pages/AllDestinationsPage.vue");
+const SignupAndLogin = () => import("../views/SingupAndLogin.vue");
+const ContactPage = () => import("../views/ContactPage.vue");
 import DemoPage from "../components/DemoPage.vue";
 import { appState, closeMenu } from "../store/store";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";

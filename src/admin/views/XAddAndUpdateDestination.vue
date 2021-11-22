@@ -1,7 +1,6 @@
 <template>
   <template v-if="singleDestinationStore.isLoadingDeal">
     <form>
-      {{ singleDestinationStore }}
       <h1 class="text-2xl font-regular">
         {{ singleDestinationStore.destination.title }}
       </h1>
