@@ -319,24 +319,14 @@ import { useRoute } from "vue-router";
 
 const navigation = [
   {
-    name: "Dashboard",
-    href: "AdminDashboard",
+    name: "User Dashboard",
+    href: "UserInformation",
     icon: "fad fa-tachometer-alt-fast",
   },
   {
-    name: "Users",
-    href: "AllUsers",
+    name: "Dashboard",
+    href: "UserDashboard",
     icon: "fad fa-users",
-  },
-  {
-    name: "Destinations",
-    href: "AllDestinationX",
-    icon: "fad fa-globe-americas",
-  },
-  {
-    name: "Add Destination",
-    href: "AddDestination",
-    icon: "fad fa-globe-stand",
   },
 ];
 const userNavigation = [
