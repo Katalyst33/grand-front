@@ -1,5 +1,5 @@
 <template>
-  <div class="" v-if="appState.isLoaded">
+  <div id="app" class="" v-if="appState.isLoaded">
     <div v-if="appState.isDev" class="bg-gray-900">
       <code class="text-green-400">
         {{ appState.user }} {{ appState.isDev }}</code
@@ -11,9 +11,6 @@
 
 <script lang="ts" setup>
 import { setAppState, appState } from "./store/store";
-import { getAllDestinations } from "./store/destinationStore";
-import { useRoute, useRouter } from "vue-router";
-import { computed } from "vue";
 
 setAppState();
 </script>

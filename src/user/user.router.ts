@@ -2,7 +2,7 @@ import { RouteRecordRaw } from "vue-router";
 
 const UserDashboard = () => import("./UserDashboard.vue");
 const DocumentsUpload = () => import("./DocumentsUpload.vue");
-const UserInformation = () => import("./UserInformation.vue");
+const AccountInformation = () => import("./AccountInformation.vue");
 
 export default <RouteRecordRaw>{
   path: "/user",
@@ -25,8 +25,8 @@ export default <RouteRecordRaw>{
     },
     {
       path: "user-information",
-      name: "UserInformation",
-      component: UserInformation,
+      name: "AccountInformation",
+      component: AccountInformation,
     },
   ],
 };

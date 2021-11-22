@@ -707,37 +707,76 @@
               </a>
             </div>
             <div class="mt-6">
-              <router-link
-                :to="{ name: 'Register' }"
-                class="
-                  w-full
-                  flex
-                  items-center
-                  justify-center
-                  px-4
-                  py-2
-                  border border-transparent
-                  rounded-md
-                  shadow-sm
-                  text-base
-                  font-medium
-                  text-white
-                  bg-yellow-500
-                  hover:bg-yellow-600
-                "
-              >
-                Sign up
-              </router-link>
-              <p class="mt-6 text-center text-base font-medium text-gray-500">
-                Registered User?
-                {{ " " }}
+              <template v-if="appState.user?.role">
+                <div class="flex items-center space-x-6">
+                  <template v-if="appState.user?.role !== 'user'">
+                    <router-link
+                      :to="{ name: 'AdminDashboard' }"
+                      class="
+                        ml-8
+                        inline-flex
+                        items-center
+                        justify-center
+                        px-4
+                        py-2
+                        border border-transparent
+                        rounded-md
+                        shadow-sm
+                        text-base
+                        font-medium
+                        text-white
+                        bg-red-500
+                        hover:bg-red-400
+                      "
+                    >
+                      <i class="far fa-user-circle pr-2"></i> Manager
+                    </router-link>
+                  </template>
+                  <template v-else>
+                    <router-link
+                      :to="{ name: 'UserDashboard' }"
+                      class="ml-8 btn-user-dash"
+                    >
+                      <i class="far fa-user-circle pr-2"></i> Dashboard
+                    </router-link>
+                  </template>
+                  <LogOutComponent />
+                </div>
+              </template>
+
+              <div v-else>
                 <router-link
-                  :to="{ name: 'Login' }"
-                  class="text-yellow-600 hover:text-yellow-500"
+                  :to="{ name: 'Register' }"
+                  class="
+                    w-full
+                    flex
+                    items-center
+                    justify-center
+                    px-4
+                    py-2
+                    border border-transparent
+                    rounded-md
+                    shadow-sm
+                    text-base
+                    font-medium
+                    text-white
+                    bg-yellow-500
+                    hover:bg-yellow-600
+                  "
                 >
-                  Sign in
+                  Sign up
                 </router-link>
-              </p>
+                <p class="mt-6 text-center text-base font-medium text-gray-500">
+                  Registered User?
+                  {{ " " }}
+                  <router-link
+                    :to="{ name: 'Login' }"
+                    class="text-yellow-600 hover:text-yellow-500"
+                  >
+                    Sign in
+                  </router-link>
+                </p>
+              </div>
             </div>
           </div>
         </div>

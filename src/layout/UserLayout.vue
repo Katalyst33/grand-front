@@ -119,7 +119,7 @@
     <!-- Static sidebar for desktop -->
 
     <div class="md:pl-64 flex flex-col flex-1">
-      <div class="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white shadow">
+      <div class="sticky top-0 z-10 flex-shrink-0 flex h-16 shadow bg-white">
         <button
           type="button"
           class="
@@ -229,7 +229,9 @@
         </div>
       </div>
 
-      <router-view class="h-screen my-auto"></router-view>
+      <router-view
+        class="h-screen my-auto container mx-auto px-10"
+      ></router-view>
     </div>
   </div>
 </template>
@@ -255,7 +257,7 @@ import UserSideBar from "./UserSideBar.vue";
 const navigation = [
   {
     name: "Account",
-    href: "UserInformation",
+    href: "AccountInformation",
     icon: "fad fa-tachometer-alt-fast",
   },
 

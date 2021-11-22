@@ -43,76 +43,78 @@ function uploadDocuments() {
 </script>
 
 <template>
-  <h3>Document Uploader !!</h3>
+  <div class="bg-yellow-50">
+    <h3>Document Uploader !!</h3>
 
-  <div class="flex items-center gap-x-10">
-    <div
-      ref="uploaderArea"
-      style="width: 200px; height: 200px"
-      class="bg-red-500 rounded-md relative"
-    >
-      <a @click.prevent="changeImage" href="#" class="mx-auto">
-        <img v-if="!url" :src="`${appUrl}/uploads/app-logo.png`" />
-        <img v-else :src="url" />
-        <div
-          class="
-            absolute
-            bottom-0
-            py-2
-            w-full
-            text-center text-white
-            bg-gray-700
-            rounded-b-md
-            opacity-50
-          "
-        >
-          Click to Upload
-        </div>
-      </a>
-      <input
-        hidden
-        ref="imageInput"
-        type="file"
-        accept="image/*"
-        formenctype="multipart/form-data"
-        @change.prevent="onFileChange"
-      />
-    </div>
-
-    <div>
-      <button
-        @click.prevent="uploadDocuments"
-        class="bg-gray-600 text-white p-2 rounded-md"
-      >
-        upload
-      </button>
-    </div>
-  </div>
-
-  <form action="/multiple_upload" enctype="multipart/form-data" method="POST">
-    <div>
-      <label> Select images: <br /></label>
-      <input type="file" accept="image/*" name="images" multiple />
-    </div>
-    <button
-      type="submit"
-      class="bg-red-500 p-2 cursor-pointer rounded mt-10"
-      @click.prevent="uploadDocuments"
-    >
-      Upload Documents
-    </button>
-  </form>
-
-  <div>
-    <div>
+    <div class="flex items-center gap-x-10">
       <div
-        v-for="(image, index) in profileStore.profileData.images"
-        :key="index"
+        ref="uploaderArea"
+        style="width: 200px; height: 200px"
+        class="bg-red-500 rounded-md relative"
       >
-        {{ image }}
+        <a @click.prevent="changeImage" href="#" class="mx-auto">
+          <img v-if="!url" :src="`${appUrl}/uploads/app-logo.png`" />
+          <img v-else :src="url" />
+          <div
+            class="
+              absolute
+              bottom-0
+              py-2
+              w-full
+              text-center text-white
+              bg-gray-700
+              rounded-b-md
+              opacity-50
+            "
+          >
+            Click to Upload
+          </div>
+        </a>
+        <input
+          hidden
+          ref="imageInput"
+          type="file"
+          accept="image/*"
+          formenctype="multipart/form-data"
+          @change.prevent="onFileChange"
+        />
+      </div>
 
-        <div class="">
-          <img style="width: 100px" :src="`${appUrl}/uploads/${image}`" />
+      <div>
+        <button
+          @click.prevent="uploadDocuments"
+          class="bg-gray-600 text-white p-2 rounded-md"
+        >
+          upload
+        </button>
+      </div>
+    </div>
+
+    <form action="/multiple_upload" enctype="multipart/form-data" method="POST">
+      <div>
+        <label> Select images: <br /></label>
+        <input type="file" accept="image/*" name="images" multiple />
+      </div>
+      <button
+        type="submit"
+        class="bg-red-500 p-2 cursor-pointer rounded mt-10"
+        @click.prevent="uploadDocuments"
+      >
+        Upload Documents
+      </button>
+    </form>
+
+    <div>
+      <div>
+        <div
+          v-for="(image, index) in profileStore.profileData.images"
+          :key="index"
+        >
+          {{ image }}
+
+          <div class="">
+            <img style="width: 100px" :src="`${appUrl}/uploads/${image}`" />
+          </div>
         </div>
       </div>
     </div>

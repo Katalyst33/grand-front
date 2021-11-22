@@ -162,7 +162,7 @@ import { appState } from "../store/store";
         <div class="py-6">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
             <div>
-              <h1 class="text-xl pl-10 pb-2 text-gray-500"></h1>
+              <h1 class="text-xl pl-10 pb-2 text-gray-500">current page</h1>
             </div>
 
             <router-view class="h-screen my-auto"></router-view>
