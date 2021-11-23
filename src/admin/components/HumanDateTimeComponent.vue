@@ -16,6 +16,6 @@ const props = {
 });*/
 
 function formattedDate(rawTime: Date) {
-  return moment(rawTime).format("MMM Do YY");
+  return moment(rawTime).format("dddd Do MMMM   YYYY");
 }
 </script>

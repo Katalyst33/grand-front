@@ -185,15 +185,15 @@
                 class="text-white pl-2 text-sm font-medium block"
                 ><i class="fad fa-cogs pr-3"></i>Configuration
               </router-link>
-              <button
-                @click.prevent="logOutUser"
-                class="flex items-center pl-2 text-sm font-medium block"
-              >
-                <i class="fad fa-power-off text-lg text-red-500 pr-2"></i>
-
-                <span class="text-white"> Log Out </span>
-              </button>
             </div>
+            <button
+              @click.prevent="logOutUser"
+              class="flex items-center pl-2 pt-2 text-sm font-medium block"
+            >
+              <i class="fad fa-power-off text-lg text-red-500 pr-2"></i>
+
+              <span class="text-white"> Log Out </span>
+            </button>
           </nav>
 
           <nav>

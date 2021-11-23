@@ -41,7 +41,12 @@
             {{ item.name }}
           </router-link>
         </nav>
-        <nav class="flex justify-center bg-gray-800 py-2">
+        <nav
+          v-if="
+            appState.user.role === 'admin' || appState.user.role === 'staff'
+          "
+          class="flex justify-center bg-gray-800 py-2"
+        >
           <router-link :to="{ name: 'AdminDashboard' }"
             ><span class="text-center text-red-500 py-2"
               >Manager</span

@@ -5,15 +5,15 @@
       <div
         v-if="!isSelecting"
         @click="isSelecting = true"
-        class="flex justify-between hover:bg-yellow-50 cursor-pointer"
+        class="hover:bg-yellow-50 cursor-pointer space-y-2"
       >
         <div>
-          <p class="text-sm">Start:</p>
+          <p class="font-medium">Start:</p>
 
           <HumanDateTimeComponent :rawTime="props.destination.duration.start" />
         </div>
         <div>
-          <p class="text-sm">End:</p>
+          <p class="font-medium">End:</p>
 
           <HumanDateTimeComponent :rawTime="props.destination.duration.end" />
         </div>
@@ -28,8 +28,11 @@
       <div v-if="isSelecting">
         <DatePicker
           v-model="props.destination.duration"
-          is-range
+          :is-range="true"
           destination=""
+          :popover="{
+            placement: right,
+          }"
         />
       </div>
     </div>

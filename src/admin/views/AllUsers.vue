@@ -75,7 +75,7 @@
                             <i class="fad fa-user-cog text-red-500"></i>
                           </template>
                           <template v-if="item.role === 'staff'">
-                            <i class="fas fa-user-tie text-yellow-500"></i>
+                            <i class="fas fa-user-tie"></i>
                           </template>
                         </div>
                       </div>

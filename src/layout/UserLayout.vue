@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="appU" class="bg-yellow-50">
     <TransitionRoot as="template" :show="appState.sidebarOpen">
       <Dialog
         as="div"
@@ -82,7 +82,7 @@
                     route.name === item.href
                       ? 'bg-gray-100 text-gray-900'
                       : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                    'group flex items-center px-2 py-2 text-base font-medium rounded-md',
+                    'group flex items-center px-2 py-2 text-base  rounded-md',
                   ]"
                 >
                   <component
@@ -101,8 +101,21 @@
                 </router-link>
               </nav>
             </div>
+            <nav
+              class="flex justify-center bg-gray-800 py-2 -mb-4"
+              v-if="
+                appState.user.role === 'admin' || appState.user.role === 'staff'
+              "
+            >
+              <router-link :to="{ name: 'AdminDashboard' }"
+                ><span class="text-center text-red-500 py-2"
+                  >Manager</span
+                ></router-link
+              >
+            </nav>
           </div>
         </TransitionChild>
+
         <div class="flex-shrink-0 w-14" aria-hidden="true">
           <!-- Dummy element to force sidebar to shrink to fit close icon -->
         </div>
@@ -230,7 +243,7 @@
       </div>
 
       <router-view
-        class="h-screen my-auto container mx-auto px-10"
+        class="h-screen my-auto container mx-auto px-10 pt-4"
       ></router-view>
     </div>
   </div>
@@ -258,13 +271,19 @@ const navigation = [
   {
     name: "Account",
     href: "AccountInformation",
-    icon: "fad fa-tachometer-alt-fast",
+    icon: "fad fa-sitemap",
   },
 
   {
     name: "Documents",
     href: "DocumentsUpload",
-    icon: "fad fa-users",
+    icon: "fad fa-folders",
+  },
+
+  {
+    name: "My Destinations",
+    href: "MyDestinations",
+    icon: "fad fa-globe-asia",
   },
 ];
 const userNavigation = [
@@ -302,3 +321,12 @@ export default {
   },
 };
 </script>
+
+<style>
+#appU {
+  @apply bg-yellow-50;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+</style>
