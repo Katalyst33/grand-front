@@ -238,11 +238,6 @@ const navigation = [
     href: "AllDestinationX",
     icon: "fad fa-globe-americas",
   },
-  {
-    name: "Add Destination",
-    href: "AddDestination",
-    icon: "fad fa-globe-stand",
-  },
 ];
 
 export default {

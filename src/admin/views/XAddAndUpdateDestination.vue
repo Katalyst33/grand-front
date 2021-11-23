@@ -1,110 +1,125 @@
 <template>
-  <template v-if="singleDestinationStore.isLoadingDeal">
-
-
-
-    <form>
-      <h1 class="text-2xl font-regular">
-        {{ singleDestinationStore.destination.title }}
-      </h1>
-      <div class="grid lg:grid-cols-3">
-        <div class="lg:col-span-2 mb-4 lg:mx-4">
-          <div class="tileTab">
-            <div>
-              <label class="form-label">Title:</label>
-              <div class="mt-1">
-                <input
-                  v-model="singleDestinationStore.destination.title"
-                  class="form-input"
-                  type="text"
-                />
-              </div>
-            </div>
-            <div>
-              <label class="form-label">Description:</label>
-              <div class="mt-1">
-                <textarea
-                  v-model="singleDestinationStore.destination.description"
-                  class="form-input"
-                  :rows="7"
-                ></textarea>
-              </div>
-            </div>
-            <div>
-              <label class="form-label">Activity:</label>
-              <div class="mt-1">
-                <input
-                  v-model="singleDestinationStore.destination.activity"
-                  class="form-input"
-                  type="text"
-                />
-              </div>
-            </div>
-            <div>
-              <label class="form-label">Included:</label>
-              <div class="mt-1">
-                <textarea
-                  v-model="singleDestinationStore.destination.included"
-                  class="form-input"
-                  rows="7"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="tileTab">
-            <CountryLocatorSelector
-              :destination="singleDestinationStore.destination"
-            />
-
-            <div class="">
+  <div class="h-screen">
+    <DestinationLinks />
+    <template v-if="singleDestinationStore.isLoadingDeal">
+      <form>
+        <div class="grid lg:grid-cols-3">
+          <div class="lg:col-span-2 mb-4 lg:mx-4">
+            <div class="tileTab">
               <div>
-                <DealTimePickerComponent
-                  :destination="singleDestinationStore.destination"
-                />
-                <p class="text-sm">Click to edit date</p>
-              </div>
-              <div class="border-b py-4">
-                <label class="form-label">Price:</label>
+                <label class="form-label">Title:</label>
                 <div class="mt-1">
                   <input
-                    v-model="singleDestinationStore.destination.price"
+                    v-model="singleDestinationStore.destination.title"
                     class="form-input"
-                    type="number"
+                    type="text"
                   />
                 </div>
               </div>
-
-              <div class="border-b">
-                <label class="form-label">Promoted:</label>
-                <PromotedToggleComponent
-                  :destination="singleDestinationStore.destination"
-                />
+              <div>
+                <label class="form-label">Description:</label>
+                <div class="mt-1">
+                  <textarea
+                    v-model="singleDestinationStore.destination.description"
+                    class="form-input"
+                    :rows="7"
+                  ></textarea>
+                </div>
               </div>
+              <div>
+                <label class="form-label">Activity:</label>
+                <div class="mt-1">
+                  <input
+                    v-model="singleDestinationStore.destination.activity"
+                    class="form-input"
+                    type="text"
+                  />
+                </div>
+              </div>
+              <div>
+                <label class="form-label">Included:</label>
+                <div class="mt-1">
+                  <textarea
+                    v-model="singleDestinationStore.destination.included"
+                    class="form-input"
+                    rows="7"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="tileTab">
+              <CountryLocatorSelector
+                :destination="singleDestinationStore.destination"
+              />
 
-              <button
-                @click.prevent="updateDestination"
-                class="bg-red-500 p-2 rounded-md mt-10"
-              >
-                Update
-              </button>
-              <button
-                @click.prevent="createDestination"
-                class="bg-red-500 p-2 rounded-md mt-10"
-              >
-                Create Destination
-              </button>
+              <div class="">
+                <div>
+                  <DealTimePickerComponent
+                    :destination="singleDestinationStore.destination"
+                  />
+                  <p class="text-sm">Click to edit date</p>
+                </div>
+                <div class="border-b py-4">
+                  <label class="form-label">Price:</label>
+                  <div class="mt-1">
+                    <input
+                      v-model="singleDestinationStore.destination.price"
+                      class="form-input"
+                      type="number"
+                    />
+                  </div>
+                </div>
+
+                <div class="border-b">
+                  <label class="form-label">Promoted:</label>
+                  <PromotedToggleComponent
+                    :destination="singleDestinationStore.destination"
+                  />
+                </div>
+
+                <button
+                  v-if="$route.name === 'AddDestination'"
+                  @click.prevent="createDestination"
+                  class="
+                    bg-yellow-600
+                    hover:bg-yellow-500
+                    w-full
+                    tracking-widest
+                    p-2
+                    rounded-md
+                    mt-10
+                  "
+                >
+                  Create Destination
+                </button>
+                <button
+                  v-else
+                  @click.prevent="updateDestination"
+                  class="
+                    bg-yellow-600
+                    hover:bg-yellow-500
+                    w-full
+                    tracking-widest
+                    p-2
+                    rounded-md
+                    mt-10
+                  "
+                >
+                  Update
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </form>
-  </template>
+      </form>
+    </template>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 import { $axios } from "../../http/http.Service";
 import { useRoute, useRouter } from "vue-router";
 import { DestinationType } from "../../types";
@@ -113,32 +128,30 @@ import PromotedToggleComponent from "../components/PromotedToggleComponent.vue";
 import CountryLocatorSelector from "../components/CountryLocatorSelector.vue";
 import {
   clearStore,
-  getOneDestination,
   getOneDestinationX,
-  localStore,
   singleDestinationStore,
 } from "../../store/destinationStore";
+import DestinationLinks from "./DestinationLinks.vue";
 
 const destination = ref(<DestinationType>{});
 
 const isLoaded = ref(false),
-  route = useRoute();
+  route = useRoute(),
+  router = useRouter();
 
 destination.value = {} as DestinationType;
 
-onMounted(() => {
-  if (route.name === "UpdateDestination") {
-    // getOneDestination();
-    getOneDestinationX();
+if (route.name === "UpdateDestination") {
+  // getOneDestination();
+  getOneDestinationX();
 
-    console.log(singleDestinationStore.destination, "xxx");
-  } else {
-    console.log("clear destination");
-    clearStore();
-    isLoaded.value = true;
-    // window.location.href = "/add-destination/";
-  }
-});
+  console.log(singleDestinationStore.destination, "xxx");
+} else {
+  console.log("clear destination");
+  clearStore();
+  isLoaded.value = true;
+  // window.location.href = "/add-destination/";
+}
 
 if (route.name === "AddDestination") {
   clearStore();
@@ -155,7 +168,7 @@ function updateDestination() {
 
 function createDestination() {
   $axios
-    .post(`manager/deals/`, singleDestinationStore.destination)
+    .post(`manager/destination/`, singleDestinationStore.destination)
     .then((r) => console.log(r))
     .catch((e) => e);
 }

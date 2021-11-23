@@ -1,22 +1,7 @@
 <template>
   <div class="h-full h-screen">
     <div>
-      <section>
-        <ul class="flex space-x-4">
-          <li>
-            <router-link :to="{ name: 'AllDestinationX' }"
-              >All Destination</router-link
-            >
-          </li>
-          <li>
-            <router-link :to="{ name: 'AddDestination' }"
-              >Create Destination</router-link
-            >
-          </li>
-        </ul>
-
-        <button @click="clearStore" class="bg-red-500 px-4">Clear</button>
-      </section>
+      <DestinationLinks />
     </div>
     <div class="flex flex-col">
       <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -195,6 +180,7 @@ import { $axios } from "../../http/http.Service";
 import HumanDateTimeComponent from "../components/HumanDateTimeComponent.vue";
 import DestinationLayout from "../dealsX/DestinationLayout.vue";
 import { clearStore } from "../../store/destinationStore";
+import DestinationLinks from "./DestinationLinks.vue";
 
 const allDestinations = ref<any>([]);
 

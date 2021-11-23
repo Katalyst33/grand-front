@@ -19,8 +19,8 @@
           cursor-default
           focus:outline-none
           focus:ring-1
-          focus:ring-indigo-500
-          focus:border-indigo-500
+          focus:ring-yellow-500
+          focus:border-yellow-500
           sm:text-sm
         "
       >
@@ -83,7 +83,7 @@
             <li
               @click="selectCountry(country)"
               :class="[
-                active ? 'text-white bg-indigo-600' : 'text-gray-900',
+                active ? 'text-white bg-yellow-600' : 'text-gray-900',
                 'cursor-default select-none relative py-2 pl-3 pr-9',
               ]"
             >
@@ -106,7 +106,7 @@
               <span
                 v-if="selected"
                 :class="[
-                  active ? 'text-white' : 'text-indigo-600',
+                  active ? 'text-white' : 'text-yellow-600',
                   'absolute inset-y-0 right-0 flex items-center pr-4',
                 ]"
               >
