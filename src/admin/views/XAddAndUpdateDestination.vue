@@ -54,7 +54,7 @@
                 :destination="singleDestinationStore.destination"
               />
 
-              <div class="">
+              <div class="pt-4">
                 <div>
                   <DealTimePickerComponent
                     :destination="singleDestinationStore.destination"
