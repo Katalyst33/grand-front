@@ -141,8 +141,8 @@ watch(page, () => {
                 >
                   <img
                     class="flex-shrink-0 h-6 w-6 rounded-name"
-                    :src="`/country_flags/${destination.country.code}.svg`"
-                    alt="countryflag"
+                    :src="`/country_flags/${destination.country.code.toLowerCase()}.svg`"
+                    alt="flag"
                   />
 
                   <p>{{ destination.country.name }}</p>
