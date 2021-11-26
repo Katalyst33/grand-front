@@ -13,7 +13,7 @@ export type axiosResponse = {
 };
 
 export type loggedUser = {
-  email: string;
+  email: string | null;
   role: string;
   reference: string;
 };
@@ -29,7 +29,7 @@ export type appInfo = {
 
 export type appStateTypes = {
   data: appInfo;
-  user: loggedUser;
+  user: loggedUser | null;
   showMobileMenu: boolean;
   isDev: boolean;
   isLoaded: boolean;
