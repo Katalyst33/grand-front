@@ -1,14 +1,16 @@
 <template>
-  <GuestNavigationMenu />
+  <div class="bg-yellow-50">
+    <GuestNavigationMenu />
 
-  <BannerSlider v-if="$route.name === 'Home'" />
+    <BannerSlider v-if="$route.name === 'Home'" />
 
-  <ViewDestinationHero v-if="$route.name === 'ViewDestinationPage'" />
+    <ViewDestinationHero v-if="$route.name === 'ViewDestinationPage'" />
 
-  <div class="container mx-auto">
-    <router-view />
+    <div class="container mx-auto">
+      <router-view />
+    </div>
+    <FooterSection />
   </div>
-  <FooterSection />
 </template>
 
 <script lang="ts" setup>

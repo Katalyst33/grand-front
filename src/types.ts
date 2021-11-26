@@ -27,6 +27,15 @@ export type appInfo = {
   };
 };
 
+export type appStateTypes = {
+  data: appInfo;
+  user: loggedUser;
+  showMobileMenu: boolean;
+  isDev: boolean;
+  isLoaded: boolean;
+  sidebarOpen: boolean;
+};
+
 export type DestinationType = {
   activity: string;
   country: {

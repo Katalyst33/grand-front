@@ -1,19 +1,19 @@
 import { reactive, readonly } from "vue";
 import BrowserStorage from "@trapcode/browser-storage";
 import { $axios } from "../http/http.Service";
-import { appInfo, loggedUser } from "../types";
+import { appInfo, appStateTypes, loggedUser } from "../types";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
 import router from "../router/router";
 const BrowserStore = vueLocalStorage();
 
 export const appState = reactive({
-  data: {} as appInfo,
-  user: {} as loggedUser,
+  data: {},
+  user: {},
   showMobileMenu: true,
   isDev: import.meta.env.DEV,
   isLoaded: false,
   sidebarOpen: true,
-});
+}) as appStateTypes;
 
 const SET_AUTH_USER = (user: loggedUser) => {
   appState.user = user;

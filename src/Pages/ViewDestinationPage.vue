@@ -47,7 +47,7 @@ function addToCart(destination: any) {
                 Add to Cart
               </button>
 
-              <div v-if="appState.user.email" class="p-4">
+              <div v-if="appState?.user.email" class="p-4">
                 <button
                   @click="addToWishlist(singleDestinationStore.destination)"
                   class="bg-red-400 py-2 px-2 rounded-md"

@@ -30,9 +30,6 @@
           v-model="props.destination.duration"
           :is-range="true"
           destination=""
-          :popover="{
-            placement: right,
-          }"
         />
       </div>
     </div>

@@ -16,6 +16,7 @@ import { appState } from "../store/store";
 import { computed, ref, watch } from "vue";
 import Paginator from "../components/paginator/Paginator.vue";
 const router = useRouter();
+
 const route = useRoute();
 
 function toViewDestination(destination: DestinationType) {

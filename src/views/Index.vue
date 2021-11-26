@@ -3,8 +3,8 @@
     <div class="container mx-auto px-2">
       <ServiceCards />
 
-      <CurrentDealSlide />
-
+      <CurrentDealSlide v-if="false" />
+      <SliderComponent />
       <div></div>
     </div>
   </div>
@@ -17,4 +17,5 @@ import {
   getAllDestinations,
 } from "../store/destinationStore";
 import CurrentDealSlide from "./CurrentDealSlide.vue";
+import SliderComponent from "../components/SliderComponent.vue";
 </script>

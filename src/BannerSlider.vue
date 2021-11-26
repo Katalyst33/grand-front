@@ -27,7 +27,7 @@
                   lg:text-6xl
                 "
               >
-                <span class="block text-white text-7xl big-font">{{
+                <span class="block text-white lg:text-7xl big-font">{{
                   destination.title
                 }}</span>
               </h1>
