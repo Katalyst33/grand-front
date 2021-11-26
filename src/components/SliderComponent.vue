@@ -83,7 +83,7 @@ function toViewDestination(destination: DestinationType) {
         >
           <div class="relative flex-shrink-0">
             <button
-              v-if="appState.user.role === 'staff'"
+              v-if="appState?.user.role === 'staff'"
               @click="toViewDestination(destination)"
               class="bg-red-500 p-4 absolute top-0 opacity-50"
             >

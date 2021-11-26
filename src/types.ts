@@ -29,7 +29,7 @@ export type appInfo = {
 
 export type appStateTypes = {
   data: appInfo;
-  user: loggedUser | null;
+  user: loggedUser;
   showMobileMenu: boolean;
   isDev: boolean;
   isLoaded: boolean;

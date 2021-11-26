@@ -5,14 +5,11 @@ import {
   getOneDestination,
   singleDestinationStore,
 } from "../store/destinationStore";
-import ViewDealHero from "../layout/ViewDestinationHero.vue";
 import ViewDestinationHero from "../layout/ViewDestinationHero.vue";
 import { appState } from "../store/store";
 
 const isLoaded = ref(false);
 getOneDestination();
-
-console.log(singleDestinationStore.destination);
 
 function addToWishlist(destination: any) {
   console.log(destination, "wish");
@@ -71,4 +68,12 @@ function addToCart(destination: any) {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+#hero {
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+</style>

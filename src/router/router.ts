@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 const BrowserStore = vueLocalStorage();
 
-import IndexPage from "../views/Index.vue";
-
 import AdminRoutes from "../admin/admin.router";
 import UserRoutes from "../user/user.router";
+
+const IndexPage = () => import("../views/Index.vue");
 
 const AboutPage = () => import("../views/AboutPage.vue");
 const ServicePage = () => import("../views/ServicePage.vue");
@@ -19,7 +19,6 @@ import { vueLocalStorage } from "@trapcode/browser-storage/vue";
 
 const appName = import.meta.env.VITE_COMPANY_NAME;
 
-// const componentName = () => import("./componentName.vue");
 const NotFound = () => import("../views/NotFound.vue");
 
 const router = createRouter({

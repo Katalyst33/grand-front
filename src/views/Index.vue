@@ -4,7 +4,7 @@
       <ServiceCards />
 
       <CurrentDealSlide v-if="false" />
-      <SliderComponent />
+      <SliderComponent v-if="false" />
       <div></div>
     </div>
   </div>
