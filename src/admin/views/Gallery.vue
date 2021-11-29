@@ -14,7 +14,6 @@
           <h2 class="text-2xl pb-1">Gallery</h2>
           <hr class="mb-5" />
           <div class="text-center">
-
             <input
               ref="imageUploader"
               type="file"
@@ -22,7 +21,10 @@
               name="images"
               multiple
             />
-            <button class="bg-gray-700 text-white py-1 px-4 rounded-md">
+            <button
+              @click.prevent="uploadImage"
+              class="bg-gray-700 text-white py-1 px-4 rounded-md"
+            >
               <i class="far fa-cloud-upload-alt mr-1"></i> Upload
             </button>
           </div>
@@ -49,7 +51,7 @@ import { onMounted, ref } from "vue";
 import Modal from "../../components/Modal.vue";
 import { $axios } from "../../http/http.Service";
 
-const imageUploader = ref();
+const imageUploader = ref<HTMLInputElement>();
 const modalOpen = ref(true);
 const galleryImages = ref([]);
 
@@ -60,7 +62,8 @@ function toggleModal() {
 onMounted(getImages);
 
 function getImages() {
-  $axios
+  return $axios
+
     .get("/manager/destination/gallery")
     .then((res) => {
       console.log(res.data);
@@ -71,5 +74,24 @@ function getImages() {
     .catch((err) => {
       console.log(err);
     });
+}
+
+function uploadImage() {
+  const image = imageUploader.value?.files;
+  if (!image || (image && !image.length)) return;
+
+  const formData = new FormData();
+  formData.append("images", image[0]);
+
+  $axios
+    .post("/manager/destination-image", formData)
+    .then((res) => {
+      console.log(res);
+    })
+    .then(getImages)
+    .catch((err) => {
+      console.log(err);
+    });
+  console.log(formData, "upload??");
 }
 </script>
