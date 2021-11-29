@@ -324,9 +324,9 @@ export default {
 
 <style>
 #appU {
-  @apply bg-yellow-50;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  @apply bg-yellow-50;
 }
 </style>

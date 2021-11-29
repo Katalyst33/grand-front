@@ -7,8 +7,6 @@
       <div class="tab">Users</div>
       <div class="tab">Files</div>
     </div>
-
-    <h3 class="text-red-500 text-2xl p-4">Admin Dashboard</h3>
   </div>
 </template>
 

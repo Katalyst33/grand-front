@@ -3,7 +3,7 @@
     <ListboxLabel class="block text-sm font-medium text-gray-700">
       Assigned to
     </ListboxLabel>
-    <div class="mt-1 relative">
+    <div class="mt-1 relative cursor-pointer">
       <ListboxButton
         class="
           relative
@@ -16,7 +16,7 @@
           pr-10
           py-2
           text-left
-          cursor-default
+          cursor-pointer
           focus:outline-none
           focus:ring-1
           focus:ring-yellow-500
@@ -71,6 +71,7 @@
             overflow-auto
             focus:outline-none
             sm:text-sm
+            cursor-pointer
           "
         >
           <ListboxOption
@@ -83,8 +84,10 @@
             <li
               @click="selectCountry(country)"
               :class="[
-                active ? 'text-white bg-yellow-600' : 'text-gray-900',
-                'cursor-default select-none relative py-2 pl-3 pr-9',
+                active
+                  ? 'text-white bg-yellow-500 cursor-pointer'
+                  : 'text-gray-900 cursor-pointer',
+                'cursor-pointer select-none relative py-2 pl-3 pr-9',
               ]"
             >
               <div class="flex items-center">

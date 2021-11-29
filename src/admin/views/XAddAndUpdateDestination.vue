@@ -5,7 +5,7 @@
       <form>
         <div class="grid lg:grid-cols-3">
           <div class="lg:col-span-2 mb-4 lg:mx-4">
-            <div class="tileTab">
+            <div class="tileTab space-y-4 py-4">
               <div>
                 <label class="form-label">Title:</label>
                 <div class="mt-1">
@@ -18,13 +18,17 @@
               </div>
               <div>
                 <label class="form-label">Description:</label>
-                <div class="mt-1">
-                  <textarea
-                    v-model="singleDestinationStore.destination.description"
-                    class="form-input"
-                    :rows="7"
-                  ></textarea>
-                </div>
+
+                <Editor
+                  :api-key="tiny.apiKey"
+                  :init="{
+                    height: 500,
+                    menubar: false,
+                    plugins: tiny.editorPlugins,
+                    toolbar: tiny.editorToolbar,
+                  }"
+                  v-model="singleDestinationStore.destination.description"
+                />
               </div>
               <div>
                 <label class="form-label">Activity:</label>
@@ -39,10 +43,15 @@
               <div>
                 <label class="form-label">Included:</label>
                 <div class="mt-1">
-                  <textarea
+                  <Editor
+                    :api-key="tiny.apiKey"
+                    :init="{
+                      height: 400,
+                      menubar: false,
+                      plugins: tiny.editorPlugins,
+                      toolbar: tiny.editorToolbar,
+                    }"
                     v-model="singleDestinationStore.destination.included"
-                    class="form-input"
-                    rows="7"
                   />
                 </div>
               </div>
@@ -77,6 +86,10 @@
                   <PromotedToggleComponent
                     :destination="singleDestinationStore.destination"
                   />
+                </div>
+
+                <div>
+                  <Gallery />
                 </div>
 
                 <button
@@ -126,12 +139,29 @@ import { DestinationType } from "../../types";
 import DealTimePickerComponent from "../components/DealTimePickerComponent.vue";
 import PromotedToggleComponent from "../components/PromotedToggleComponent.vue";
 import CountryLocatorSelector from "../components/CountryLocatorSelector.vue";
+import Editor from "@tinymce/tinymce-vue";
+
 import {
   clearStore,
   getOneDestinationX,
   singleDestinationStore,
 } from "../../store/destinationStore";
 import DestinationLinks from "./DestinationLinks.vue";
+import Gallery from "./Gallery.vue";
+
+const tiny = {
+  apiKey: import.meta.env.VITE_TINY_KEY,
+  editorPlugins: [
+    "advlist autolink lists link image charmap print preview anchor",
+    "searchreplace visualblocks code fullscreen",
+    "insertdatetime media table paste code help wordcount",
+  ],
+  editorToolbar: [
+    "undo redo | formatselect | bold italic backcolor | \
+             alignleft aligncenter alignright alignjustify | \
+             bullist numlist outdent indent | removeformat | help |code",
+  ],
+};
 
 const destination = ref(<DestinationType>{});
 
@@ -144,10 +174,7 @@ destination.value = {} as DestinationType;
 if (route.name === "UpdateDestination") {
   // getOneDestination();
   getOneDestinationX();
-
-  console.log(singleDestinationStore.destination, "xxx");
 } else {
-  console.log("clear destination");
   clearStore();
   isLoaded.value = true;
   // window.location.href = "/add-destination/";

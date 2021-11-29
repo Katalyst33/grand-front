@@ -119,8 +119,6 @@
                       </router-link>
                     </div>
                     <div class="text-sm text-gray-500">
-                      {{ trimString(destination.description) }}...
-                      <br />
                       <div class="flex space-x-2">
                         <HumanDateTimeComponent
                           :raw-time="destination.duration.start"

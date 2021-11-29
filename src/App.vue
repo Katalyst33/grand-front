@@ -24,7 +24,6 @@ import FooterSection from "./FooterSection.vue";
 import HomeHeroComponent from "./views/HomeHeroComponent.vue";
 import GuestNavigationMenu from "./layout/GuestNavigationMenu.vue";
 import BannerSlider from "./BannerSlider.vue";
-
 const isLoaded = ref(false);
 const route = useRoute();
 const { x, y } = useWindowScroll();

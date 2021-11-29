@@ -167,7 +167,7 @@
                       </div>
                     </a>
                   </div>
-                  <div class="bg-gray-50">
+                  <div class="bg-yellow-50">
                     <div
                       class="
                         max-w-7xl
@@ -256,8 +256,8 @@
                   "
                 >
                   <div class="absolute inset-0 flex">
-                    <div class="bg-white w-1/2" />
-                    <div class="bg-gray-50 w-1/2" />
+                    <div class="bg-yellow-50 w-1/2" />
+                    <div class="bg-yellow-50 w-1/2" />
                   </div>
                   <div
                     class="
@@ -309,7 +309,7 @@
                                 text-base
                                 font-medium
                                 text-gray-900
-                                hover:bg-gray-50
+                                hover:bg-yellow-100
                               "
                             >
                               <component
@@ -351,7 +351,7 @@
                                 text-base
                                 font-medium
                                 text-gray-900
-                                hover:bg-gray-50
+                                hover:bg-yellow-100
                               "
                             >
                               <component
