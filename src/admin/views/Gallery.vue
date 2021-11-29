@@ -35,7 +35,10 @@
 
               <div class="grid grid-cols-3 gap-2">
                 <div v-for="(image, index) in galleryImages">
-                  <img class="border border-2 h-full" :src="image.path" />
+                  <img
+                    class="border border-2 h-full"
+                    :src="image.crop['500']"
+                  />
                 </div>
               </div>
             </div>
