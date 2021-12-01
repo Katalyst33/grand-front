@@ -90,7 +90,7 @@ import { getOneDestinationX } from "../../store/destinationStore";
 const imageUploader = ref<HTMLInputElement>();
 const modalOpen = ref(false);
 const galleryImages = ref([]);
-const selectedImages = ref([]);
+const selectedImages = ref<string[]>([]);
 function toggleModal() {
   modalOpen.value = !modalOpen.value;
 }
