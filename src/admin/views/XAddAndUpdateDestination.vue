@@ -89,7 +89,17 @@
                 </div>
 
                 <div>
-                  <Gallery />
+                  <button
+                    class="bg-gray-700 p-2 text-white my-4 rounded-md"
+                    @click.prevent="toggleModal"
+                  >
+                    Open Gallery
+                  </button>
+                  <div v-if="modalOpen">
+                    <Modal @closeModal="toggleModal" max-size="max-w-5xl">
+                      <GalleryComponent />
+                    </Modal>
+                  </div>
 
                   <DealSelectedImages />
                 </div>
@@ -151,6 +161,8 @@ import {
 import DestinationLinks from "./DestinationLinks.vue";
 import Gallery from "./Gallery.vue";
 import DealSelectedImages from "./DealSelectedImages.vue";
+import Modal from "../../components/Modal.vue";
+import GalleryComponent from "../components/GalleryComponent.vue";
 
 const tiny = {
   apiKey: import.meta.env.VITE_TINY_KEY,
@@ -171,6 +183,8 @@ const destination = ref(<DestinationType>{});
 const isLoaded = ref(false),
   route = useRoute(),
   router = useRouter();
+
+const modalOpen = ref(false);
 
 destination.value = {} as DestinationType;
 
@@ -201,6 +215,10 @@ function createDestination() {
     .post(`manager/destination/`, singleDestinationStore.destination)
     .then((r) => console.log(r))
     .catch((e) => e);
+}
+
+function toggleModal() {
+  modalOpen.value = !modalOpen.value;
 }
 </script>
 

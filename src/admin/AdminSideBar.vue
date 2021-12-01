@@ -240,7 +240,7 @@ const navigation = [
   },
   {
     name: "Gallery",
-    href: "GalleryFiles",
+    href: "GalleryPage",
     icon: "fal fa-photo-video",
   },
 ];

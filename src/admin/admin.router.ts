@@ -6,7 +6,7 @@ const AllDestination = () => import("./views/XAllDestination.vue");
 const Configuration = () => import("./views/Configuration.vue");
 const AllUsers = () => import("./views/AllUsers.vue");
 const DealStatus = () => import("./dealsX/DealStatus.vue");
-const GalleryFiles = () => import("./views/GalleryFiles.vue");
+const GalleryPage = () => import("./views/GalleryPage.vue");
 
 export default <RouteRecordRaw>{
   path: "/manager",
@@ -49,8 +49,8 @@ export default <RouteRecordRaw>{
 
     {
       path: "/Gallery",
-      name: "GalleryFiles",
-      component: GalleryFiles,
+      name: "GalleryPage",
+      component: GalleryPage,
       meta: {
         title: "Gallery",
       },
