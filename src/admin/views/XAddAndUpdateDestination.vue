@@ -90,6 +90,8 @@
 
                 <div>
                   <Gallery />
+
+                  <DealSelectedImages />
                 </div>
 
                 <button
@@ -148,6 +150,7 @@ import {
 } from "../../store/destinationStore";
 import DestinationLinks from "./DestinationLinks.vue";
 import Gallery from "./Gallery.vue";
+import DealSelectedImages from "./DealSelectedImages.vue";
 
 const tiny = {
   apiKey: import.meta.env.VITE_TINY_KEY,

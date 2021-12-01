@@ -238,6 +238,11 @@ const navigation = [
     href: "AllDestinationX",
     icon: "fad fa-globe-americas",
   },
+  {
+    name: "Gallery",
+    href: "GalleryFiles",
+    icon: "fal fa-photo-video",
+  },
 ];
 
 export default {

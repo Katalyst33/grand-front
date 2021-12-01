@@ -21,6 +21,7 @@ export const destinationStore = reactive({
 } as any);
 
 export const singleDestinationStore = reactive({
+  images: [] as any[],
   destination: localStore.getObject("oneDestination", {
     country: {
       name: "_No Destination",
@@ -39,7 +40,8 @@ export const searchDestinationStore = reactive({
 });
 
 const SET_ONE_DESTINATION = (oneDeal: any) => {
-  singleDestinationStore.destination = oneDeal;
+  singleDestinationStore.destination = oneDeal.deal;
+  singleDestinationStore.images = oneDeal.images;
   singleDestinationStore.isLoadingDeal = true;
 };
 

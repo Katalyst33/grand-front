@@ -6,6 +6,7 @@ const AllDestination = () => import("./views/XAllDestination.vue");
 const Configuration = () => import("./views/Configuration.vue");
 const AllUsers = () => import("./views/AllUsers.vue");
 const DealStatus = () => import("./dealsX/DealStatus.vue");
+const GalleryFiles = () => import("./views/GalleryFiles.vue");
 
 export default <RouteRecordRaw>{
   path: "/manager",
@@ -43,6 +44,15 @@ export default <RouteRecordRaw>{
       component: XAddAndUpdate,
       meta: {
         title: "Add Destination",
+      },
+    },
+
+    {
+      path: "/Gallery",
+      name: "GalleryFiles",
+      component: GalleryFiles,
+      meta: {
+        title: "Gallery",
       },
     },
     {

@@ -31,10 +31,10 @@
     "swiper": "^7.2.0",
     "v-calendar": "^3.0.0-alpha.5",
     "vee-validate": "^3.4.14",
+    "vite-plugin-ejs": "^1.4.1",
     "vue": "^3.2.6",
     "vue-awesome-swiper": "^4.1.1",
     "vue-izitoast": "^1.2.1",
-    "vite-plugin-ejs": "^1.4.1",
     "vue-router": "^4.0.11",
     "yarn": "^1.22.17"
   },

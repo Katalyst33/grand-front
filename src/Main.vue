@@ -19,4 +19,8 @@ setAppState();
 .tileTab {
   @apply bg-white py-2 px-4  border;
 }
+
+.btn {
+  @apply px-2 py-1 text-white rounded-md;
+}
 </style>
