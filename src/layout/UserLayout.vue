@@ -241,9 +241,11 @@
           </div>
         </div>
       </div>
-
+      <h1 class="text-xl py-4 text-gray-500 container mx-auto px-2 md:px-10">
+        {{ $route.meta.title }}
+      </h1>
       <router-view
-        class="h-screen my-auto container mx-auto px-10 pt-4"
+        class="h-screen my-auto container mx-auto px-2 md:px-10 pt-4"
       ></router-view>
     </div>
   </div>

@@ -2,7 +2,7 @@ import { RouteRecordRaw } from "vue-router";
 
 const UserDashboard = () => import("./UserDashboard.vue");
 const DocumentsUpload = () => import("./DocumentsUpload.vue");
-const AllProfiles = () => import("./AllProfiles.vue");
+const AllProfilesPage = () => import("./AllProfilesPage.vue");
 const MyDestinations = () => import("./MyDestinations.vue");
 const UpdateProfile = () => import("./UpdateProfileInformation.vue");
 
@@ -19,6 +19,9 @@ export default <RouteRecordRaw>{
       path: "dashboard",
       name: "UserDashboard",
       component: UserDashboard,
+      meta: {
+        title: "User Dashboard",
+      },
     },
     {
       path: "documents-upload",
@@ -34,7 +37,10 @@ export default <RouteRecordRaw>{
     {
       path: "all-profiles",
       name: "AllProfiles",
-      component: AllProfiles,
+      meta: {
+        title: "All Profiles",
+      },
+      component: AllProfilesPage,
     },
     {
       path: "/update-profile/:referenceId",
