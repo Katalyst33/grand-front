@@ -80,3 +80,18 @@ const documentType = [
   { category: "Work experience /Internship " },
   { category: "Work Sample" },
 ];
+
+const jhkj = {
+  publicId: string,
+  type: "image",
+  for: "destination",
+  name: "plam-tree_LICMX.png",
+  path: "/uploads/destination/opt_plam-tree_LICMX.png",
+  size: 11449452,
+  ext: "png",
+  used: false,
+  crop: {
+    100: "/uploads/destination/100/plam-tree_LICMX.png",
+    500: "/uploads/destination/500/plam-tree_LICMX.png",
+  },
+};

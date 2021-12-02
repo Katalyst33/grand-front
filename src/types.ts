@@ -15,7 +15,7 @@ export type axiosResponse = {
 export type loggedUser = {
   email: string | null;
   role: string;
-  reference: string;
+  uuid: string;
 };
 
 export type appInfo = {
@@ -25,6 +25,17 @@ export type appInfo = {
     email?: string;
     address?: string;
   };
+};
+
+export type profileTypes = {
+  images: Object;
+  ownerId: string;
+  comment: string;
+  reference: string;
+  contactInformation: Object;
+  personalInformation: Object;
+  otherInformation: Object;
+  EducationInfo: Object;
 };
 
 export type appStateTypes = {

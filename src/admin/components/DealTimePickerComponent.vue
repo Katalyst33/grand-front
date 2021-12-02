@@ -9,6 +9,8 @@
       >
         <div>
           <p class="font-medium">Start:</p>
+          {{ props.destination.duration.start }} <br />
+          {{ props.destination.duration.end }}
 
           <HumanDateTimeComponent :rawTime="props.destination.duration.start" />
         </div>
@@ -26,11 +28,7 @@
         <i class="fas fa-times"></i> Close
       </div>
       <div v-if="isSelecting">
-        <DatePicker
-          v-model="props.destination.duration"
-          :is-range="true"
-          destination=""
-        />
+        <DatePicker v-model="props.destination.duration" :is-range="true" />
       </div>
     </div>
   </div>

@@ -89,7 +89,7 @@ onMounted(getImages);
 function getImages() {
   return $axios
 
-    .get("/manager/destination/gallery")
+    .get("/manager/gallery")
     .then((res) => {
       console.log(res.data);
       galleryImages.value = res.data;

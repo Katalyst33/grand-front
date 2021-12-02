@@ -1,6 +1,6 @@
 <template>
-  <section class="">
-    <div class="flex gap-4">
+  <section class="overflow-y-auto h-32">
+    <div class="grid grid-cols-3 gap-4">
       <div v-for="(item, index) in singleDestinationStore.images" :key="index">
         <div>
           <div class="relative">

@@ -269,8 +269,13 @@ import UserSideBar from "./UserSideBar.vue";
 
 const navigation = [
   {
-    name: "Account",
-    href: "AccountInformation",
+    name: "Dashboard",
+    href: "UserDashboard",
+    icon: "fad fa-sitemap",
+  },
+  {
+    name: "Profiles",
+    href: "AllProfiles",
     icon: "fad fa-sitemap",
   },
 
