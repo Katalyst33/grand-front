@@ -1,14 +1,29 @@
+import { reactive, watch } from "vue";
 import { $axios } from "../http/http.Service";
-import { reactive } from "vue";
-import { appState } from "./store";
-import { ProfileType } from "../types";
+import { localStore } from "../../export";
+import { profileTypes } from "../types";
 
-export const profileStore = reactive({
-  profileData: {} as ProfileType,
-  isLoadingProfile: false,
+export const profileStore = reactive(
+  localStore.getObject("profileStore", {
+    personalInformation: {
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      gender: "",
+      birthName: "",
+      birth_day: "",
+      place_of_birth: "",
+      nationality: "",
+    },
+  }) as profileTypes
+);
+
+watch([profileStore], () => {
+  localStore.setObject("profileStore", profileStore);
 });
 
-const SET_PROFILE = (profile: any) => {
-  profileStore.profileData = profile;
-  profileStore.isLoadingProfile = true;
-};
+function saveForm() {
+  $axios.post("", profileStore).then((res) => {
+    console.log(res, "howfar");
+  });
+}

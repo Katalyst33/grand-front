@@ -7,7 +7,7 @@
         >
         <div class="mt-1">
           <input
-            v-model="formStore.personalInformation.firstName"
+            v-model="profileStore.personalInformation.firstName"
             type="text"
             name="first_name"
             class="form-input"
@@ -20,7 +20,7 @@
         <label class="block text-sm font-medium text-gray-700">Last name</label>
         <div class="mt-1">
           <input
-            v-model="formStore.personalInformation.lastName"
+            v-model="profileStore.personalInformation.lastName"
             type="text"
             class="form-input"
             autocomplete="family-name"
@@ -33,7 +33,7 @@
         <div class="mt-1">
           <input
             type="text"
-            v-model="formStore.personalInformation.middleName"
+            v-model="profileStore.personalInformation.middleName"
             class="form-input"
             autocomplete="additional-name"
           />
@@ -45,7 +45,7 @@
           >Gender</label
         >
         <select
-          v-model="formStore.personalInformation.gender"
+          v-model="profileStore.personalInformation.gender"
           id="location"
           class="form-input"
         >
@@ -63,7 +63,7 @@
         <div class="mt-1">
           <input
             type="text"
-            v-model="formStore.personalInformation.birthName"
+            v-model="profileStore.personalInformation.birthName"
             class="form-input"
             autocomplete="additional-name"
           />
@@ -156,7 +156,7 @@
         </div>
         <DatePicker
           v-show="showCalendar"
-          v-model="formStore.personalInformation.birth_day"
+          v-model="profileStore.personalInformation.birth_day"
         />
       </div>
       <div>
@@ -166,7 +166,7 @@
         <div class="mt-1">
           <input
             type="text"
-            v-model="formStore.personalInformation.nationality"
+            v-model="profileStore.personalInformation.nationality"
             class="form-input"
             autocomplete="additional-name"
           />
@@ -180,7 +180,7 @@
         <div class="mt-1">
           <input
             type="text"
-            v-model="formStore.personalInformation.place_of_birth"
+            v-model="profileStore.personalInformation.place_of_birth"
             class="form-input"
             autocomplete="additional-name"
           />
@@ -198,6 +198,7 @@
     </div>
     <div class="px-4 py-3 bg-gray-100 text-right sm:px-6">
       <button
+        @click.prevent="updateProfile"
         type="submit"
         class="
           inline-flex
@@ -226,15 +227,32 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import moment from "moment/moment";
-import { formStore } from "../store/formStore";
-
-const form = ref(formStore.personalInformation);
+import { profileStore } from "../store/profileStore";
+import { $axios } from "../http/http.Service";
+import { useRoute } from "vue-router";
 
 const showCalendar = ref(false);
 
 const birth_day = computed(() => {
-  return moment(form.value.birth_day).format("dddd Do MMMM  YYYY");
+  return moment(profileStore.personalInformation.birth_day).format(
+    "dddd Do MMMM  YYYY"
+  );
 });
+
+const route = useRoute();
+
+function updateProfile() {
+  $axios
+    .post(`/profile/${route.params.referenceId}`, profileStore)
+    .then((response) => {
+      console.log(response, "response ??");
+    })
+    .catch((error) => {
+      console.log(error, "error ??");
+    });
+
+  console.log(profileStore, route.params.referenceId);
+}
 </script>
 
 <style scoped>

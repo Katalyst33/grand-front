@@ -33,7 +33,16 @@ export type profileTypes = {
   comment: string;
   reference: string;
   contactInformation: Object;
-  personalInformation: Object;
+  personalInformation: {
+    firstName: string;
+    lastName: string;
+    middleName: string;
+    gender: string;
+    birthName: string;
+    birth_day: string;
+    nationality: string;
+    place_of_birth: string;
+  };
   otherInformation: Object;
   EducationInfo: Object;
 };

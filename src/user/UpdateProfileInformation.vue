@@ -25,6 +25,7 @@
 
         <TabPanels class="mt-2">
           <TabPanel>
+            {{ profileStore.personalInformation }}
             <PersonalInformation />
           </TabPanel>
           <TabPanel>
@@ -42,12 +43,14 @@
 import PersonalInformation from "./PersonalInformation.vue";
 import { ref } from "vue";
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
+import { profileStore } from "../store/profileStore";
 let categories = ref([
   {
     title: "Personal Information",
   },
   { title: "Contact Information" },
   { title: "Other Information" },
+  { title: "Eductional History" },
   { title: "Eductional History" },
 ]);
 </script>
