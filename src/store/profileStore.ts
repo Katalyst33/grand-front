@@ -22,8 +22,15 @@ watch([profileStore], () => {
   localStore.setObject("profileStore", profileStore);
 });
 
-function saveForm() {
-  $axios.post("", profileStore).then((res) => {
-    console.log(res, "howfar");
-  });
+export function updateProfile(referenceId: string) {
+  $axios
+    .post(`/profile/${referenceId}`, profileStore)
+    .then((response) => {
+      console.log(response.data, "response ??");
+    })
+    .catch((error) => {
+      console.log(error, "error ??");
+    });
+
+  console.log(profileStore, referenceId);
 }

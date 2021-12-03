@@ -198,7 +198,7 @@
     </div>
     <div class="px-4 py-3 bg-gray-100 text-right sm:px-6">
       <button
-        @click.prevent="updateProfile"
+        @click.prevent="updateProfile($route.params.referenceId)"
         type="submit"
         class="
           inline-flex
@@ -227,9 +227,7 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import moment from "moment/moment";
-import { profileStore } from "../store/profileStore";
-import { $axios } from "../http/http.Service";
-import { useRoute } from "vue-router";
+import { profileStore, updateProfile } from "../store/profileStore";
 
 const showCalendar = ref(false);
 
@@ -238,21 +236,6 @@ const birth_day = computed(() => {
     "dddd Do MMMM  YYYY"
   );
 });
-
-const route = useRoute();
-
-function updateProfile() {
-  $axios
-    .post(`/profile/${route.params.referenceId}`, profileStore)
-    .then((response) => {
-      console.log(response, "response ??");
-    })
-    .catch((error) => {
-      console.log(error, "error ??");
-    });
-
-  console.log(profileStore, route.params.referenceId);
-}
 </script>
 
 <style scoped>
