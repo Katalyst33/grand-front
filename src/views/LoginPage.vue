@@ -222,7 +222,7 @@ export default {
           if (r.error) {
             router.push({ name: "Contact" });
           } else if (BrowserStore.get("user_role") === "user") {
-            window.location.href = "/user/dashboard";
+            window.location.href = "/account/dashboard";
           } else if (BrowserStore.get("user_role") !== "user") {
             window.location.href = "/manager/dashboard";
           } else {

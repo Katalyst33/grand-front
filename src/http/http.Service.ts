@@ -39,7 +39,7 @@ axios.interceptors.response.use(
       });
     }
 
-    return res;
+    return res.data;
   },
   (err) => {
     if (err.response && err.response.data.error) {

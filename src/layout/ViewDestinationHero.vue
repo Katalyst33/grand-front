@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main v-if="false">
     <div>
       <!-- Hero card -->
       <div class="relative bg-green-500">
@@ -37,7 +37,9 @@
 </template>
 
 <script lang="ts" setup>
-import { singleDestinationStore } from "../store/destinationStore";
+import { useRoute } from "vue-router";
+import { computed } from "vue";
+import { $axios } from "../http/http.Service";
 </script>
 
 <style scoped></style>

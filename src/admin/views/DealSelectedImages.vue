@@ -19,11 +19,7 @@
   </section>
 </template>
 <script lang="ts" setup>
-import {
-  getOneDestinationX,
-  singleDestinationStore,
-} from "../../store/destinationStore";
-import { ref } from "vue";
+import { singleDestinationStore } from "../../store/destinationStore";
 import { $axios } from "../../http/http.Service";
 import { useRoute } from "vue-router";
 

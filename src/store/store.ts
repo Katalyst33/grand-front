@@ -23,8 +23,8 @@ export function setAppState() {
   $axios
     .get(`client/ping`)
     .then((response: any) => {
-      appState.data = response.data.appData;
-      appState.user = response.data.user;
+      appState.data = response.appData;
+      appState.user = response.user;
       appState.isLoaded = true;
 
       if (response.user) {

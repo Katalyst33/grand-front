@@ -1,16 +1,24 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 
+import ViewDestinationHero from "../layout/ViewDestinationHero.vue";
+import { appState } from "../store/store";
+import { formatPrice } from "../lib/util";
+import { useRoute } from "vue-router";
+import { $axios } from "../http/http.Service";
+import { DestinationType } from "../types";
 import {
   getOneDestination,
   singleDestinationStore,
 } from "../store/destinationStore";
-import ViewDestinationHero from "../layout/ViewDestinationHero.vue";
-import { appState } from "../store/store";
-import { formatPrice } from "../lib/util";
 
-const isLoaded = ref(false);
-getOneDestination();
+const route = useRoute();
+
+const destinationId = computed(() => {
+  return route.params.destinationId;
+});
+
+console.log(singleDestinationStore.destination);
 
 function addToWishlist(destination: any) {
   console.log(destination, "wish");
@@ -22,25 +30,25 @@ function addToCart(destination: any) {
 
 <template>
   <div class="py-10">
-    <div v-if="singleDestinationStore.isLoadingDeal || isLoaded">
+    <div>
       <div class="grid md:grid-cols-3 gap-4">
         <div class="md:col-span-2 tileTab">
           <div class="unreset">
-            <div v-html="singleDestinationStore.destination.description"></div>
+            <div v-html="singleDestinationStore.description"></div>
           </div>
         </div>
         <div class="tileTab">
           <div>
-            <p v-html="singleDestinationStore.destination.included"></p>
+            <p v-html="singleDestinationStore.included"></p>
           </div>
           <h1 class="text-yellow-600 font-medium text-3xl">
-            N {{ formatPrice(singleDestinationStore.destination.price) }}
+            N {{ formatPrice(singleDestinationStore.price) }}
           </h1>
 
           <section>
             <div class="flex justify-between">
               <button
-                @click="addToCart(singleDestinationStore.destination)"
+                @click="addToCart(singleDestinationStore)"
                 class="bg-yellow-500 p-2 rounded-md"
               >
                 Add to Cart
@@ -49,7 +57,7 @@ function addToCart(destination: any) {
               <template>
                 <div v-if="appState?.user?.email" class="p-4">
                   <button
-                    @click="addToWishlist(singleDestinationStore.destination)"
+                    @click="addToWishlist(singleDestinationStore)"
                     class="bg-red-400 py-2 px-2 rounded-md"
                   >
                     Add to Wishlist
@@ -57,7 +65,7 @@ function addToCart(destination: any) {
                 </div>
                 <button
                   v-else
-                  @click="addToWishlist(singleDestinationStore.destination)"
+                  @click="addToWishlist(singleDestinationStore)"
                   class="bg-red-100 py-2 px-2 rounded-md"
                   disabled
                 >

@@ -78,25 +78,22 @@ export function getAllDestinations(search?: string, sort?: any, page?: number) {
       params,
     })
     .then((r: any) => {
-      destinationStore.allDestinations = r.data.data.allDestinations;
-      destinationStore.promotedDestinations = r.data.data.promotedDestinations;
+      destinationStore.allDestinations = r.data.allDestinations;
+      destinationStore.promotedDestinations = r.data.promotedDestinations;
       destinationStore.isLoadingDestinations = true;
       localStore.setObject("all_destinations", r.data);
     })
     .catch((e) => e);
 }
 
-export function getOneDestination() {
-  const route = useRoute();
-
-  const code = computed(() => route.params.destinationId);
-
-  $axios
-    .get(`client/deals/${code.value}`)
+export function getOneDestination(destinationId: any) {
+  return $axios
+    .get(`client/deals/${destinationId}`)
     .then((r) => {
-      if (r) {
-        SET_ONE_DESTINATION(r.data);
-      }
+      localStore.setObject("oneDestination", r.data);
+      singleDestinationStore.destination = r.data;
+      singleDestinationStore.isLoadingDeal = true;
+      console.log(r.data, "sore");
     })
     .catch((e) => e);
 }
