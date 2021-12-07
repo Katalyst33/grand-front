@@ -103,7 +103,15 @@
                     <td
                       class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                     >
-                      --- name
+                      <template v-if="item.personalInformation.firstName">
+                        {{ item.personalInformation.firstName }}
+                        {{ item.personalInformation.lastName }}
+                      </template>
+                      <template v-else>
+                        <span class="text-gray-400 font-semibold"
+                          >(Not Set)</span
+                        >
+                      </template>
                     </td>
                     <td
                       class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
