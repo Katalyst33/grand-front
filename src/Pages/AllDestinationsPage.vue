@@ -35,6 +35,8 @@ watch(page, () => {
   destinationStore.paginationQuery = page.value;
   console.log("haba", page.value);
 });
+
+getAllDestinations();
 </script>
 
 <template>

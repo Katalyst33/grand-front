@@ -9,15 +9,12 @@
       >
         <div>
           <p class="font-medium">Start:</p>
-          {{ props.destination.duration.start }} <br />
-          {{ props.destination.duration.end }}
-
-          <HumanDateTimeComponent :rawTime="props.destination.duration.start" />
+          {{ formattedDate(props.destination.duration.start) }}
+          <br />
         </div>
         <div>
           <p class="font-medium">End:</p>
-
-          <HumanDateTimeComponent :rawTime="props.destination.duration.end" />
+          {{ formattedDate(props.destination.duration.end) }}
         </div>
       </div>
       <div
@@ -35,7 +32,9 @@
 </template>
 <script lang="ts" setup>
 import HumanDateTimeComponent from "./HumanDateTimeComponent.vue";
-import { ref } from "vue";
+import moment from "moment/moment";
+
+import { computed, ref } from "vue";
 
 const props = defineProps<{
   destination: {
@@ -46,5 +45,10 @@ const props = defineProps<{
   };
 }>();
 
+console.log(props);
+
 const isSelecting = ref(false);
+function formattedDate(date: Date) {
+  return moment(date).format("dddd Do  MMMM YYYY");
+}
 </script>

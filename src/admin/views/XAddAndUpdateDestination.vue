@@ -204,10 +204,15 @@ if (route.name === "AddDestination") {
 const code = computed(() => route.params.destinationId);
 
 function updateDestination() {
+  console.log(singleDestinationStore.destination, "update");
   $axios
     .patch(`manager/deals/${code.value}`, singleDestinationStore.destination)
-    .then((r) => r)
-    .catch((e) => e);
+    .then((r) => {
+      console.log(r, "???");
+    })
+    .catch((e) => {
+      console.log(e, "??");
+    });
 }
 
 function createDestination() {

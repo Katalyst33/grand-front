@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onBeforeMount, onMounted, ref } from "vue";
 
 import ViewDestinationHero from "../layout/ViewDestinationHero.vue";
 import { appState } from "../store/store";
@@ -11,6 +11,8 @@ import {
   getOneDestination,
   singleDestinationStore,
 } from "../store/destinationStore";
+import CompanyLogo from "../CompanyLogo.vue";
+import ViewDestinationSlider from "../components/ViewDestinationSlider.vue";
 
 const route = useRoute();
 
@@ -18,7 +20,7 @@ const destinationId = computed(() => {
   return route.params.destinationId;
 });
 
-console.log(singleDestinationStore.destination);
+getOneDestination(destinationId.value);
 
 function addToWishlist(destination: any) {
   console.log(destination, "wish");
@@ -30,19 +32,19 @@ function addToCart(destination: any) {
 
 <template>
   <div class="py-10">
-    <div>
+    <div v-if="singleDestinationStore.isLoadingDeal">
       <div class="grid md:grid-cols-3 gap-4">
         <div class="md:col-span-2 tileTab">
           <div class="unreset">
-            <div v-html="singleDestinationStore.description"></div>
+            <div v-html="singleDestinationStore.destination.description"></div>
           </div>
         </div>
         <div class="tileTab">
           <div>
-            <p v-html="singleDestinationStore.included"></p>
+            <p v-html="singleDestinationStore.destination.included"></p>
           </div>
           <h1 class="text-yellow-600 font-medium text-3xl">
-            N {{ formatPrice(singleDestinationStore.price) }}
+            N {{ formatPrice(singleDestinationStore.destination.price) }}
           </h1>
 
           <section>

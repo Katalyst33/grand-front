@@ -23,12 +23,11 @@ import { useHead } from "@vueuse/head";
 import FooterSection from "./FooterSection.vue";
 import HomeHeroComponent from "./views/HomeHeroComponent.vue";
 import GuestNavigationMenu from "./layout/GuestNavigationMenu.vue";
-import BannerSlider from "./BannerSlider.vue";
+import BannerSlider from "./components/BannerSlider.vue";
+import ViewDestinationSlider from "./components/ViewDestinationSlider.vue";
 const isLoaded = ref(false);
 const route = useRoute();
 const { x, y } = useWindowScroll();
-
-getAllDestinations();
 
 useHead({
   // Can be static or computed

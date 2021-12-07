@@ -215,9 +215,9 @@ export default {
       $axios
         .post("client/login", form.value)
         .then((r: any) => {
-          console.log(r.data, "reee");
-          BrowserStore.set("ge_jwt", r.data.token);
-          BrowserStore.set("user_role", r.data.role);
+          console.log(r, "reee");
+          BrowserStore.set("ge_jwt", r.token);
+          BrowserStore.set("user_role", r.role);
 
           if (r.error) {
             router.push({ name: "Contact" });

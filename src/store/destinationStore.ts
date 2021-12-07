@@ -20,16 +20,7 @@ export const destinationStore = reactive({
 
 export const singleDestinationStore = reactive({
   images: [] as any[],
-  destination: localStore.getObject("oneDestination", {
-    country: {
-      name: "_No Destination",
-      code: "NDT",
-    },
-    duration: {
-      start: new Date(),
-      end: new Date(),
-    },
-  }) as DestinationType,
+  destination: {} as DestinationType,
   isLoadingDeal: false,
 });
 
@@ -37,10 +28,14 @@ export const searchDestinationStore = reactive({
   isSearching: false,
 });
 
-const SET_ONE_DESTINATION = (oneDeal: any) => {
-  singleDestinationStore.destination = oneDeal.deal;
-  singleDestinationStore.images = oneDeal.images;
+const SET_ONE_DESTINATION = (oneDestination: any) => {
+  singleDestinationStore.destination = oneDestination.deal;
+  singleDestinationStore.images = oneDestination.images;
   singleDestinationStore.isLoadingDeal = true;
+
+  /*  ;
+  singleDestinationStore.images = oneDeal.images;
+  singleDestinationStore.isLoadingDeal = true;*/
 };
 
 const CLEAR_ONE_DESTINATION = () => {
@@ -81,19 +76,18 @@ export function getAllDestinations(search?: string, sort?: any, page?: number) {
       destinationStore.allDestinations = r.data.allDestinations;
       destinationStore.promotedDestinations = r.data.promotedDestinations;
       destinationStore.isLoadingDestinations = true;
-      localStore.setObject("all_destinations", r.data);
     })
     .catch((e) => e);
 }
 
 export function getOneDestination(destinationId: any) {
-  return $axios
+  $axios
     .get(`client/deals/${destinationId}`)
-    .then((r) => {
-      localStore.setObject("oneDestination", r.data);
-      singleDestinationStore.destination = r.data;
+    .then((response: any) => {
+      SET_ONE_DESTINATION(response);
+      // localStore.setObject("oneDestination", r.data);
+
       singleDestinationStore.isLoadingDeal = true;
-      console.log(r.data, "sore");
     })
     .catch((e) => e);
 }
@@ -107,7 +101,7 @@ export function getOneDestinationX() {
     .get(`manager/deals/${code.value}`)
     .then((r: any) => {
       if (r) {
-        SET_ONE_DESTINATION(r.data);
+        SET_ONE_DESTINATION(r);
       }
     })
     .catch((e) => e);

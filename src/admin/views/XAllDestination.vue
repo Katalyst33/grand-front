@@ -192,7 +192,7 @@ function getAllDestinations() {
     .get("manager/destination")
     .then((r) => {
       isLoaded.value = true;
-      allDestinations.value = r.data.data.data;
+      allDestinations.value = r.data.data;
     })
     .catch((e) => e);
 }

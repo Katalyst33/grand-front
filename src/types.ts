@@ -74,6 +74,7 @@ export type DestinationType = {
   title: string;
   uuid: string;
   image: string;
+  _id?: string;
 };
 
 export type CountryType = {
