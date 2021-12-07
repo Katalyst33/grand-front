@@ -90,15 +90,8 @@ function getImages() {
   return $axios
 
     .get("/manager/gallery")
-    .then((res) => {
-      console.log(res.data);
-      galleryImages.value = res.data;
-
-      // data.value = res.data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    .then((res: any) => (galleryImages.value = res))
+    .catch((err) => err);
 }
 
 function uploadImage() {

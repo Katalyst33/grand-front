@@ -44,6 +44,9 @@ import PersonalInformation from "./PersonalInformation.vue";
 import { ref } from "vue";
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
 import { profileStore } from "../store/profileStore";
+import { useRoute } from "vue-router";
+import { $axios } from "../http/http.Service";
+import { localStore } from "../../export";
 let categories = ref([
   {
     title: "Personal Information",
@@ -53,4 +56,19 @@ let categories = ref([
   { title: "Eductional History" },
   { title: "Eductional History" },
 ]);
+
+const route = useRoute();
+function fetchProfile() {
+  $axios
+    .get(`profile/${route.params.referenceId}`)
+    .then((res: any) => {
+      console.log(res);
+      localStore.setObject("profileStore", res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+fetchProfile();
 </script>

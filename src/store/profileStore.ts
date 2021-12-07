@@ -15,7 +15,7 @@ export const profileStore = reactive(
       place_of_birth: "",
       nationality: "",
     },
-  }) as profileTypes
+  }) as any
 );
 
 watch([profileStore], () => {
@@ -26,6 +26,7 @@ export function updateProfile(referenceId: string) {
   $axios
     .post(`/profile/${referenceId}`, profileStore)
     .then((response) => {
+      localStore.remove("profileStore");
       console.log(response.data, "response ??");
     })
     .catch((error) => {

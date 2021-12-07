@@ -123,7 +123,7 @@ const allUsers = ref();
 $axios
   .get("manager/users")
   .then((response) => {
-    allUsers.value = response.data.data;
+    allUsers.value = response.data;
   })
   .catch((error) => error);
 const people = [
