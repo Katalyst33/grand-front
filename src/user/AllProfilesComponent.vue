@@ -152,11 +152,12 @@
   </section>
 </template>
 <script lang="ts" setup>
-import { $axios } from "../http/http.Service";
-import { appState } from "../store/store";
-import { onMounted, ref } from "vue";
-import { profileTypes } from "../types";
-import { getAllProfiles, makeProfile } from "../http/account.Service";
+import { onMounted } from "vue";
+import {
+  deleteProfile,
+  getAllProfiles,
+  makeProfile,
+} from "../http/account.Service";
 import { useRoute, useRouter } from "vue-router";
 // const allProfiles = ref<profileTypes[]>([]);
 
@@ -165,25 +166,5 @@ const { allProfiles, isLoading, fetch } = getAllProfiles();
 onMounted(fetch);
 
 const router = useRouter();
-const { profileId, make } = makeProfile();
-
-function deleteProfile(referenceId: string) {
-  $axios
-    .delete(`profile/${referenceId}`)
-    .then(() => {
-      fetch();
-    })
-    .catch((err) => err);
-}
-
-/*function makeProfile() {
-  console.log(appState.user.uuid, "");
-  $axios
-    .post(`/profile/make-profile/${appState.user.uuid}`)
-    .then((response: any) => {
-      console.log(response.profile.reference);
-
-    })
-    .catch((err) => err);
-}*/
+const { make } = makeProfile();
 </script>

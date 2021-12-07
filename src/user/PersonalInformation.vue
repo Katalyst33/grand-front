@@ -7,7 +7,7 @@
         >
         <div class="mt-1">
           <input
-            v-model="profileStore.personalInformation.firstName"
+            v-model="profileStore.profile.personalInformation.firstName"
             type="text"
             name="first_name"
             class="form-input"
@@ -20,7 +20,7 @@
         <label class="block text-sm font-medium text-gray-700">Last name</label>
         <div class="mt-1">
           <input
-            v-model="profileStore.personalInformation.lastName"
+            v-model="profileStore.profile.personalInformation.lastName"
             type="text"
             class="form-input"
             autocomplete="family-name"
@@ -33,7 +33,7 @@
         <div class="mt-1">
           <input
             type="text"
-            v-model="profileStore.personalInformation.middleName"
+            v-model="profileStore.profile.personalInformation.middleName"
             class="form-input"
             autocomplete="additional-name"
           />
@@ -45,7 +45,7 @@
           >Gender</label
         >
         <select
-          v-model="profileStore.personalInformation.gender"
+          v-model="profileStore.profile.personalInformation.gender"
           id="location"
           class="form-input"
         >
@@ -63,7 +63,7 @@
         <div class="mt-1">
           <input
             type="text"
-            v-model="profileStore.personalInformation.birthName"
+            v-model="profileStore.profile.personalInformation.birthName"
             class="form-input"
             autocomplete="additional-name"
           />
@@ -72,7 +72,7 @@
       </div>
       <div>
         <div>
-          <label for="email" class="block text-sm font-medium text-gray-700"
+          <label class="block text-sm font-medium text-gray-700"
             >Select date of birth</label
           >
           <div class="mt-1 flex rounded-md shadow-sm">
@@ -156,7 +156,7 @@
         </div>
         <DatePicker
           v-show="showCalendar"
-          v-model="profileStore.personalInformation.birth_day"
+          v-model="profileStore.profile.personalInformation.birth_day"
         />
       </div>
       <div>
@@ -166,7 +166,7 @@
         <div class="mt-1">
           <input
             type="text"
-            v-model="profileStore.personalInformation.nationality"
+            v-model="profileStore.profile.personalInformation.nationality"
             class="form-input"
             autocomplete="additional-name"
           />
@@ -180,7 +180,7 @@
         <div class="mt-1">
           <input
             type="text"
-            v-model="profileStore.personalInformation.place_of_birth"
+            v-model="profileStore.profile.personalInformation.place_of_birth"
             class="form-input"
             autocomplete="additional-name"
           />
@@ -227,12 +227,13 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import moment from "moment/moment";
-import { profileStore, updateProfile } from "../store/profileStore";
+import { profileStore } from "../store/profileStore";
+import { updateProfile } from "../http/account.Service";
 
 const showCalendar = ref(false);
 
 const birth_day = computed(() => {
-  return moment(profileStore.personalInformation.birth_day).format(
+  return moment(profileStore.profile.personalInformation.birth_day).format(
     "dddd Do MMMM  YYYY"
   );
 });

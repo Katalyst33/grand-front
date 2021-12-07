@@ -1,5 +1,5 @@
 <template>
-  <section class="flex justify-center">
+  <section v-if="isLoading" class="flex justify-center">
     <div class="w-full max-w-4xl px-2 py-16 sm:px-0">
       <TabGroup>
         <TabList class="flex p-1 space-x-1 bg-white border-2 rounded-xl">
@@ -41,7 +41,7 @@
 
 <script lang="ts" setup>
 import PersonalInformation from "./PersonalInformation.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
 import { profileStore } from "../store/profileStore";
 import { useRoute } from "vue-router";
@@ -57,18 +57,20 @@ let categories = ref([
   { title: "Eductional History" },
 ]);
 
+const isLoading = ref(false);
 const route = useRoute();
 function fetchProfile() {
   $axios
     .get(`profile/${route.params.referenceId}`)
     .then((res: any) => {
       console.log(res);
-      localStore.setObject("profileStore", res);
+
+      profileStore.profile = res;
     })
-    .catch((err) => {
-      console.log(err);
+    .finally(() => {
+      isLoading.value = true;
     });
 }
 
-fetchProfile();
+onMounted(fetchProfile);
 </script>
