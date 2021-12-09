@@ -2,7 +2,18 @@
   <section v-if="isLoading" class="flex justify-center">
     <div class="w-full max-w-4xl px-2 py-16 sm:px-0">
       <TabGroup>
-        <TabList class="flex p-1 space-x-1 bg-white border-2 rounded-xl">
+        <TabList
+          class="
+            grid
+            md:grid-cols-3
+            lg:grid-cols-5
+            p-1
+            space-x-1
+            bg-white
+            border-2
+            rounded-xl
+          "
+        >
           <Tab
             v-for="category in categories"
             as="template"
@@ -25,13 +36,15 @@
 
         <TabPanels class="mt-2">
           <TabPanel>
-            {{ profileStore.personalInformation }}
+            <DocumentsUpload />
+          </TabPanel>
+          <TabPanel>
             <PersonalInformation />
           </TabPanel>
           <TabPanel>
-            <div>Here2</div>
-            <div>Here2</div>
-            <div>Here2</div>
+            <ContactInformation />
+
+            <DocumentsUpload />
           </TabPanel>
         </TabPanels>
       </TabGroup>
@@ -40,37 +53,45 @@
 </template>
 
 <script lang="ts" setup>
-import PersonalInformation from "./PersonalInformation.vue";
-import { onMounted, ref } from "vue";
+import PersonalInformation from "./components/PersonalInformation.vue";
+import { computed, onMounted, ref } from "vue";
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
 import { profileStore } from "../store/profileStore";
 import { useRoute } from "vue-router";
 import { $axios } from "../http/http.Service";
 import { localStore } from "../../export";
+import ContactInformation from "./components/ContactInformation.vue";
+import DocumentsUpload from "./DocumentsUpload.vue";
+import { fetchProfile } from "../http/account.Service";
 let categories = ref([
+  { title: "Upload Documents" },
+
   {
     title: "Personal Information",
   },
   { title: "Contact Information" },
   { title: "Other Information" },
-  { title: "Eductional History" },
-  { title: "Eductional History" },
+  { title: "Educational History" },
 ]);
 
-const isLoading = ref(false);
 const route = useRoute();
-function fetchProfile() {
+
+const referenceId = computed(() => {
+  return route.params.referenceId;
+});
+
+const { fetch, isLoading } = fetchProfile(referenceId.value);
+/*function fetchProfile() {
   $axios
     .get(`profile/${route.params.referenceId}`)
     .then((res: any) => {
       console.log(res);
 
-      profileStore.profile = res;
+      profileStore.profile = res.profile;
     })
     .finally(() => {
       isLoading.value = true;
     });
-}
-
-onMounted(fetchProfile);
+}*/
+onMounted(fetch);
 </script>

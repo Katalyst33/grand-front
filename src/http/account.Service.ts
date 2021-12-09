@@ -8,11 +8,8 @@ import { profileStore } from "../store/profileStore";
 export function getAllProfiles() {
   const allProfiles = ref<profileTypes[]>([]);
   const isLoading = ref<boolean>(false);
-  console.log("deleteProfile 2");
 
   const fetch = () => {
-    console.log("deleteProfile 3");
-
     $axios
       .get(`/profile/all-profiles/${appState.user.uuid}`)
       .then((response: any) => {
@@ -61,17 +58,33 @@ export function deleteProfile(referenceId: string) {
   if (confirmDeselect) {
     $axios
       .delete(`profile/${referenceId}`)
-      .then((response) => response)
+      .then((response) => {
+        window.location.reload();
+
+        return response;
+      })
       .finally(() => {
-        console.log("deleteProfile 1");
-        getAllProfiles();
-
-        const { fetch } = getAllProfiles();
-        console.log("deleteProfile a");
-
-        fetch();
-
-        console.log("deleteProfile b");
+        window.location.reload();
       });
   }
+}
+
+export function fetchProfile(referenceId: any) {
+  const isLoading = ref(false);
+
+  const fetch = () => {
+    $axios
+      .get(`profile/${referenceId}`)
+      .then((res: any) => {
+        profileStore.profile = res.profile;
+        profileStore.profile.documents = res.allDocuments;
+
+        console.log(profileStore.profile.documents, "profileStore");
+      })
+      .finally(() => {
+        isLoading.value = true;
+      });
+  };
+
+  return { fetch, isLoading };
 }

@@ -14,7 +14,22 @@ export const profileStore = reactive({
       birth_day: "",
       place_of_birth: "",
       nationality: "",
+      married: "",
     },
+    contactInformation: {
+      houseNumber: "",
+      street: "",
+      address: "",
+      postalCode: "",
+      city: "",
+      phoneNumber: "",
+      country: "",
+    },
+    educationHistory: {
+      married: "",
+      other: "",
+    },
+    documents: [],
   },
 });
 

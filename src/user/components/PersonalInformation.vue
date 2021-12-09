@@ -40,22 +40,7 @@
         </div>
         <p class="mt-2 text-sm text-gray-500">We'll only use this for spam.</p>
       </div>
-      <div>
-        <label for="location" class="block text-sm font-medium text-gray-700"
-          >Gender</label
-        >
-        <select
-          v-model="profileStore.profile.personalInformation.gender"
-          id="location"
-          class="form-input"
-        >
-          <option disabled value="">Please select one</option>
-          <option value="male">Male</option>
 
-          <option value="female">Female</option>
-          <option value="rather_not">i rather not say</option>
-        </select>
-      </div>
       <div>
         <label class="block text-sm font-medium text-gray-700"
           >Birth name (in full)</label
@@ -69,6 +54,34 @@
           />
         </div>
         <p class="mt-2 text-sm text-gray-500">We'll only use this for spam.</p>
+      </div>
+      <div class="flex gap-10">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Gender</label>
+          <select
+            v-model="profileStore.profile.personalInformation.gender"
+            class="form-input"
+          >
+            <option disabled value="">Please select one</option>
+            <option value="male">Male</option>
+
+            <option value="female">Female</option>
+            <option value="rather_not">i rather not say</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Gender</label>
+          <select
+            v-model="profileStore.profile.personalInformation.gender"
+            class="form-input"
+          >
+            <option disabled value="">Please select one</option>
+            <option value="male">Male</option>
+
+            <option value="female">Female</option>
+            <option value="rather_not">i rather not say</option>
+          </select>
+        </div>
       </div>
       <div>
         <div>
@@ -227,8 +240,8 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import moment from "moment/moment";
-import { profileStore } from "../store/profileStore";
-import { updateProfile } from "../http/account.Service";
+import { profileStore } from "../../store/profileStore";
+import { updateProfile } from "../../http/account.Service";
 
 const showCalendar = ref(false);
 

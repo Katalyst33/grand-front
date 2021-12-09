@@ -2,7 +2,6 @@
 import { $axios } from "../http/http.Service";
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
-import { profileStore } from "../store/profileStore";
 import { appState } from "../store/store";
 import { SortAscendingIcon, UsersIcon } from "@heroicons/vue/solid";
 import {
@@ -13,7 +12,8 @@ import {
   ListboxOptions,
 } from "@headlessui/vue";
 import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
-const documentType = [
+import { profileStore } from "../store/profileStore";
+const documentCategory = [
   { title: "Application Form" },
   { title: "CV" },
   { title: "Language  Certificate" },
@@ -89,35 +89,40 @@ const documentList = [
   // More people...
 ];
 
-const selected = ref(documentType[4]);
+const selected = ref(documentCategory[4]);
 const route = useRoute();
 const appUrl = import.meta.env.VITE_API_URL;
-
-const code = computed(() => route.params.destinationId);
+import fileSize from "filesize.js";
+const code = computed(() => route.params.referenceId);
 const imageData = new FormData();
 const imageInput = ref<HTMLInputElement>();
 const url = ref("");
 const file = ref("");
 const labelType = ref(" i am label type");
 
-function changeImage() {
-  imageInput.value?.click();
-  console.log(imageInput.value);
+function fileSizes(size: number) {
+  return fileSize(size);
 }
 
+function changeImage() {
+  imageInput.value?.click();
+  // console.log(imageInput.value);
+}
+
+console.log(code.value, "code ??");
 function onFileChange(e: any) {
   file.value = e.target.files[0];
+
   url.value = URL.createObjectURL(file.value);
 }
 
 function uploadDocuments() {
-  imageData.append("image", file.value);
-  imageData.append("bodyInfo", labelType.value);
-  console.log(imageData, "appp");
+  imageData.append("document", file.value);
+  imageData.append("documentCategory", selected.value.title);
 
   $axios
 
-    .patch(`/profile/upload/${appState.user.reference}/image`, imageData)
+    .patch(`/profile/upload/${code.value}/document`, imageData)
 
     .then((r) => {
       console.log(r);
@@ -130,7 +135,7 @@ function uploadDocuments() {
   <div>
     <h3>My Documents</h3>
 
-    <div class="bg-yellow-200 border p-4 rounded-md">
+    <div v-if="false" class="bg-yellow-200 border p-4 rounded-md">
       How you can help us evaluate your documents faster:
       <ul class="list-disc list-inside">
         <li>Please only upload PDF files (max. 10 MB per document).</li>
@@ -150,6 +155,7 @@ function uploadDocuments() {
     </div>
 
     <br />
+
     <div class="grid md:grid-cols-2 items-center gap-x-20">
       <div>
         <div @click.prevent="changeImage">
@@ -218,7 +224,6 @@ function uploadDocuments() {
           hidden
           ref="imageInput"
           type="file"
-          accept="image/*"
           formenctype="multipart/form-data"
           @change.prevent="onFileChange"
         />
@@ -291,7 +296,7 @@ function uploadDocuments() {
               >
                 <ListboxOption
                   as="template"
-                  v-for="(item, index) in documentType"
+                  v-for="(item, index) in documentCategory"
                   :key="index"
                   :value="item"
                   v-slot="{ active, selected }"
@@ -328,6 +333,9 @@ function uploadDocuments() {
         </Listbox>
       </div>
     </div>
+    <button @click.prevent="uploadDocuments" class="btn bg-gray-700 mt-4">
+      Upload
+    </button>
 
     <section class="py-20">
       <div class="flex flex-col">
@@ -408,7 +416,10 @@ function uploadDocuments() {
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                  <tr v-for="(item, index) in documentList" :key="index">
+                  <tr
+                    v-for="(item, index) in profileStore.profile.documents"
+                    :key="index"
+                  >
                     <td
                       class="
                         px-6
@@ -419,17 +430,17 @@ function uploadDocuments() {
                         text-gray-900
                       "
                     >
-                      {{ item.title }}
+                      {{ item.name }}
                     </td>
                     <td
                       class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                     >
-                      {{ item.size }}
+                      {{ fileSizes(item.size) }}
                     </td>
                     <td
                       class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                     >
-                      {{ item.uploaded }}
+                      {{ item.updatedAt }}
                     </td>
                     <td
                       class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
@@ -465,80 +476,5 @@ function uploadDocuments() {
         </div>
       </div>
     </section>
-
-    <template v-if="false">
-      <div class="flex items-center gap-x-10">
-        <div
-          ref="uploaderArea"
-          style="width: 200px; height: 200px"
-          class="bg-red-500 rounded-md relative"
-        >
-          <a @click.prevent="changeImage" href="#" class="mx-auto">
-            <img v-if="!url" :src="`${appUrl}/uploads/app-logo.png`" />
-            <img v-else :src="url" />
-            <div
-              class="
-                absolute
-                bottom-0
-                py-2
-                w-full
-                text-center text-white
-                bg-gray-700
-                rounded-b-md
-                opacity-50
-              "
-            >
-              Click to Upload
-            </div>
-          </a>
-          <input
-            hidden
-            ref="imageInput"
-            type="file"
-            accept="image/*"
-            formenctype="multipart/form-data"
-            @change.prevent="onFileChange"
-          />
-        </div>
-
-        <div>
-          <button
-            @click.prevent="uploadDocuments"
-            class="bg-gray-600 text-white p-2 rounded-md"
-          >
-            upload
-          </button>
-        </div>
-      </div>
-
-      <form
-        action="/multiple_upload"
-        enctype="multipart/form-data"
-        method="POST"
-      >
-        <div>
-          <label> Select images: <br /></label>
-          <input type="file" accept="image/*" name="images" multiple />
-        </div>
-        <button
-          type="submit"
-          class="bg-red-500 p-2 cursor-pointer rounded mt-10"
-          @click.prevent="uploadDocuments"
-        >
-          Upload Documents
-        </button>
-      </form>
-
-      <div>
-        <div>
-          <div
-            v-for="(image, index) in profileStore.profileData.images"
-            :key="index"
-          >
-            {{ image }}
-          </div>
-        </div>
-      </div>
-    </template>
   </div>
 </template>
