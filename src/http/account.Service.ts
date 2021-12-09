@@ -5,6 +5,23 @@ import { profileTypes } from "../types";
 import { useRouter } from "vue-router";
 import { profileStore } from "../store/profileStore";
 
+//
+export function makeProfile() {
+  const make = (router: any) => {
+    $axios
+      .post(`/profile/make-profile/${appState.user.uuid}`)
+      .then((response: any) => {
+        router.push({
+          name: "UpdateProfile",
+          params: { referenceId: response.profile.reference },
+        });
+      })
+      .catch((err) => err);
+  };
+
+  return { make };
+}
+//
 export function getAllProfiles() {
   const allProfiles = ref<profileTypes[]>([]);
   const isLoading = ref<boolean>(false);
@@ -22,22 +39,27 @@ export function getAllProfiles() {
 
   return { allProfiles, isLoading, fetch };
 }
+//
+export function fetchProfile(referenceId: any) {
+  const isLoading = ref(false);
 
-export function makeProfile() {
-  const make = (router: any) => {
+  const fetch = () => {
     $axios
-      .post(`/profile/make-profile/${appState.user.uuid}`)
-      .then((response: any) => {
-        router.push({
-          name: "UpdateProfile",
-          params: { referenceId: response.profile.reference },
-        });
+      .get(`profile/${referenceId}`)
+      .then((res: any) => {
+        profileStore.profile = res.profile;
+        profileStore.profile.documents = res.allDocuments;
+
+        console.log(profileStore.profile.documents, "profileStore");
       })
-      .catch((err) => err);
+      .finally(() => {
+        isLoading.value = true;
+      });
   };
 
-  return { make };
+  return { fetch, isLoading };
 }
+//
 
 export function updateProfile(referenceId: string) {
   console.log(referenceId, "referenceId");
@@ -67,24 +89,4 @@ export function deleteProfile(referenceId: string) {
         window.location.reload();
       });
   }
-}
-
-export function fetchProfile(referenceId: any) {
-  const isLoading = ref(false);
-
-  const fetch = () => {
-    $axios
-      .get(`profile/${referenceId}`)
-      .then((res: any) => {
-        profileStore.profile = res.profile;
-        profileStore.profile.documents = res.allDocuments;
-
-        console.log(profileStore.profile.documents, "profileStore");
-      })
-      .finally(() => {
-        isLoading.value = true;
-      });
-  };
-
-  return { fetch, isLoading };
 }

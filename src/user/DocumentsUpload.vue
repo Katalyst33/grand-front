@@ -25,69 +25,6 @@ const documentCategory = [
   { title: "Work experience /Internship " },
   { title: "Work Sample" },
 ];
-const documentList = [
-  {
-    category: "Application Form",
-    size: "200.5 KB",
-    uploaded: "2 days ago",
-    title: "document.jpg",
-  },
-  {
-    category: "CV",
-    size: "200.5 KB",
-    uploaded: "2 days ago",
-    title: "document.jpg",
-  },
-  {
-    category: "Language  Certificate",
-    size: "200.5 KB",
-    uploaded: "2 days ago",
-    title: "document.jpg",
-  },
-  {
-    category: "Letter Of Motivation",
-    size: "200.5 KB",
-    uploaded: "2 days ago",
-    title: "document.jpg",
-  },
-  {
-    category: "Other",
-    size: "200.5 KB",
-    uploaded: "2 days ago",
-    title: "document.jpg",
-  },
-  {
-    category: "Passport",
-    size: "200.5 KB",
-    uploaded: "2 days ago",
-    title: "document.jpg",
-  },
-  {
-    category: "School Certificate",
-    size: "200.5 KB",
-    uploaded: "2 days ago",
-    title: "document.jpg",
-  },
-  {
-    category: "Study Certificate",
-    size: "200.5 KB",
-    uploaded: "2 days ago",
-    title: "document.jpg",
-  },
-  {
-    category: "Work experience /Internship ",
-    size: "200.5 KB",
-    uploaded: "2 days ago",
-    title: "document.jpg",
-  },
-  {
-    category: "Work Sample",
-    size: "200.5 KB",
-    uploaded: "2 days ago",
-    title: "document.jpg",
-  },
-  // More people...
-];
 
 const selected = ref(documentCategory[4]);
 const route = useRoute();
@@ -128,6 +65,20 @@ function uploadDocuments() {
       console.log(r);
     })
     .catch((e) => console.log(e));
+}
+function deleteDocument(referenceId: string) {
+  const confirmDelete = confirm(
+    "Are you sure you want to delete this document?"
+  );
+  if (confirmDelete) {
+    $axios
+      .delete(`/profile/upload/${referenceId}/document`)
+      .then((r) => {
+        window.location.reload();
+        console.log(r);
+      })
+      .catch((e) => console.log(e));
+  }
 }
 </script>
 
@@ -366,6 +317,20 @@ function uploadDocuments() {
                         tracking-wider
                       "
                     >
+                      S/N
+                    </th>
+                    <th
+                      scope="col"
+                      class="
+                        px-6
+                        py-3
+                        text-left text-xs
+                        font-medium
+                        text-gray-500
+                        uppercase
+                        tracking-wider
+                      "
+                    >
                       Title
                     </th>
                     <th
@@ -430,6 +395,18 @@ function uploadDocuments() {
                         text-gray-900
                       "
                     >
+                      {{ index + 1 }}.
+                    </td>
+                    <td
+                      class="
+                        px-6
+                        py-4
+                        whitespace-nowrap
+                        text-sm
+                        font-medium
+                        text-gray-900
+                      "
+                    >
                       {{ item.name }}
                     </td>
                     <td
@@ -463,9 +440,13 @@ function uploadDocuments() {
                           ><i class="far fa-folder-download pr-2"></i
                           >Download</a
                         >
-                        <a href="#" class="text-red-600 hover:text-yellow-900"
-                          ><i class="fal fa-trash-alt pr-2"></i>Delete</a
+                        <button
+                          @click.prevent="deleteDocument(item.referenceId)"
+                          href="#"
+                          class="text-red-600 hover:text-yellow-900"
                         >
+                          <i class="fal fa-trash-alt pr-2"></i>Delete
+                        </button>
                       </div>
                     </td>
                   </tr>
