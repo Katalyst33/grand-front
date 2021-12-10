@@ -3,21 +3,12 @@
     <div class="w-full max-w-4xl px-2 py-16 sm:px-0">
       <TabGroup>
         <TabList
-          class="
-            grid
-            md:grid-cols-3
-            lg:grid-cols-5
-            p-1
-            space-x-1
-            bg-white
-            border-2
-            rounded-xl
-          "
+          class="grid md:grid-cols-3 lg:grid-cols-5 p-1 space-x-1 bg-white border-2 rounded-xl"
         >
           <Tab
-            v-for="category in categories"
+            v-for="(category, index) in categories"
             as="template"
-            :key="category"
+            :key="index"
             v-slot="{ selected }"
           >
             <button

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import AllProfilesComponent from "./AllProfilesComponent.vue";
+import AllProfilesComponent from "./components/AllProfilesComponent.vue";
 </script>
 
 <template>

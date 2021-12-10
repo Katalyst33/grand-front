@@ -1,6 +1,6 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <div class="flex flex-col">
+  <div v-if="isLoaded" class="flex flex-col">
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
         <div
@@ -11,43 +11,19 @@
               <tr>
                 <th
                   scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-left text-xs
-                    font-medium
-                    text-gray-500
-                    uppercase
-                    tracking-wider
-                  "
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   email
                 </th>
                 <th
                   scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-left text-xs
-                    font-medium
-                    text-gray-500
-                    uppercase
-                    tracking-wider
-                  "
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   Last Seen
                 </th>
                 <th
                   scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-left text-xs
-                    font-medium
-                    text-gray-500
-                    uppercase
-                    tracking-wider
-                  "
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   joined
                 </th>
@@ -65,11 +41,15 @@
                       />
                     </div>
                     <div class="ml-4">
-                      <div class="text-sm font-medium text-gray-900">
-                        {{ item.name }}
-                      </div>
                       <div class="flex text-sm text-gray-500">
-                        <h3 class="font-medium">{{ item.email }}</h3>
+                        <router-link
+                          :to="{
+                            name: 'UserDetails',
+                            params: { userId: item.uuid },
+                          }"
+                          class="font-medium text-yellow-500"
+                          >{{ item.email }}</router-link
+                        >
                         <div class="pl-2">
                           <template v-if="item.role === 'admin'">
                             <i class="fad fa-user-cog text-red-500"></i>
@@ -91,16 +71,7 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <span
-                    class="
-                      px-2
-                      inline-flex
-                      text-xs
-                      leading-5
-                      font-semibold
-                      rounded-full
-                      bg-green-100
-                      text-green-800
-                    "
+                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
                   >
                     Active
                   </span>
@@ -116,26 +87,10 @@
 
 <script lang="ts" setup>
 import { $axios } from "../../http/http.Service";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import { getAllUsers } from "../../http/admin.Service";
 
-const allUsers = ref();
+const { allUsers, isLoaded, fetch } = getAllUsers();
 
-$axios
-  .get("manager/users")
-  .then((response) => {
-    allUsers.value = response.data;
-  })
-  .catch((error) => error);
-const people = [
-  {
-    name: "Jane Cooper",
-    title: "Regional Paradigm Technician",
-    department: "Optimization",
-    role: "Admin",
-    email: "jane.cooper@example.com",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
-  // More people...
-];
+onMounted(fetch);
 </script>

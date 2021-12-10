@@ -13,7 +13,7 @@ export type axiosResponse = {
 };
 
 export type loggedUser = {
-  email: string | null;
+  email: string;
   role: string;
   uuid: string;
 };
@@ -32,7 +32,16 @@ export type profileTypes = {
   ownerId: string;
   comment: string;
   reference: string;
-  contactInformation: Object;
+  contactInformation: {
+    email: string;
+    houseNumber: string;
+    street: string;
+    address: string;
+    postalCode: string;
+    city: string;
+    phoneNumber: string;
+    country: string;
+  };
   personalInformation: {
     firstName: string;
     lastName: string;

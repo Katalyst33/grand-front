@@ -55,6 +55,8 @@
                   }"
                   :src="image.crop['500']"
                 />
+
+                <span class="text-xs"> {{ fileSizes(image.size) }}</span>
               </div>
             </div>
           </div>
@@ -75,6 +77,7 @@ import { $axios } from "../../http/http.Service";
 import { useRoute } from "vue-router";
 import { getOneDestinationX } from "../../store/destinationStore";
 import GalleryComponent from "./GalleryComponent.vue";
+import { fileSizes } from "../../../export";
 
 const imageUploader = ref<HTMLInputElement>();
 const modalOpen = ref(false);

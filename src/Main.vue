@@ -17,7 +17,7 @@ setAppState();
 
 <style>
 .tileTab {
-  @apply bg-white py-2 px-4  border;
+  @apply bg-white py-2 px-4  border border-yellow-100 rounded-lg shadow-sm;
 }
 
 .btn {

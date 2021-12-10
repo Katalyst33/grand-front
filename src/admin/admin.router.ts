@@ -5,6 +5,11 @@ const AdminDashboard = () => import("./AdminDashboard.vue");
 const AllDestination = () => import("./views/XAllDestination.vue");
 const Configuration = () => import("./views/Configuration.vue");
 const AllUsers = () => import("./views/AllUsers.vue");
+const UserDetails = () => import("./views/UserDetails.vue");
+const UserLayout = () => import("./UserLayout.vue");
+const profileDetails = () => import("./views/profileDetails.vue");
+const XAllProfilesComponent = () =>
+  import("./components/XAllProfilesComponent.vue");
 const DealStatus = () => import("./dealsX/DealStatus.vue");
 const GalleryPage = () => import("./views/GalleryPage.vue");
 
@@ -29,12 +34,21 @@ export default <RouteRecordRaw>{
         title: "All Destinations",
       },
     },
+
     {
       path: "all-users",
       name: "AllUsers",
       component: AllUsers,
       meta: {
         title: "All Users",
+      },
+    },
+    {
+      path: "user-details/:userId",
+      name: "UserDetails",
+      component: UserDetails,
+      meta: {
+        title: "User Details",
       },
     },
 

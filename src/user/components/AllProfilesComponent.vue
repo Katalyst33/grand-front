@@ -8,72 +8,30 @@
           >
             <div
               v-if="allProfiles.length"
-              class="
-                shadow
-                overflow-hidden
-                border-b border-gray-200
-                sm:rounded-lg
-              "
+              class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
             >
               <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                   <tr>
                     <th
                       scope="col"
-                      class="
-                        px-6
-                        py-3
-                        text-left text-xs
-                        font-medium
-                        text-gray-500
-                        uppercase
-                        tracking-wider
-                      "
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Reference
                     </th>
                     <th
                       scope="col"
-                      class="
-                        px-6
-                        py-3
-                        text-left text-xs
-                        font-medium
-                        text-gray-500
-                        uppercase
-                        tracking-wider
-                      "
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Name
                     </th>
                     <th
                       scope="col"
-                      class="
-                        px-6
-                        py-3
-                        text-left text-xs
-                        font-medium
-                        text-gray-500
-                        uppercase
-                        tracking-wider
-                      "
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Email
                     </th>
-                    <th
-                      scope="col"
-                      class="
-                        px-6
-                        py-3
-                        text-left text-xs
-                        font-medium
-                        text-gray-500
-                        uppercase
-                        tracking-wider
-                      "
-                    >
-                      Role
-                    </th>
+
                     <th scope="col" class="relative px-6 py-3">
                       <span class="sr-only">Edit</span>
                     </th>
@@ -82,14 +40,7 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr v-for="(item, index) in allProfiles" :key="index">
                     <td
-                      class="
-                        px-6
-                        py-4
-                        whitespace-nowrap
-                        text-sm
-                        font-medium
-                        text-yellow-600
-                      "
+                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-yellow-600"
                     >
                       <router-link
                         :to="{
@@ -116,25 +67,19 @@
                     <td
                       class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                     >
-                      --- email
+                      <template v-if="item.contactInformation.email">
+                        {{ item.contactInformation.email }}
+                      </template>
+                      <template v-else>
+                        <span class="text-gray-400 font-semibold"
+                          >(Not Set)</span
+                        >
+                      </template>
                     </td>
+
                     <td
-                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                      class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
                     >
-                      ---role
-                    </td>
-                    <td
-                      class="
-                        px-6
-                        py-4
-                        whitespace-nowrap
-                        text-right text-sm
-                        font-medium
-                      "
-                    >
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                        >Edit</a
-                      >
                       <button
                         @click.prevent="deleteProfile(item.reference)"
                         class="text-red-600 hover:text-indigo-900"
@@ -165,7 +110,7 @@ import {
   deleteProfile,
   getAllProfiles,
   makeProfile,
-} from "../http/account.Service";
+} from "../../http/account.Service";
 import { useRoute, useRouter } from "vue-router";
 // const allProfiles = ref<profileTypes[]>([]);
 

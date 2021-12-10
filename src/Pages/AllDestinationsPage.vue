@@ -4,7 +4,6 @@ import DealsTileComponent from "./DestinationTileComponent.vue";
 import {
   destinationStore,
   getAllDestinations,
-  localStore,
 } from "../store/destinationStore";
 import SearchBarComponent from "../components/SearchBarComponent.vue";
 import { useHead } from "@vueuse/head";
@@ -45,13 +44,7 @@ getAllDestinations();
       <div class="relative">
         <div class="text-center">
           <h2
-            class="
-              text-3xl
-              tracking-tight
-              font-extrabold
-              text-gray-900
-              sm:text-4xl
-            "
+            class="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl"
           >
             All Destinations
           </h2>
@@ -70,26 +63,13 @@ getAllDestinations();
         <div v-if="destinationStore.isLoadingDestinations">
           <div v-if="true">
             <div
-              class="
-                mt-12
-                grid
-                gap-5
-                md:grid-cols-2
-                lg:grid-cols-3 lg:max-w-none
-              "
+              class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none"
             >
               <div
                 v-for="(destination, index) in destinationStore.allDestinations
                   .data"
                 :key="index"
-                class="
-                  group
-                  flex flex-col
-                  rounded-lg
-                  shadow-lg
-                  overflow-hidden
-                  relative
-                "
+                class="group flex flex-col rounded-lg shadow-lg overflow-hidden relative"
               >
                 <div class="relative flex-shrink-0">
                   <button
@@ -107,39 +87,14 @@ getAllDestinations();
                     }"
                   >
                     <img
-                      class="
-                        h-48
-                        w-full
-                        object-cover
-                        group-hover:border-yellow-400
-                        transition
-                        duration-500
-                        ease-in-out
-                        border-yellow-50 border-2
-                        rounded-lg
-                      "
+                      class="h-48 w-full object-cover group-hover:border-yellow-400 transition duration-500 ease-in-out border-yellow-50 border-2 rounded-lg"
                       :src="destination.image"
                       alt=""
                     />
                   </router-link>
                 </div>
                 <div
-                  class="
-                    bg-white
-                    border-yellow-400 border-t-4
-                    rounded-full
-                    p-2
-                    absolute
-                    top-40
-                    left-4
-                    mt-2
-                    flex
-                    items-center
-                    space-x-2
-                    text-xl
-                    font-semibold
-                    text-gray-900
-                  "
+                  class="bg-white border-yellow-400 border-t-4 rounded-full p-2 absolute top-40 left-4 mt-2 flex items-center space-x-2 text-xl font-semibold text-gray-900"
                 >
                   <img
                     class="flex-shrink-0 h-6 w-6 rounded-name"
@@ -163,17 +118,7 @@ getAllDestinations();
                       class="text-sm font-medium text-gray-400 pt-4 uppercase"
                     >
                       <span
-                        class="
-                          inline-flex
-                          items-center
-                          px-2
-                          py-0.5
-                          rounded-full
-                          text-xs
-                          font-medium
-                          bg-[#44BDEB]
-                          text-[#18424C]
-                        "
+                        class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#44BDEB] text-[#18424C]"
                       >
                         <svg
                           class="mr-1.5 h-2 w-2 text-white"

@@ -17,6 +17,7 @@ export const profileStore = reactive({
       married: "",
     },
     contactInformation: {
+      email: "",
       houseNumber: "",
       street: "",
       address: "",

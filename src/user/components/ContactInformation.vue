@@ -1,6 +1,42 @@
 <template>
   <div class="shadow sm:rounded-md bg-white">
     <div class="space-y-4 sm:overflow-hidden px-4 py-5 sm:p-6">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700"
+            >Email Address:</label
+          >
+          <div class="mt-1">
+            <input
+              v-model="profileStore.profile.contactInformation.email"
+              type="email"
+              name="first_name"
+              class="form-input"
+              autocomplete="first_name"
+            />
+          </div>
+          <p class="mt-2 text-sm text-gray-500">
+            We'll only use this for spam.
+          </p>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700"
+            >Phone Number:</label
+          >
+          <div class="mt-1">
+            <input
+              v-model="profileStore.profile.contactInformation.phoneNumber"
+              type="text"
+              name="first_name"
+              class="form-input"
+              autocomplete="first_name"
+            />
+          </div>
+          <p class="mt-2 text-sm text-gray-500">
+            We'll only use this for spam.
+          </p>
+        </div>
+      </div>
       <div>
         <label class="block text-sm font-medium text-gray-700"
           >Street name, house number</label
@@ -84,24 +120,7 @@
       <button
         @click.prevent="updateProfile($route.params.referenceId)"
         type="submit"
-        class="
-          inline-flex
-          justify-center
-          py-2
-          px-4
-          border border-transparent
-          shadow-sm
-          text-sm
-          font-medium
-          rounded-md
-          text-white
-          bg-yellow-500
-          hover:bg-yellow-600
-          focus:outline-none
-          focus:ring-2
-          focus:ring-offset-2
-          focus:ring-yellow-500
-        "
+        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
       >
         Save
       </button>

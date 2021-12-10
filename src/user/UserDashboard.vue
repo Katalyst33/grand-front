@@ -3,10 +3,10 @@ import { ref } from "vue";
 import { $axios } from "../http/http.Service";
 import { appState } from "../store/store";
 import { profileTypes } from "../types";
-import AllProfilesComponent from "./AllProfilesComponent.vue";
+import AllProfilesComponent from "./components/AllProfilesComponent.vue";
 
 const formData = ref();
-const file = ref("");
+const file = ref("") as any;
 const url = ref("");
 const imageData = new FormData();
 

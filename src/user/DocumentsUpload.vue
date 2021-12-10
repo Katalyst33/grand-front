@@ -29,17 +29,12 @@ const documentCategory = [
 const selected = ref(documentCategory[4]);
 const route = useRoute();
 const appUrl = import.meta.env.VITE_API_URL;
-import fileSize from "filesize.js";
+import { fileSizes } from "../../export";
 const code = computed(() => route.params.referenceId);
 const imageData = new FormData();
 const imageInput = ref<HTMLInputElement>();
 const url = ref("");
-const file = ref("");
-const labelType = ref(" i am label type");
-
-function fileSizes(size: number) {
-  return fileSize(size);
-}
+const file = ref("") as any;
 
 function changeImage() {
   imageInput.value?.click();
@@ -68,7 +63,7 @@ function uploadDocuments() {
 }
 function deleteDocument(referenceId: string) {
   const confirmDelete = confirm(
-    "Are you sure you want to delete this document?"
+    "Are you sure you want to delete this document?, this will delete all uploaded documents as well"
   );
   if (confirmDelete) {
     $axios
@@ -115,57 +110,19 @@ function deleteDocument(referenceId: string) {
               class="relative flex items-stretch flex-grow focus-within:z-10"
             >
               <div
-                class="
-                  absolute
-                  inset-y-0
-                  left-0
-                  pl-3
-                  flex
-                  items-center
-                  pointer-events-none
-                "
+                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
               >
                 <i class="fal fa-folder-open"></i>
               </div>
               <input
-                class="
-                  focus:ring-yellow-500 focus:border-yellow-500
-                  block
-                  w-full
-                  rounded-none rounded-l-md
-                  border
-                  pl-10
-                  sm:text-sm
-                  border-gray-300
-                  cursor-pointer
-                  bg-white
-                "
+                class="focus:ring-yellow-500 focus:border-yellow-500 block w-full rounded-none rounded-l-md border pl-10 sm:text-sm border-gray-300 cursor-pointer bg-white"
                 value="Select or drop a file here"
                 readonly
               />
             </div>
             <button
               type="button"
-              class="
-                -ml-px
-                relative
-                inline-flex
-                items-center
-                space-x-2
-                px-4
-                py-2
-                border border-gray-300
-                text-sm
-                font-medium
-                rounded-r-md
-                text-gray-700
-                bg-gray-50
-                hover:bg-gray-100
-                focus:outline-none
-                focus:ring-1
-                focus:ring-yellow-500
-                focus:border-yellow-500
-              "
+              class="-ml-px relative inline-flex items-center space-x-2 px-4 py-2 border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500"
             >
               <span>Select</span>
             </button>
@@ -183,36 +140,11 @@ function deleteDocument(referenceId: string) {
         <Listbox as="div" v-model="selected">
           <div class="mt-1 relative">
             <ListboxButton
-              class="
-                bg-white
-                relative
-                w-full
-                border border-gray-300
-                rounded-md
-                shadow-sm
-                pl-3
-                pr-10
-                py-2
-                text-left
-                cursor-default
-                focus:outline-none
-                focus:ring-1
-                focus:ring-yellow-500
-                focus:border-yellow-500
-                sm:text-sm
-              "
+              class="bg-white relative w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
             >
               <span class="block truncate">{{ selected.title }}</span>
               <span
-                class="
-                  absolute
-                  inset-y-0
-                  right-0
-                  flex
-                  items-center
-                  pr-2
-                  pointer-events-none
-                "
+                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
               >
                 <SelectorIcon
                   class="h-5 w-5 text-gray-400"
@@ -227,23 +159,7 @@ function deleteDocument(referenceId: string) {
               leave-to-class="opacity-0"
             >
               <ListboxOptions
-                class="
-                  absolute
-                  z-10
-                  mt-1
-                  w-full
-                  bg-white
-                  shadow-lg
-                  max-h-60
-                  rounded-md
-                  py-1
-                  text-base
-                  ring-1 ring-black ring-opacity-5
-                  overflow-auto
-                  focus:outline-none
-                  sm:text-sm
-                  cursor-pointer
-                "
+                class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm cursor-pointer"
               >
                 <ListboxOption
                   as="template"
@@ -295,83 +211,39 @@ function deleteDocument(referenceId: string) {
             class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
           >
             <div
-              class="
-                shadow
-                overflow-hidden
-                border-b border-gray-200
-                sm:rounded-lg
-              "
+              v-if="profileStore.profile.documents.length"
+              class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
             >
               <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                   <tr>
                     <th
                       scope="col"
-                      class="
-                        px-6
-                        py-3
-                        text-left text-xs
-                        font-medium
-                        text-gray-500
-                        uppercase
-                        tracking-wider
-                      "
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       S/N
                     </th>
                     <th
                       scope="col"
-                      class="
-                        px-6
-                        py-3
-                        text-left text-xs
-                        font-medium
-                        text-gray-500
-                        uppercase
-                        tracking-wider
-                      "
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Title
                     </th>
                     <th
                       scope="col"
-                      class="
-                        px-6
-                        py-3
-                        text-left text-xs
-                        font-medium
-                        text-gray-500
-                        uppercase
-                        tracking-wider
-                      "
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Size
                     </th>
                     <th
                       scope="col"
-                      class="
-                        px-6
-                        py-3
-                        text-left text-xs
-                        font-medium
-                        text-gray-500
-                        uppercase
-                        tracking-wider
-                      "
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Uploaded
                     </th>
                     <th
                       scope="col"
-                      class="
-                        px-6
-                        py-3
-                        text-left text-xs
-                        font-medium
-                        text-gray-500
-                        uppercase
-                        tracking-wider
-                      "
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
                       Category
                     </th>
@@ -386,26 +258,12 @@ function deleteDocument(referenceId: string) {
                     :key="index"
                   >
                     <td
-                      class="
-                        px-6
-                        py-4
-                        whitespace-nowrap
-                        text-sm
-                        font-medium
-                        text-gray-900
-                      "
+                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
                     >
                       {{ index + 1 }}.
                     </td>
                     <td
-                      class="
-                        px-6
-                        py-4
-                        whitespace-nowrap
-                        text-sm
-                        font-medium
-                        text-gray-900
-                      "
+                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
                     >
                       {{ item.name }}
                     </td>
@@ -425,13 +283,7 @@ function deleteDocument(referenceId: string) {
                       {{ item.category }}
                     </td>
                     <td
-                      class="
-                        px-6
-                        py-4
-                        whitespace-nowrap
-                        text-right text-sm
-                        font-medium
-                      "
+                      class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
                     >
                       <div class="flex gap-x-10">
                         <a
@@ -452,6 +304,12 @@ function deleteDocument(referenceId: string) {
                   </tr>
                 </tbody>
               </table>
+            </div>
+
+            <div v-else class="flex justify-center items-center gap-x-4">
+              <i class="fad fa-folder-open text-yellow-400 text-[100px]"></i>
+
+              <h4 class="text-gray-600">Please upload a document</h4>
             </div>
           </div>
         </div>

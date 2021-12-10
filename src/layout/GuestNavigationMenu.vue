@@ -7,18 +7,7 @@
     />
     <div class="relative z-20">
       <div
-        class="
-          max-w-7xl
-          mx-auto
-          flex
-          justify-between
-          items-center
-          px-4
-          py-5
-          sm:px-6 sm:py-4
-          lg:px-8
-          md:justify-start md:space-x-10
-        "
+        class="max-w-7xl mx-auto flex justify-between items-center px-4 py-5 sm:px-6 sm:py-4 lg:px-8 md:justify-start md:space-x-10"
       >
         <div>
           <a href="#" class="flex">
@@ -28,20 +17,7 @@
         </div>
         <div class="-mr-2 -my-2 md:hidden">
           <PopoverButton
-            class="
-              bg-yellow-50
-              rounded-md
-              p-2
-              inline-flex
-              items-center
-              justify-center
-              text-gray-400
-              hover:text-gray-500 hover:bg-yellow-100
-              focus:outline-none
-              focus:ring-2
-              focus:ring-inset
-              focus:ring-yellow-500
-            "
+            class="bg-yellow-50 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
           >
             <span class="sr-only">Open menu</span>
             <MenuIcon class="h-6 w-6" aria-hidden="true" />
@@ -77,58 +53,21 @@
                 leave-to-class="opacity-0 -translate-y-1"
               >
                 <PopoverPanel
-                  class="
-                    hidden
-                    md:block
-                    absolute
-                    z-10
-                    top-full
-                    inset-x-0
-                    transform
-                    shadow-lg
-                    bg-yellow-50
-                  "
+                  class="hidden md:block absolute z-10 top-full inset-x-0 transform shadow-lg bg-yellow-50"
                 >
                   <div
-                    class="
-                      max-w-7xl
-                      mx-auto
-                      grid
-                      gap-y-6
-                      px-4
-                      py-6
-                      sm:grid-cols-2 sm:gap-8 sm:px-6 sm:py-8
-                      lg:grid-cols-4 lg:px-8 lg:py-12
-                      xl:py-16
-                    "
+                    class="max-w-7xl mx-auto grid gap-y-6 px-4 py-6 sm:grid-cols-2 sm:gap-8 sm:px-6 sm:py-8 lg:grid-cols-4 lg:px-8 lg:py-12 xl:py-16"
                   >
                     <a
                       v-for="item in solutions"
                       :key="item.name"
                       :href="item.href"
-                      class="
-                        -m-3
-                        p-3
-                        flex flex-col
-                        justify-between
-                        rounded-lg
-                        hover:bg-yellow-100
-                      "
+                      class="-m-3 p-3 flex flex-col justify-between rounded-lg hover:bg-yellow-100"
                     >
                       <div class="flex md:h-full lg:flex-col">
                         <div class="flex-shrink-0">
                           <span
-                            class="
-                              inline-flex
-                              items-center
-                              justify-center
-                              h-10
-                              w-10
-                              rounded-md
-                              bg-yellow-500
-                              text-white
-                              sm:h-12 sm:w-12
-                            "
+                            class="inline-flex items-center justify-center h-10 w-10 rounded-md bg-yellow-500 text-white sm:h-12 sm:w-12"
                           >
                             <component
                               :is="item.icon"
@@ -138,11 +77,7 @@
                           </span>
                         </div>
                         <div
-                          class="
-                            ml-4
-                            md:flex-1 md:flex md:flex-col md:justify-between
-                            lg:ml-0 lg:mt-4
-                          "
+                          class="ml-4 md:flex-1 md:flex md:flex-col md:justify-between lg:ml-0 lg:mt-4"
                         >
                           <div>
                             <p class="text-base font-medium text-gray-900">
@@ -153,13 +88,7 @@
                             </p>
                           </div>
                           <p
-                            class="
-                              mt-2
-                              text-sm
-                              font-medium
-                              text-yellow-600
-                              lg:mt-4
-                            "
+                            class="mt-2 text-sm font-medium text-yellow-600 lg:mt-4"
                           >
                             Learn more <span aria-hidden="true">&rarr;</span>
                           </p>
@@ -169,15 +98,7 @@
                   </div>
                   <div class="bg-yellow-50">
                     <div
-                      class="
-                        max-w-7xl
-                        mx-auto
-                        space-y-6
-                        px-4
-                        py-5
-                        sm:flex sm:space-y-0 sm:space-x-10 sm:px-6
-                        lg:px-8
-                      "
+                      class="max-w-7xl mx-auto space-y-6 px-4 py-5 sm:flex sm:space-y-0 sm:space-x-10 sm:px-6 lg:px-8"
                     >
                       <div
                         v-for="item in callsToAction"
@@ -186,17 +107,7 @@
                       >
                         <a
                           :href="item.href"
-                          class="
-                            -m-3
-                            p-3
-                            flex
-                            items-center
-                            rounded-md
-                            text-base
-                            font-medium
-                            text-gray-900
-                            hover:bg-gray-700
-                          "
+                          class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-700"
                         >
                           <component
                             :is="item.icon"
@@ -244,51 +155,21 @@
                 leave-to-class="opacity-0 -translate-y-1"
               >
                 <PopoverPanel
-                  class="
-                    hidden
-                    md:block
-                    absolute
-                    z-10
-                    top-full
-                    inset-x-0
-                    transform
-                    shadow-lg
-                  "
+                  class="hidden md:block absolute z-10 top-full inset-x-0 transform shadow-lg"
                 >
                   <div class="absolute inset-0 flex">
                     <div class="bg-yellow-50 w-1/2" />
                     <div class="bg-yellow-50 w-1/2" />
                   </div>
                   <div
-                    class="
-                      relative
-                      max-w-7xl
-                      mx-auto
-                      grid grid-cols-1
-                      lg:grid-cols-2
-                    "
+                    class="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2"
                   >
                     <nav
-                      class="
-                        grid
-                        gap-y-10
-                        px-4
-                        py-8
-                        bg-yellow-50
-                        sm:grid-cols-2 sm:gap-x-8 sm:py-12 sm:px-6
-                        lg:px-8
-                        xl:pr-12
-                      "
+                      class="grid gap-y-10 px-4 py-8 bg-yellow-50 sm:grid-cols-2 sm:gap-x-8 sm:py-12 sm:px-6 lg:px-8 xl:pr-12"
                     >
                       <div>
                         <h3
-                          class="
-                            text-sm
-                            font-medium
-                            tracking-wide
-                            text-gray-500
-                            uppercase
-                          "
+                          class="text-sm font-medium tracking-wide text-gray-500 uppercase"
                         >
                           Company
                         </h3>
@@ -300,17 +181,7 @@
                           >
                             <a
                               :href="item.href"
-                              class="
-                                -m-3
-                                p-3
-                                flex
-                                items-center
-                                rounded-md
-                                text-base
-                                font-medium
-                                text-gray-900
-                                hover:bg-yellow-100
-                              "
+                              class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-yellow-100"
                             >
                               <component
                                 :is="item.icon"
@@ -324,13 +195,7 @@
                       </div>
                       <div>
                         <h3
-                          class="
-                            text-sm
-                            font-medium
-                            tracking-wide
-                            text-gray-500
-                            uppercase
-                          "
+                          class="text-sm font-medium tracking-wide text-gray-500 uppercase"
                         >
                           Resources
                         </h3>
@@ -342,17 +207,7 @@
                           >
                             <a
                               :href="item.href"
-                              class="
-                                -m-3
-                                p-3
-                                flex
-                                items-center
-                                rounded-md
-                                text-base
-                                font-medium
-                                text-gray-900
-                                hover:bg-yellow-100
-                              "
+                              class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-yellow-100"
                             >
                               <component
                                 :is="item.icon"
@@ -366,24 +221,11 @@
                       </div>
                     </nav>
                     <div
-                      class="
-                        bg-yellow-100
-                        px-4
-                        py-8
-                        sm:py-12 sm:px-6
-                        lg:px-8
-                        xl:pl-12
-                      "
+                      class="bg-yellow-100 px-4 py-8 sm:py-12 sm:px-6 lg:px-8 xl:pl-12"
                     >
                       <div>
                         <h3
-                          class="
-                            text-sm
-                            font-medium
-                            tracking-wide
-                            text-gray-500
-                            uppercase
-                          "
+                          class="text-sm font-medium tracking-wide text-gray-500 uppercase"
                         >
                           Top Destinations
                         </h3>
@@ -391,10 +233,7 @@
                           <li
                             v-for="(
                               destination, index
-                            ) in destinationStore.promotedDestinations.slice(
-                              0,
-                              2
-                            )"
+                            ) in destinationStore.promotedDestinations"
                             :key="index"
                             class="flow-root"
                           >
@@ -403,13 +242,7 @@
                                 name: 'ViewDestinationPage',
                                 params: { destinationId: destination.uuid },
                               }"
-                              class="
-                                -m-3
-                                p-3
-                                flex
-                                rounded-lg
-                                hover:bg-yellow-100
-                              "
+                              class="-m-3 p-3 flex rounded-lg hover:bg-yellow-100"
                             >
                               <div class="hidden sm:block flex-shrink-0">
                                 <img
@@ -420,12 +253,7 @@
                               </div>
                               <div class="w-0 flex-1 sm:ml-8">
                                 <h4
-                                  class="
-                                    text-base
-                                    font-medium
-                                    text-gray-900
-                                    truncate
-                                  "
+                                  class="text-base font-medium text-gray-900 truncate"
                                 >
                                   {{ destination.country.name }}
                                 </h4>
@@ -433,10 +261,7 @@
                                   {{ destination.title }}
                                 </p>
                                 <p
-                                  class="
-                                    mt-3
-                                    text-base text-yellow-600 text-2xl
-                                  "
+                                  class="mt-3 text-base text-yellow-600 text-2xl"
                                 >
                                   $ {{ formatPrice(destination.price) }}
                                 </p>
@@ -465,22 +290,7 @@
               <template v-if="appState.user?.role !== 'user'">
                 <router-link
                   :to="{ name: 'AdminDashboard' }"
-                  class="
-                    ml-8
-                    inline-flex
-                    items-center
-                    justify-center
-                    px-4
-                    py-2
-                    border border-transparent
-                    rounded-md
-                    shadow-sm
-                    text-base
-                    font-medium
-                    text-white
-                    bg-red-500
-                    hover:bg-red-400
-                  "
+                  class="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-500 hover:bg-red-400"
                 >
                   <i class="far fa-user-circle pr-2"></i> Manager
                 </router-link>
@@ -505,22 +315,7 @@
             </router-link>
             <router-link
               :to="{ name: 'Register' }"
-              class="
-                ml-8
-                inline-flex
-                items-center
-                justify-center
-                px-4
-                py-2
-                border border-transparent
-                rounded-md
-                shadow-sm
-                text-base
-                font-medium
-                text-white
-                bg-yellow-500
-                hover:bg-yellow-600
-              "
+              class="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-yellow-500 hover:bg-yellow-600"
             >
               Sign up
             </router-link>
@@ -539,26 +334,10 @@
     >
       <PopoverPanel
         focus
-        class="
-          absolute
-          z-30
-          top-0
-          inset-x-0
-          p-2
-          transition
-          transform
-          origin-top-right
-          md:hidden
-        "
+        class="absolute z-30 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
       >
         <div
-          class="
-            rounded-lg
-            shadow-lg
-            ring-1 ring-black ring-opacity-5
-            bg-yellow-50
-            divide-y-2 divide-gray-50
-          "
+          class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-yellow-50 divide-y-2 divide-gray-50"
         >
           <div class="pt-5 pb-6 px-5 sm:pb-8">
             <div class="flex items-center justify-between">
@@ -567,20 +346,7 @@
               </div>
               <div class="-mr-2">
                 <PopoverButton
-                  class="
-                    bg-white
-                    rounded-md
-                    p-2
-                    inline-flex
-                    items-center
-                    justify-center
-                    text-gray-400
-                    hover:text-gray-500 hover:bg-gray-100
-                    focus:outline-none
-                    focus:ring-2
-                    focus:ring-inset
-                    focus:ring-yellow-500
-                  "
+                  class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
                 >
                   <span class="sr-only">Close menu</span>
                   <XIcon class="h-6 w-6" aria-hidden="true" />
@@ -594,27 +360,10 @@
                     v-for="item in solutions"
                     :key="item.name"
                     :href="item.href"
-                    class="
-                      -m-3
-                      flex
-                      items-center
-                      p-3
-                      rounded-lg
-                      hover:bg-gray-50
-                    "
+                    class="-m-3 flex items-center p-3 rounded-lg hover:bg-gray-50"
                   >
                     <div
-                      class="
-                        flex-shrink-0 flex
-                        items-center
-                        justify-center
-                        h-10
-                        w-10
-                        rounded-md
-                        bg-yellow-500
-                        text-white
-                        sm:h-12 sm:w-12
-                      "
+                      class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-yellow-500 text-white sm:h-12 sm:w-12"
                     >
                       <component
                         :is="item.icon"
@@ -643,65 +392,35 @@
             <div class="grid grid-cols-2 gap-4">
               <a
                 href="#"
-                class="
-                  rounded-md
-                  text-base
-                  font-medium
-                  text-gray-900
-                  hover:text-gray-700
-                "
+                class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
               >
                 Fees
               </a>
 
               <a
                 href="#"
-                class="
-                  rounded-md
-                  text-base
-                  font-medium
-                  text-gray-900
-                  hover:text-gray-700
-                "
+                class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
               >
                 Privacy
               </a>
 
               <a
                 href="#"
-                class="
-                  rounded-md
-                  text-base
-                  font-medium
-                  text-gray-900
-                  hover:text-gray-700
-                "
+                class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
               >
                 Company
               </a>
 
               <a
                 href="#"
-                class="
-                  rounded-md
-                  text-base
-                  font-medium
-                  text-gray-900
-                  hover:text-gray-700
-                "
+                class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
               >
                 Resources
               </a>
 
               <a
                 href="#"
-                class="
-                  rounded-md
-                  text-base
-                  font-medium
-                  text-gray-900
-                  hover:text-gray-700
-                "
+                class="rounded-md text-base font-medium text-gray-900 hover:text-gray-700"
               >
                 Contact Us
               </a>
@@ -712,22 +431,7 @@
                   <template v-if="appState.user?.role !== 'user'">
                     <router-link
                       :to="{ name: 'AdminDashboard' }"
-                      class="
-                        ml-8
-                        inline-flex
-                        items-center
-                        justify-center
-                        px-4
-                        py-2
-                        border border-transparent
-                        rounded-md
-                        shadow-sm
-                        text-base
-                        font-medium
-                        text-white
-                        bg-red-500
-                        hover:bg-red-400
-                      "
+                      class="ml-8 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-500 hover:bg-red-400"
                     >
                       <i class="far fa-user-circle pr-2"></i> Manager
                     </router-link>
@@ -747,22 +451,7 @@
               <div v-else>
                 <router-link
                   :to="{ name: 'Register' }"
-                  class="
-                    w-full
-                    flex
-                    items-center
-                    justify-center
-                    px-4
-                    py-2
-                    border border-transparent
-                    rounded-md
-                    shadow-sm
-                    text-base
-                    font-medium
-                    text-white
-                    bg-yellow-500
-                    hover:bg-yellow-600
-                  "
+                  class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-yellow-500 hover:bg-yellow-600"
                 >
                   Sign up
                 </router-link>
