@@ -95,13 +95,12 @@
                 </div>
 
                 <div class="space-y-2">
-                  <button
-                    type="button"
+                  <BusyButton
                     @click.prevent="LoginUser"
-                    class="w-full login-button"
+                    :is-loading="isLoading"
+                    class="primary-button-wide w-full"
+                    ><span class="text-center">Log in</span></BusyButton
                   >
-                    Log in
-                  </button>
 
                   <p class="text-gray-500 text-sm text-center py-4">
                     Don't have an account ?
@@ -136,18 +135,20 @@ import { vueLocalStorage } from "@trapcode/browser-storage/vue";
 import { useRouter } from "vue-router";
 import LoginRegisterLogo from "./LoginRegisterLogo.vue";
 import { appState } from "../store/store";
+import BusyButton from "../components/BusyButton.vue";
 
 const BrowserStore = vueLocalStorage();
 
 export default {
   name: "LoginPage",
-  components: { LoginRegisterLogo },
+  components: { BusyButton, LoginRegisterLogo },
   setup() {
     const form = ref<userForm>({
       email: "",
       password: "",
     });
 
+    const isLoading = ref(false);
     const router = useRouter();
 
     function normalUser() {
@@ -171,6 +172,8 @@ export default {
     }
 
     function LoginUser() {
+      isLoading.value = true;
+
       $axios
         .post("client/login", form.value)
         .then((r: any) => {
@@ -187,9 +190,14 @@ export default {
           } else {
             window.location.href = "/user/dashboard";
           }
+          isLoading.value = false;
         })
 
-        .catch((r) => r);
+        .catch((r) => {
+          isLoading.value = false;
+
+          return r;
+        });
     }
     return {
       appState,
@@ -199,6 +207,7 @@ export default {
       staffUser,
       adminUser,
       form,
+      isLoading,
     };
   },
 };

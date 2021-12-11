@@ -6,7 +6,7 @@
 
     <ViewDestinationHero v-if="$route.name === 'ViewDestinationPage'" />
 
-    <div class="container mx-auto">
+    <div class="container mx-auto h-auto">
       <router-view />
     </div>
     <FooterSection />

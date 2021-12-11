@@ -14,6 +14,7 @@ import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.v
 import { appState } from "../store/store";
 import { computed, ref, watch } from "vue";
 import Paginator from "../components/paginator/Paginator.vue";
+import { formattedDate } from "../../export";
 const router = useRouter();
 
 const route = useRoute();
@@ -134,18 +135,37 @@ getAllDestinations();
                   <div class="mt-6 flex items-center">
                     <div class="flex-shrink-0"></div>
                     <div class="flex space-x-2">
-                      <p class="text-sm font-medium text-gray-900">
-                        <i class="fal fa-clock"></i>
-                      </p>
-                      <div class="flex space-x-1 text-sm text-gray-500">
-                        <HumanDateTimeComponent
-                          :raw-time="destination.duration.start"
-                        />
-                        -
-                        <HumanDateTimeComponent
-                          :raw-time="destination.duration.end"
-                        />
+                      <p class="text-sm font-medium text-gray-900"></p>
+                      <div
+                        class="flex flex-col text-sm text-gray-500 text-left"
+                      >
+                        <div>
+                          <i class="fal fa-calendar-alt"></i>
+
+                          {{ formattedDate(destination.duration.start) }}
+                        </div>
+                        <br />
+
+                        <div>
+                          <i class="fal fa-calendar-alt"></i>
+                          {{ formattedDate(destination.duration.end) }}
+                        </div>
+
+                        <!--                        @click="toViewDestination(destination)"-->
                       </div>
+                      <template
+                        v-if="['staff', 'admin'].includes(appState.user?.role)"
+                      >
+                        <router-link
+                          :to="{
+                            name: 'UpdateDestination',
+                            params: { destinationId: destination.uuid },
+                          }"
+                          class="p-4 absolute bottom-0 text-red-600 right-0"
+                        >
+                          <i class="far fa-eye text-2xl"></i>
+                        </router-link>
+                      </template>
                     </div>
                   </div>
                 </div>

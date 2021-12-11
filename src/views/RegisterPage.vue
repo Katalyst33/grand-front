@@ -2,14 +2,7 @@
   <section>
     <div class="min-h-screen flex flex-row-reverse">
       <div
-        class="
-          flex-1 flex flex-col
-          justify-center
-          px-4
-          sm:px-6
-          lg:flex-none lg:px-20
-          xl:px-24
-        "
+        class="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24"
       >
         <div class="mx-auto w-full max-w-sm lg:w-96">
           <div class="pt-4 sm:pt-0">
@@ -20,26 +13,7 @@
             <div>
               <button
                 type="submit"
-                class="
-                  w-full
-                  text-teal-700
-                  hover:text-white
-                  flex
-                  justify-center
-                  py-3
-                  px-4
-                  border border-2 border-transparent
-                  rounded-md
-                  shadow-sm
-                  text-sm
-                  font-medium
-                  border-teal-500
-                  hover:bg-teal-600 hover:text-white-500
-                  focus:outline-none
-                  focus:ring-2
-                  focus:ring-offset-2
-                  focus:ring-teal-500
-                "
+                class="w-full text-teal-700 hover:text-white flex justify-center py-3 px-4 border border-2 border-transparent rounded-md shadow-sm text-sm font-medium border-teal-500 hover:bg-teal-600 hover:text-white-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
               >
                 Sign in with google
               </button>
@@ -53,14 +27,7 @@
 
                 <div class="relative flex justify-center text-sm">
                   <span
-                    class="
-                      px-2
-                      my-4
-                      bg-yellow-50
-                      border border-yellow-500
-                      rounded-full
-                      text-gray-500
-                    "
+                    class="px-2 my-4 bg-yellow-50 border border-yellow-500 rounded-full text-gray-500"
                   >
                     Or continue with
                   </span>
@@ -117,13 +84,13 @@
               </div>
 
               <div class="space-y-2">
-                <button
+                <BusyButton
                   @click.prevent="registerUser"
-                  type="submit"
-                  class="login-button w-full"
+                  :is-loading="isLoading"
+                  class="primary-button-wide w-full"
+                  ><span class="text-center"> Register</span></BusyButton
                 >
-                  Register
-                </button>
+
                 <div></div>
 
                 <p class="text-gray-500 text-sm text-center py-6">
@@ -157,27 +124,46 @@ import AppLogo from "../AppLogo.vue";
 import { $axios } from "../http/http.Service";
 import LoginRegisterLogo from "./LoginRegisterLogo.vue";
 import { appState } from "../store/store";
+import BusyButton from "../components/BusyButton.vue";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "RegisterPage",
-  components: { LoginRegisterLogo, AppLogo },
+  components: { BusyButton, LoginRegisterLogo, AppLogo },
   setup() {
+    const isLoading = ref(false);
+
     const form = ref<userForm>({
-      email: "",
+      email: appState.isDev ? "@gmail.com" : "",
       password: appState.isDev ? "123456789" : "",
       repeat_password: appState.isDev ? "123456789" : "",
     });
 
+    const router = useRouter();
+
     function registerUser() {
+      isLoading.value = true;
+
       $axios
         .post("client/register", form.value)
-        .then((r: any) => console.log(r))
-        .catch((r) => r);
+        .then((r: any) => {
+          isLoading.value = false;
+
+          router.push({ name: "Login" });
+
+          console.log(r);
+        })
+        .catch((r) => {
+          isLoading.value = false;
+
+          return r;
+        });
     }
 
     return {
       form,
       registerUser,
+      isLoading,
       appState,
     };
   },

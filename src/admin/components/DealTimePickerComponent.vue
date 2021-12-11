@@ -35,6 +35,7 @@ import HumanDateTimeComponent from "./HumanDateTimeComponent.vue";
 import moment from "moment/moment";
 
 import { computed, ref } from "vue";
+import { formattedDate } from "../../../export";
 
 const props = defineProps<{
   destination: {
@@ -48,7 +49,4 @@ const props = defineProps<{
 console.log(props);
 
 const isSelecting = ref(false);
-function formattedDate(date: Date) {
-  return moment(date).format("dddd Do  MMMM YYYY");
-}
 </script>
