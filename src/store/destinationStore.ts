@@ -2,6 +2,7 @@ import { computed, reactive, readonly, ref, watch } from "vue";
 import { $axios } from "../http/http.Service";
 import { useRoute, useRouter } from "vue-router";
 import { DestinationType } from "../types";
+import { localStore } from "../../export";
 
 const sort = reactive({ field: "createdAt", direction: true });
 const searchQuery = ref<string | undefined>(undefined);
@@ -15,7 +16,7 @@ export const destinationStore = reactive({
   isLoadingSpinner: false,
   searchDestinationQuery: searchQuery,
   sortDestination: sort,
-  myDestinations: [],
+  myDestinations: localStore.getArray("myDestinations") || [],
 } as any);
 
 export const singleDestinationStore = reactive({

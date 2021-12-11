@@ -14,6 +14,7 @@ import {
 } from "../store/destinationStore";
 import CompanyLogo from "../CompanyLogo.vue";
 import ViewDestinationSlider from "../components/ViewDestinationSlider.vue";
+import { localStore } from "../../export";
 
 const route = useRoute();
 
@@ -29,7 +30,13 @@ function addToWishlist(destination: any) {
 function addToCart(destination: any) {
   console.log(destination, "cart");
 
+  if (destinationStore.myDestinations.includes(destination)) {
+    return;
+  }
+
   destinationStore.myDestinations.push(destination);
+  localStore.setArray("myDestinations", destinationStore.myDestinations);
+
   console.log(destinationStore.myDestinations, "cart");
 }
 </script>
@@ -53,7 +60,17 @@ function addToCart(destination: any) {
 
           <section>
             <div class="flex justify-between">
+              <div
+                v-if="
+                  destinationStore.myDestinations.includes(
+                    singleDestinationStore.destination
+                  )
+                "
+              >
+                added already
+              </div>
               <button
+                v-else
                 @click="addToCart(singleDestinationStore.destination)"
                 class="bg-yellow-500 p-2 rounded-md"
               >

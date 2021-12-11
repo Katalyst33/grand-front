@@ -10,6 +10,7 @@ export const appState = reactive({
   data: {},
   user: {},
   showMobileMenu: true,
+  showCart: true,
   isDev: import.meta.env.DEV,
   isLoaded: false,
   sidebarOpen: true,

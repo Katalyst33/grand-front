@@ -60,6 +60,7 @@ export type appStateTypes = {
   data: appInfo;
   user: loggedUser;
   showMobileMenu: boolean;
+  showCart: boolean;
   isDev: boolean;
   isLoaded: boolean;
   sidebarOpen: boolean;
