@@ -177,12 +177,10 @@ getAllDestinations();
     </div>
     <section>
       <Paginator
-        v-model="destinationStore.paginationQuery"
+        v-model="page"
         class="pt-10"
         :data="destinationStore.allDestinations"
       />
-
-      {{ page }}
     </section>
   </div>
 </template>

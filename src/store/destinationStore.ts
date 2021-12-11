@@ -7,14 +7,15 @@ const sort = reactive({ field: "createdAt", direction: true });
 const searchQuery = ref<string | undefined>(undefined);
 
 export const destinationStore = reactive({
-  allDestinations: {},
-  promotedDestinations: {} as DestinationType[] | DestinationType,
+  allDestinations: [],
+  promotedDestinations: [] as DestinationType[] | DestinationType,
   paginationQuery: null,
 
   isLoadingDestinations: false,
   isLoadingSpinner: false,
   searchDestinationQuery: searchQuery,
   sortDestination: sort,
+  myDestinations: [],
 } as any);
 
 export const singleDestinationStore = reactive({

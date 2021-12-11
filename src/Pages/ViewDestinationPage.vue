@@ -8,6 +8,7 @@ import { useRoute } from "vue-router";
 import { $axios } from "../http/http.Service";
 import { DestinationType } from "../types";
 import {
+  destinationStore,
   getOneDestination,
   singleDestinationStore,
 } from "../store/destinationStore";
@@ -27,6 +28,9 @@ function addToWishlist(destination: any) {
 }
 function addToCart(destination: any) {
   console.log(destination, "cart");
+
+  destinationStore.myDestinations.push(destination);
+  console.log(destinationStore.myDestinations, "cart");
 }
 </script>
 
@@ -50,7 +54,7 @@ function addToCart(destination: any) {
           <section>
             <div class="flex justify-between">
               <button
-                @click="addToCart(singleDestinationStore)"
+                @click="addToCart(singleDestinationStore.destination)"
                 class="bg-yellow-500 p-2 rounded-md"
               >
                 Add to Cart

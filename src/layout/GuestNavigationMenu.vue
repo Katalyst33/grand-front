@@ -23,6 +23,7 @@
             <MenuIcon class="h-6 w-6" aria-hidden="true" />
           </PopoverButton>
         </div>
+
         <div
           class="hidden md:flex-1 md:flex md:items-center md:justify-between"
         >
@@ -285,6 +286,7 @@
               </transition>
             </Popover>
           </PopoverGroup>
+
           <template v-if="appState.user?.role">
             <div class="flex items-center space-x-6">
               <template v-if="appState.user?.role !== 'user'">
@@ -321,6 +323,7 @@
             </router-link>
           </div>
         </div>
+        <MyDestinationCart />
       </div>
     </div>
 
@@ -483,21 +486,15 @@ import {
 } from "@headlessui/vue";
 import {
   BookmarkAltIcon,
-  BriefcaseIcon,
   ChartBarIcon,
   CheckCircleIcon,
   CursorClickIcon,
-  DesktopComputerIcon,
   GlobeAltIcon,
   InformationCircleIcon,
   MenuIcon,
-  NewspaperIcon,
   OfficeBuildingIcon,
   PhoneIcon,
-  PlayIcon,
   ShieldCheckIcon,
-  UserGroupIcon,
-  ViewGridIcon,
   XIcon,
 } from "@heroicons/vue/outline";
 import { ChevronDownIcon } from "@heroicons/vue/solid";
@@ -507,6 +504,7 @@ import { ref } from "vue";
 import LogOutComponent from "../components/LogOutComponent.vue";
 import { destinationStore } from "../store/destinationStore";
 import { formatPrice } from "../lib/util";
+import MyDestinationCart from "../components/MyDestinationCart.vue";
 
 const solutions = [
   {
@@ -565,6 +563,7 @@ const blogPosts = [
 
 export default {
   components: {
+    MyDestinationCart,
     LogOutComponent,
     CompanyLogo,
     Popover,

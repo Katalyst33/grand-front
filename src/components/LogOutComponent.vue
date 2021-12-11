@@ -5,7 +5,6 @@
       class="cursor-pointer flex items-center py-4"
     >
       <span class="fad fa-power-off text-lg text-red-500 pr-2"></span>
-      <span class="text-sm font-medium">LogOut</span>
     </button>
   </div>
 </template>
