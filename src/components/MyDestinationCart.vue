@@ -70,12 +70,16 @@ import { destinationStore } from "../store/destinationStore";
                     v-for="(item, index) in destinationStore.myDestinations"
                     :key="index"
                   >
-                    <div class="my-4">
-                      {{ item.title }}
-                      {{ item.country.name }}
-                      {{ item.country.code }}
-                      <img height="100" :src="item.image" />
-                      {{ item.image }}
+                    <div class="flex gap-x-2 my-4">
+                      <img :src="item.image" class="rounded-md h-20" />
+
+                      <div class="">
+                        <span class="block">{{ item.title }}</span>
+                        <span class="block">{{ item.country.name }}</span>
+                        <span class="block">{{ item.country.code }}</span>
+                        <span class="block">{{ item.price }}</span>
+                      </div>
+                      <h4>X</h4>
                     </div>
                   </div>
                   <div class="absolute inset-0 px-4 sm:px-6">
