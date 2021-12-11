@@ -2,15 +2,7 @@
   <section>
     <div class="min-h-screen flex">
       <div
-        class="
-          flex-1 flex flex-col
-          justify-center
-          py-10
-          px-4
-          sm:px-6
-          lg:flex-none lg:px-20
-          xl:px-24
-        "
+        class="flex-1 flex flex-col justify-center py-10 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24"
       >
         <div class="mx-auto w-full max-w-sm lg:w-96">
           <div>
@@ -21,26 +13,7 @@
             <div>
               <button
                 type="submit"
-                class="
-                  w-full
-                  text-teal-700
-                  hover:text-white
-                  flex
-                  justify-center
-                  py-3
-                  px-4
-                  border border-2 border-transparent
-                  rounded-md
-                  shadow-sm
-                  text-sm
-                  font-medium
-                  border-teal-500
-                  hover:bg-teal-600 hover:text-white-500
-                  focus:outline-none
-                  focus:ring-2
-                  focus:ring-offset-2
-                  focus:ring-teal-500
-                "
+                class="w-full text-teal-700 hover:text-white flex justify-center py-3 px-4 border border-2 border-transparent rounded-md shadow-sm text-sm font-medium border-teal-500 hover:bg-teal-600 hover:text-white-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
               >
                 Sign in with google
               </button>
@@ -54,14 +27,7 @@
 
                 <div class="relative flex justify-center text-sm">
                   <span
-                    class="
-                      px-2
-                      my-4
-                      bg-yellow-50
-                      border border-yellow-500
-                      rounded-full
-                      text-gray-500
-                    "
+                    class="px-2 my-4 bg-yellow-50 border border-yellow-500 rounded-full text-gray-500"
                   >
                     Or continue with
                   </span>
@@ -113,14 +79,7 @@
                   <div class="flex items-center">
                     <input
                       type="checkbox"
-                      class="
-                        h-4
-                        w-4
-                        text-teal-600
-                        focus:ring-teal-500
-                        border-gray-300
-                        rounded
-                      "
+                      class="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
                     />
                     <label class="form-label ml-2"> Remember me </label>
                   </div>
@@ -216,12 +175,12 @@ export default {
         .post("client/login", form.value)
         .then((r: any) => {
           console.log(r, "reee");
-          BrowserStore.set("ge_jwt", r.token);
-          BrowserStore.set("user_role", r.role);
+          if (r.token) {
+            BrowserStore.set("ge_jwt", r.token);
+            BrowserStore.set("user_role", r.role);
+          }
 
-          if (r.error) {
-            router.push({ name: "Contact" });
-          } else if (BrowserStore.get("user_role") === "user") {
+          if (BrowserStore.get("user_role") === "user") {
             window.location.href = "/account/dashboard";
           } else if (BrowserStore.get("user_role") !== "user") {
             window.location.href = "/manager/dashboard";
@@ -229,6 +188,7 @@ export default {
             window.location.href = "/user/dashboard";
           }
         })
+
         .catch((r) => r);
     }
     return {
