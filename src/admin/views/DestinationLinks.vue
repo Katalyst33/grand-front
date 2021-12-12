@@ -19,9 +19,13 @@
   </section>
 </template>
 <script lang="ts" setup>
-import { clearStore } from "../../store/destinationStore";
+import {
+  clearStore,
+  singleDestinationStore,
+} from "../../store/destinationStore";
 import { useRoute, useRouter } from "vue-router";
 import { ref } from "vue";
+import { DestinationType } from "../../types";
 
 const route = useRoute(),
   router = useRouter();

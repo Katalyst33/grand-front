@@ -10,7 +10,7 @@ import { destinationStore, runSort } from "../store/destinationStore";
           class="mt-1 border-b border-gray-300 focus-within:border-yellow-600"
         >
           <input
-            v-model="destinationStore.searchDestinationQuery"
+            v-model="destinationStore.searchDestinationQuery.search"
             type="text"
             name="name"
             id="name"
@@ -67,7 +67,7 @@ import { destinationStore, runSort } from "../store/destinationStore";
 
     <div
       v-if="
-        destinationStore.searchDestinationQuery &&
+        destinationStore.searchDestinationQuery.search &&
         !destinationStore.allDestinations.data.length
       "
     >

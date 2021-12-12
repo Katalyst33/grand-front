@@ -16,7 +16,9 @@ export const destinationStore = reactive({
 
   isLoadingDestinations: false,
   isLoadingSpinner: false,
-  searchDestinationQuery: searchQuery,
+  searchDestinationQuery: {
+    search: searchQuery,
+  },
   sortDestination: sort,
   myDestinations: localStore.getArray("myDestinations") || [],
 } as any);

@@ -23,19 +23,16 @@ function toViewDestination(destination: DestinationType) {
 const page = computed(() => {
   return route.query.page;
 });
-console.log(page.value, "page");
 
-function getAllDestinations(search?: string, sort?: any, page?: any) {
-  console.log(page, "page");
+function getAllDestinations(search?: string, sort?: any) {
   let params = {} as any;
   if (search) {
     params.search = search;
+  } else {
+    params.page = page.value;
   }
   if (sort) {
     params.sort = sort.direction ? sort.field + ",asc" : sort.field;
-  }
-  if (page) {
-    params.page = page.value!;
   }
 
   $axios
@@ -50,11 +47,14 @@ function getAllDestinations(search?: string, sort?: any, page?: any) {
     .catch((e) => e);
 }
 
-watch([page, destinationStore.searchDestinationQuery], () => {
-  getAllDestinations(destinationStore.searchDestinationQuery, "", page.value);
-  destinationStore.paginationQuery = page.value;
-  console.log("haba", page.value);
-});
+watch(
+  [page, destinationStore.searchDestinationQuery],
+  () => {
+    getAllDestinations(destinationStore.searchDestinationQuery, "");
+    destinationStore.paginationQuery = page.value;
+  },
+  { immediate: true }
+);
 
 getAllDestinations();
 </script>
