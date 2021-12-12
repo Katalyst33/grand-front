@@ -1,20 +1,14 @@
 <script lang="ts" setup>
-import DealsTileComponent from "./DestinationTileComponent.vue";
-
-import {
-  destinationStore,
-  getAllDestinations,
-} from "../store/destinationStore";
+import { destinationStore } from "../store/destinationStore";
 import SearchBarComponent from "../components/SearchBarComponent.vue";
-import { useHead } from "@vueuse/head";
 import { DestinationType } from "../types";
 import { useRoute, useRouter } from "vue-router";
 
-import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
 import { appState } from "../store/store";
-import { computed, ref, watch } from "vue";
+import { computed, watch } from "vue";
 import Paginator from "../components/paginator/Paginator.vue";
 import { formatPrice, formattedDate } from "../../export";
+import { $axios } from "../http/http.Service";
 const router = useRouter();
 
 const route = useRoute();
@@ -29,9 +23,35 @@ function toViewDestination(destination: DestinationType) {
 const page = computed(() => {
   return route.query.page;
 });
+console.log(page.value, "page");
 
-watch(page, () => {
-  getAllDestinations("", "");
+function getAllDestinations(search?: string, sort?: any, page?: any) {
+  console.log(page, "page");
+  let params = {} as any;
+  if (search) {
+    params.search = search;
+  }
+  if (sort) {
+    params.sort = sort.direction ? sort.field + ",asc" : sort.field;
+  }
+  if (page) {
+    params.page = page.value!;
+  }
+
+  $axios
+    .get("/client/destinations", {
+      params,
+    })
+    .then((r: any) => {
+      destinationStore.allDestinations = r.data.allDestinations;
+      destinationStore.promotedDestinations = r.data.promotedDestinations;
+      destinationStore.isLoadingDestinations = true;
+    })
+    .catch((e) => e);
+}
+
+watch([page, destinationStore.searchDestinationQuery], () => {
+  getAllDestinations(destinationStore.searchDestinationQuery, "", page.value);
   destinationStore.paginationQuery = page.value;
   console.log("haba", page.value);
 });
@@ -73,14 +93,6 @@ getAllDestinations();
                 class="group flex flex-col rounded-lg shadow-lg overflow-hidden relative px-4 md:px-0"
               >
                 <div class="relative flex-shrink-0">
-                  <button
-                    v-if="appState.user?.role === 'staff'"
-                    @click="toViewDestination(destination)"
-                    class="bg-red-500 p-4 absolute top-0 opacity-50"
-                  >
-                    <i class="far fa-eye"></i>
-                  </button>
-
                   <router-link
                     :to="{
                       name: 'ViewDestinationPage',
@@ -112,7 +124,7 @@ getAllDestinations();
                         {{ destination.title }}, {{ destination.title }}...
                       </p>
                     </a>
-                    <p class="mt-3 text-base text-yellow-600 text-2xl">
+                    <p class="mt-3 text-yellow-600 font-medium text-2xl">
                       $ {{ formatPrice(destination.price) }}
                     </p>
                     <div
@@ -184,31 +196,3 @@ getAllDestinations();
     </section>
   </div>
 </template>
-
-<style lang="scss">
-.Paginator > .pagination {
-  @apply block w-full mt-2 px-3;
-
-  .pagination-previous,
-  .pagination-next {
-    @apply px-3 py-1 text-sm border border-gray-500 hover:bg-gray-600 hover:text-gray-50 rounded text-gray-500 cursor-pointer;
-  }
-
-  .pagination-list {
-    @apply block list-none;
-  }
-
-  .pagination-link {
-    @apply px-3 py-1.5 text-sm border border-gray-500 hover:bg-gray-500 hover:text-gray-50 rounded text-gray-500 cursor-pointer;
-    @apply inline-block;
-  }
-
-  .pagination-link.is-current {
-    @apply bg-gray-800 text-white font-bold border-white;
-  }
-
-  .pagination-ellipsis {
-    @apply text-gray-500;
-  }
-}
-</style>

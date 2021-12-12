@@ -72,7 +72,7 @@ export default <RouteRecordRaw>{
     },
 
     {
-      path: "/Gallery",
+      path: "/manager/gallery",
       name: "GalleryPage",
       component: GalleryPage,
       meta: {

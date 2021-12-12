@@ -14,7 +14,12 @@ import {
 } from "../store/destinationStore";
 import CompanyLogo from "../CompanyLogo.vue";
 import ViewDestinationSlider from "../components/ViewDestinationSlider.vue";
-import { formatPrice, localStore, removeDestination } from "../../export";
+import {
+  formatPrice,
+  formattedDate,
+  localStore,
+  removeDestination,
+} from "../../export";
 
 const route = useRoute();
 
@@ -71,17 +76,54 @@ function addToCart(destination: any) {
           </div>
         </div>
         <div class="tileTab">
+          <template v-if="['staff', 'admin'].includes(appState.user?.role)">
+            <router-link
+              :to="{
+                name: 'UpdateDestination',
+                params: {
+                  destinationId: singleDestinationStore.destination.uuid,
+                },
+              }"
+              class="bottom-0 text-red-600 right-0"
+            >
+              <i class="far fa-eye text-2xl"></i>
+            </router-link>
+          </template>
           <div>
+            <div class="flex flex-col gap-y-2">
+              <h3 class="text-yellow-600 font-medium">Duration:</h3>
+              <div>
+                <i class="fal fa-calendar-alt"></i>
+                <span class="font-medium px-1">Start:</span>
+                {{
+                  formattedDate(
+                    singleDestinationStore.destination.duration.start
+                  )
+                }}
+              </div>
+
+              <div>
+                <i class="fal fa-calendar-alt"></i>
+                <span class="font-medium px-1">Ends:</span>
+                {{
+                  formattedDate(singleDestinationStore.destination.duration.end)
+                }}
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-yellow-600 font-medium pt-4">Included:</h3>
+
             <p v-html="singleDestinationStore.destination.included"></p>
           </div>
-          <h1 class="text-yellow-600 font-medium text-3xl">
+          <h1 class="text-yellow-600 font-medium text-3xl pt-4">
             N {{ formatPrice(singleDestinationStore.destination.price) }}
           </h1>
 
           <section>
-            <div class="flex justify-center">
+            <div class="flex justify-center pt-6">
               <button
-                class="primary-button-regular w-full"
+                class="dark-button-regular w-full"
                 @click.prevent="
                   removeDestination(singleDestinationStore.destination)
                 "

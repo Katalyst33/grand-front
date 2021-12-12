@@ -9,12 +9,12 @@ export default defineComponent({
     // page: { type: Number, default: 1 },
     data: {
       type: Object,
-      default: () => ({})
+      default: () => ({}),
     },
     name: {
       type: String,
-      default: "page"
-    }
+      default: "page",
+    },
   },
 
   setup(props, { emit }) {
@@ -58,7 +58,7 @@ export default defineComponent({
     });
 
     return { data, name, pagesArray, openPage };
-  }
+  },
 });
 </script>
 
@@ -111,9 +111,14 @@ export default defineComponent({
       </div>
       <div class="pagination-list float-left space-x-2">
         <template v-if="data.page > 3">
-          <button @click.prevent="openPage(1)" class="pagination-link">1</button>
+          <button @click.prevent="openPage(1)" class="pagination-link">
+            1
+          </button>
           <span class="pagination-ellipsis">&hellip;</span>
-          <button @click.prevent="openPage(data.page - 1)" class="pagination-link">
+          <button
+            @click.prevent="openPage(data.page - 1)"
+            class="pagination-link"
+          >
             {{ data.page - 1 }}
           </button>
           <template v-if="data.page !== data.lastPage">
@@ -126,7 +131,10 @@ export default defineComponent({
             </button>
           </template>
           <template v-if="data.page + 1 < data.lastPage">
-            <button @click.prevent="openPage(data.page + 1)" class="pagination-link">
+            <button
+              @click.prevent="openPage(data.page + 1)"
+              class="pagination-link"
+            >
               {{ data.page + 1 }}
             </button>
           </template>
@@ -135,7 +143,10 @@ export default defineComponent({
           <template v-for="(pageIndex, pID) in pagesArray" :key="pID">
             <button
               @click.prevent="openPage(pageIndex)"
-              :class="'pagination-link' + (data.page === pageIndex ? ' is-current' : '')"
+              :class="
+                'pagination-link' +
+                (data.page === pageIndex ? ' is-current' : '')
+              "
               aria-label="Goto page 1"
             >
               {{ pageIndex }}
@@ -148,7 +159,8 @@ export default defineComponent({
             @click.prevent="openPage(data.lastPage)"
             :class="
               (
-                'pagination-link ' + (data.lastPage === data.page ? 'is-current' : '')
+                'pagination-link ' +
+                (data.lastPage === data.page ? 'is-current' : '')
               ).trim()
             "
           >
@@ -160,3 +172,31 @@ export default defineComponent({
     </nav>
   </section>
 </template>
+<style lang="scss" scoped>
+.pagination {
+  @apply block w-full  px-3;
+  .pagination-previous,
+  .pagination-next {
+    @apply px-3 py-1 text-sm bg-teal-500 hover:bg-teal-900 rounded-full text-teal-200 cursor-pointer;
+  }
+
+  .pagination-list {
+    @apply block list-none;
+  }
+
+  .pagination-link {
+    @apply px-2 py-1  text-sm bg-teal-200 hover:bg-teal-500 rounded-full text-teal-400 hover:text-white cursor-pointer;
+    @apply inline-block;
+  }
+
+  .pagination-link.is-current {
+    @apply bg-teal-500 text-white;
+  }
+}
+
+.pagination-link,
+.pagination-next,
+.pagination-previous {
+  color: whitesmoke;
+}
+</style>

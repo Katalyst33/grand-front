@@ -27,18 +27,10 @@ export const singleDestinationStore = reactive({
   isLoadingDeal: false,
 });
 
-export const searchDestinationStore = reactive({
-  isSearching: false,
-});
-
 const SET_ONE_DESTINATION = (oneDestination: any) => {
   singleDestinationStore.destination = oneDestination.deal;
   singleDestinationStore.images = oneDestination.images;
   singleDestinationStore.isLoadingDeal = true;
-
-  /*  ;
-  singleDestinationStore.images = oneDeal.images;
-  singleDestinationStore.isLoadingDeal = true;*/
 };
 
 const CLEAR_ONE_DESTINATION = () => {
@@ -59,7 +51,7 @@ export function clearStore() {
   CLEAR_ONE_DESTINATION();
 }
 
-export function getAllDestinations(search?: string, sort?: any, page?: number) {
+function getAllDestinations(search?: string, sort?: any, page?: number) {
   let params = {} as any;
   if (search) {
     params.search = search;
@@ -121,11 +113,7 @@ export function runSort(by: string) {
 
 let timeOut: NodeJS.Timeout | number = -1;
 
-export function isSearching() {
-  searchDestinationStore.isSearching = !searchDestinationStore.isSearching;
-}
-
-watch(searchQuery, () => {
+watch([searchQuery], () => {
   destinationStore.isLoadingSpinner = true;
 
   clearTimeout(timeOut as NodeJS.Timeout);

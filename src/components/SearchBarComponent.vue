@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { destinationStore, runSort } from "../store/destinationStore";
-import { computed } from "vue";
 </script>
 
 <template>
@@ -15,14 +14,7 @@ import { computed } from "vue";
             type="text"
             name="name"
             id="name"
-            class="
-              block
-              w-full
-              border-0 border-b border-transparent
-              bg-gray-50
-              focus:border-yellow-600 focus:ring-0
-              sm:text-sm
-            "
+            class="block w-full border-0 border-b border-transparent bg-gray-50 focus:border-yellow-600 focus:ring-0 sm:text-sm"
             placeholder="Search for a Destination.."
           />
         </div>
