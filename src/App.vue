@@ -67,6 +67,10 @@ useHead({
   @apply text-2xl font-normal text-gray-700;
 }
 
+.big-john-font {
+  font-family: bigJohn, serif;
+}
+
 .regular {
   @apply text-sm;
 }

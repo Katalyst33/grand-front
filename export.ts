@@ -11,3 +11,11 @@ export function fileSizes(size: number) {
 export function formattedDate(date: Date) {
   return moment(date).format("dddd Do  MMMM YYYY");
 }
+
+export function truncateString(str: string, n: number) {
+  return str.length > n ? str.substr(0, n - 1) + "..." : `${str}...`;
+}
+
+export function formatPrice(price: any) {
+  return Number(price).toLocaleString();
+}

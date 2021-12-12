@@ -15,13 +15,14 @@
             <CompanyLogo :app-state="appState" :text-color="textColor" />
           </a>
         </div>
-        <div class="-mr-2 -my-2 md:hidden">
+        <div class="flex items-center pr-4 gap-x-4 -mr-2 -my-2 md:hidden">
           <PopoverButton
             class="bg-yellow-50 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
           >
             <span class="sr-only">Open menu</span>
             <MenuIcon class="h-6 w-6" aria-hidden="true" />
           </PopoverButton>
+          <MyDestinationCart class="pr-4" />
         </div>
 
         <div
@@ -323,7 +324,9 @@
             </router-link>
           </div>
         </div>
-        <MyDestinationCart />
+        <div class="hidden md:block">
+          <MyDestinationCart />
+        </div>
       </div>
     </div>
 
@@ -503,7 +506,8 @@ import { appState } from "../store/store";
 import { ref } from "vue";
 import LogOutComponent from "../components/LogOutComponent.vue";
 import { destinationStore } from "../store/destinationStore";
-import { formatPrice } from "../lib/util";
+import { formatPrice } from "../../export";
+
 import MyDestinationCart from "../components/MyDestinationCart.vue";
 
 const solutions = [

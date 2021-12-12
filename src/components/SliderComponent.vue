@@ -12,7 +12,8 @@ import { appState } from "../store/store";
 import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
 import { DestinationType } from "../types";
 import { useRouter } from "vue-router";
-import { formatPrice } from "../lib/util";
+import { formatPrice } from "../../export";
+
 const sliderIndex = ref(0);
 let slider: any;
 
@@ -71,15 +72,7 @@ function toViewDestination(destination: DestinationType) {
         <div
           v-for="(destination, index) in destinationStore.promotedDestinations"
           :key="index"
-          class="
-            glide__slide
-            group
-            flex flex-col
-            rounded-lg
-            shadow-md
-            overflow-hidden
-            relative
-          "
+          class="glide__slide group flex flex-col rounded-lg shadow-md overflow-hidden relative"
         >
           <div class="relative flex-shrink-0">
             <button
@@ -97,39 +90,14 @@ function toViewDestination(destination: DestinationType) {
               }"
             >
               <img
-                class="
-                  h-48
-                  w-full
-                  object-cover
-                  group-hover:border-yellow-400
-                  transition
-                  duration-500
-                  ease-in-out
-                  border-yellow-50 border-2
-                  rounded-lg
-                "
+                class="h-48 w-full object-cover group-hover:border-yellow-400 transition duration-500 ease-in-out border-yellow-50 border-2 rounded-lg"
                 :src="destination.image"
                 alt=""
               />
             </router-link>
           </div>
           <div
-            class="
-              bg-white
-              border-yellow-400 border-t-4
-              rounded-full
-              p-2
-              absolute
-              top-40
-              left-4
-              mt-2
-              flex
-              items-center
-              space-x-2
-              text-xl
-              font-semibold
-              text-gray-900
-            "
+            class="bg-white border-yellow-400 border-t-4 rounded-full p-2 absolute top-40 left-4 mt-2 flex items-center space-x-2 text-xl font-semibold text-gray-900"
           >
             <img
               class="flex-shrink-0 h-6 w-6 rounded-name"
@@ -150,17 +118,7 @@ function toViewDestination(destination: DestinationType) {
               </p>
               <div class="text-sm font-medium text-gray-400 pt-4 uppercase">
                 <span
-                  class="
-                    inline-flex
-                    items-center
-                    px-2
-                    py-0.5
-                    rounded-full
-                    text-xs
-                    font-medium
-                    bg-[#44BDEB]
-                    text-[#18424C]
-                  "
+                  class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#44BDEB] text-[#18424C]"
                 >
                   <svg
                     class="mr-1.5 h-2 w-2 text-white"

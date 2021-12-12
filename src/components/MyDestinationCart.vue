@@ -10,23 +10,28 @@ import {
 } from "@headlessui/vue";
 import { XIcon } from "@heroicons/vue/outline";
 import { destinationStore } from "../store/destinationStore";
+import { formatPrice, truncateString } from "../../export";
+
+function alertMe() {
+  alert("Hello");
+}
 </script>
 
 <template>
-  <div @click="appState.showCart = true" class="relative">
+  <button @click.prevent="appState.showCart = true" class="relative">
     <i class="far fa-map-marked-alt text-2xl text-gray-800"></i>
-    <p class="absolute bottom-4 -top-2 right-0 left-7">
+    <span class="absolute bottom-4 -top-2 right-0 left-7">
       <span
-        class="bg-yellow-200 h-4 w-4 text-xs font-bold rounded-full circle-with-text"
+        class="bg-yellow-400 h-4 w-4 text-xs font-bold rounded-full circle-with-text"
       >
         {{ destinationStore.myDestinations.length }}</span
       >
-    </p>
-  </div>
+    </span>
+  </button>
   <TransitionRoot as="template" :show="appState.showCart">
     <Dialog
       as="div"
-      class="fixed inset-0 overflow-hidden z-40"
+      class="fixed inset-0 overflow-hidden z-30"
       @close="appState.showCart = false"
     >
       <div class="absolute inset-0 overflow-hidden">
@@ -44,17 +49,19 @@ import { destinationStore } from "../store/destinationStore";
           >
             <div class="w-screen max-w-md">
               <div
-                class="h-full flex flex-col py-6 bg-blue-500 shadow-xl overflow-y-scroll"
+                class="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll"
               >
                 <div class="px-4 sm:px-6">
                   <div class="flex items-start justify-between">
-                    <DialogTitle class="text-lg font-medium text-gray-900">
-                      Panel title
+                    <DialogTitle
+                      class="text-lg font-medium text-gray-900 big-john-font"
+                    >
+                      My Destinations
                     </DialogTitle>
                     <div class="ml-3 h-7 flex items-center">
                       <button
                         type="button"
-                        class="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        class="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
                         @click="appState.showCart = false"
                       >
                         <span class="sr-only">Close panel</span>
@@ -63,6 +70,7 @@ import { destinationStore } from "../store/destinationStore";
                     </div>
                   </div>
                 </div>
+
                 <div class="mt-6 relative flex-1 px-4 sm:px-6">
                   <!-- Replace with your content -->
 
@@ -70,24 +78,43 @@ import { destinationStore } from "../store/destinationStore";
                     v-for="(item, index) in destinationStore.myDestinations"
                     :key="index"
                   >
-                    <div class="flex gap-x-2 my-4">
-                      <img :src="item.image" class="rounded-md h-20" />
+                    <div class="flex gap-x-2 my-8 items-center">
+                      <img :src="item.image" class="rounded-sm h-16" />
 
                       <div class="">
-                        <span class="block">{{ item.title }}</span>
-                        <span class="block">{{ item.country.name }}</span>
-                        <span class="block">{{ item.country.code }}</span>
-                        <span class="block">{{ item.price }}</span>
+                        <router-link
+                          :to="{
+                            name: 'ViewDestinationPage',
+                            params: { destinationId: item.uuid },
+                          }"
+                        >
+                          <span class="block underline">{{
+                            truncateString(item.title, 30)
+                          }}</span>
+                        </router-link>
+
+                        <div class="flex items-center">
+                          <img
+                            class="flex-shrink-0 h-4 w-4"
+                            :src="`/country_flags/${item.country.code.toLowerCase()}.svg`"
+                            alt="flag"
+                          />
+                          <p class="block pl-2">{{ item.country.name }}</p>
+                        </div>
+                        <div class="flex justify-between items-center w-56">
+                          <p class="block">N {{ formatPrice(item.price) }}</p>
+                          <button
+                            class="underline text-red-500 text-sm"
+                            @click.prevent="alertMe"
+                          >
+                            Remove
+                          </button>
+                        </div>
                       </div>
-                      <h4>X</h4>
                     </div>
+                    <div class="border"></div>
                   </div>
-                  <div class="absolute inset-0 px-4 sm:px-6">
-                    <div
-                      class="h-full border-2 border-dashed border-gray-200"
-                      aria-hidden="true"
-                    />
-                  </div>
+
                   <!-- /End replace -->
                 </div>
               </div>

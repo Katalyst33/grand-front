@@ -9,12 +9,12 @@ import SearchBarComponent from "../components/SearchBarComponent.vue";
 import { useHead } from "@vueuse/head";
 import { DestinationType } from "../types";
 import { useRoute, useRouter } from "vue-router";
-import { formatPrice } from "../lib/util";
+
 import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
 import { appState } from "../store/store";
 import { computed, ref, watch } from "vue";
 import Paginator from "../components/paginator/Paginator.vue";
-import { formattedDate } from "../../export";
+import { formatPrice, formattedDate } from "../../export";
 const router = useRouter();
 
 const route = useRoute();
@@ -70,7 +70,7 @@ getAllDestinations();
                 v-for="(destination, index) in destinationStore.allDestinations
                   .data"
                 :key="index"
-                class="group flex flex-col rounded-lg shadow-lg overflow-hidden relative"
+                class="group flex flex-col rounded-lg shadow-lg overflow-hidden relative px-4 md:px-0"
               >
                 <div class="relative flex-shrink-0">
                   <button

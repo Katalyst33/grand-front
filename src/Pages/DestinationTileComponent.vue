@@ -6,7 +6,8 @@ import { useRoute, useRouter } from "vue-router";
 import { appState } from "../store/store";
 
 import SliderComponent from "../components/SliderComponent.vue";
-import { formatPrice } from "../lib/util";
+import { formatPrice } from "../../export";
+
 const router = useRouter();
 const route = useRoute();
 

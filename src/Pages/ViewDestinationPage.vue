@@ -3,7 +3,7 @@ import { computed, onBeforeMount, onMounted, ref } from "vue";
 
 import ViewDestinationHero from "../layout/ViewDestinationHero.vue";
 import { appState } from "../store/store";
-import { formatPrice } from "../lib/util";
+
 import { useRoute } from "vue-router";
 import { $axios } from "../http/http.Service";
 import { DestinationType } from "../types";
@@ -14,7 +14,7 @@ import {
 } from "../store/destinationStore";
 import CompanyLogo from "../CompanyLogo.vue";
 import ViewDestinationSlider from "../components/ViewDestinationSlider.vue";
-import { localStore } from "../../export";
+import { formatPrice, localStore } from "../../export";
 
 const route = useRoute();
 
@@ -27,17 +27,37 @@ getOneDestination(destinationId.value);
 function addToWishlist(destination: any) {
   console.log(destination, "wish");
 }
+
+function isInCart(destination: any) {
+  return destinationStore.myDestinations.find(
+    (item: any) => item.uuid === destination.uuid
+  );
+
+  // return destinationStore.myDestinations.includes(destination);
+}
+
 function addToCart(destination: any) {
-  console.log(destination, "cart");
+  /*  const product = () => {
+    for (const item of destinationStore.myDestinations) {
+      if (item.uuid === destination.uuid) {
+        return item;
+      }
+    }
+  };*/
 
-  if (destinationStore.myDestinations.includes(destination)) {
+  console.log(destination.uuid, "wish");
+
+  let isAdded = destinationStore.myDestinations.find(
+    (item: any) => item.uuid === destination.uuid
+  );
+
+  if (isAdded) {
     return;
+  } else {
+    destinationStore.myDestinations.push(destination);
+    localStore.setArray("myDestinations", destinationStore.myDestinations);
+    console.log("no");
   }
-
-  destinationStore.myDestinations.push(destination);
-  localStore.setArray("myDestinations", destinationStore.myDestinations);
-
-  console.log(destinationStore.myDestinations, "cart");
 }
 </script>
 
@@ -60,14 +80,8 @@ function addToCart(destination: any) {
 
           <section>
             <div class="flex justify-between">
-              <div
-                v-if="
-                  destinationStore.myDestinations.includes(
-                    singleDestinationStore.destination
-                  )
-                "
-              >
-                added already
+              <div v-if="isInCart(singleDestinationStore.destination)">
+                Remove
               </div>
               <button
                 v-else
