@@ -27,15 +27,7 @@
           leave-to="-translate-x-full"
         >
           <div
-            class="
-              relative
-              flex-1 flex flex-col
-              max-w-xs
-              w-full
-              pt-5
-              pb-4
-              bg-white
-            "
+            class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-white"
           >
             <TransitionChild
               as="template"
@@ -49,19 +41,7 @@
               <div class="absolute top-0 right-0 -mr-12 pt-2">
                 <button
                   type="button"
-                  class="
-                    ml-1
-                    flex
-                    items-center
-                    justify-center
-                    h-10
-                    w-10
-                    rounded-full
-                    focus:outline-none
-                    focus:ring-2
-                    focus:ring-inset
-                    focus:ring-white
-                  "
+                  class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                   @click="appState.sidebarOpen = false"
                 >
                   <span class="sr-only">Close sidebar</span>
@@ -135,16 +115,7 @@
       <div class="sticky top-0 z-10 flex-shrink-0 flex h-16 shadow bg-white">
         <button
           type="button"
-          class="
-            px-4
-            border-r border-gray-200
-            text-gray-500
-            focus:outline-none
-            focus:ring-2
-            focus:ring-inset
-            focus:ring-indigo-500
-            md:hidden
-          "
+          class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
           @click="appState.sidebarOpen = true"
         >
           <span class="sr-only">Open sidebar</span>
@@ -157,17 +128,7 @@
           <div class="ml-4 flex items-center md:ml-6">
             <button
               type="button"
-              class="
-                bg-white
-                p-1
-                rounded-full
-                text-gray-400
-                hover:text-gray-500
-                focus:outline-none
-                focus:ring-2
-                focus:ring-offset-2
-                focus:ring-indigo-500
-              "
+              class="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               <span class="sr-only">View notifications</span>
               <BellIcon class="h-6 w-6" aria-hidden="true" />
@@ -177,18 +138,7 @@
             <Menu as="div" class="ml-3 relative">
               <div>
                 <MenuButton
-                  class="
-                    max-w-xs
-                    bg-white
-                    flex
-                    items-center
-                    text-sm
-                    rounded-full
-                    focus:outline-none
-                    focus:ring-2
-                    focus:ring-offset-2
-                    focus:ring-indigo-500
-                  "
+                  class="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   <span class="sr-only">Open user menu</span>
                   <img
@@ -207,19 +157,7 @@
                 leave-to-class="transform opacity-0 scale-95"
               >
                 <MenuItems
-                  class="
-                    origin-top-right
-                    absolute
-                    right-0
-                    mt-2
-                    w-48
-                    rounded-md
-                    shadow-lg
-                    py-1
-                    bg-white
-                    ring-1 ring-black ring-opacity-5
-                    focus:outline-none
-                  "
+                  class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                 >
                   <MenuItem
                     v-for="item in userNavigation"
@@ -281,11 +219,11 @@ const navigation = [
     icon: "fad fa-sitemap",
   },
 
-  {
-    name: "Documents",
-    href: "DocumentsUpload",
-    icon: "fad fa-folders",
-  },
+  // {
+  //   name: "Documents",
+  //   href: "DocumentsUpload",
+  //   icon: "fad fa-folders",
+  // },
 
   {
     name: "My Destinations",

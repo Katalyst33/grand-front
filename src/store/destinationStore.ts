@@ -2,7 +2,9 @@ import { computed, reactive, readonly, ref, watch } from "vue";
 import { $axios } from "../http/http.Service";
 import { useRoute, useRouter } from "vue-router";
 import { DestinationType } from "../types";
-import { localStore } from "../../export";
+// import { localStore } from "../../export";
+import BrowserStorage from "@trapcode/browser-storage";
+const localStore = BrowserStorage.getLocalStore();
 
 const sort = reactive({ field: "createdAt", direction: true });
 const searchQuery = ref<string | undefined>(undefined);

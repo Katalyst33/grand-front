@@ -17,6 +17,12 @@
                       scope="col"
                       class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
+                      S/N
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
                       Reference
                     </th>
                     <th
@@ -39,6 +45,10 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr v-for="(item, index) in allProfiles" :key="index">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      {{ index + 1 }}.
+                    </td>
+
                     <td
                       class="px-6 py-4 whitespace-nowrap text-sm font-medium text-yellow-600"
                     >
@@ -92,7 +102,21 @@
               </table>
             </div>
 
-            <div v-else>No profile</div>
+            <div v-else>
+              <div class="flex justify-center items-center gap-x-4">
+                <i class="fad fa-file-search text-yellow-400 text-[100px]"></i>
+
+                <button
+                  @click.prevent="make($router)"
+                  class="text-gray-600 underline decoration-yellow-500"
+                >
+                  Click here to Create a Profile
+                </button>
+              </div>
+              <p class="text-center py-4 text-gray-500">
+                Provide your information to enable us process your destination
+              </p>
+            </div>
           </div>
         </div>
       </div>

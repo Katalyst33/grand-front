@@ -34,8 +34,6 @@
           </TabPanel>
           <TabPanel>
             <ContactInformation />
-
-            <DocumentsUpload />
           </TabPanel>
         </TabPanels>
       </TabGroup>

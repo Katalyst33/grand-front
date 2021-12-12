@@ -76,45 +76,61 @@ import {
                   <div class="mt-6 relative flex-1 px-4 sm:px-6">
                     <!-- Replace with your content -->
 
-                    <div
-                      v-for="(item, index) in destinationStore.myDestinations"
-                      :key="index"
-                    >
-                      <div class="flex gap-x-2 my-8 items-center">
-                        <img :src="item.image" class="rounded-sm h-16" />
+                    <div class="flex flex-col justify-between h-full">
+                      <div>
+                        <div
+                          v-for="(
+                            item, index
+                          ) in destinationStore.myDestinations"
+                          :key="index"
+                        >
+                          <div class="flex gap-x-2 my-8 items-center">
+                            <img :src="item.image" class="rounded-sm h-16" />
 
-                        <div class="">
-                          <router-link
-                            :to="{
-                              name: 'ViewDestinationPage',
-                              params: { destinationId: item.uuid },
-                            }"
-                          >
-                            <span class="block underline">{{
-                              truncateString(item.title, 30)
-                            }}</span>
-                          </router-link>
+                            <div class="">
+                              <router-link
+                                :to="{
+                                  name: 'ViewDestinationPage',
+                                  params: { destinationId: item.uuid },
+                                }"
+                              >
+                                <span class="block underline">{{
+                                  truncateString(item.title, 30)
+                                }}</span>
+                              </router-link>
 
-                          <div class="flex items-center">
-                            <img
-                              class="flex-shrink-0 h-4 w-4"
-                              :src="`/country_flags/${item.country.code.toLowerCase()}.svg`"
-                              alt="flag"
-                            />
-                            <p class="block pl-2">{{ item.country.name }}</p>
+                              <div class="flex items-center">
+                                <img
+                                  class="flex-shrink-0 h-4 w-4"
+                                  :src="`/country_flags/${item.country.code.toLowerCase()}.svg`"
+                                  alt="flag"
+                                />
+                                <p class="block pl-2">
+                                  {{ item.country.name }}
+                                </p>
+                              </div>
+                              <div
+                                class="flex justify-between items-center w-56"
+                              >
+                                <p class="block">
+                                  N {{ formatPrice(item.price) }}
+                                </p>
+                                <button
+                                  class="underline text-red-500 text-sm"
+                                  @click.prevent="removeDestination(item)"
+                                >
+                                  Remove
+                                </button>
+                              </div>
+                            </div>
                           </div>
-                          <div class="flex justify-between items-center w-56">
-                            <p class="block">N {{ formatPrice(item.price) }}</p>
-                            <button
-                              class="underline text-red-500 text-sm"
-                              @click.prevent="removeDestination(item)"
-                            >
-                              Remove
-                            </button>
-                          </div>
+                          <div class="border"></div>
                         </div>
                       </div>
-                      <div class="border"></div>
+
+                      <div>
+                        <p class="text-center">Login to Save Destinations</p>
+                      </div>
                     </div>
 
                     <!-- /End replace -->

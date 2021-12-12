@@ -31,7 +31,5 @@ export function removeDestination(destination: any) {
     1
   );
 
-  console.log(destinationStore.myDestinations);
-
   localStore.setArray("myDestinations", destinationStore.myDestinations);
 }

@@ -43,14 +43,14 @@ export function getAllProfiles() {
 export function fetchProfile(referenceId: any) {
   const isLoading = ref(false);
 
+  console.log("from outside", referenceId);
+
   const fetch = () => {
     $axios
       .get(`profile/${referenceId}`)
       .then((res: any) => {
         profileStore.profile = res.profile;
         profileStore.profile.documents = res.allDocuments;
-
-        console.log(profileStore.profile.documents, "profileStore");
       })
       .finally(() => {
         isLoading.value = true;

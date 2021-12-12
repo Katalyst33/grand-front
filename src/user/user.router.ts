@@ -47,7 +47,7 @@ export default <RouteRecordRaw>{
       name: "UpdateProfile",
       component: UpdateProfile,
       meta: {
-        title: "Update Destination",
+        title: "Update Profile",
       },
     },
   ],

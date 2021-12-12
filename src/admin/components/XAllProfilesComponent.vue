@@ -88,29 +88,24 @@
 
                     <td
                       class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-                    >
-                      <button
-                        @click.prevent="deleteProfile(item.reference)"
-                        class="text-red-600 hover:text-indigo-900"
-                      >
-                        Delete
-                      </button>
-                    </td>
+                    ></td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <div v-else>No profile</div>
+            <div v-else>
+              <div class="flex justify-center items-center gap-x-4">
+                <i class="fad fa-file-search text-yellow-400 text-[100px]"></i>
+              </div>
+              <p class="text-center py-4 text-gray-500">
+                User has no profile Set
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </template>
-    <div>
-      <button class="btn bg-yellow-500" @click="make($router)">
-        Add profile
-      </button>
-    </div>
   </section>
 </template>
 <script lang="ts" setup>

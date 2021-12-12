@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { $axios } from "../http/http.Service";
-import { computed, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { appState } from "../store/store";
 import { SortAscendingIcon, UsersIcon } from "@heroicons/vue/solid";
@@ -30,18 +30,22 @@ const selected = ref(documentCategory[4]);
 const route = useRoute();
 const appUrl = import.meta.env.VITE_API_URL;
 import { fileSizes } from "../../export";
+import BusyButton from "../components/BusyButton.vue";
+import { fetchProfile } from "../http/account.Service";
 const code = computed(() => route.params.referenceId);
 const imageData = new FormData();
 const imageInput = ref<HTMLInputElement>();
 const url = ref("");
 const file = ref("") as any;
+const isLoading = ref(false);
 
 function changeImage() {
   imageInput.value?.click();
   // console.log(imageInput.value);
 }
 
-console.log(code.value, "code ??");
+const { fetch } = fetchProfile(route.params.referenceId);
+onMounted(fetch);
 function onFileChange(e: any) {
   file.value = e.target.files[0];
 
@@ -49,17 +53,29 @@ function onFileChange(e: any) {
 }
 
 function uploadDocuments() {
+  isLoading.value = true;
   imageData.append("document", file.value);
   imageData.append("documentCategory", selected.value.title);
+
+  if (!file.value) {
+    console.log("no file");
+  }
 
   $axios
 
     .patch(`/profile/upload/${code.value}/document`, imageData)
 
     .then((r) => {
+      isLoading.value = false;
+
       console.log(r);
     })
-    .catch((e) => console.log(e));
+
+    .catch((e) => {
+      isLoading.value = true;
+
+      return e;
+    });
 }
 function deleteDocument(referenceId: string) {
   const confirmDelete = confirm(
@@ -79,9 +95,7 @@ function deleteDocument(referenceId: string) {
 
 <template>
   <div>
-    <h3>My Documents</h3>
-
-    <div v-if="false" class="bg-yellow-200 border p-4 rounded-md">
+    <div class="bg-yellow-200 border p-4 rounded-md">
       How you can help us evaluate your documents faster:
       <ul class="list-disc list-inside">
         <li>Please only upload PDF files (max. 10 MB per document).</li>
@@ -200,9 +214,15 @@ function deleteDocument(referenceId: string) {
         </Listbox>
       </div>
     </div>
-    <button @click.prevent="uploadDocuments" class="btn bg-gray-700 mt-4">
-      Upload
-    </button>
+    <div class="flex justify-center">
+      <BusyButton
+        :is-loading="isLoading"
+        class="mt-3 btn bg-gray-700 w-40 py-2 mt-10"
+        @click.prevent="uploadDocuments"
+      >
+        Upload Document
+      </BusyButton>
+    </div>
 
     <section class="py-20">
       <div class="flex flex-col">
