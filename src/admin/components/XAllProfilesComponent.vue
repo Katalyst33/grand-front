@@ -53,7 +53,7 @@
                     >
                       <router-link
                         :to="{
-                          name: 'UpdateProfile',
+                          name: 'XUserDetail',
                           params: { referenceId: item.reference },
                         }"
                       >

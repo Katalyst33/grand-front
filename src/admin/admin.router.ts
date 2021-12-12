@@ -5,7 +5,9 @@ const AdminDashboard = () => import("./AdminDashboard.vue");
 const AllDestination = () => import("./views/XAllDestination.vue");
 const Configuration = () => import("./views/Configuration.vue");
 const AllUsers = () => import("./views/AllUsers.vue");
-const UserDetails = () => import("./views/UserDetails.vue");
+const UserProfiles = () => import("./views/UserProfiles.vue");
+const UserDetail = () => import("./views/UserDetail.vue");
+
 const UserLayout = () => import("./UserLayout.vue");
 const profileDetails = () => import("./views/profileDetails.vue");
 const XAllProfilesComponent = () =>
@@ -44,11 +46,19 @@ export default <RouteRecordRaw>{
       },
     },
     {
-      path: "user-details/:userId",
-      name: "UserDetails",
-      component: UserDetails,
+      path: "user-profiles/:userId",
+      name: "UserProfiles",
+      component: UserProfiles,
       meta: {
-        title: "User Details",
+        title: "User Profiles",
+      },
+    },
+    {
+      path: "view-user-details/:referenceId",
+      name: "XUserDetail",
+      component: UserDetail,
+      meta: {
+        title: "User Detail",
       },
     },
 

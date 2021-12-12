@@ -44,7 +44,7 @@
                       <div class="flex text-sm text-gray-500">
                         <router-link
                           :to="{
-                            name: 'UserDetails',
+                            name: 'UserProfiles',
                             params: { userId: item.uuid },
                           }"
                           class="font-medium text-yellow-500"
