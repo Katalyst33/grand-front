@@ -22,7 +22,8 @@
             <span class="sr-only">Open menu</span>
             <MenuIcon class="h-6 w-6" aria-hidden="true" />
           </PopoverButton>
-          <MyDestinationCart class="pr-4" />
+          <!--                    <MyDestinationCart />-->
+          <CartIcon class="pr-4" />
         </div>
 
         <div
@@ -326,6 +327,8 @@
         </div>
         <div class="hidden md:block">
           <MyDestinationCart />
+          <!--          <CartIcon />-->
+          <!--          <button @click.prevent="appState.showCart = true">here</button>-->
         </div>
       </div>
     </div>
@@ -509,6 +512,7 @@ import { destinationStore } from "../store/destinationStore";
 import { formatPrice } from "../../export";
 
 import MyDestinationCart from "../components/MyDestinationCart.vue";
+import CartIcon from "../components/CartIcon.vue";
 
 const solutions = [
   {
@@ -567,6 +571,7 @@ const blogPosts = [
 
 export default {
   components: {
+    CartIcon,
     MyDestinationCart,
     LogOutComponent,
     CompanyLogo,

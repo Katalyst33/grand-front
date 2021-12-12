@@ -14,7 +14,7 @@ import {
 } from "../store/destinationStore";
 import CompanyLogo from "../CompanyLogo.vue";
 import ViewDestinationSlider from "../components/ViewDestinationSlider.vue";
-import { formatPrice, localStore } from "../../export";
+import { formatPrice, localStore, removeDestination } from "../../export";
 
 const route = useRoute();
 
@@ -79,36 +79,23 @@ function addToCart(destination: any) {
           </h1>
 
           <section>
-            <div class="flex justify-between">
-              <div v-if="isInCart(singleDestinationStore.destination)">
-                Remove
-              </div>
+            <div class="flex justify-center">
+              <button
+                class="primary-button-regular w-full"
+                @click.prevent="
+                  removeDestination(singleDestinationStore.destination)
+                "
+                v-if="isInCart(singleDestinationStore.destination)"
+              >
+                Remove Destination
+              </button>
               <button
                 v-else
                 @click="addToCart(singleDestinationStore.destination)"
-                class="bg-yellow-500 p-2 rounded-md"
+                class="primary-button-regular w-full p-2 rounded-md"
               >
-                Add to Cart
+                Select Destination
               </button>
-
-              <template>
-                <div v-if="appState?.user?.email" class="p-4">
-                  <button
-                    @click="addToWishlist(singleDestinationStore)"
-                    class="bg-red-400 py-2 px-2 rounded-md"
-                  >
-                    Add to Wishlist
-                  </button>
-                </div>
-                <button
-                  v-else
-                  @click="addToWishlist(singleDestinationStore)"
-                  class="bg-red-100 py-2 px-2 rounded-md"
-                  disabled
-                >
-                  Add to Wishlist
-                </button>
-              </template>
             </div>
           </section>
         </div>
