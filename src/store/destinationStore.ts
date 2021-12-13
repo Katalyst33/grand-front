@@ -115,6 +115,7 @@ export function runSort(by: string) {
 
 let timeOut: NodeJS.Timeout | number = -1;
 
+/*
 watch([searchQuery], () => {
   destinationStore.isLoadingSpinner = true;
 
@@ -124,3 +125,4 @@ watch([searchQuery], () => {
     getAllDestinations(searchQuery.value);
   }, 500);
 });
+*/

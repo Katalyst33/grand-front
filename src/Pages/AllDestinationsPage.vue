@@ -46,15 +46,15 @@ function getAllDestinations(search?: string, sort?: any) {
     })
     .catch((e) => e);
 }
+let timeOut: NodeJS.Timeout | number = -1;
 
-watch(
-  [page, destinationStore.searchDestinationQuery],
-  () => {
-    getAllDestinations(destinationStore.searchDestinationQuery, "");
-    destinationStore.paginationQuery = page.value;
-  },
-  { immediate: true }
-);
+watch([page, destinationStore.searchDestinationQuery], () => {
+  console.log(destinationStore.searchDestinationQuery.search);
+  clearTimeout(timeOut as NodeJS.Timeout);
+  timeOut = setTimeout(() => {
+    getAllDestinations(destinationStore.searchDestinationQuery.search);
+  }, 500);
+});
 
 getAllDestinations();
 </script>
