@@ -58,7 +58,7 @@
                         <div class="flex-shrink-0 h-10 w-10">
                           <img
                             class="h-10 w-10 rounded-full"
-                            :src="`/country_flags/${destination.country.code}.svg`"
+                            :src="`/country_flags/${destination.country.code.toLowerCase()}.svg`"
                             alt=""
                           />
                         </div>
