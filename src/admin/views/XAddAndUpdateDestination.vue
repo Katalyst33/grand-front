@@ -107,30 +107,14 @@
                 <button
                   v-if="$route.name === 'AddDestination'"
                   @click.prevent="createDestination"
-                  class="
-                    bg-yellow-600
-                    hover:bg-yellow-500
-                    w-full
-                    tracking-widest
-                    p-2
-                    rounded-md
-                    mt-10
-                  "
+                  class="bg-yellow-600 hover:bg-yellow-500 w-full tracking-widest p-2 rounded-md mt-10"
                 >
                   Create Destination
                 </button>
                 <button
                   v-else
                   @click.prevent="updateDestination"
-                  class="
-                    bg-yellow-600
-                    hover:bg-yellow-500
-                    w-full
-                    tracking-widest
-                    p-2
-                    rounded-md
-                    mt-10
-                  "
+                  class="bg-yellow-600 hover:bg-yellow-500 w-full tracking-widest p-2 rounded-md mt-10"
                 >
                   Update
                 </button>
@@ -144,6 +128,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useScriptTag } from "@vueuse/core";
 import { computed, ref } from "vue";
 import { $axios } from "../../http/http.Service";
 import { useRoute, useRouter } from "vue-router";
@@ -164,6 +149,13 @@ import DealSelectedImages from "./DealSelectedImages.vue";
 import Modal from "../../components/Modal.vue";
 import GalleryComponent from "../components/GalleryComponent.vue";
 
+useScriptTag(
+  "https://cdn.tiny.cloud/1/t5w054vk121zn69dg4rh0osw74sqokemdoedehp6oz381zpb/tinymce/5/tinymce.min.js",
+  // on script tag loaded.
+  (el: HTMLScriptElement) => {
+    // do something
+  }
+);
 const tiny = {
   apiKey: import.meta.env.VITE_TINY_KEY,
   editorPlugins: [
