@@ -9,7 +9,7 @@
       >
         <span class="flex items-center">
           <img
-            :src="`/country_flags/${props.destination.country.code.toLowerCase().svg`"
+            :src="`/country_flags/${props.destination.country.code.toLowerCase()}.svg`"
             alt=""
             class="flex-shrink-0 h-6 w-6 rounded-full"
           />
