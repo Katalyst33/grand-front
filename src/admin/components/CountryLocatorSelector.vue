@@ -5,28 +5,11 @@
     </ListboxLabel>
     <div class="mt-1 relative cursor-pointer">
       <ListboxButton
-        class="
-          relative
-          w-full
-          bg-white
-          border border-gray-300
-          rounded-md
-          shadow-sm
-          pl-3
-          pr-10
-          py-2
-          text-left
-          cursor-pointer
-          focus:outline-none
-          focus:ring-1
-          focus:ring-yellow-500
-          focus:border-yellow-500
-          sm:text-sm
-        "
+        class="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-pointer focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 sm:text-sm"
       >
         <span class="flex items-center">
           <img
-            :src="`/country_flags/${props.destination.country.code}.svg`"
+            :src="`/country_flags/${props.destination.country.code.toLowerCase().svg`"
             alt=""
             class="flex-shrink-0 h-6 w-6 rounded-full"
           />
@@ -35,16 +18,7 @@
           }}</span>
         </span>
         <span
-          class="
-            ml-3
-            absolute
-            inset-y-0
-            right-0
-            flex
-            items-center
-            pr-2
-            pointer-events-none
-          "
+          class="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
         >
           <SelectorIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
         </span>
@@ -56,23 +30,7 @@
         leave-to-class="opacity-0"
       >
         <ListboxOptions
-          class="
-            absolute
-            z-10
-            mt-1
-            w-full
-            bg-white
-            shadow-lg
-            max-h-56
-            rounded-md
-            py-1
-            text-base
-            ring-1 ring-black ring-opacity-5
-            overflow-auto
-            focus:outline-none
-            sm:text-sm
-            cursor-pointer
-          "
+          class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm cursor-pointer"
         >
           <ListboxOption
             as="template"
@@ -92,7 +50,7 @@
             >
               <div class="flex items-center">
                 <img
-                  :src="`/country_flags/${country.code}.svg`"
+                  :src="`/country_flags/${country.code.toLowerCase()}.svg`"
                   alt=""
                   class="flex-shrink-0 h-6 w-6 rounded-full"
                 />
