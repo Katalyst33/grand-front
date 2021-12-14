@@ -87,6 +87,19 @@ import {
                           <div class="flex gap-x-2 my-8 items-center">
                             <img :src="item.image" class="rounded-sm h-16" />
 
+                            <!--                            <img
+                              v-if="destination.thumbnails[0]"
+                              class="h-48 w-full object-cover group-hover:border-yellow-400 transition duration-500 ease-in-out border-yellow-50 border-2 rounded-lg"
+                              :src="destination.thumbnails[0].path"
+                              alt=""
+                            />
+                            <img
+                              v-else
+                              class="h-48 w-full object-cover group-hover:border-yellow-400 transition duration-500 ease-in-out border-yellow-50 border-2 rounded-lg"
+                              src="/hero/destinations/no-destination.jpeg"
+                              alt=""
+                            />-->
+
                             <div class="">
                               <router-link
                                 :to="{

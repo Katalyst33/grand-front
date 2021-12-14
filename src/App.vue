@@ -49,7 +49,6 @@ useHead({
 </script>
 
 <style lang="scss">
-@import "assets/scss/input-buttons";
 @import "assets/scss/Typography";
 
 @import "node_modules/@glidejs/glide/src/assets/sass/glide.core";

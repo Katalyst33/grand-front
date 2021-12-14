@@ -15,7 +15,9 @@ import { setAppState, appState } from "./store/store";
 setAppState();
 </script>
 
-<style>
+<style lang="scss">
+@import "assets/scss/input-buttons.scss";
+
 .tileTab {
   @apply bg-white py-2 px-4  border border-yellow-100 rounded-lg shadow-sm;
 }

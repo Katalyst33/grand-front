@@ -46,7 +46,5 @@ const props = defineProps<{
   };
 }>();
 
-console.log(props);
-
 const isSelecting = ref(false);
 </script>

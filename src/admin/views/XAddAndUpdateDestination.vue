@@ -111,13 +111,15 @@
                 >
                   Create Destination
                 </button>
-                <button
+
+                <BusyButton
                   v-else
+                  class="primary-button-wide bg-yellow-500 tracking-widest"
+                  :is-loading="isLoading"
                   @click.prevent="updateDestination"
-                  class="bg-yellow-600 hover:bg-yellow-500 w-full tracking-widest p-2 rounded-md mt-10"
                 >
                   Update
-                </button>
+                </BusyButton>
               </div>
             </div>
           </div>
@@ -148,6 +150,7 @@ import Gallery from "./Gallery.vue";
 import DealSelectedImages from "./DealSelectedImages.vue";
 import Modal from "../../components/Modal.vue";
 import GalleryComponent from "../components/GalleryComponent.vue";
+import BusyButton from "../../components/BusyButton.vue";
 
 useScriptTag(
   "https://cdn.tiny.cloud/1/t5w054vk121zn69dg4rh0osw74sqokemdoedehp6oz381zpb/tinymce/5/tinymce.min.js",
@@ -194,13 +197,15 @@ if (route.name === "AddDestination") {
 }
 
 const code = computed(() => route.params.destinationId);
-
+const isLoading = ref(false);
 function updateDestination() {
+  isLoading.value = true;
+
   console.log(singleDestinationStore.destination, "update");
   $axios
     .patch(`manager/deals/${code.value}`, singleDestinationStore.destination)
     .then((r) => {
-      console.log(r, "???");
+      isLoading.value = false;
     })
     .catch((e) => {
       console.log(e, "??");
@@ -208,9 +213,15 @@ function updateDestination() {
 }
 
 function createDestination() {
+  isLoading.value = true;
+
   $axios
     .post(`manager/destination/`, singleDestinationStore.destination)
-    .then((r) => console.log(r))
+    .then((r) => {
+      isLoading.value = false;
+
+      console.log(r);
+    })
     .catch((e) => e);
 }
 
