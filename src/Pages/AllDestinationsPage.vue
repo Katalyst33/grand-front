@@ -99,19 +99,10 @@ getAllDestinations();
                       params: { destinationId: destination.uuid },
                     }"
                   >
-                    <!--                    <div
-                      class="mt-10"
-                      v-for="item in destination.thumbnails[0]"
-                    >
-                      <img
-                        class="h-48 w-full object-cover rounded-md"
-                        :src="item.path"
-                      />
-                    </div>-->
                     <img
                       v-if="destination.thumbnails[0]"
                       class="h-48 w-full object-cover group-hover:border-yellow-400 transition duration-500 ease-in-out border-yellow-50 border-2 rounded-lg"
-                      :src="destination.thumbnails[0].path"
+                      :src="destination.thumbnails[0].crop['500']"
                       alt=""
                     />
                     <img
