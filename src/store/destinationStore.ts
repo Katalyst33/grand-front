@@ -30,9 +30,14 @@ export const singleDestinationStore = reactive({
 });
 
 const SET_ONE_DESTINATION = (oneDestination: any) => {
-  singleDestinationStore.destination = oneDestination.deal;
-  singleDestinationStore.images = oneDestination.images;
+  const combined = {
+    ...oneDestination.deal,
+    images: oneDestination.images,
+  };
+  singleDestinationStore.destination = combined;
   singleDestinationStore.isLoadingDeal = true;
+
+  console.log(combined, "?>");
 };
 
 const CLEAR_ONE_DESTINATION = () => {
