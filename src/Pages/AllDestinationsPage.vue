@@ -134,7 +134,7 @@ getAllDestinations();
                       </p>
                     </a>
                     <p class="mt-3 text-yellow-600 font-medium text-2xl">
-                      $ {{ formatPrice(destination.price) }}
+                      ₦ {{ formatPrice(destination.price) }}
                     </p>
                     <div
                       class="text-sm font-medium text-gray-400 pt-4 uppercase"

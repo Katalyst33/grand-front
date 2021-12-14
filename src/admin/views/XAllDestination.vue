@@ -141,11 +141,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineComponent, ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { $axios } from "../../http/http.Service";
-import HumanDateTimeComponent from "../components/HumanDateTimeComponent.vue";
-import DestinationLayout from "../dealsX/DestinationLayout.vue";
-import { clearStore } from "../../store/destinationStore";
+
 import DestinationLinks from "./DestinationLinks.vue";
 import Paginator from "../../components/paginator/Paginator.vue";
 import { useRoute } from "vue-router";
@@ -167,8 +165,6 @@ function trimString(stringText: string) {
 const searchQuery = ref("");
 
 const getAllDestinations = (search?: string) => {
-  console.log(search, "???");
-
   isLoaded.value = false;
   let params = {} as any;
   if (search) {
@@ -184,8 +180,6 @@ const getAllDestinations = (search?: string) => {
     .then((response: any) => {
       allDestinations.value = response;
 
-      console.log(response);
-
       isLoaded.value = true;
     })
     .catch((e) => e);
@@ -196,7 +190,6 @@ let timeOut: NodeJS.Timeout | number = -1;
 watch(
   [page, searchQuery],
   () => {
-    console.log(searchQuery.value, "???");
     clearTimeout(timeOut as NodeJS.Timeout);
     timeOut = setTimeout(() => {
       getAllDestinations(searchQuery.value!);

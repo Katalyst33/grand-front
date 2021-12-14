@@ -79,6 +79,7 @@ import {
                     <div class="flex flex-col justify-between h-full">
                       <div>
                         <div
+                          v-if="destinationStore.myDestinations.length"
                           v-for="(
                             item, index
                           ) in destinationStore.myDestinations"
@@ -134,6 +135,13 @@ import {
                             </div>
                           </div>
                           <div class="border"></div>
+                        </div>
+
+                        <div v-else class="text-center p-10">
+                          <img
+                            src="/hero/destinations/no-destination-cart.png"
+                          />
+                          <p class="big-font">No Destination Selected Yet</p>
                         </div>
                       </div>
 
