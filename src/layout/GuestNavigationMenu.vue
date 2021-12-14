@@ -234,9 +234,10 @@
                         </h3>
                         <ul role="list" class="mt-6 space-y-6">
                           <li
-                            v-for="(
-                              destination, index
-                            ) in destinationStore.promotedDestinations"
+                            v-for="(destination, index) in menuPromoted.slice(
+                              0,
+                              3
+                            )"
                             :key="index"
                             class="flow-root"
                           >
@@ -274,13 +275,13 @@
                         </ul>
                       </div>
                       <div class="mt-6 text-sm font-medium">
-                        <a
-                          href="#"
+                        <router-link
+                          :to="{ name: 'Destinations' }"
                           class="text-yellow-600 hover:text-yellow-500"
                         >
                           View all Destinations
-                          <span aria-hidden="true">&rarr;</span></a
-                        >
+                          <span aria-hidden="true">&rarr;</span>
+                        </router-link>
                       </div>
                     </div>
                   </div>
@@ -483,7 +484,7 @@
   </Popover>
 </template>
 
-<script>
+<script lang="ts" setup>
 import {
   Popover,
   PopoverButton,
@@ -509,7 +510,7 @@ import { appState } from "../store/store";
 import { ref } from "vue";
 import LogOutComponent from "../components/LogOutComponent.vue";
 import { destinationStore } from "../store/destinationStore";
-import { formatPrice } from "../../export";
+import { formatPrice, localStore } from "../../export";
 
 import MyDestinationCart from "../components/MyDestinationCart.vue";
 import CartIcon from "../components/CartIcon.vue";
@@ -568,35 +569,9 @@ const blogPosts = [
       "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2300&q=80",
   },
 ];
+const textColor = ref("text-gray-600 md:hidden  lg:block");
 
-export default {
-  components: {
-    CartIcon,
-    MyDestinationCart,
-    LogOutComponent,
-    CompanyLogo,
-    Popover,
-    PopoverButton,
-    PopoverGroup,
-    PopoverPanel,
-    ChevronDownIcon,
-    MenuIcon,
-    XIcon,
-  },
-  setup() {
-    const textColor = ref("text-gray-600 md:hidden  lg:block");
+const menuPromoted = localStore.getArray("promotedDestinations");
 
-    return {
-      solutions,
-      callsToAction,
-      company,
-      resources,
-      blogPosts,
-      appState,
-      textColor,
-      destinationStore,
-      formatPrice,
-    };
-  },
-};
+console.log("menuPromoted", menuPromoted);
 </script>

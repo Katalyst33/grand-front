@@ -16,7 +16,7 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import { useWindowScroll } from "@vueuse/core";
-import { getAllDestinations } from "./store/destinationStore";
+
 import ViewDestinationHero from "./layout/ViewDestinationHero.vue";
 import { useRoute } from "vue-router";
 import { useHead } from "@vueuse/head";
@@ -25,6 +25,8 @@ import HomeHeroComponent from "./views/HomeHeroComponent.vue";
 import GuestNavigationMenu from "./layout/GuestNavigationMenu.vue";
 import BannerSlider from "./components/BannerSlider.vue";
 import ViewDestinationSlider from "./components/ViewDestinationSlider.vue";
+import { $axios } from "./http/http.Service";
+import { localStore } from "../export";
 const isLoaded = ref(false);
 const route = useRoute();
 const { x, y } = useWindowScroll();
@@ -46,6 +48,25 @@ useHead({
     },
   ],
 });
+
+function getPromoted() {
+  $axios
+    .get(`/client/destinations`)
+    .then((res) => {
+      console.log(res.data.promotedDestinations);
+
+      localStore.setArray(
+        "promotedDestinations",
+        res.data.promotedDestinations
+      );
+      isLoaded.value = true;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+getPromoted();
 </script>
 
 <style lang="scss">
