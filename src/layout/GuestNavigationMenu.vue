@@ -572,6 +572,4 @@ const blogPosts = [
 const textColor = ref("text-gray-600 md:hidden  lg:block");
 
 const menuPromoted = localStore.getArray("promotedDestinations");
-
-console.log("menuPromoted", menuPromoted);
 </script>

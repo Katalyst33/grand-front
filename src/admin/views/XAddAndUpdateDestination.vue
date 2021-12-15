@@ -152,13 +152,6 @@ import Modal from "../../components/Modal.vue";
 import GalleryComponent from "../components/GalleryComponent.vue";
 import BusyButton from "../../components/BusyButton.vue";
 
-useScriptTag(
-  "https://cdn.tiny.cloud/1/t5w054vk121zn69dg4rh0osw74sqokemdoedehp6oz381zpb/tinymce/5/tinymce.min.js",
-  // on script tag loaded.
-  (el: HTMLScriptElement) => {
-    // do something
-  }
-);
 const tiny = {
   apiKey: import.meta.env.VITE_TINY_KEY,
   editorPlugins: [

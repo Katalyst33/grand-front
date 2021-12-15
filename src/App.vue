@@ -53,8 +53,6 @@ function getPromoted() {
   $axios
     .get(`/client/destinations`)
     .then((res) => {
-      console.log(res.data.promotedDestinations);
-
       localStore.setArray(
         "promotedDestinations",
         res.data.promotedDestinations
