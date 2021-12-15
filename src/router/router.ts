@@ -101,6 +101,10 @@ const router = createRouter({
     AdminRoutes,
     UserRoutes,
   ],
+  scrollBehavior(to: any, from: any, savedPosition: any) {
+    const App = document.getElementById("app");
+    App!.scrollIntoView();
+  },
 });
 
 router.beforeEach((to, from, next) => {

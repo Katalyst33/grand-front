@@ -61,7 +61,7 @@ getAllDestinations();
 
 <template>
   <div>
-    <div class="relative pb-20 pt-10 lg:pb-28">
+    <div class="relative py-20 pt-10 lg:pb-28">
       <div class="relative">
         <div class="text-center">
           <h2
@@ -81,6 +81,11 @@ getAllDestinations();
           </div>
           <!--          search query-->
         </div>
+        <Paginator
+          v-model="page"
+          class="pt-10"
+          :data="destinationStore.allDestinations"
+        />
         <div v-if="destinationStore.isLoadingDestinations">
           <div v-if="true">
             <div
@@ -196,12 +201,10 @@ getAllDestinations();
         </div>
       </div>
     </div>
-    <section>
-      <Paginator
-        v-model="page"
-        class="pt-10"
-        :data="destinationStore.allDestinations"
-      />
-    </section>
+    <Paginator
+      v-model="page"
+      class="pt-10"
+      :data="destinationStore.allDestinations"
+    />
   </div>
 </template>

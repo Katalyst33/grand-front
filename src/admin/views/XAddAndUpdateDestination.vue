@@ -172,7 +172,6 @@ useScriptTag(
   "https://cdn.tiny.cloud/1/t5w054vk121zn69dg4rh0osw74sqokemdoedehp6oz381zpb/tinymce/5/tinymce.min.js",
   // on script tag loaded.
   (el: HTMLScriptElement) => {
-    console.log("i have loaded");
     // do something
 
     loadEditor.value = true;
