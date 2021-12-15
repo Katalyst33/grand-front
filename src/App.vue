@@ -4,7 +4,7 @@
 
     <BannerSlider v-if="$route.name === 'Home'" />
 
-    <ViewDestinationHero v-if="$route.name === 'ViewDestinationPage'" />
+    <!--    <ViewDestinationHero v-if="$route.name === 'ViewDestinationPage'" />-->
 
     <div class="container mx-auto h-auto">
       <router-view />

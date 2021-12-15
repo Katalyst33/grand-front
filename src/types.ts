@@ -84,6 +84,7 @@ export type DestinationType = {
   title: string;
   uuid: string;
   image: string;
+  images: string[];
   _id?: string;
 };
 

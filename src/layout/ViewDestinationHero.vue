@@ -1,15 +1,21 @@
 <template>
-  <main>
-    <ViewDestinationSlider />
-  </main>
+  <div>
+    <ViewDestinationSlider
+      v-if="singleDestinationStore.destination.images.length"
+    />
+
+    <img
+      v-else
+      class="w-screen relative"
+      src="/hero/destinations/no-destination.jpeg"
+    />
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { singleDestinationStore } from "../store/destinationStore";
-import TestProps from "../components/TestProps.vue";
-import { ref } from "vue";
-import BannerSlider from "../components/BannerSlider.vue";
 import ViewDestinationSlider from "../components/ViewDestinationSlider.vue";
+import {
+  destinationStore,
+  singleDestinationStore,
+} from "../store/destinationStore";
 </script>
-
-<style scoped></style>
