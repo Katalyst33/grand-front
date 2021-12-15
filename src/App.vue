@@ -1,11 +1,6 @@
 <template>
   <div class="bg-yellow-50">
     <GuestNavigationMenu />
-
-    <BannerSlider v-if="$route.name === 'Home'" />
-
-    <!--    <ViewDestinationHero v-if="$route.name === 'ViewDestinationPage'" />-->
-
     <div class="container mx-auto h-auto">
       <router-view />
     </div>
@@ -17,14 +12,12 @@
 import { computed, ref } from "vue";
 import { useWindowScroll } from "@vueuse/core";
 
-import ViewDestinationHero from "./layout/ViewDestinationHero.vue";
 import { useRoute } from "vue-router";
 import { useHead } from "@vueuse/head";
 import FooterSection from "./FooterSection.vue";
 import HomeHeroComponent from "./views/HomeHeroComponent.vue";
 import GuestNavigationMenu from "./layout/GuestNavigationMenu.vue";
 import BannerSlider from "./components/BannerSlider.vue";
-import ViewDestinationSlider from "./components/ViewDestinationSlider.vue";
 import { $axios } from "./http/http.Service";
 import { localStore } from "../export";
 const isLoaded = ref(false);

@@ -36,8 +36,6 @@ const SET_ONE_DESTINATION = (oneDestination: any) => {
   };
   singleDestinationStore.destination = combined;
   singleDestinationStore.isLoadingDeal = true;
-
-  console.log(combined, "?>");
 };
 
 const CLEAR_ONE_DESTINATION = () => {

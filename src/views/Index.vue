@@ -1,6 +1,8 @@
 <template>
   <div>
     <div class="container mx-auto px-2">
+      <BannerSlider />
+
       <ServiceCards />
 
       <CurrentDealSlide v-if="false" />
@@ -18,4 +20,5 @@ import {
 } from "../store/destinationStore";
 import CurrentDealSlide from "./CurrentDealSlide.vue";
 import SliderComponent from "../components/SliderComponent.vue";
+import BannerSlider from "../components/BannerSlider.vue";
 </script>

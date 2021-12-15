@@ -49,7 +49,6 @@ function getAllDestinations(search?: string, sort?: any) {
 let timeOut: NodeJS.Timeout | number = -1;
 
 watch([page, destinationStore.searchDestinationQuery], () => {
-  console.log(destinationStore.searchDestinationQuery.search);
   clearTimeout(timeOut as NodeJS.Timeout);
   timeOut = setTimeout(() => {
     getAllDestinations(destinationStore.searchDestinationQuery.search);
