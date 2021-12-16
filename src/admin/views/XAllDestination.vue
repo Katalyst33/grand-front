@@ -8,13 +8,14 @@
       <SearchBarComponent />
     </section>
     <div class="">
-      <Paginator v-model="page" class="my-6" :data="allDestinations" />
+      <Paginator
+        v-model="page"
+        class="my-6"
+        :data="destinationStore.allDestinations"
+      />
 
-      <div v-if="isLoaded" class="flex flex-col h-screen">
-        <div
-          v-if="allDestinations.data.length"
-          class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8"
-        >
+      <div v-if="destinationStore.isLoaded" class="flex flex-col h-screen">
+        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div
             class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
           >
@@ -53,7 +54,8 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                   <tr
-                    v-for="(destination, index) in allDestinations.data"
+                    v-for="(destination, index) in destinationStore
+                      .allDestinations.data"
                     :key="index"
                   >
                     <td class="px-6 py-4 whitespace-nowrap">
@@ -75,9 +77,6 @@
                           >
                             {{ destination.country.name }}
                           </router-link>
-                          <div class="text-sm text-gray-900">
-                            {{ destination.country.code }}
-                          </div>
                         </div>
                       </div>
                     </td>
@@ -91,6 +90,11 @@
                           class="text-sm font-medium text-yellow-700"
                         >
                           {{ destination.title }}
+
+                          <i
+                            v-if="destination.promoted"
+                            class="fas fa-star-shooting text-yellow-300"
+                          ></i>
                         </router-link>
                       </div>
                       <div class="text-sm text-gray-500">
@@ -100,6 +104,9 @@
                           <i class="fad fa-arrows-h text-teal-600"></i>
                           {{ formattedDate(destination.duration.end) }}
                         </div>
+                        <h4 class="text-lg text-teal-600 font-medium">
+                          ₦{{ formatPrice(destination.price) }}
+                        </h4>
                       </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
@@ -145,9 +152,11 @@ import { $axios } from "../../http/http.Service";
 import DestinationLinks from "./DestinationLinks.vue";
 import Paginator from "../../components/paginator/Paginator.vue";
 import { useRoute } from "vue-router";
-import { formattedDate } from "../../../export";
+import { formatPrice, formattedDate } from "../../../export";
 import LoadingComponent from "./LoadingComponent.vue";
 import SearchBarComponent from "../../components/SearchBarComponent.vue";
+import { destinationStore } from "../../store/destinationStore";
+import { getAllDestinations } from "../../http/client.Service";
 
 const allDestinations = ref({
   data: [],
@@ -164,35 +173,23 @@ function trimString(stringText: string) {
 
 const searchQuery = ref("");
 
-const getAllDestinations = (search?: string) => {
-  isLoaded.value = false;
-  let params = {} as any;
-  if (search) {
-    params.search = search;
-  } else {
-    params.page = page.value;
-  }
-  $axios
-
-    .get(`manager/destination`, {
-      params,
-    })
-    .then((response: any) => {
-      allDestinations.value = response;
-
-      isLoaded.value = true;
-    })
-    .catch((e) => e);
-};
-
 let timeOut: NodeJS.Timeout | number = -1;
 
 watch(
-  [page, searchQuery],
+  [destinationStore.searchDestinationQuery, page],
+
   () => {
+    destinationStore.pagination.page = page.value;
+    destinationStore.isLoaded = false;
+
     clearTimeout(timeOut as NodeJS.Timeout);
     timeOut = setTimeout(() => {
-      getAllDestinations(searchQuery.value!);
+      destinationStore.isLoaded = true;
+
+      getAllDestinations(
+        destinationStore.searchDestinationQuery.search,
+        destinationStore.pagination.page
+      );
     }, 500);
   },
   { immediate: true }
