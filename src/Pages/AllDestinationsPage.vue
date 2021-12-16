@@ -1,61 +1,106 @@
-<script lang="ts" setup>
+<script lang="ts">
 import { destinationStore } from "../store/destinationStore";
 import SearchBarComponent from "../components/SearchBarComponent.vue";
 import { DestinationType } from "../types";
 import { useRoute, useRouter } from "vue-router";
 
 import { appState } from "../store/store";
-import { computed, watch } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 import Paginator from "../components/paginator/Paginator.vue";
 import { formatPrice, formattedDate } from "../../export";
 import { $axios } from "../http/http.Service";
-const router = useRouter();
+import LoadingComponent from "../admin/views/LoadingComponent.vue";
 
-const route = useRoute();
+export default {
+  components: {
+    LoadingComponent,
+    SearchBarComponent,
+    Paginator,
+  },
+  setup() {
+    const isLoaded = ref(false);
+    const router = useRouter();
+    const sort = reactive({ field: "createdAt", direction: true });
 
-function toViewDestination(destination: DestinationType) {
-  router.push({
-    name: "UpdateDestination",
-    params: { destinationId: destination.uuid },
-  });
-}
+    const route = useRoute();
 
-const page = computed(() => {
-  return route.query.page;
-});
+    function toViewDestination(destination: DestinationType) {
+      router.push({
+        name: "UpdateDestination",
+        params: { destinationId: destination.uuid },
+      });
+    }
 
-function getAllDestinations(search?: string, sort?: any) {
-  let params = {} as any;
-  if (search) {
-    params.search = search;
-  } else {
-    params.page = page.value;
-  }
-  if (sort) {
-    params.sort = sort.direction ? sort.field + ",asc" : sort.field;
-  }
+    const page = computed(() => {
+      return route.query.page;
+    });
 
-  $axios
-    .get("/client/destinations", {
-      params,
-    })
-    .then((r: any) => {
-      destinationStore.allDestinations = r.data.allDestinations;
-      destinationStore.promotedDestinations = r.data.promotedDestinations;
-      destinationStore.isLoadingDestinations = true;
-    })
-    .catch((e) => e);
-}
-let timeOut: NodeJS.Timeout | number = -1;
+    function getAllDestinations(search?: string, sort?: any) {
+      isLoaded.value = false;
+      let params = {} as any;
+      if (search) {
+        params.search = search;
+      } else {
+        params.page = page.value;
+      }
+      if (sort) {
+        params.sort = sort.direction ? sort.field + ",asc" : sort.field;
+      }
 
-watch([page, destinationStore.searchDestinationQuery], () => {
-  clearTimeout(timeOut as NodeJS.Timeout);
-  timeOut = setTimeout(() => {
-    getAllDestinations(destinationStore.searchDestinationQuery.search);
-  }, 500);
-});
+      $axios
+        .get("/client/destinations", {
+          params,
+        })
+        .then((r: any) => {
+          destinationStore.allDestinations = r.data.allDestinations;
+          destinationStore.promotedDestinations = r.data.promotedDestinations;
+          destinationStore.isLoadingDestinations = true;
+          isLoaded.value = true;
+        })
+        .catch((e) => {
+          isLoaded.value = true;
 
-getAllDestinations();
+          return e;
+        });
+    }
+
+    function runSort(by: string) {
+      if (sort.field === by) {
+        sort.direction = !sort.direction;
+      } else {
+        sort.field = by;
+      }
+      getAllDestinations(destinationStore.searchDestinationQuery.search, sort);
+      console.log("runSort", by);
+    }
+
+    let timeOut: NodeJS.Timeout | number = -1;
+
+    watch([page, destinationStore.searchDestinationQuery], () => {
+      isLoaded.value = false;
+
+      clearTimeout(timeOut as NodeJS.Timeout);
+      timeOut = setTimeout(() => {
+        isLoaded.value = true;
+        getAllDestinations(destinationStore.searchDestinationQuery.search);
+      }, 500);
+    });
+
+    getAllDestinations();
+
+    return {
+      destinationStore,
+      runSort,
+      toViewDestination,
+      appState,
+      formattedDate,
+      formatPrice,
+      isLoaded,
+
+      page,
+    };
+  },
+};
 </script>
 
 <template>
@@ -76,7 +121,7 @@ getAllDestinations();
           <!--          search query-->
 
           <div>
-            <SearchBarComponent />
+            <SearchBarComponent @run-sort="runSort" />
           </div>
           <!--          search query-->
         </div>
@@ -85,8 +130,8 @@ getAllDestinations();
           class="pt-10"
           :data="destinationStore.allDestinations"
         />
-        <div v-if="destinationStore.isLoadingDestinations">
-          <div v-if="true">
+        <div v-if="isLoaded">
+          <div>
             <div
               class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none"
             >
@@ -134,7 +179,7 @@ getAllDestinations();
                   <div class="flex-1">
                     <a class="block mt-2">
                       <p class="mt-3 text-base text-gray-700">
-                        {{ destination.title }}, {{ destination.title }}...
+                        {{ destination.title }}, {{ destination.title }}
                       </p>
                     </a>
                     <p class="mt-3 text-yellow-600 font-medium text-2xl">
@@ -198,6 +243,7 @@ getAllDestinations();
             </div>
           </div>
         </div>
+        <LoadingComponent v-else />
       </div>
     </div>
     <Paginator

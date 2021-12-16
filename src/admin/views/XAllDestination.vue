@@ -7,7 +7,9 @@
       <input type="text" v-model="searchQuery" />
     </section>
     <div class="">
-      <div v-if="isLoaded" class="flex flex-col">
+      <Paginator v-model="page" class="my-6" :data="allDestinations" />
+
+      <div v-if="isLoaded" class="flex flex-col h-screen">
         <div
           v-if="allDestinations.data.length"
           class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8"
@@ -124,15 +126,10 @@
             </div>
           </div>
         </div>
-
-        <div>No Destination Found</div>
       </div>
 
       <div v-else>
-        <div class="flex justify-center">
-          <i class="fad fa-spinner-third text-5xl animate-spin py-4"></i>
-          <p>Fetching Destinations</p>
-        </div>
+        <LoadingComponent />
       </div>
     </div>
 
@@ -148,6 +145,7 @@ import DestinationLinks from "./DestinationLinks.vue";
 import Paginator from "../../components/paginator/Paginator.vue";
 import { useRoute } from "vue-router";
 import { formattedDate } from "../../../export";
+import LoadingComponent from "./LoadingComponent.vue";
 
 const allDestinations = ref({
   data: [],

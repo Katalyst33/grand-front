@@ -17,7 +17,7 @@ export const destinationStore = reactive({
   isLoadingDestinations: false,
   isLoadingSpinner: false,
   searchDestinationQuery: {
-    search: searchQuery,
+    search: "" as string | undefined,
   },
   sortDestination: sort,
   myDestinations: localStore.getArray("myDestinations") || [],

@@ -75,7 +75,7 @@ function addToCart(destination: any) {
 
     <!--    {{ singleDestinationStore.destination.images.length }}-->
 
-    <div class="pt-10" v-if="singleDestinationStore.isLoadingDeal">
+    <div class="pt-10 h-screen" v-if="singleDestinationStore.isLoadingDeal">
       <div class="grid md:grid-cols-3 gap-4">
         <div class="md:col-span-2 tileTab">
           <div class="unreset">

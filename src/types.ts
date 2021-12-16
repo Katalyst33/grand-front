@@ -65,7 +65,9 @@ export type appStateTypes = {
   isLoaded: boolean;
   sidebarOpen: boolean;
 };
-
+export type ImagesType = {
+  path: string;
+};
 export type DestinationType = {
   activity: string;
   country: {
@@ -84,7 +86,8 @@ export type DestinationType = {
   title: string;
   uuid: string;
   image: string;
-  images: string[];
+  images: ImagesType[];
+
   _id?: string;
 };
 

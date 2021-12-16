@@ -2,7 +2,7 @@
   <div class="relative w-screen" style="left: calc(-50vw + 50%)">
     <Splide :options="options">
       <SplideSlide
-        v-for="(destination, index) in destinationTest"
+        v-for="(destination, index) in promotedDestination"
         :key="index"
         :data-splide-interval="3000"
         class="group flex flex-col shadow-lg overflow-hidden relative"
@@ -62,35 +62,11 @@
   </div>
 </template>
 <script>
-import { destinationStore } from "../store/destinationStore";
-
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { reactive, ref } from "vue";
 import { localStore } from "../../export";
-const destinationTest = ref([
-  {
-    title: "Take a vacation you Deserve",
-    img: "/hero/vacation.jpg",
-    text: ` Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-                lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-                fugiat aliqua.`,
-  },
-  {
-    title: "Book Your Accomadation",
-    img: "/hero/accomodation.jpg",
-    text: ` Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-                lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-                fugiat aliqua.`,
-  },
-  {
-    title: "School in the United Kingdom",
-    img: "/hero/student.jpg",
-    text: ` Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-                lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-                fugiat aliqua.`,
-  },
-]);
+
 export default {
   name: "BannerSlider",
   components: {
@@ -108,7 +84,7 @@ export default {
 
     return {
       options,
-      destinationTest: localStore.getArray("promotedDestinations"),
+      promotedDestination: localStore.getArray("promotedDestinations"),
     };
   },
 };

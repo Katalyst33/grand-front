@@ -16,10 +16,13 @@
                 <div
                   class="absolute inset-0 bg-gray-400 mix-blend-multiply"
                 ></div>
+
                 <img
+                  v-if="singleDestinationStore.destination.images.length > 0"
                   class="h-full w-full object-cover"
                   :src="destination.path"
                 />
+                <h1 v-else>no images</h1>
               </div>
 
               <div

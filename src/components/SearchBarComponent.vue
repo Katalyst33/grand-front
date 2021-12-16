@@ -1,9 +1,22 @@
-<script lang="ts" setup>
-import { destinationStore, runSort } from "../store/destinationStore";
+<script lang="ts">
+import { destinationStore } from "../store/destinationStore";
+
+export default {
+  emits: ["runSort"],
+
+  setup() {
+    return {
+      destinationStore,
+    };
+  },
+};
 </script>
 
 <template>
   <div>
+    <!--    <button class="bg-red-500 p-4" @click="$emit('customChange')">
+      Run Sort
+    </button>-->
     <div class="grid md:grid-cols-2 mt-10 space-y-4">
       <div>
         <div
@@ -12,8 +25,6 @@ import { destinationStore, runSort } from "../store/destinationStore";
           <input
             v-model="destinationStore.searchDestinationQuery.search"
             type="text"
-            name="name"
-            id="name"
             class="block w-full border-0 border-b border-transparent bg-gray-50 focus:border-yellow-600 focus:ring-0 sm:text-sm"
             placeholder="Search for a Destination.."
           />
@@ -28,7 +39,7 @@ import { destinationStore, runSort } from "../store/destinationStore";
                 v-for="(f, key) in { price: 'Price', createdAt: 'date' }"
               >
                 <button
-                  @click="runSort(key)"
+                  @click="$emit('runSort', key)"
                   :class="{
                     'bg-yellow-500':
                       destinationStore.sortDestination.field === key,
@@ -42,7 +53,7 @@ import { destinationStore, runSort } from "../store/destinationStore";
                       destinationStore.sortDestination.field === key &&
                       destinationStore.sortDestination.direction
                     "
-                    @click="runSort('createdAt')"
+                    @click="$emit('runSort', 'createdAt')"
                     class="fas fa-chevron-down cursor-pointer"
                   ></i>
                   <i
@@ -50,7 +61,7 @@ import { destinationStore, runSort } from "../store/destinationStore";
                       destinationStore.sortDestination.field === key &&
                       !destinationStore.sortDestination.direction
                     "
-                    @click="runSort('price,dsc')"
+                    @click="$emit('runSort', 'price,dsc')"
                     class="fas fa-chevron-up cursor-pointer"
                   ></i>
                 </button>

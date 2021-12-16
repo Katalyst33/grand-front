@@ -1,14 +1,6 @@
 <template>
   <div>
-    <ViewDestinationSlider
-      v-if="singleDestinationStore.destination.images.length"
-    />
-
-    <img
-      v-else
-      class="w-screen relative"
-      src="/hero/destinations/no-destination.jpeg"
-    />
+    <ViewDestinationSlider />
   </div>
 </template>
 
