@@ -24,7 +24,6 @@ export const destinationStore = reactive({
 } as any);
 
 export const singleDestinationStore = reactive({
-  images: [] as any[],
   destination: {} as DestinationType,
   isLoadingDeal: false,
 });

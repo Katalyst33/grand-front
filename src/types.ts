@@ -67,6 +67,10 @@ export type appStateTypes = {
 };
 export type ImagesType = {
   path: string;
+  publicId: string;
+  crop: {
+    100: string;
+  };
 };
 export type DestinationType = {
   activity: string;

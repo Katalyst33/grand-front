@@ -16,9 +16,19 @@
                   class="absolute inset-0 bg-gray-400 mix-blend-multiply"
                 ></div>
 
-
-
                 <img
+                  v-if="destination.thumbnails[0]"
+                  class="h-full w-full object-cover"
+                  :src="destination.thumbnails[0].path"
+                />
+                <img
+                  v-else
+                  class="h-full w-full object-cover"
+                  src="/hero/destinations/no-destination.jpeg"
+                />
+
+                <!--
+                  <img
                   v-if="destination.images"
                   class="h-full w-full object-cover"
                   :src="destination.images[0].path"
@@ -27,7 +37,7 @@
                   v-else
                   class="h-full w-full object-cover"
                   src="/hero/destinations/no-destination.jpeg"
-                />
+                />-->
               </div>
 
               <div
@@ -49,10 +59,13 @@
                   class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center"
                 >
                   <router-link
-                    :to="{ name: 'Destinations' }"
+                    :to="{
+                      name: 'ViewDestinationPage',
+                      params: { destinationId: destination.uuid },
+                    }"
                     class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-yellow-700 bg-white hover:bg-yellow-50 sm:px-8"
                   >
-                    View More Destinations
+                    View Destination
                   </router-link>
                 </div>
               </div>

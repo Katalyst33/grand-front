@@ -35,21 +35,6 @@
                     singleDestinationStore.destination.title
                   }}</span>
                 </h1>
-                <p
-                  class="mt-6 max-w-lg mx-auto text-center text-xl text-yellow-200 sm:max-w-3xl"
-                >
-                  {{ destination.text }}
-                </p>
-                <div
-                  class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center"
-                >
-                  <router-link
-                    :to="{ name: 'Destinations' }"
-                    class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-yellow-700 bg-white hover:bg-yellow-50 sm:px-8"
-                  >
-                    View More Destinations
-                  </router-link>
-                </div>
               </div>
             </div>
           </div>

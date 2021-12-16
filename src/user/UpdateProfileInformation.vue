@@ -27,13 +27,13 @@
 
         <TabPanels class="mt-2">
           <TabPanel>
-            <DocumentsUpload />
-          </TabPanel>
-          <TabPanel>
             <PersonalInformation />
           </TabPanel>
           <TabPanel>
             <ContactInformation />
+          </TabPanel>
+          <TabPanel>
+            <DocumentsUpload />
           </TabPanel>
         </TabPanels>
       </TabGroup>
@@ -53,14 +53,12 @@ import ContactInformation from "./components/ContactInformation.vue";
 import DocumentsUpload from "./DocumentsUpload.vue";
 import { fetchProfile } from "../http/account.Service";
 let categories = ref([
-  { title: "Upload Documents" },
-
   {
     title: "Personal Information",
   },
   { title: "Contact Information" },
-  { title: "Other Information" },
-  { title: "Educational History" },
+
+  { title: "Upload Documents" },
 ]);
 
 const route = useRoute();

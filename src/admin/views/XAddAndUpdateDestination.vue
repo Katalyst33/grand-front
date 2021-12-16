@@ -203,6 +203,7 @@ if (route.name === "AddDestination") {
 
 const code = computed(() => route.params.destinationId);
 const isLoading = ref(false);
+
 function updateDestination() {
   isLoading.value = true;
 
@@ -211,6 +212,7 @@ function updateDestination() {
     .patch(`manager/deals/${code.value}`, singleDestinationStore.destination)
     .then((r) => {
       isLoading.value = false;
+      return r;
     })
     .catch((e) => {
       console.log(e, "??");

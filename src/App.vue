@@ -20,6 +20,7 @@ import GuestNavigationMenu from "./layout/GuestNavigationMenu.vue";
 import BannerSlider from "./components/BannerSlider.vue";
 import { $axios } from "./http/http.Service";
 import { localStore } from "../export";
+import { getPromotedDestination } from "./http/client.Service";
 const isLoaded = ref(false);
 const route = useRoute();
 const { x, y } = useWindowScroll();
@@ -42,22 +43,7 @@ useHead({
   ],
 });
 
-function getPromoted() {
-  $axios
-    .get(`/client/destinations`)
-    .then((res) => {
-      localStore.setArray(
-        "promotedDestinations",
-        res.data.promotedDestinations
-      );
-      isLoaded.value = true;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
-getPromoted();
+getPromotedDestination();
 </script>
 
 <style lang="scss">
