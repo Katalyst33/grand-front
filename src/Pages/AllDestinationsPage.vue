@@ -22,6 +22,8 @@ export default {
     const router = useRouter();
     const sort = reactive({ field: "createdAt", direction: true });
 
+    const destinationSearch = ref("");
+
     const route = useRoute();
 
     function toViewDestination(destination: DestinationType) {
@@ -96,6 +98,7 @@ export default {
       formattedDate,
       formatPrice,
       isLoaded,
+      destinationSearch,
 
       page,
     };

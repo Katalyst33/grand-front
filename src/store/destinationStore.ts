@@ -57,6 +57,7 @@ export function clearStore() {
 }
 
 function getAllDestinations(search?: string, sort?: any, page?: number) {
+  destinationStore.isLoadingDestinations = false;
   let params = {} as any;
   if (search) {
     params.search = search;

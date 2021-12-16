@@ -4,9 +4,10 @@ import { destinationStore } from "../store/destinationStore";
 export default {
   emits: ["runSort"],
 
-  setup() {
+  setup(props: any) {
     return {
       destinationStore,
+      props,
     };
   },
 };
