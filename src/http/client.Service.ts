@@ -15,7 +15,6 @@ export function getPromotedDestination() {
       );
 
       console.log(res.data.promotedDestinations.data);
-      isLoaded.value = true;
     })
     .catch((err) => {
       console.log(err);
