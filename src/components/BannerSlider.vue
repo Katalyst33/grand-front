@@ -16,6 +16,8 @@
                   class="absolute inset-0 bg-gray-400 mix-blend-multiply"
                 ></div>
 
+
+
                 <img
                   v-if="destination.images"
                   class="h-full w-full object-cover"
@@ -24,7 +26,7 @@
                 <img
                   v-else
                   class="h-full w-full object-cover"
-                  src="public/hero/destinations/no-destination.jpeg"
+                  src="/hero/destinations/no-destination.jpeg"
                 />
               </div>
 
