@@ -5,6 +5,7 @@
     </div>
     <section>
       <input type="text" v-model="searchQuery" />
+      <SearchBarComponent />
     </section>
     <div class="">
       <Paginator v-model="page" class="my-6" :data="allDestinations" />
@@ -146,6 +147,7 @@ import Paginator from "../../components/paginator/Paginator.vue";
 import { useRoute } from "vue-router";
 import { formattedDate } from "../../../export";
 import LoadingComponent from "./LoadingComponent.vue";
+import SearchBarComponent from "../../components/SearchBarComponent.vue";
 
 const allDestinations = ref({
   data: [],

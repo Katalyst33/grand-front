@@ -7,7 +7,6 @@ import BrowserStorage from "@trapcode/browser-storage";
 const localStore = BrowserStorage.getLocalStore();
 
 const sort = reactive({ field: "createdAt", direction: true });
-const searchQuery = ref<string | undefined>(undefined);
 
 export const destinationStore = reactive({
   allDestinations: [],

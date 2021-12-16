@@ -15,9 +15,6 @@ export default {
 
 <template>
   <div>
-    <!--    <button class="bg-red-500 p-4" @click="$emit('customChange')">
-      Run Sort
-    </button>-->
     <div class="grid md:grid-cols-2 mt-10 space-y-4">
       <div>
         <div

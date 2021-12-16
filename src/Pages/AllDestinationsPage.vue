@@ -56,57 +56,6 @@ export default {
       },
       { immediate: true }
     );
-    /*
-    function getAllDestinations(search?: string, sort?: any) {
-      isLoaded.value = false;
-      let params = {} as any;
-      if (search) {
-        params.search = search;
-      } else {
-        params.page = page.value;
-      }
-      if (sort) {
-        params.sort = sort.direction ? sort.field + ",asc" : sort.field;
-      }
-
-      $axios
-        .get("/client/destinations", {
-          params,
-        })
-        .then((r: any) => {
-          destinationStore.allDestinations = r.data.allDestinations;
-          destinationStore.promotedDestinations = r.data.promotedDestinations;
-          destinationStore.isLoadingDestinations = true;
-          isLoaded.value = true;
-        })
-        .catch((e) => {
-          isLoaded.value = true;
-
-          return e;
-        });
-    }
-
-    function runSort(by: string) {
-      if (sort.field === by) {
-        sort.direction = !sort.direction;
-      } else {
-        sort.field = by;
-      }
-      getAllDestinations(destinationStore.searchDestinationQuery.search, sort);
-      console.log("runSort", by);
-    }
-
-    let timeOut: NodeJS.Timeout | number = -1;
-
-    watch([page, destinationStore.searchDestinationQuery], () => {
-      isLoaded.value = false;
-
-      clearTimeout(timeOut as NodeJS.Timeout);
-      timeOut = setTimeout(() => {
-        isLoaded.value = true;
-        getAllDestinations(destinationStore.searchDestinationQuery.search);
-      }, 500);
-    });*/
 
     return {
       destinationStore,
@@ -238,8 +187,6 @@ export default {
                           <i class="fal fa-calendar-alt"></i>
                           {{ formattedDate(destination.duration.end) }}
                         </div>
-
-                        <!--                        @click="toViewDestination(destination)"-->
                       </div>
                       <template
                         v-if="['staff', 'admin'].includes(appState.user?.role)"
