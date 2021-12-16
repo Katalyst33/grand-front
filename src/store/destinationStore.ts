@@ -12,10 +12,11 @@ const searchQuery = ref<string | undefined>(undefined);
 export const destinationStore = reactive({
   allDestinations: [],
   promotedDestinations: [] as DestinationType[] | DestinationType,
-  paginationQuery: null,
+  pagination: {
+    page: 1,
+  },
 
-  isLoadingDestinations: false,
-  isLoadingSpinner: false,
+  isLoaded: false,
   searchDestinationQuery: {
     search: "" as string | undefined,
   },
@@ -56,31 +57,6 @@ export function clearStore() {
   CLEAR_ONE_DESTINATION();
 }
 
-function getAllDestinations(search?: string, sort?: any, page?: number) {
-  destinationStore.isLoadingDestinations = false;
-  let params = {} as any;
-  if (search) {
-    params.search = search;
-  }
-  if (sort) {
-    params.sort = sort.direction ? sort.field + ",asc" : sort.field;
-  }
-  if (page) {
-    params.page = destinationStore.paginationQuery;
-  }
-
-  $axios
-    .get("/client/destinations", {
-      params,
-    })
-    .then((r: any) => {
-      destinationStore.allDestinations = r.data.allDestinations;
-      destinationStore.promotedDestinations = r.data.promotedDestinations;
-      destinationStore.isLoadingDestinations = true;
-    })
-    .catch((e) => e);
-}
-
 export function getOneDestination(destinationId: any) {
   $axios
     .get(`client/deals/${destinationId}`)
@@ -107,26 +83,3 @@ export function getOneDestinationX() {
     })
     .catch((e) => e);
 }
-
-export function runSort(by: string) {
-  if (sort.field === by) {
-    sort.direction = !sort.direction;
-  } else {
-    sort.field = by;
-  }
-  getAllDestinations(searchQuery.value, sort);
-}
-
-let timeOut: NodeJS.Timeout | number = -1;
-
-/*
-watch([searchQuery], () => {
-  destinationStore.isLoadingSpinner = true;
-
-  clearTimeout(timeOut as NodeJS.Timeout);
-  timeOut = setTimeout(() => {
-    destinationStore.isLoadingSpinner = false;
-    getAllDestinations(searchQuery.value);
-  }, 500);
-});
-*/

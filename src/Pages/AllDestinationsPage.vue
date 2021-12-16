@@ -10,6 +10,7 @@ import Paginator from "../components/paginator/Paginator.vue";
 import { formatPrice, formattedDate } from "../../export";
 import { $axios } from "../http/http.Service";
 import LoadingComponent from "../admin/views/LoadingComponent.vue";
+import { getAllDestinations, runSort } from "../http/client.Service";
 
 export default {
   components: {
@@ -18,11 +19,8 @@ export default {
     Paginator,
   },
   setup() {
-    const isLoaded = ref(false);
     const router = useRouter();
     const sort = reactive({ field: "createdAt", direction: true });
-
-    const destinationSearch = ref("");
 
     const route = useRoute();
 
@@ -37,6 +35,28 @@ export default {
       return route.query.page;
     });
 
+    let timeOut: NodeJS.Timeout | number = -1;
+
+    watch(
+      [destinationStore.searchDestinationQuery, page],
+
+      () => {
+        destinationStore.pagination.page = page.value;
+        destinationStore.isLoaded = false;
+
+        clearTimeout(timeOut as NodeJS.Timeout);
+        timeOut = setTimeout(() => {
+          destinationStore.isLoaded = true;
+
+          getAllDestinations(
+            destinationStore.searchDestinationQuery.search,
+            destinationStore.pagination.page
+          );
+        }, 500);
+      },
+      { immediate: true }
+    );
+    /*
     function getAllDestinations(search?: string, sort?: any) {
       isLoaded.value = false;
       let params = {} as any;
@@ -86,9 +106,7 @@ export default {
         isLoaded.value = true;
         getAllDestinations(destinationStore.searchDestinationQuery.search);
       }, 500);
-    });
-
-    getAllDestinations();
+    });*/
 
     return {
       destinationStore,
@@ -97,9 +115,6 @@ export default {
       appState,
       formattedDate,
       formatPrice,
-      isLoaded,
-      destinationSearch,
-
       page,
     };
   },
@@ -133,7 +148,7 @@ export default {
           class="pt-10"
           :data="destinationStore.allDestinations"
         />
-        <div v-if="isLoaded">
+        <div v-if="destinationStore.isLoaded">
           <div>
             <div
               class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none"
@@ -250,7 +265,7 @@ export default {
       </div>
     </div>
     <Paginator
-      v-model="page"
+      v-model="destinationStore.pagination.page"
       class="pt-10"
       :data="destinationStore.allDestinations"
     />

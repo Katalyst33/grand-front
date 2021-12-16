@@ -73,7 +73,7 @@ export default defineComponent({
           class="pagination-previous"
         >
           <svg
-            class="w-10 h-10 inline fill-current text-white"
+            class="w-6 h-6 lg:w-10 lg:h-10 inline fill-current text-white"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -94,7 +94,7 @@ export default defineComponent({
           class="pagination-next"
         >
           <svg
-            class="w-10 h-10 inline fill-current text-white"
+            class="w-6 h-6 lg:w-10 lg:h-10 inline fill-current text-white"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -185,7 +185,7 @@ export default defineComponent({
   }
 
   .pagination-link {
-    @apply flex justify-center text-center items-center h-10 w-10 text-2xl bg-teal-200 hover:bg-teal-500 rounded-full text-teal-400 hover:text-white cursor-pointer;
+    @apply flex justify-center text-center items-center h-8 w-8 lg:h-10 lg:w-10 lg:text-2xl bg-teal-200 hover:bg-teal-500 rounded-full text-teal-400 hover:text-white cursor-pointer;
     @apply inline-block;
   }
 

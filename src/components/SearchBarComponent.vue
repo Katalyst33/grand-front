@@ -73,17 +73,13 @@ export default {
       </div>
     </div>
 
-    <div v-if="destinationStore.isLoadingSpinner" class="flex justify-center">
-      <i class="fad fa-spinner-third text-5xl animate-spin py-4"></i>
-    </div>
-
     <div
       v-if="
         destinationStore.searchDestinationQuery.search &&
         !destinationStore.allDestinations.data.length
       "
     >
-      <h3 class="text-center py-4">Destination is not available</h3>
+      <h3 class="text-center pt-20 h-screen">Destination is not available</h3>
     </div>
   </div>
 </template>
