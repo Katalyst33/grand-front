@@ -72,6 +72,14 @@ export type ImagesType = {
     100: string;
   };
 };
+
+export type DocumentType = {
+  size: number;
+  name: string;
+  updatedAt: Date;
+  category: string;
+  referenceId: string;
+};
 export type DestinationType = {
   activity: string;
   country: {

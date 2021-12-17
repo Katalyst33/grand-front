@@ -50,7 +50,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
 import { $axios } from "../../http/http.Service";
 import { profileStore } from "../../store/profileStore";
 import { useRoute } from "vue-router";
@@ -59,7 +58,6 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
 import { ChevronUpIcon } from "@heroicons/vue/solid";
 import ContactInformation from "../../user/components/ContactInformation.vue";
 import AllDocumentsComponent from "../../user/AllDocumentsComponent.vue";
-console.log("??");
 
 const route = useRoute();
 

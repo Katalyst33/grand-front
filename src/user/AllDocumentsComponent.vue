@@ -64,7 +64,7 @@
                     {{ fileSizes(item.size) }}
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {{ item.updatedAt }}
+                    {{ formattedDate(item.updatedAt) }}
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {{ item.category }}
@@ -103,7 +103,7 @@
 <script lang="ts" setup>
 import { $axios } from "../http/http.Service";
 import { profileStore } from "../store/profileStore";
-import { fileSizes } from "../../export";
+import { fileSizes, formattedDate } from "../../export";
 
 function deleteDocument(referenceId: string) {
   const confirmDelete = confirm(

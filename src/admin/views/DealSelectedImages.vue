@@ -33,9 +33,10 @@ function deselectImages(image: string) {
     "Are you sure you want to deselect this image?"
   );
   if (!confirmDeselect) return;
-  singleDestinationStore.images = singleDestinationStore.images.filter(
-    (item) => item.publicId !== image
-  );
+  singleDestinationStore.destination.images =
+    singleDestinationStore.destination.images.filter(
+      (item) => item.publicId !== image
+    );
   $axios
     .post(`/manager/deals/${route.params.destinationId}/deselect-images`, {
       images: image,

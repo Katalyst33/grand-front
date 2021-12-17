@@ -43,8 +43,6 @@ export function getAllProfiles() {
 export function fetchProfile(referenceId: any) {
   const isLoading = ref(false);
 
-  console.log("from outside", referenceId);
-
   const fetch = () => {
     $axios
       .get(`profile/${referenceId}`)
@@ -62,15 +60,12 @@ export function fetchProfile(referenceId: any) {
 //
 
 export function updateProfile(referenceId: string) {
-  console.log(referenceId, "referenceId");
   $axios
     .post(`/profile/${referenceId}`, profileStore.profile)
     .then((response: any) => response)
     .catch((error) => {
-      console.log(error, "error ??");
+      return error;
     });
-
-  console.log(profileStore.profile, referenceId);
 }
 
 export function deleteProfile(referenceId: string) {

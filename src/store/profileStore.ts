@@ -1,7 +1,5 @@
 import { reactive, watch } from "vue";
-import { $axios } from "../http/http.Service";
-import { localStore } from "../../export";
-import { profileTypes } from "../types";
+import { DocumentType } from "../types";
 
 export const profileStore = reactive({
   profile: {
@@ -30,7 +28,7 @@ export const profileStore = reactive({
       married: "",
       other: "",
     },
-    documents: [],
+    documents: [] as DocumentType[],
   },
 });
 

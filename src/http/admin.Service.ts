@@ -20,7 +20,6 @@ export function getAllUsers() {
 }
 
 export function getUserDetails(routeParams: any) {
-  console.log(routeParams, "hgjhgj");
   const user = ref<loggedUser>({
       email: "",
       role: "",
@@ -35,10 +34,9 @@ export function getUserDetails(routeParams: any) {
         user.value = response.user;
         allProfiles.value = response.userProfiles;
         isLoaded.value = true;
-        console.log(response);
       })
       .catch((error) => {
-        console.log(error);
+        return error;
       });
   };
 

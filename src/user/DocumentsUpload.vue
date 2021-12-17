@@ -113,7 +113,7 @@ function uploadDocuments() {
               </div>
               <input
                 class="focus:ring-yellow-500 focus:border-yellow-500 block w-full rounded-none rounded-l-md border pl-10 sm:text-sm border-gray-300 cursor-pointer bg-white"
-                value="Select or drop a file here"
+                value="Click to select a file "
                 readonly
               />
             </div>
