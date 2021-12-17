@@ -41,6 +41,7 @@ export function getAllProfiles() {
 }
 //
 export function fetchProfile(referenceId: any) {
+  console.log(referenceId, "i ran");
   const isLoading = ref(false);
 
   const fetch = () => {

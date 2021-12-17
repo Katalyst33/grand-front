@@ -50,6 +50,7 @@ function onFileChange(e: any) {
 }
 
 function uploadDocuments() {
+  console.log("uploading ??");
   isLoading.value = true;
   imageData.append("document", file.value);
   imageData.append("documentCategory", selected.value.title);
@@ -64,6 +65,7 @@ function uploadDocuments() {
 
     .then((r) => {
       isLoading.value = false;
+      fetchProfile(route.params.referenceId).fetch();
 
       console.log(r);
     })

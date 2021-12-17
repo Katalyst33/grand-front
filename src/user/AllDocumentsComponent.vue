@@ -100,23 +100,37 @@
     </div>
   </section>
 </template>
-<script lang="ts" setup>
+<script lang="ts">
 import { $axios } from "../http/http.Service";
 import { profileStore } from "../store/profileStore";
 import { fileSizes, formattedDate } from "../../export";
+import { useRoute } from "vue-router";
+import { fetchProfile } from "../http/account.Service";
 
-function deleteDocument(referenceId: string) {
-  const confirmDelete = confirm(
-    "Are you sure you want to delete this document?, this will delete all uploaded documents as well"
-  );
-  if (confirmDelete) {
-    $axios
-      .delete(`/profile/upload/${referenceId}/document`)
-      .then((r) => {
-        window.location.reload();
-        console.log(r);
-      })
-      .catch((e) => console.log(e));
-  }
-}
+export default {
+  setup() {
+    const route = useRoute();
+    function deleteDocument(referenceId: string) {
+      const confirmDelete = confirm(
+        "Are you sure you want to delete this document?, this will delete all uploaded documents as well"
+      );
+      if (confirmDelete) {
+        $axios
+          .delete(`/profile/upload/${referenceId}/document`)
+          .then((r) => {
+            fetchProfile(route.params.referenceId).fetch();
+
+            console.log(r);
+          })
+          .catch((e) => console.log(e));
+      }
+    }
+    return {
+      profileStore,
+      deleteDocument,
+      fileSizes,
+      formattedDate,
+    };
+  },
+};
 </script>
