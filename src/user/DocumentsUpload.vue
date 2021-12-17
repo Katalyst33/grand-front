@@ -12,6 +12,7 @@ import {
 import BusyButton from "../components/BusyButton.vue";
 import { fetchProfile } from "../http/account.Service";
 import AllDocumentsComponent from "./AllDocumentsComponent.vue";
+import LoadingComponent from "../admin/views/LoadingComponent.vue";
 
 const documentCategory = [
   { title: "Application Form" },
@@ -34,14 +35,14 @@ const imageData = new FormData();
 const imageInput = ref<HTMLInputElement>();
 const url = ref("");
 const file = ref("") as any;
-const isLoading = ref(false);
+const isLoaded = ref(false);
 
 function changeImage() {
   imageInput.value?.click();
   // console.log(imageInput.value);
 }
 
-const { fetch } = fetchProfile(route.params.referenceId);
+const { fetch, isLoading } = fetchProfile(route.params.referenceId);
 onMounted(fetch);
 function onFileChange(e: any) {
   file.value = e.target.files[0];
@@ -50,8 +51,7 @@ function onFileChange(e: any) {
 }
 
 function uploadDocuments() {
-  console.log("uploading ??");
-  isLoading.value = true;
+  isLoaded.value = false;
   imageData.append("document", file.value);
   imageData.append("documentCategory", selected.value.title);
 
@@ -64,14 +64,14 @@ function uploadDocuments() {
     .patch(`/profile/upload/${code.value}/document`, imageData)
 
     .then((r) => {
-      isLoading.value = false;
+      isLoaded.value = true;
       fetchProfile(route.params.referenceId).fetch();
 
       console.log(r);
     })
 
     .catch((e) => {
-      isLoading.value = true;
+      isLoaded.value = true;
 
       return e;
     });
@@ -201,7 +201,6 @@ function uploadDocuments() {
     </div>
     <div class="flex justify-center">
       <BusyButton
-        :is-loading="isLoading"
         class="mt-3 btn bg-gray-700 w-40 py-2 mt-10"
         @click.prevent="uploadDocuments"
       >
@@ -209,6 +208,7 @@ function uploadDocuments() {
       </BusyButton>
     </div>
 
-    <AllDocumentsComponent />
+    <AllDocumentsComponent v-if="isLoading" />
+    <LoadingComponent v-else />
   </div>
 </template>

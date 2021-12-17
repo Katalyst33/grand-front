@@ -41,7 +41,6 @@ export function getAllProfiles() {
 }
 //
 export function fetchProfile(referenceId: any) {
-  console.log(referenceId, "i ran");
   const isLoading = ref(false);
 
   const fetch = () => {
@@ -50,6 +49,7 @@ export function fetchProfile(referenceId: any) {
       .then((res: any) => {
         profileStore.profile = res.profile;
         profileStore.profile.documents = res.allDocuments;
+        isLoading.value = true;
       })
       .finally(() => {
         isLoading.value = true;
