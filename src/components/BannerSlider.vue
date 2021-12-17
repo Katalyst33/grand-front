@@ -2,7 +2,7 @@
   <div class="relative w-screen" style="left: calc(-50vw + 50%)">
     <Splide :options="options">
       <SplideSlide
-        v-for="(destination, index) in promotedDestination"
+        v-for="(destination, index) in destinationStore.promotedDestinations"
         :key="index"
         :data-splide-interval="3000"
         class="group flex flex-col shadow-lg overflow-hidden relative"
@@ -81,6 +81,7 @@ import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { reactive, ref } from "vue";
 import { localStore } from "../../export";
+import { destinationStore } from "../store/destinationStore";
 
 export default {
   name: "BannerSlider",
@@ -99,7 +100,7 @@ export default {
 
     return {
       options,
-      promotedDestination: localStore.getArray("promotedDestinations"),
+      destinationStore,
     };
   },
 };

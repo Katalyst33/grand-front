@@ -9,12 +9,10 @@ export function getPromotedDestination() {
   $axios
     .get(`/client/destinations`)
     .then((res) => {
-      localStore.setArray(
-        "promotedDestinations",
-        res.data.promotedDestinations.data
-      );
+      destinationStore.promotedDestinations =
+        res.data.promotedDestinations.data;
 
-      console.log(res.data.promotedDestinations.data);
+      console.log(destinationStore.promotedDestinations);
     })
     .catch((err) => {
       console.log(err);

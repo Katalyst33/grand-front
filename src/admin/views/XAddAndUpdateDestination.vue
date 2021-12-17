@@ -151,6 +151,7 @@ import DealSelectedImages from "./DealSelectedImages.vue";
 import Modal from "../../components/Modal.vue";
 import GalleryComponent from "../components/GalleryComponent.vue";
 import BusyButton from "../../components/BusyButton.vue";
+import { getPromotedDestination } from "../../http/client.Service";
 
 const tiny = {
   apiKey: import.meta.env.VITE_TINY_KEY,
@@ -207,6 +208,7 @@ const isLoading = ref(false);
 function updateDestination() {
   isLoading.value = true;
 
+  getPromotedDestination();
   console.log(singleDestinationStore.destination, "update");
   $axios
     .patch(`manager/deals/${code.value}`, singleDestinationStore.destination)
