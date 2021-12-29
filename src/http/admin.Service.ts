@@ -4,7 +4,7 @@ import { loggedUser } from "../types";
 
 export function getAllUsers() {
   const isLoaded = ref(false),
-    allUsers = ref([]);
+    allUsers = ref<loggedUser[]>([]);
 
   const fetch = () => {
     $axios
@@ -20,11 +20,7 @@ export function getAllUsers() {
 }
 
 export function getUserDetails(routeParams: any) {
-  const user = ref<loggedUser>({
-      email: "",
-      role: "",
-      uuid: "",
-    }),
+  const user = ref<loggedUser>(),
     isLoaded = ref(false),
     allProfiles = ref([]);
   const fetch = () => {

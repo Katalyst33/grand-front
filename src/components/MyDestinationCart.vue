@@ -138,10 +138,7 @@ import {
                         </div>
 
                         <div v-else class="text-center p-10">
-                          <img
-                            src="/hero/destinations/no-destination-cart.png"
-                          />
-                          <p class="big-font">No Destination Selected Yet</p>
+                          <p class="big-font">No Destination Selected...</p>
                         </div>
                       </div>
 

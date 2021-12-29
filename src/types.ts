@@ -16,6 +16,8 @@ export type loggedUser = {
   email: string;
   role: string;
   uuid: string;
+  lastSeenAt: Date;
+  createdAt: Date;
 };
 
 export type appInfo = {

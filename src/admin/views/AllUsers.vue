@@ -13,7 +13,13 @@
                   scope="col"
                   class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
-                  email
+                  No.
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                >
+                  User
                 </th>
                 <th
                   scope="col"
@@ -30,7 +36,12 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              <tr v-for="item in allUsers" :key="item.email">
+              <tr v-for="(item, index) in allUsers" :key="index">
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs">
+                    {{ index + 1 }}.
+                  </span>
+                </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="flex-shrink-0 h-10 w-10">
@@ -63,14 +74,14 @@
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">{{ item.title }}</div>
-                  <div class="text-sm text-gray-500">last seen</div>
+                  <div v-if="item.lastSeenAt" class="text-sm text-gray-500">
+                    {{ formattedDate(item.lastSeenAt) }}
+                  </div>
+                  <div v-else>Never</div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <span
-                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-                  >
-                    Active
+                  <span class="text-sm text-gray-500">
+                    {{ formattedDate(item.createdAt) }}
                   </span>
                 </td>
               </tr>
@@ -86,6 +97,7 @@
 import { $axios } from "../../http/http.Service";
 import { onMounted, ref } from "vue";
 import { getAllUsers } from "../../http/admin.Service";
+import { formattedDate } from "../../../export";
 
 const { allUsers, isLoaded, fetch } = getAllUsers();
 
