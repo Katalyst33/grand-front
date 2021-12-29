@@ -64,6 +64,7 @@ export type appStateTypes = {
   isDev: boolean;
   isLoaded: boolean;
   sidebarOpen: boolean;
+  popMenuState: boolean;
 };
 export type ImagesType = {
   path: string;

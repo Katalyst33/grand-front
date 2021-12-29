@@ -11,6 +11,7 @@ export const appState = reactive({
   user: {},
   showMobileMenu: true,
   showCart: false,
+  popMenuState: false,
   isDev: import.meta.env.DEV,
   isLoaded: false,
   sidebarOpen: true,

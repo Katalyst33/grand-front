@@ -134,6 +134,7 @@
             </router-link>
             <Popover v-slot="{ open }">
               <PopoverButton
+                @click="appState.popMenuState = !appState.popMenuState"
                 :class="[
                   open ? 'text-yellow-900' : 'text-gray-500',
                   'group rounded-md focus:text-yellow-600 inline-flex items-center text-base font-medium hover:text-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-50 ',
@@ -148,154 +149,154 @@
                   aria-hidden="true"
                 />
               </PopoverButton>
-
-              <transition
-                enter-active-class="transition ease-out duration-200"
-                enter-from-class="opacity-0 -translate-y-1"
-                enter-to-class="opacity-100 translate-y-0"
-                leave-active-class="transition ease-in duration-150"
-                leave-from-class="opacity-100 translate-y-0"
-                leave-to-class="opacity-0 -translate-y-1"
-              >
-                <PopoverPanel
-                  class="hidden md:block absolute z-10 top-full inset-x-0 transform shadow-lg"
+              <div v-if="appState.popMenuState">
+                <transition
+                  enter-active-class="transition ease-out duration-200"
+                  enter-from-class="opacity-0 -translate-y-1"
+                  enter-to-class="opacity-100 translate-y-0"
+                  leave-active-class="transition ease-in duration-150"
+                  leave-from-class="opacity-100 translate-y-0"
+                  leave-to-class="opacity-0 -translate-y-1"
                 >
-                  <div class="absolute inset-0 flex">
-                    <div class="bg-yellow-50 w-1/2" />
-                    <div class="bg-yellow-50 w-1/2" />
-                  </div>
-                  <div
-                    class="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2"
+                  <PopoverPanel
+                    class="hidden md:block absolute z-10 top-full inset-x-0 transform shadow-lg"
+                    static
                   >
-                    <nav
-                      class="grid gap-y-10 px-4 py-8 bg-yellow-50 sm:grid-cols-2 sm:gap-x-8 sm:py-12 sm:px-6 lg:px-8 xl:pr-12"
-                    >
-                      <div>
-                        <h3
-                          class="text-sm font-medium tracking-wide text-gray-500 uppercase"
-                        >
-                          Company
-                        </h3>
-                        <ul role="list" class="mt-5 space-y-6">
-                          <li
-                            v-for="item in company"
-                            :key="item.name"
-                            class="flow-root"
-                          >
-                            <a
-                              :href="item.href"
-                              class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-yellow-100"
-                            >
-                              <component
-                                :is="item.icon"
-                                class="flex-shrink-0 h-6 w-6 text-gray-400"
-                                aria-hidden="true"
-                              />
-                              <span class="ml-4">{{ item.name }}</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h3
-                          class="text-sm font-medium tracking-wide text-gray-500 uppercase"
-                        >
-                          Resources
-                        </h3>
-                        <ul role="list" class="mt-5 space-y-6">
-                          <li
-                            v-for="item in resources"
-                            :key="item.name"
-                            class="flow-root"
-                          >
-                            <a
-                              :href="item.href"
-                              class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-yellow-100"
-                            >
-                              <component
-                                :is="item.icon"
-                                class="flex-shrink-0 h-6 w-6 text-gray-400"
-                                aria-hidden="true"
-                              />
-                              <span class="ml-4">{{ item.name }}</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    </nav>
+                    <div class="absolute inset-0 flex">
+                      <div class="bg-yellow-50 w-1/2" />
+                      <div class="bg-yellow-50 w-1/2" />
+                    </div>
                     <div
-                      class="bg-yellow-100 px-4 py-8 sm:py-12 sm:px-6 lg:px-8 xl:pl-12"
+                      class="relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2"
                     >
-                      <div>
-                        <h3
-                          class="text-sm font-medium tracking-wide text-gray-500 uppercase"
-                        >
-                          Top Destinations
-                        </h3>
-                        <ul role="list" class="mt-6 space-y-6">
-                          <li
-                            v-for="(
-                              destination, index
-                            ) in destinationStore.promotedDestinations.slice(
-                              0,
-                              3
-                            )"
-                            :key="index"
-                            class="flow-root"
+                      <nav
+                        class="grid gap-y-10 px-4 py-8 bg-yellow-50 sm:grid-cols-2 sm:gap-x-8 sm:py-12 sm:px-6 lg:px-8 xl:pr-12"
+                      >
+                        <div>
+                          <h3
+                            class="text-sm font-medium tracking-wide text-gray-500 uppercase"
                           >
-                            <router-link
-                              :to="{
-                                name: 'ViewDestinationPage',
-                                params: { destinationId: destination.uuid },
-                              }"
-                              class="-m-3 p-3 flex rounded-lg hover:bg-yellow-100"
+                            Company
+                          </h3>
+                          <ul role="list" class="mt-5 space-y-6">
+                            <li
+                              v-for="item in company"
+                              :key="item.name"
+                              class="flow-root"
                             >
-                              <div class="hidden sm:block flex-shrink-0">
-                                <img
-                                  v-if="destination.thumbnails[0]"
-                                  class="w-32 h-20 object-cover rounded-md"
-                                  :src="destination.thumbnails[0].path"
-                                  alt="destination-image"
+                              <a
+                                :href="item.href"
+                                class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-yellow-100"
+                              >
+                                <component
+                                  :is="item.icon"
+                                  class="flex-shrink-0 h-6 w-6 text-gray-400"
+                                  aria-hidden="true"
                                 />
-                                <img
-                                  v-else
-                                  class="w-32 h-20 object-cover rounded-md"
-                                  src="hero/destinations/no-destination.jpeg"
-                                  alt="destination-image"
+                                <span class="ml-4">{{ item.name }}</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h3
+                            class="text-sm font-medium tracking-wide text-gray-500 uppercase"
+                          >
+                            Resources
+                          </h3>
+                          <ul role="list" class="mt-5 space-y-6">
+                            <li
+                              v-for="item in resources"
+                              :key="item.name"
+                              class="flow-root"
+                            >
+                              <a
+                                :href="item.href"
+                                class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-yellow-100"
+                              >
+                                <component
+                                  :is="item.icon"
+                                  class="flex-shrink-0 h-6 w-6 text-gray-400"
+                                  aria-hidden="true"
                                 />
-                              </div>
-                              <div class="w-0 flex-1 sm:ml-8">
-                                <h4
-                                  class="text-base font-medium text-gray-900 truncate"
-                                >
-                                  {{ destination.country.name }}
-                                </h4>
-                                <p class="mt-1 text-sm text-gray-500">
-                                  {{ destination.title }}
-                                </p>
-                                <p
-                                  class="mt-3 text-base text-yellow-600 text-2xl"
-                                >
-                                  $ {{ formatPrice(destination.price) }}
-                                </p>
-                              </div>
-                            </router-link>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="mt-6 text-sm font-medium">
-                        <router-link
-                          :to="{ name: 'Destinations' }"
-                          class="text-yellow-600 hover:text-yellow-500"
-                        >
-                          View all Destinations
-                          <span aria-hidden="true">&rarr;</span>
-                        </router-link>
+                                <span class="ml-4">{{ item.name }}</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </nav>
+                      <div
+                        class="bg-yellow-100 px-4 py-8 sm:py-12 sm:px-6 lg:px-8 xl:pl-12"
+                      >
+                        <div>
+                          <h3
+                            class="text-sm font-medium tracking-wide text-gray-500 uppercase"
+                          >
+                            Top Destinations
+                          </h3>
+                          <ul role="list" class="mt-6 space-y-6">
+                            <li
+                              v-for="(destination, index) in menuPromoted.slice(
+                                0,
+                                3
+                              )"
+                              :key="index"
+                              class="flow-root"
+                            >
+                              <router-link
+                                :to="{
+                                  name: 'ViewDestinationPage',
+                                  params: { destinationId: destination.uuid },
+                                }"
+                                class="-m-3 p-3 flex rounded-lg hover:bg-yellow-100"
+                              >
+                                <div class="hidden sm:block flex-shrink-0">
+                                  <img
+                                    v-if="destination.thumbnails[0]"
+                                    class="w-32 h-20 object-cover rounded-md"
+                                    :src="destination.thumbnails[0].path"
+                                    alt="destination-image"
+                                  />
+                                  <img
+                                    v-else
+                                    class="w-32 h-20 object-cover rounded-md"
+                                    src="/hero/destinations/no-destination.jpeg"
+                                    alt="destination-image"
+                                  />
+                                </div>
+                                <div class="w-0 flex-1 sm:ml-8">
+                                  <h4
+                                    class="text-base font-medium text-gray-900 truncate"
+                                  >
+                                    {{ destination.country.name }}
+                                  </h4>
+                                  <p class="mt-1 text-sm text-gray-500">
+                                    {{ destination.title }}
+                                  </p>
+                                  <p
+                                    class="mt-3 text-base text-yellow-600 text-2xl"
+                                  >
+                                    $ {{ formatPrice(destination.price) }}
+                                  </p>
+                                </div>
+                              </router-link>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="mt-6 text-sm font-medium">
+                          <router-link
+                            :to="{ name: 'Destinations' }"
+                            class="text-yellow-600 hover:text-yellow-500"
+                          >
+                            View all Destinations
+                            <span aria-hidden="true">&rarr;</span>
+                          </router-link>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </PopoverPanel>
-              </transition>
+                  </PopoverPanel>
+                </transition>
+              </div>
             </Popover>
           </PopoverGroup>
 
@@ -523,6 +524,7 @@ import { formatPrice, localStore } from "../../export";
 
 import MyDestinationCart from "../components/MyDestinationCart.vue";
 import CartIcon from "../components/CartIcon.vue";
+import { getPromotedDestination } from "../http/client.Service";
 
 const solutions = [
   {
@@ -581,4 +583,6 @@ const blogPosts = [
 const textColor = ref("text-gray-600 md:hidden  lg:block");
 
 const menuPromoted = localStore.getArray("promotedDestinations");
+
+const popMenuState = ref(false);
 </script>

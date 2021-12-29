@@ -1,9 +1,5 @@
 <template>
-  <div
-    v-if="isLoaded"
-    class="relative w-screen"
-    style="left: calc(-50vw + 50%)"
-  >
+  <div class="relative w-screen" style="left: calc(-50vw + 50%)">
     <Splide :options="options">
       <SplideSlide
         v-for="(destination, index) in promotedDestinations"
@@ -99,11 +95,7 @@ export default {
   },
 
   setup() {
-    const { fetch, promotedDestinations, isLoaded } = getPromotedDestination();
-
-    onMounted(() => {
-      fetch();
-    });
+    const promotedDestinations = localStore.getArray("promotedDestinations");
 
     const options = reactive({
       gap: "1rem",
@@ -116,7 +108,6 @@ export default {
       options,
       destinationStore,
       promotedDestinations,
-      isLoaded,
     };
   },
 };

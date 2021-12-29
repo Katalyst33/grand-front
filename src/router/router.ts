@@ -111,6 +111,7 @@ router.beforeEach((to, from, next) => {
   appState.sidebarOpen = false;
   appState.showMobileMenu = false;
   appState.showCart = false;
+  appState.popMenuState = false;
 
   const isAuthenticated = BrowserStore.has("ge_jwt");
   const userRole = BrowserStore.get("user_role");

@@ -6,27 +6,17 @@ import { localStore } from "../../export";
 const sort = reactive({ field: "createdAt", direction: true });
 
 export function getPromotedDestination() {
-  const isLoaded = ref(false);
-  const promotedDestinations = ref([]);
-  const fetch = () => {
-    $axios
-      .get(`/client/destinations`)
-      .then((res) => {
-        destinationStore.promotedDestinations =
-          res.data.promotedDestinations.data;
-        promotedDestinations.value = res.data.promotedDestinations.data;
-        isLoaded.value = true;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  return {
-    isLoaded,
-    promotedDestinations,
-    fetch,
-  };
+  $axios
+    .get(`/client/destinations`)
+    .then((res) => {
+      localStore.setArray(
+        "promotedDestinations",
+        res.data.promotedDestinations.data
+      );
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 export function getAllDestinations(search?: string, sort?: any, page?: number) {
