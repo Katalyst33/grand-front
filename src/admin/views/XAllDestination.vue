@@ -103,7 +103,7 @@
                           <i class="fad fa-arrows-h text-teal-600"></i>
                           {{ formattedDate(destination.duration.end) }}
                         </div>
-                        <h4 class="text-lg text-teal-600 font-medium">
+                        <h4 class="text-lg font-medium">
                           ₦{{ formatPrice(destination.price) }}
                         </h4>
                       </div>
@@ -138,6 +138,11 @@
       <div v-else>
         <LoadingComponent />
       </div>
+      <Paginator
+        v-model="page"
+        class="my-6"
+        :data="destinationStore.allDestinations"
+      />
     </div>
 
     <Paginator v-model="page" class="mt-20" :data="allDestinations" />

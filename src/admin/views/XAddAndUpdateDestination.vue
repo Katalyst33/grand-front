@@ -16,13 +16,13 @@
                   />
                 </div>
               </div>
-              <div>
+              <div class="w-80 md:w-[400px] lg:w-full">
                 <label class="form-label">Description:</label>
 
                 <Editor
                   :api-key="tiny.apiKey"
                   :init="{
-                    height: 500,
+                    height: 300,
                     menubar: false,
                     plugins: tiny.editorPlugins,
                     toolbar: tiny.editorToolbar,
@@ -42,11 +42,12 @@
               </div>
               <div>
                 <label class="form-label">Included:</label>
-                <div class="mt-1">
+                <div class="mt-1 w-80 md:w-[400px] lg:w-full">
                   <Editor
                     :api-key="tiny.apiKey"
                     :init="{
-                      height: 400,
+                      height: 300,
+
                       menubar: false,
                       plugins: tiny.editorPlugins,
                       toolbar: tiny.editorToolbar,
