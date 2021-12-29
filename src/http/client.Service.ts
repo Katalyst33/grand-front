@@ -16,8 +16,6 @@ export function getPromotedDestination() {
           res.data.promotedDestinations.data;
         promotedDestinations.value = res.data.promotedDestinations.data;
         isLoaded.value = true;
-
-        console.log(destinationStore.promotedDestinations);
       })
       .catch((err) => {
         console.log(err);

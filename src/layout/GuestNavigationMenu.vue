@@ -234,7 +234,9 @@
                         </h3>
                         <ul role="list" class="mt-6 space-y-6">
                           <li
-                            v-for="(destination, index) in menuPromoted.slice(
+                            v-for="(
+                              destination, index
+                            ) in destinationStore.promotedDestinations.slice(
                               0,
                               3
                             )"
@@ -250,9 +252,16 @@
                             >
                               <div class="hidden sm:block flex-shrink-0">
                                 <img
+                                  v-if="destination.thumbnails[0]"
                                   class="w-32 h-20 object-cover rounded-md"
-                                  :src="destination.image"
-                                  alt=""
+                                  :src="destination.thumbnails[0].path"
+                                  alt="destination-image"
+                                />
+                                <img
+                                  v-else
+                                  class="w-32 h-20 object-cover rounded-md"
+                                  src="hero/destinations/no-destination.jpeg"
+                                  alt="destination-image"
                                 />
                               </div>
                               <div class="w-0 flex-1 sm:ml-8">
