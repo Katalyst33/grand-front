@@ -20,7 +20,6 @@ import GuestNavigationMenu from "./layout/GuestNavigationMenu.vue";
 import BannerSlider from "./components/BannerSlider.vue";
 import { $axios } from "./http/http.Service";
 import { localStore } from "../export";
-import { getPromotedDestination } from "./http/client.Service";
 const isLoaded = ref(false);
 const route = useRoute();
 const { x, y } = useWindowScroll();
@@ -42,8 +41,6 @@ useHead({
     },
   ],
 });
-
-getPromotedDestination();
 </script>
 
 <style lang="scss">

@@ -1,22 +1,34 @@
 import { $axios } from "./http.Service";
 import { destinationStore } from "../store/destinationStore";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { localStore } from "../../export";
 
 const sort = reactive({ field: "createdAt", direction: true });
 
 export function getPromotedDestination() {
-  $axios
-    .get(`/client/destinations`)
-    .then((res) => {
-      destinationStore.promotedDestinations =
-        res.data.promotedDestinations.data;
+  const isLoaded = ref(false);
+  const promotedDestinations = ref([]);
+  const fetch = () => {
+    $axios
+      .get(`/client/destinations`)
+      .then((res) => {
+        destinationStore.promotedDestinations =
+          res.data.promotedDestinations.data;
+        promotedDestinations.value = res.data.promotedDestinations.data;
+        isLoaded.value = true;
 
-      console.log(destinationStore.promotedDestinations);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+        console.log(destinationStore.promotedDestinations);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  return {
+    isLoaded,
+    promotedDestinations,
+    fetch,
+  };
 }
 
 export function getAllDestinations(search?: string, sort?: any, page?: number) {

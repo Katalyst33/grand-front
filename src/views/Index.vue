@@ -5,8 +5,8 @@
 
       <ServiceCards />
 
-      <!--      <CurrentDealSlide v-if="false" />-->
-      <!--      <SliderComponent v-if="false" />-->
+      <CurrentDealSlide v-if="false" />
+      <SliderComponent v-if="false" />
       <div></div>
     </div>
   </div>

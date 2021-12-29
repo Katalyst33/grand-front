@@ -4,8 +4,7 @@
       <DestinationLinks />
     </div>
     <section>
-      <input type="text" v-model="searchQuery" />
-      <SearchBarComponent />
+      <SearchBarComponent class="my-10" />
     </section>
     <div class="">
       <Paginator

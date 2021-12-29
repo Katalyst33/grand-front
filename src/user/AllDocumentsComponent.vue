@@ -73,7 +73,10 @@
                     class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
                   >
                     <div class="flex gap-x-10">
-                      <a href="#" class="text-yellow-600 hover:text-yellow-900"
+                      <a
+                        :href="item.path"
+                        class="text-yellow-600 hover:text-yellow-900"
+                        download
                         ><i class="far fa-folder-download pr-2"></i>Download</a
                       >
                       <button

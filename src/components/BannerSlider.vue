@@ -1,8 +1,12 @@
 <template>
-  <div class="relative w-screen" style="left: calc(-50vw + 50%)">
+  <div
+    v-if="isLoaded"
+    class="relative w-screen"
+    style="left: calc(-50vw + 50%)"
+  >
     <Splide :options="options">
       <SplideSlide
-        v-for="(destination, index) in destinationStore.promotedDestinations"
+        v-for="(destination, index) in promotedDestinations"
         :key="index"
         :data-splide-interval="3000"
         class="group flex flex-col shadow-lg overflow-hidden relative"
@@ -79,9 +83,13 @@
 <script>
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
-import { reactive, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import { localStore } from "../../export";
 import { destinationStore } from "../store/destinationStore";
+import {
+  getAllDestinations,
+  getPromotedDestination,
+} from "../http/client.Service";
 
 export default {
   name: "BannerSlider",
@@ -91,6 +99,12 @@ export default {
   },
 
   setup() {
+    const { fetch, promotedDestinations, isLoaded } = getPromotedDestination();
+
+    onMounted(() => {
+      fetch();
+    });
+
     const options = reactive({
       gap: "1rem",
       rewind: true,
@@ -101,6 +115,8 @@ export default {
     return {
       options,
       destinationStore,
+      promotedDestinations,
+      isLoaded,
     };
   },
 };

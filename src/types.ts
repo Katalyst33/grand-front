@@ -79,6 +79,7 @@ export type DocumentType = {
   updatedAt: Date;
   category: string;
   referenceId: string;
+  path: string;
 };
 export type DestinationType = {
   activity: string;
