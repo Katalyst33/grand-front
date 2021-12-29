@@ -39,20 +39,19 @@
               stroke-linejoin="round"
             />
           </svg>
-          <div class="flex text-sm text-gray-600">
+          <div class="flex flex-col text-sm text-gray-600">
             <label
               class="relative cursor-pointer bg-white rounded-md font-medium text-yellow-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
             >
               <span>Upload Destination Image</span>
             </label>
-            <p class="pl-1">or drag and drop</p>
+            <p class="text-xs text-gray-500">PNG, JPG, up to 2MB</p>
           </div>
-          <p class="text-xs text-gray-500">PNG, JPG, up to 2MB</p></template
-        >
+        </template>
       </div>
     </div>
     <!--    upload area-->
-    <div class="flex justify-between gap-x-4">
+    <div class="flex flex-col md:flex-row items-center gap-y-4 gap-x-10">
       <div class="text-center">
         <input
           ref="imageUploader"
@@ -61,24 +60,31 @@
           name="images"
           @change.prevent="onFileChange"
           multiple
+          hidden
         />
 
         <button
           @click.prevent="uploadImage"
-          class="bg-gray-700 text-white py-1 px-4 rounded-md"
+          class="bg-yellow-200 text-yellow-500 rounded-full font-medium py-1 px-4"
         >
-          <i class="far fa-cloud-upload-alt mr-1"></i> Upload
+          <i class="far fa-cloud-upload-alt mr-1"></i> Upload Images
         </button>
       </div>
       <div>
-        <button @click.prevent="useImages" class="bg-yellow-500 btn">
+        <button
+          @click.prevent="useImages"
+          class="bg-gray-200 text-gray-500 rounded-full font-medium btn"
+        >
           <i class="far fa-check-square mr-2"></i>Use selected ({{
             selectedImages.length
           }})
         </button>
       </div>
       <div>
-        <button @click.prevent="deleteMany" class="btn bg-red-500">
+        <button
+          @click.prevent="deleteMany"
+          class="btn rounded-full bg-red-200 text-red-500 font-medium"
+        >
           <i class="far fa-trash"></i> Delete Selected ({{
             selectedImages.length
           }})
