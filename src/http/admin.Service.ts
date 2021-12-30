@@ -20,7 +20,13 @@ export function getAllUsers() {
 }
 
 export function getUserDetails(routeParams: any) {
-  const user = ref<loggedUser>(),
+  const user = ref<loggedUser>({
+      email: "",
+      createdAt: undefined,
+      lastSeenAt: undefined,
+      role: "",
+      uuid: "",
+    }),
     isLoaded = ref(false),
     allProfiles = ref([]);
   const fetch = () => {

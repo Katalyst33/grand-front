@@ -6,13 +6,13 @@
       <h4 class="text-lg">{{ user.email }}</h4>
       <div class="flex items-center gap-4">
         <Listbox as="div" v-model="selected">
-          <div class="mt-1 relative">
+          <div class="mt-1 relative w-36">
             <ListboxButton
-              class="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              class="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-pointer focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             >
               <span class="flex items-center">
                 <i :class="selected.icon"></i>
-                <span class="ml-3 block truncate">{{ selected.name }}</span>
+                <span class="ml-3 block truncate">{{ selected.role }}</span>
               </span>
               <span
                 class="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
@@ -30,7 +30,7 @@
               leave-to-class="opacity-0"
             >
               <ListboxOptions
-                class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
+                class="cursor-pointer w-36 absolute z-10 mt-1 w-full bg-white shadow-lg max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm"
               >
                 <ListboxOption
                   as="template"
@@ -42,10 +42,10 @@
                   <li
                     :class="[
                       active ? 'text-white bg-indigo-600' : 'text-gray-900',
-                      'cursor-default select-none relative py-2 pl-3 pr-9',
+                      'cursor-pointer select-none relative py-2 pl-3 pr-9 ',
                     ]"
                   >
-                    <div class="flex items-center">
+                    <div class="flex items-center capitalize">
                       <i :class="role.icon"></i>
                       <span
                         :class="[
@@ -53,7 +53,7 @@
                           'ml-3 block truncate',
                         ]"
                       >
-                        {{ role.name }}
+                        {{ role.role }}
                       </span>
                     </div>
 
@@ -72,7 +72,12 @@
             </transition>
           </div>
         </Listbox>
-        <button class="bg-yellow-500 rounded-md px-2 py-1 text-white">
+
+        {{ selected.role }}
+        <button
+          @click="updateRole"
+          class="bg-yellow-500 rounded-md px-2 py-1 text-white"
+        >
           Update Role
         </button>
       </div>
@@ -96,27 +101,37 @@ import {
   ListboxOptions,
 } from "@headlessui/vue";
 import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
+import { $axios } from "../../http/http.Service";
 
 const roles = [
   {
-    id: 1,
-    name: "user",
+    role: "user",
     icon: "fad fa-user",
   },
   {
-    id: 2,
-    name: "staff",
+    role: "staff",
     icon: "fas fa-user-tie",
   },
   {
-    id: 3,
-    name: "admin",
+    role: "admin",
     icon: "fad fa-user-cog text-red-500",
   },
 ];
 
 const selected = ref(roles[2]);
 const route = useRoute();
+
+function updateRole() {
+  $axios
+    .put(`/manager/user/${route.params.userId}/update-role`, {
+      role: selected.value.role,
+    })
+    .then((r) => {
+      return r.data;
+    });
+
+  console.log("role", selected.value.role);
+}
 
 const { fetch, isLoaded, user, allProfiles } = getUserDetails(
   route.params.userId
