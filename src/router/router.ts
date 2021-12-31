@@ -116,8 +116,15 @@ router.beforeEach((to, from, next) => {
   const isAuthenticated = BrowserStore.has("ge_jwt");
   const userRole = BrowserStore.get("user_role");
   const authMetas = ["staff", "admin"];
+  const authPages = ["Login", "Register", "ForgotPassword"];
+  if (isAuthenticated && authPages.includes(<string>to.name)) {
+    console.log("dont go !!");
+    next({
+      name: "Home",
+    });
+  } else if (to.matched.some((record) => record.meta.requiresAuth)) {
+    console.log("dont go !!");
 
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (!isAuthenticated) {
       next({
         name: "Login",

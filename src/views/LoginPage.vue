@@ -50,30 +50,31 @@
             </nav>
 
             <div class="">
-              <form action="#" method="POST" class="space-y-6">
-                <div>
-                  <label class="block form-label"> Email address: </label>
-                  <div class="mt-1">
-                    <input
-                      v-model="form.email"
-                      type="email"
-                      autocomplete="email"
-                      class="input-box"
-                    />
-                  </div>
-                </div>
+              <VeeForm
+                @submit="LoginUser"
+                @invalid-submit="onInvalidSubmit"
+                action="#"
+                method="POST"
+                class="space-y-6"
+              >
+                <VeeFormField
+                  v-model="form.email"
+                  label="Email address"
+                  name="email"
+                  type="email"
+                  placeholder="you@exmple.com"
+                  rules="isRequired|isEmail"
+                  autocomplete="email"
+                />
 
-                <div class="space-y-1">
-                  <label class="block form-label"> Password: </label>
-                  <div class="mt-1">
-                    <input
-                      v-model="form.password"
-                      type="password"
-                      autocomplete="current-password"
-                      class="input-box"
-                    />
-                  </div>
-                </div>
+                <VeeFormField
+                  v-model="form.password"
+                  label="Password"
+                  name="password"
+                  type="password"
+                  placeholder=""
+                  rules="isRequired|isMin:7"
+                />
 
                 <div class="flex items-center justify-between">
                   <div class="flex items-center">
@@ -95,12 +96,13 @@
                 </div>
 
                 <div class="space-y-2">
-                  <BusyButton
-                    @click.prevent="LoginUser"
-                    :is-loading="isLoading"
-                    class="primary-button-wide w-full"
-                    ><span class="text-center">Log in</span></BusyButton
-                  >
+                  <button class="w-full">
+                    <BusyButton
+                      :is-loading="isLoading"
+                      class="primary-button-wide w-full submit-btn"
+                      ><span class="text-center">Log in</span></BusyButton
+                    >
+                  </button>
 
                   <p class="text-gray-500 text-sm text-center py-4">
                     Don't have an account ?
@@ -112,7 +114,7 @@
                     </router-link>
                   </p>
                 </div>
-              </form>
+              </VeeForm>
             </div>
           </div>
         </div>
@@ -136,12 +138,13 @@ import { useRouter } from "vue-router";
 import LoginRegisterLogo from "./LoginRegisterLogo.vue";
 import { appState } from "../store/store";
 import BusyButton from "../components/BusyButton.vue";
+import VeeFormField from "../components/Validate/VeeFormField.vue";
 
 const BrowserStore = vueLocalStorage();
 
 export default {
   name: "LoginPage",
-  components: { BusyButton, LoginRegisterLogo },
+  components: { VeeFormField, BusyButton, LoginRegisterLogo },
   setup() {
     const form = ref<userForm>({
       email: "",
@@ -196,13 +199,25 @@ export default {
         .catch((r) => {
           isLoading.value = false;
 
+          onInvalidSubmit();
           return r;
         });
+    }
+
+    function onInvalidSubmit() {
+      const submitBtn = document.querySelector(
+        ".primary-button-wide"
+      ) as HTMLElement;
+      submitBtn.classList.add("invalid");
+      setTimeout(() => {
+        submitBtn.classList.remove("invalid");
+      }, 1000);
     }
     return {
       appState,
 
       normalUser,
+      onInvalidSubmit,
       LoginUser,
       staffUser,
       adminUser,

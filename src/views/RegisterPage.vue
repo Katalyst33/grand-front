@@ -57,7 +57,7 @@
               />
               <VeeFormField
                 v-model="form.password"
-                label="password!"
+                label="Password"
                 name="password"
                 type="password"
                 placeholder="Strong Password"
@@ -66,7 +66,7 @@
 
               <VeeFormField
                 v-model="form.repeat_password"
-                label="password!"
+                label="Confirm Password"
                 name="confirmPassword"
                 type="password"
                 placeholder="confirm password"
@@ -155,12 +155,9 @@ export default defineComponent({
     }
 
     function onInvalidSubmit() {
-      console.log("form has errros ooooh");
-
       const submitBtn = document.querySelector(
         ".primary-button-wide"
       ) as HTMLElement;
-      console.log(submitBtn);
       submitBtn.classList.add("invalid");
       setTimeout(() => {
         submitBtn.classList.remove("invalid");
@@ -178,7 +175,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style>
 .submit-btn.invalid {
   animation: shake 0.5s;
   /* When the animation is finished, start again */
