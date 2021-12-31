@@ -19,6 +19,8 @@
     "@splidejs/vue-splide": "^0.5.15",
     "@tinymce/tinymce-vue": "^4",
     "@trapcode/browser-storage": "^2.2.3",
+    "@vee-validate/i18n": "^4.5.7",
+    "@vee-validate/rules": "^4.5.7",
     "@vueuse/core": "^7.2.2",
     "@vueuse/head": "^0.7.2",
     "axios": "^0.24.0",
@@ -31,7 +33,7 @@
     "moment": "^2.29.1",
     "swiper": "^7.4.1",
     "v-calendar": "^3.0.0-alpha.5",
-    "vee-validate": "^3.4.14",
+    "vee-validate": "^4.5.7",
     "vite-plugin-ejs": "^1.4.1",
     "vue": "^3.2.6",
     "vue-awesome-swiper": "^4.1.1",
@@ -54,7 +56,6 @@
     "tailwindcss": "^3.0.0",
     "typescript": "^4.5.3",
     "vite": "^2.7.1",
-    "vue-tsc": "^0.29.8",
-    "yup": "^0.32.11"
+    "vue-tsc": "^0.29.8"
   }
 }

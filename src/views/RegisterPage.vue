@@ -41,55 +41,48 @@
           </div>
 
           <div class="mt-6">
-            <form action="#" method="POST" class="space-y-6">
-              <div>
-                <label class="block text-sm font-medium text-gray-700">
-                  Email address
-                </label>
-                <div class="mt-1">
-                  <input
-                    v-model="form.email"
-                    type="email"
-                    autocomplete="email"
-                    class="input-box"
-                  />
-                </div>
-              </div>
+            <VeeForm
+              @submit="registerUser"
+              @invalid-submit="onInvalidSubmit"
+              class="space-y-6"
+            >
+              <VeeFormField
+                v-model="form.email"
+                label="Email address"
+                name="email"
+                type="email"
+                placeholder="you@exmple.com"
+                rules="isRequired|isEmail"
+                autocomplete="email"
+              />
+              <VeeFormField
+                v-model="form.password"
+                label="password!"
+                name="password"
+                type="password"
+                placeholder="Strong Password"
+                rules="isRequired|isMin:7"
+              />
 
-              <div class="space-y-1">
-                <label class="block text-sm font-medium text-gray-700">
-                  Password
-                </label>
-                <div class="mt-1">
-                  <input
-                    v-model="form.password"
-                    type="password"
-                    autocomplete="current-password"
-                    class="input-box"
-                  />
-                </div>
-              </div>
-              <div class="space-y-1">
-                <label class="block text-sm font-medium text-gray-700">
-                  Confirm Password
-                </label>
-                <div class="mt-1">
-                  <input
-                    v-model="form.repeat_password"
-                    type="password"
-                    autocomplete="current-password"
-                    class="input-box"
-                  />
-                </div>
-              </div>
+              <VeeFormField
+                v-model="form.repeat_password"
+                label="password!"
+                name="confirmPassword"
+                type="password"
+                placeholder="confirm password"
+                rules="isRequired|isConfirmed:@password"
+              />
 
               <div class="space-y-2">
-                <BusyButton
-                  @click.prevent="registerUser"
-                  :is-loading="isLoading"
-                  class="primary-button-wide w-full"
-                  ><span class="text-center"> Register</span></BusyButton
-                >
+                <button class="w-full">
+                  <BusyButton
+                    :is-loading="isLoading"
+                    class="primary-button-wide w-full submit-btn"
+                    ><span v-show="!isLoading" class="text-center">
+                      Register</span
+                    >
+                  </BusyButton>
+                </button>
 
                 <div></div>
 
@@ -103,7 +96,7 @@
                   </router-link>
                 </p>
               </div>
-            </form>
+            </VeeForm>
           </div>
         </div>
       </div>
@@ -126,10 +119,11 @@ import LoginRegisterLogo from "./LoginRegisterLogo.vue";
 import { appState } from "../store/store";
 import BusyButton from "../components/BusyButton.vue";
 import { useRouter } from "vue-router";
+import VeeFormField from "../components/Validate/VeeFormField.vue";
 
 export default defineComponent({
   name: "RegisterPage",
-  components: { BusyButton, LoginRegisterLogo, AppLogo },
+  components: { VeeFormField, BusyButton, LoginRegisterLogo, AppLogo },
   setup() {
     const isLoading = ref(false);
 
@@ -160,14 +154,74 @@ export default defineComponent({
         });
     }
 
+    function onInvalidSubmit() {
+      console.log("form has errros ooooh");
+
+      const submitBtn = document.querySelector(
+        ".primary-button-wide"
+      ) as HTMLElement;
+      console.log(submitBtn);
+      submitBtn.classList.add("invalid");
+      setTimeout(() => {
+        submitBtn.classList.remove("invalid");
+      }, 1000);
+    }
+
     return {
       form,
       registerUser,
       isLoading,
       appState,
+      onInvalidSubmit,
     };
   },
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.submit-btn.invalid {
+  animation: shake 0.5s;
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px);
+  }
+  10% {
+    transform: translate(-1px, -2px);
+  }
+  20% {
+    transform: translate(-3px, 0px);
+  }
+  30% {
+    transform: translate(3px, 2px);
+  }
+  40% {
+    transform: translate(1px, -1px);
+  }
+  50% {
+    transform: translate(-1px, 2px);
+  }
+  60% {
+    transform: translate(-3px, 1px);
+  }
+  70% {
+    transform: translate(3px, 1px);
+  }
+  80% {
+    transform: translate(-1px, -1px);
+  }
+  90% {
+    transform: translate(1px, 2px);
+  }
+  100% {
+    transform: translate(1px, -2px);
+  }
+}
+
+.submit-btn:hover {
+  transform: scale(1.1);
+}
+</style>

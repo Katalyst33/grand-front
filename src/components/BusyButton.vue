@@ -5,7 +5,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <button type="button" class="primary-button">
+  <button type="button" class="">
     <span class="flex items-center justify-center">
       <slot></slot>
       <span class="pl-2" v-if="isLoading">
@@ -14,25 +14,3 @@ const props = defineProps({
     </span>
   </button>
 </template>
-
-<!--<style scoped>
-.primary-button {
-  @apply flex
-      justify-center
-      py-1
-      px-10
-      border border-transparent
-      rounded-full
-      shadow-sm
-      text-lg
-
-      text-white
-      bg-yellow-500
-      hover:bg-yellow-600
-      focus:outline-none focus:ring-2
-      focus:ring-offset-2
-      focus:ring-yellow-500
-      transition
-      duration-500;
-}
-</style>-->

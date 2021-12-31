@@ -19,7 +19,11 @@
 }
 
 .form-label{
-  @apply  font-medium text-gray-600 text-sm hover:text-gray-600
+  @apply  block text-sm font-medium text-gray-700
+}
+
+.input-error-msg {
+  @apply text-red-500 bg-red-200 rounded-full px-2 py-0.5 text-sm font-medium;
 }
 
 .btn-user-dash{
