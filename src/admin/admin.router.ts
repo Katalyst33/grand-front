@@ -8,7 +8,6 @@ const AllUsers = () => import("./views/AllUsers.vue");
 const UserProfiles = () => import("./views/UserProfiles.vue");
 const UserDetail = () => import("./views/UserDetail.vue");
 
-const UserLayout = () => import("./UserLayout.vue");
 const profileDetails = () => import("./views/profileDetails.vue");
 const XAllProfilesComponent = () =>
   import("./components/XAllProfilesComponent.vue");

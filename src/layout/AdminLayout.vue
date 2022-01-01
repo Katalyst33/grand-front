@@ -1,9 +1,6 @@
 <script lang="ts" setup>
-import { clearStore } from "../store/destinationStore";
 import AdminSideBar from "../admin/AdminSideBar.vue";
 import { appState } from "../store/store";
-import { useScriptTag } from "@vueuse/core";
-import { ref } from "vue";
 </script>
 <template>
   <div id="appX">

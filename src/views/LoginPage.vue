@@ -62,7 +62,7 @@
                   label="Email address"
                   name="email"
                   type="email"
-                  placeholder="you@exmple.com"
+                  placeholder=""
                   rules="isRequired|isEmail"
                   autocomplete="email"
                 />

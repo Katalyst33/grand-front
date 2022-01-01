@@ -11,10 +11,9 @@ const ServicePage = () => import("../views/ServicePage.vue");
 const ViewDestinationPage = () => import("../Pages/ViewDestinationPage.vue");
 
 const DestinationsPage = () => import("../Pages/AllDestinationsPage.vue");
-const SignupAndLogin = () => import("../views/SingupAndLogin.vue");
+const SignupAndLogin = () => import("../views/SignupAndLogin.vue");
 const ContactPage = () => import("../views/ContactPage.vue");
-import DemoPage from "../components/DemoPage.vue";
-import { appState, closeMenu } from "../store/store";
+import { appState } from "../store/store";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
 
 const appName = import.meta.env.VITE_COMPANY_NAME;
@@ -58,7 +57,6 @@ const router = createRouter({
           component: ViewDestinationPage,
           meta: {
             title: `${appName}| View Destination`,
-            description: `vieeee`,
           },
         },
         {
@@ -101,7 +99,7 @@ const router = createRouter({
     AdminRoutes,
     UserRoutes,
   ],
-  scrollBehavior(to: any, from: any, savedPosition: any) {
+  scrollBehavior() {
     const App = document.getElementById("app");
     App!.scrollIntoView();
   },
