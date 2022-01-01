@@ -7,7 +7,7 @@
         :label="label"
         :modelValue="modelValue"
         @input="$emit('modelUpdate', $event)"
-        class="input-box"
+        :class="className"
         :placeholder="placeholder"
         :id="name"
         v-bind="$attrs"
@@ -26,6 +26,10 @@ export default {
     type: {
       type: String,
       default: "text",
+    },
+    className: {
+      type: String,
+      default: "input-box",
     },
     name: {
       type: String,

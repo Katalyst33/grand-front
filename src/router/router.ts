@@ -13,6 +13,8 @@ const ViewDestinationPage = () => import("../Pages/ViewDestinationPage.vue");
 const DestinationsPage = () => import("../Pages/AllDestinationsPage.vue");
 const SignupAndLogin = () => import("../views/SignupAndLogin.vue");
 const ContactPage = () => import("../views/ContactPage.vue");
+const TermsCondition = () => import("../views/TermsCondition.vue");
+const PrivacyPolicy = () => import("../views/PrivacyPolicy.vue");
 import { appState } from "../store/store";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
 
@@ -73,6 +75,16 @@ const router = createRouter({
       component: SignupAndLogin,
     },
     {
+      path: "/terms-condition",
+      name: "TermsCondition",
+      component: TermsCondition,
+    },
+    {
+      path: "/terms-condition",
+      name: "PrivacyPolicy",
+      component: PrivacyPolicy,
+    },
+    {
       path: "/register",
       name: "Register",
       component: SignupAndLogin,
@@ -116,13 +128,10 @@ router.beforeEach((to, from, next) => {
   const authMetas = ["staff", "admin"];
   const authPages = ["Login", "Register", "ForgotPassword"];
   if (isAuthenticated && authPages.includes(<string>to.name)) {
-    console.log("dont go !!");
     next({
       name: "Home",
     });
   } else if (to.matched.some((record) => record.meta.requiresAuth)) {
-    console.log("dont go !!");
-
     if (!isAuthenticated) {
       next({
         name: "Login",
