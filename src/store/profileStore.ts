@@ -27,10 +27,8 @@ export const profileStore = reactive({
     educationInformation: {
       graduated: "",
       schoolCountry: {
-        country: {
-          name: "",
-          code: "",
-        },
+        name: "",
+        code: "",
       },
       married: "tjtht",
       other: "hrdch",

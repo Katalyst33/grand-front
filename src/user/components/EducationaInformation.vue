@@ -1,7 +1,5 @@
 <template>
   <div class="shadow sm:rounded-md bg-white">
-    {{ profileStore.profile.educationInformation }}
-
     <VeeForm
       @submit="updateProfile($route.params.referenceId)"
       @invalid-submit="onInvalidSubmit"
@@ -56,6 +54,7 @@
 
         <CountrySelector
           label="In which country have you graduated from school or will be graduating shortly?"
+          :country="profileStore.profile.educationInformation.schoolCountry"
         />
 
         <FormFooter />
@@ -83,4 +82,8 @@ const birth_day = computed(() => {
     " Do MMM  YYYY"
   );
 });
+
+function doStuff(e: any) {
+  console.log("Stuff done", e.target);
+}
 </script>

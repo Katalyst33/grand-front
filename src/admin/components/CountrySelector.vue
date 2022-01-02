@@ -10,11 +10,11 @@
       >
         <span class="flex items-center">
           <img
-            :src="`/country_flags/${selected.code.toLowerCase()}.svg`"
+            :src="`/country_flags/${country.code.toLowerCase()}.svg`"
             alt=""
             class="flex-shrink-0 h-6 w-6 rounded-full"
           />
-          <span class="ml-3 block truncate">{{ selected.name }}</span>
+          <span class="ml-3 block truncate">{{ country.name }}</span>
         </span>
         <span
           class="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
@@ -39,6 +39,7 @@
             v-slot="{ active, selected }"
           >
             <li
+              @click="handleChange(item)"
               :class="[
                 active ? 'text-white bg-indigo-600' : 'text-gray-900',
                 'cursor-default select-none relative py-2 pl-3 pr-9',
@@ -104,13 +105,25 @@ export default {
       type: String,
       default: "Select One Option",
     },
+    country: {
+      type: Object,
+      default: {
+        name: "Select One Option",
+        code: "AI",
+      },
+    },
   },
-  setup() {
+  setup(props) {
     const selected = ref(allCountries[2]);
+    function handleChange(country) {
+      props.country.name = country.name;
+      props.country.code = country.code;
+    }
 
     return {
-      selected,
       allCountries,
+      handleChange,
+      selected,
     };
   },
 };
