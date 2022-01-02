@@ -1,12 +1,17 @@
 <template>
   <div class="shadow sm:rounded-md bg-white">
-    {{ profileStore.profile.personalInformation }}
     <VeeForm
       @submit="updateProfile($route.params.referenceId)"
       @invalid-submit="onInvalidSubmit"
       class="space-y-6"
     >
       <div class="space-y-4 sm:overflow-hidden px-4 py-5 sm:p-6">
+        <p class="text-sm text-gray-700">
+          Please note, Fields marked
+          <span class="text-red-500 font-semibold text-md">*</span>
+          are required
+        </p>
+
         <VeeFormField
           v-model="profileStore.profile.personalInformation.firstName"
           label="First name"
@@ -16,6 +21,7 @@
           rules="isRequired"
           autocomplete="given-name"
           class="form-input-profile"
+          :isNeed="true"
         />
         <VeeFormField
           v-model="profileStore.profile.personalInformation.lastName"
@@ -24,6 +30,7 @@
           type="text"
           placeholder="First name"
           rules="isRequired"
+          :isNeed="true"
           autocomplete="family-name"
           class="form-input-profile"
         />
@@ -43,14 +50,16 @@
           type="text"
           placeholder="First name"
           rules="isRequired"
+          :isNeed="true"
           autocomplete="name"
           class="form-input-profile"
         />
 
-        <div class="flex flex-col md:flex-row gap-10">
+        <div class="grid md:grid-cols-2 items-center gap-4">
           <div>
             <label class="block text-sm font-medium text-gray-700"
-              >Gender</label
+              >Gender
+              <span class="text-red-500 font-semibold text-md">*</span></label
             >
             <select
               v-model="profileStore.profile.personalInformation.gender"
@@ -66,7 +75,8 @@
           <div>
             <div>
               <label class="block text-sm font-medium text-gray-700"
-                >Select date of birth</label
+                >Select date of birth:
+                <span class="text-red-500 font-semibold text-md">*</span></label
               >
               <div
                 class="mt-1 flex items-center rounded-md shadow-sm bg-gray-100"
@@ -114,6 +124,7 @@
           autocomplete="country"
           class="form-input-profile"
           rules="isRequired"
+          :isNeed="true"
         />
 
         <VeeFormField
@@ -125,28 +136,12 @@
           autocomplete="country"
           class="form-input-profile"
           rules="isRequired"
+          :isNeed="true"
         />
 
-        <br />
-        <hr />
-        <div class="py-10">
-          <p>
-            I have read and do accept the current
-            <span class="underline"
-              ><router-link :to="{ name: 'TermsCondition' }"
-                >Terms and conditions</router-link
-              ></span
-            >
-            as well as {{ appState.data.companyName }}
-            <span class="underline"
-              ><router-link :to="{ name: 'PrivacyPolicy' }"
-                >privacy policy.</router-link
-              ></span
-            >
-          </p>
-        </div>
+        <FormFooter />
       </div>
-      <div class="flex px-4 py-3 bg-gray-100 text-right sm:px-6">
+      <div class="form-footer-bg">
         <button type="submit" class="submit-btn">Save</button>
       </div>
     </VeeForm>
@@ -158,7 +153,8 @@ import moment from "moment/moment";
 import { profileStore } from "../../store/profileStore";
 import { updateProfile } from "../../http/account.Service";
 import VeeFormField from "../../components/Validate/VeeFormField.vue";
-import { appState } from "../../store/store";
+import FormFooter from "./FormFooter.vue";
+import { onInvalidSubmit } from "../../../export";
 
 const showCalendar = ref(false);
 
@@ -167,76 +163,4 @@ const birth_day = computed(() => {
     " Do MMM  YYYY"
   );
 });
-
-function onInvalidSubmit() {
-  const submitBtn = document.querySelector(".submit-btn") as HTMLElement;
-  submitBtn.classList.add("invalid");
-  setTimeout(() => {
-    submitBtn.classList.remove("invalid");
-  }, 1000);
-}
 </script>
-
-<style>
-.form-input-profile {
-  @apply shadow-sm
-  focus:ring-yellow-500 focus:border-yellow-500
-  block
-  w-full
-  sm:text-sm
-  border-gray-300
-  rounded-md;
-}
-.submit-btn {
-  @apply justify-center py-2 px-4 border border-transparent
-  shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500
-  hover:bg-yellow-600 focus:outline-none focus:ring-2
-  focus:ring-offset-2 focus:ring-yellow-500 w-5/6  mx-auto;
-}
-
-.submit-btn.invalid {
-  animation: shake 0.5s;
-  /* When the animation is finished, start again */
-  animation-iteration-count: infinite;
-}
-
-@keyframes shake {
-  0% {
-    transform: translate(1px, 1px);
-  }
-  10% {
-    transform: translate(-1px, -2px);
-  }
-  20% {
-    transform: translate(-3px, 0px);
-  }
-  30% {
-    transform: translate(3px, 2px);
-  }
-  40% {
-    transform: translate(1px, -1px);
-  }
-  50% {
-    transform: translate(-1px, 2px);
-  }
-  60% {
-    transform: translate(-3px, 1px);
-  }
-  70% {
-    transform: translate(3px, 1px);
-  }
-  80% {
-    transform: translate(-1px, -1px);
-  }
-  90% {
-    transform: translate(1px, 2px);
-  }
-  100% {
-    transform: translate(1px, -2px);
-  }
-}
-
-.submit-btn:hover {
-  transform: scale(1.1);
-}
-</style>

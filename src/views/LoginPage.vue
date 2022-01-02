@@ -139,6 +139,7 @@ import LoginRegisterLogo from "./LoginRegisterLogo.vue";
 import { appState } from "../store/store";
 import BusyButton from "../components/BusyButton.vue";
 import VeeFormField from "../components/Validate/VeeFormField.vue";
+import { onInvalidSubmit } from "../../export";
 
 const BrowserStore = vueLocalStorage();
 
@@ -204,15 +205,6 @@ export default {
         });
     }
 
-    function onInvalidSubmit() {
-      const submitBtn = document.querySelector(
-        ".primary-button-wide"
-      ) as HTMLElement;
-      submitBtn.classList.add("invalid");
-      setTimeout(() => {
-        submitBtn.classList.remove("invalid");
-      }, 1000);
-    }
     return {
       appState,
 

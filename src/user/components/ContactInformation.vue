@@ -1,130 +1,94 @@
 <template>
   <div class="shadow sm:rounded-md bg-white">
-    <div class="space-y-4 sm:overflow-hidden px-4 py-5 sm:p-6">
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-700"
-            >Email Address:</label
-          >
-          <div class="mt-1">
-            <input
-              v-model="profileStore.profile.contactInformation.email"
-              type="email"
-              name="first_name"
-              class="form-input"
-              autocomplete="first_name"
-            />
-          </div>
-          <p class="mt-2 text-sm text-gray-500">
-            We'll only use this for spam.
-          </p>
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700"
-            >Phone Number:</label
-          >
-          <div class="mt-1">
-            <input
-              v-model="profileStore.profile.contactInformation.phoneNumber"
-              type="text"
-              name="first_name"
-              class="form-input"
-              autocomplete="first_name"
-            />
-          </div>
-          <p class="mt-2 text-sm text-gray-500">
-            We'll only use this for spam.
-          </p>
-        </div>
-      </div>
-      <div>
-        <label class="block text-sm font-medium text-gray-700"
-          >Street name, house number</label
-        >
-        <div class="mt-1">
-          <input
-            v-model="profileStore.profile.contactInformation.houseNumber"
-            type="text"
-            name="first_name"
-            class="form-input"
-            autocomplete="first_name"
+    <VeeForm
+      @submit="updateProfile($route.params.referenceId)"
+      @invalid-submit="onInvalidSubmit"
+    >
+      <div class="space-y-4 sm:overflow-hidden px-4 py-5 sm:p-6">
+        <div class="grid md:grid-cols-2 gap-4">
+          <VeeFormField
+            v-model="profileStore.profile.contactInformation.email"
+            label="Email Address"
+            name="email_address"
+            type="email"
+            placeholder="you@example.com"
+            rules="isRequired|isEmail"
+            autocomplete="email"
+            class="form-input-profile"
+            :isNeed="true"
+          />
+          <VeeFormField
+            v-model="profileStore.profile.contactInformation.phoneNumber"
+            label="Phone Number"
+            name="phone_number"
+            type="tel"
+            placeholder="+1 (555) 555-5555"
+            autocomplete="tel"
+            class="form-input-profile"
           />
         </div>
-        <p class="mt-2 text-sm text-gray-500">We'll only use this for spam.</p>
-      </div>
-      <div>
-        <label class="block text-sm font-medium text-gray-700"
-          >Address continued</label
-        >
-        <div class="mt-1">
-          <textarea
-            v-model="profileStore.profile.contactInformation.address"
-            type="text"
-            class="form-input"
-            autocomplete="street-address"
-          />
-        </div>
-        <p class="mt-2 text-sm text-gray-500">We'll only use this for spam.</p>
-      </div>
-      <div>
-        <label class="block text-sm font-medium text-gray-700"
-          >Postal Code</label
-        >
-        <div class="mt-1">
-          <input
-            type="text"
-            v-model="profileStore.profile.contactInformation.postalCode"
-            class="form-input"
-            autocomplete="additional-name"
-          />
-        </div>
-        <p class="mt-2 text-sm text-gray-500">We'll only use this for spam.</p>
-      </div>
-      <div>
-        <label class="block text-sm font-medium text-gray-700"
-          >City / Province / Region</label
-        >
-        <div class="mt-1">
-          <input
-            type="text"
-            v-model="profileStore.profile.contactInformation.city"
-            class="form-input"
-            autocomplete="additional-name"
-          />
-        </div>
-        <p class="mt-2 text-sm text-gray-500">We'll only use this for spam.</p>
-      </div>
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Country</label>
-        <div class="mt-1">
-          <input
-            type="text"
-            v-model="profileStore.profile.contactInformation.country"
-            class="form-input"
-            autocomplete="additional-name"
-          />
-        </div>
-        <p class="mt-2 text-sm text-gray-500">We'll only use this for spam.</p>
-      </div>
 
-      <br />
-      <hr />
-      <div class="py-10">
-        <div>
-          I have read and do accept the current terms and conditions as well as
-          uni-assist's privacy policy.
+        <div class="grid grid-cols-2 gap-4">
+          <VeeFormField
+            v-model="profileStore.profile.contactInformation.postalCode"
+            label="Postal Code"
+            name="postal-code"
+            type="text"
+            placeholder="VWW VWV"
+            autocomplete="postal-code"
+            class="form-input-profile"
+          />
+          <VeeFormField
+            v-model="profileStore.profile.contactInformation.houseNumber"
+            label="Street name, house number"
+            name="street-address"
+            type="text"
+            placeholder=""
+            autocomplete="street-address"
+            class="form-input-profile"
+          />
         </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700"
+            >Address continued:
+            <span class="text-red-500 font-semibold text-md">*</span>
+          </label>
+          <div class="mt-1">
+            <textarea
+              v-model="profileStore.profile.contactInformation.address"
+              type="text"
+              class="form-input"
+              autocomplete="street-address"
+              rows="5"
+            />
+          </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          <VeeFormField
+            v-model="profileStore.profile.contactInformation.city"
+            label="City / Province / Region"
+            name="city-street"
+            type="text"
+            class="form-input-profile"
+            :isNeed="true"
+          />
+          <VeeFormField
+            v-model="profileStore.profile.contactInformation.country"
+            label="Country"
+            name="country"
+            type="text"
+            class="form-input-profile"
+            :isNeed="true"
+          />
+        </div>
+
+        <FormFooter />
       </div>
-    </div>
-    <div class="px-4 py-3 bg-gray-100 text-right sm:px-6">
-      <button
-        @click.prevent="updateProfile($route.params.referenceId)"
-        type="submit"
-        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
-      >
-        Save
-      </button>
-    </div>
+      <div class="form-footer-bg">
+        <button type="submit" class="submit-btn">Save</button>
+      </div>
+    </VeeForm>
   </div>
 </template>
 <script lang="ts" setup>
@@ -132,6 +96,9 @@ import { computed, ref } from "vue";
 import moment from "moment/moment";
 import { profileStore } from "../../store/profileStore";
 import { updateProfile } from "../../http/account.Service";
+import VeeFormField from "../../components/Validate/VeeFormField.vue";
+import FormFooter from "./FormFooter.vue";
+import { onInvalidSubmit } from "../../../export";
 
 const showCalendar = ref(false);
 

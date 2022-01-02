@@ -1,0 +1,58 @@
+<template>
+  <div class="py-4">
+    <p>
+      I have read and do accept the current
+      <span class="underline"
+        ><router-link :to="{ name: 'TermsCondition' }"
+          >Terms and conditions</router-link
+        ></span
+      >
+      as well as {{ appState.data.companyName }}
+      <span class="underline"
+        ><router-link :to="{ name: 'PrivacyPolicy' }"
+          >privacy policy.</router-link
+        ></span
+      >
+    </p>
+  </div>
+</template>
+<script setup>
+import { appState } from "../../store/store";
+</script>
+<style>
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px);
+  }
+  10% {
+    transform: translate(-1px, -2px);
+  }
+  20% {
+    transform: translate(-3px, 0px);
+  }
+  30% {
+    transform: translate(3px, 2px);
+  }
+  40% {
+    transform: translate(1px, -1px);
+  }
+  50% {
+    transform: translate(-1px, 2px);
+  }
+  60% {
+    transform: translate(-3px, 1px);
+  }
+  70% {
+    transform: translate(3px, 1px);
+  }
+  80% {
+    transform: translate(-1px, -1px);
+  }
+  90% {
+    transform: translate(1px, 2px);
+  }
+  100% {
+    transform: translate(1px, -2px);
+  }
+}
+</style>

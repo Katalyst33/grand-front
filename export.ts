@@ -33,3 +33,11 @@ export function removeDestination(destination: any) {
 
   localStore.setArray("myDestinations", destinationStore.myDestinations);
 }
+
+export function onInvalidSubmit() {
+  const submitBtn = document.querySelector(".submit-btn") as HTMLElement;
+  submitBtn.classList.add("invalid");
+  setTimeout(() => {
+    submitBtn.classList.remove("invalid");
+  }, 1000);
+}

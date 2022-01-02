@@ -45,10 +45,7 @@
 import PersonalInformation from "./components/PersonalInformation.vue";
 import { computed, onMounted, ref } from "vue";
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
-import { profileStore } from "../store/profileStore";
 import { useRoute } from "vue-router";
-import { $axios } from "../http/http.Service";
-import { localStore } from "../../export";
 import ContactInformation from "./components/ContactInformation.vue";
 import DocumentsUpload from "./DocumentsUpload.vue";
 import { fetchProfile } from "../http/account.Service";
@@ -82,3 +79,71 @@ const { fetch, isLoading } = fetchProfile(referenceId.value);
 }*/
 onMounted(fetch);
 </script>
+
+<style>
+.form-footer-bg {
+  @apply flex justify-center px-4 py-3 bg-gray-100 text-right sm:px-6;
+}
+
+.form-input-profile {
+  @apply shadow-sm
+  focus:ring-yellow-500 focus:border-yellow-500
+  block
+  w-full
+  sm:text-sm
+  border-gray-300
+  rounded-md;
+}
+.submit-btn {
+  @apply justify-center py-2 px-4 border border-transparent
+  shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500
+  hover:bg-yellow-600 focus:outline-none focus:ring-2
+  focus:ring-offset-2 focus:ring-yellow-500 w-5/6  mx-auto;
+}
+
+.submit-btn.invalid {
+  animation: shake 0.5s;
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px);
+  }
+  10% {
+    transform: translate(-1px, -2px);
+  }
+  20% {
+    transform: translate(-3px, 0px);
+  }
+  30% {
+    transform: translate(3px, 2px);
+  }
+  40% {
+    transform: translate(1px, -1px);
+  }
+  50% {
+    transform: translate(-1px, 2px);
+  }
+  60% {
+    transform: translate(-3px, 1px);
+  }
+  70% {
+    transform: translate(3px, 1px);
+  }
+  80% {
+    transform: translate(-1px, -1px);
+  }
+  90% {
+    transform: translate(1px, 2px);
+  }
+  100% {
+    transform: translate(1px, -2px);
+  }
+}
+
+.submit-btn:hover {
+  transform: scale(1.1);
+}
+</style>

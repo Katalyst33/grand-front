@@ -1,6 +1,12 @@
 <template>
-  <div>
-    <label :for="name" class="form-label">{{ label }}:</label>
+  <div class="mt-2">
+    <label :for="name" class="form-label"
+      >{{ label }} :<span
+        v-if="isNeed"
+        class="text-red-500 font-semibold text-md"
+        >*</span
+      >
+    </label>
     <div class="mt-1">
       <VeeField
         :name="name"
@@ -35,7 +41,10 @@ export default {
       type: String,
       required: true,
     },
-
+    isNeed: {
+      type: Boolean,
+      default: false,
+    },
     placeholder: {
       type: String,
       default: "",
