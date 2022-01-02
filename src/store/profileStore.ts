@@ -11,7 +11,10 @@ export const profileStore = reactive({
       birthName: "",
       birth_day: "",
       place_of_birth: "",
-      nationality: "",
+      nationality: {
+        name: "",
+        code: "",
+      },
       married: "",
     },
     contactInformation: {
@@ -25,11 +28,18 @@ export const profileStore = reactive({
       country: "",
     },
     educationInformation: {
-      graduated: "",
+      isGraduated: "",
+      isGraduating: "",
+      highest_school_certificate: "",
       schoolCountry: {
         name: "",
         code: "",
       },
+      firstDegreeCountry: {
+        name: "",
+        code: "",
+      },
+
       married: "tjtht",
       other: "hrdch",
     },
