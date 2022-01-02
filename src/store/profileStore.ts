@@ -24,9 +24,16 @@ export const profileStore = reactive({
       phoneNumber: "",
       country: "",
     },
-    educationHistory: {
-      married: "",
-      other: "",
+    educationInformation: {
+      graduated: "",
+      schoolCountry: {
+        country: {
+          name: "",
+          code: "",
+        },
+      },
+      married: "tjtht",
+      other: "hrdch",
     },
     documents: [] as DocumentType[],
   },

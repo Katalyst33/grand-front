@@ -83,10 +83,14 @@ function uploadDocuments() {
     <div class="bg-yellow-200 border p-4 rounded-md">
       How you can help us evaluate your documents faster:
       <ul class="list-disc list-inside">
-        <li>Please only upload PDF files (max. 10 MB per document).</li>
+        <li>
+          Please only upload
+          <span class="text-sm font-medium">( .PDF, .JPG, .PNG, .DOC ) </span>
+          files (max. 10 MB per document).
+        </li>
         <li>
           Please upload a document with several pages in one PDF file and in the
-          correct page order (e.g. Diploma Supplement).
+          correct page order (e.g. School Transcript).
         </li>
         <li>
           Please upload different documents in different files (e.g. school
@@ -94,14 +98,14 @@ function uploadDocuments() {
         </li>
         <li>
           Please upload each file only once and choose a suitable file name
-          (e.g. Diploma bachelor).
+          (e.g. School Certificate).
         </li>
       </ul>
     </div>
 
     <br />
 
-    <div class="grid md:grid-cols-2 items-center gap-x-20">
+    <div class="grid md:grid-cols-2 items-center gap-y-4 gap-x-20">
       <div>
         <div @click.prevent="changeImage">
           <div class="mt-1 flex rounded-md shadow-sm">
@@ -114,7 +118,7 @@ function uploadDocuments() {
                 <i class="fal fa-folder-open"></i>
               </div>
               <input
-                class="focus:ring-yellow-500 focus:border-yellow-500 block w-full rounded-none rounded-l-md border pl-10 sm:text-sm border-gray-300 cursor-pointer bg-white"
+                class="form-input-profile block w-full rounded-none rounded-l-md pl-10"
                 value="Click to select a file "
                 readonly
               />

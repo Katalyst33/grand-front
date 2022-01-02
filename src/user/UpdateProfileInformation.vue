@@ -27,6 +27,9 @@
 
         <TabPanels class="mt-2">
           <TabPanel>
+            <EducationaInformation />
+          </TabPanel>
+          <TabPanel>
             <PersonalInformation />
           </TabPanel>
           <TabPanel>
@@ -49,6 +52,7 @@ import { useRoute } from "vue-router";
 import ContactInformation from "./components/ContactInformation.vue";
 import DocumentsUpload from "./DocumentsUpload.vue";
 import { fetchProfile } from "../http/account.Service";
+import EducationaInformation from "./components/EducationaInformation.vue";
 let categories = ref([
   {
     title: "Personal Information",
@@ -56,6 +60,7 @@ let categories = ref([
   { title: "Contact Information" },
 
   { title: "Upload Documents" },
+  { title: "Educational History" },
 ]);
 
 const route = useRoute();
@@ -65,18 +70,7 @@ const referenceId = computed(() => {
 });
 
 const { fetch, isLoading } = fetchProfile(referenceId.value);
-/*function fetchProfile() {
-  $axios
-    .get(`profile/${route.params.referenceId}`)
-    .then((res: any) => {
-      console.log(res);
 
-      profileStore.profile = res.profile;
-    })
-    .finally(() => {
-      isLoading.value = true;
-    });
-}*/
 onMounted(fetch);
 </script>
 
@@ -99,6 +93,10 @@ onMounted(fetch);
   shadow-sm text-sm font-medium rounded-md text-white bg-yellow-500
   hover:bg-yellow-600 focus:outline-none focus:ring-2
   focus:ring-offset-2 focus:ring-yellow-500 w-5/6  mx-auto;
+}
+
+.form-label-profile {
+  @apply block text-sm font-medium text-gray-700;
 }
 
 .submit-btn.invalid {
