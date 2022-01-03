@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 const BrowserStore = vueLocalStorage();
+const BrowserSession = BrowserStorage.getSessionStore();
 
 import AdminRoutes from "../admin/admin.router";
 import UserRoutes from "../user/user.router";
@@ -17,6 +18,7 @@ const TermsCondition = () => import("../views/TermsCondition.vue");
 const PrivacyPolicy = () => import("../views/PrivacyPolicy.vue");
 import { appState } from "../store/store";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
+import BrowserStorage from "@trapcode/browser-storage";
 
 const appName = import.meta.env.VITE_COMPANY_NAME;
 
@@ -123,7 +125,9 @@ router.beforeEach((to, from, next) => {
   appState.showCart = false;
   appState.popMenuState = false;
 
-  const isAuthenticated = BrowserStore.has("ge_jwt");
+  const isAuthenticated = BrowserSession.getBoolean("isAuth");
+  console.log(typeof isAuthenticated, "hero");
+
   const userRole = BrowserStore.get("user_role");
   const authMetas = ["staff", "admin"];
   const authPages = ["Login", "Register", "ForgotPassword"];

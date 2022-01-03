@@ -40,7 +40,7 @@ const SET_ONE_DESTINATION = (oneDestination: any) => {
 const CLEAR_ONE_DESTINATION = () => {
   singleDestinationStore.destination = {
     country: {
-      name: "Select a Country",
+      name: "Selecy",
       code: "NDT",
     },
     duration: {

@@ -5,6 +5,7 @@ import { appInfo, appStateTypes, loggedUser } from "../types";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
 import router from "../router/router";
 const BrowserStore = vueLocalStorage();
+const BrowserSession = BrowserStorage.getSessionStore();
 
 export const appState = reactive({
   data: {},
@@ -32,6 +33,9 @@ export function setAppState() {
       if (response.user) {
         SET_AUTH_USER(response.user);
         BrowserStore.set("user_role", response.user.role);
+        BrowserSession.setBoolean("isAuth", true);
+      } else {
+        BrowserSession.set("isAuth", false);
       }
     })
     .catch((err) => err);

@@ -140,8 +140,10 @@ import { appState } from "../store/store";
 import BusyButton from "../components/BusyButton.vue";
 import VeeFormField from "../components/Validate/VeeFormField.vue";
 import { onInvalidSubmit } from "../../export";
+import BrowserStorage from "@trapcode/browser-storage";
 
 const BrowserStore = vueLocalStorage();
+const BrowserSession = BrowserStorage.getSessionStore();
 
 export default {
   name: "LoginPage",
@@ -181,10 +183,11 @@ export default {
       $axios
         .post("client/login", form.value)
         .then((r: any) => {
-          console.log(r, "reee");
+          console.log(r.user, "reee");
           if (r.token) {
             BrowserStore.set("ge_jwt", r.token);
             BrowserStore.set("user_role", r.role);
+            BrowserSession.setBoolean("isAuth", true);
           }
 
           if (BrowserStore.get("user_role") === "user") {
