@@ -1,5 +1,4 @@
 <template>
-  {{ profileStore.profile.educationInformation }}
   <div class="shadow sm:rounded-md bg-white">
     <VeeForm
       @submit="updateProfile($route.params.referenceId)"

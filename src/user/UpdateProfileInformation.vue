@@ -3,7 +3,7 @@
     <div class="w-full max-w-4xl px-2 sm:px-0">
       <TabGroup>
         <TabList
-          class="grid md:grid-cols-3 lg:grid-cols-5 p-1 pb-10 space-x-1 bg-white border-2 rounded-xl"
+          class="grid md:grid-cols-3 my-4 lg:grid-cols-5 p-1 pb-10 space-x-1 bg-white border-2 rounded-xl"
         >
           <Tab
             v-for="(category, index) in categories"

@@ -126,7 +126,6 @@ router.beforeEach((to, from, next) => {
   appState.popMenuState = false;
 
   const isAuthenticated = BrowserSession.getBoolean("isAuth");
-  console.log(typeof isAuthenticated, "hero");
 
   const userRole = BrowserStore.get("user_role");
   const authMetas = ["staff", "admin"];
