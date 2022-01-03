@@ -42,9 +42,9 @@
 </template>
 <script lang="ts">
 import { Switch } from "@headlessui/vue";
-import { ref } from "vue";
+import { defineComponent, ref } from "vue";
 import { destinationStore } from "../../store/destinationStore";
-export default {
+export default defineComponent({
   components: {
     Switch,
   },
@@ -63,5 +63,5 @@ export default {
       destinationStore,
     };
   },
-};
+});
 </script>

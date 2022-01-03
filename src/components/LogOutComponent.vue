@@ -8,16 +8,8 @@
     </button>
   </div>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import { logOutUser } from "../store/store";
-
-export default {
-  name: "LogOutComponent",
-
-  setup() {
-    return { logOutUser };
-  },
-};
 </script>
 
 <style scoped>
