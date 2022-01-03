@@ -1,9 +1,9 @@
 <template>
-  <section v-if="isLoading" class="flex justify-center">
-    <div class="w-full max-w-4xl px-2 py-16 sm:px-0">
+  <section v-if="isLoading" class="flex justify-center mb-10">
+    <div class="w-full max-w-4xl px-2 sm:px-0">
       <TabGroup>
         <TabList
-          class="grid md:grid-cols-3 lg:grid-cols-5 p-1 space-x-1 bg-white border-2 rounded-xl"
+          class="grid md:grid-cols-3 lg:grid-cols-5 p-1 pb-10 space-x-1 bg-white border-2 rounded-xl"
         >
           <Tab
             v-for="(category, index) in categories"
@@ -25,10 +25,7 @@
           </Tab>
         </TabList>
 
-        <TabPanels class="mt-2">
-          <TabPanel>
-            <EducationaInformation />
-          </TabPanel>
+        <TabPanels class="mb-20">
           <TabPanel>
             <PersonalInformation />
           </TabPanel>
@@ -37,6 +34,9 @@
           </TabPanel>
           <TabPanel>
             <DocumentsUpload />
+          </TabPanel>
+          <TabPanel>
+            <EducationaInformation />
           </TabPanel>
         </TabPanels>
       </TabGroup>

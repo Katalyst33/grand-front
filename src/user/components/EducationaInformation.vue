@@ -78,7 +78,6 @@
                 value="yes"
                 v-model="profileStore.profile.educationInformation.isGraduating"
                 class="cursor-pointer focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-300"
-                rules="isRequired"
               />
               <h1>Yes</h1>
             </div>
@@ -90,7 +89,6 @@
                 value="no"
                 v-model="profileStore.profile.educationInformation.isGraduating"
                 class="cursor-pointer focus:ring-yellow-500 h-4 w-4 text-yellow-600 border-gray-300"
-                rules="isRequired"
               />
               <h1>No</h1>
             </div>
@@ -103,6 +101,14 @@
           :country="
             profileStore.profile.educationInformation.firstDegreeCountry
           "
+        />
+        <VeeFormField
+          v-model="profileStore.profile.educationInformation.university"
+          label="Name of your university"
+          name="university"
+          type="text"
+          placeholder=""
+          class="form-input-profile"
         />
 
         <FormFooter />

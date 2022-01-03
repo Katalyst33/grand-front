@@ -35,6 +35,7 @@ export const profileStore = reactive({
         name: "",
         code: "",
       },
+      university: "",
       firstDegreeCountry: {
         name: "",
         code: "",
