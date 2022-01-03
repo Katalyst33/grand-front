@@ -60,7 +60,7 @@ export function fetchProfile(referenceId: any) {
 }
 //
 
-export function updateProfile(referenceId: string) {
+export function updateProfile(referenceId: any) {
   $axios
     .post(`/profile/${referenceId}`, profileStore.profile)
     .then((response: any) => response)

@@ -109,8 +109,9 @@ import { profileStore } from "../store/profileStore";
 import { fileSizes, formattedDate } from "../../export";
 import { useRoute } from "vue-router";
 import { fetchProfile } from "../http/account.Service";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   setup() {
     const route = useRoute();
     function deleteDocument(referenceId: string) {
@@ -135,5 +136,5 @@ export default {
       formattedDate,
     };
   },
-};
+});
 </script>

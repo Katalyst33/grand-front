@@ -101,7 +101,6 @@ import FormFooter from "./FormFooter.vue";
 import { onInvalidSubmit } from "../../../export";
 
 const showCalendar = ref(false);
-
 const birth_day = computed(() => {
   return moment(profileStore.profile.personalInformation.birth_day).format(
     "dddd Do MMMM  YYYY"

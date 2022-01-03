@@ -1,3 +1,5 @@
+import { number } from "yup";
+
 export type userForm = {
   confirm?: string;
   password?: string;
@@ -5,6 +7,14 @@ export type userForm = {
   email?: string;
 };
 
+export type galleryImageTypes = {
+  size: number;
+  publicId: string;
+  crop: {
+    100: string;
+    500: string;
+  };
+};
 export type axiosResponse = {
   data?: object;
   proceed: boolean;

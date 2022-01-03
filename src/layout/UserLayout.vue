@@ -173,6 +173,13 @@
                       >{{ item.name }}</a
                     >
                   </MenuItem>
+                  <div
+                    @click="logOutUser"
+                    class="cursor-pointer flex items-center block px-4 py-2 text-sm text-gray-700"
+                  >
+                    <i class="fad fa-power-off text-lg text-red-500 pr-2"></i>
+                    <p>Logout</p>
+                  </div>
                 </MenuItems>
               </transition>
             </Menu>
@@ -202,10 +209,11 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import { BellIcon, XIcon } from "@heroicons/vue/outline";
-import { appState } from "../store/store";
+import { appState, logOutUser } from "../store/store";
 import CompanyLogo from "../CompanyLogo.vue";
 import { useRoute } from "vue-router";
 import UserSideBar from "./UserSideBar.vue";
+import LogOutComponent from "../components/LogOutComponent.vue";
 
 const navigation = [
   {
@@ -239,6 +247,7 @@ const userNavigation = [
 
 export default {
   components: {
+    LogOutComponent,
     UserSideBar,
     CompanyLogo,
     Dialog,
@@ -262,6 +271,7 @@ export default {
       sidebarOpen,
       appState,
       route,
+      logOutUser,
     };
   },
 };

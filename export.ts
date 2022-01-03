@@ -9,7 +9,7 @@ export function fileSizes(size: number) {
   return fileSize(size);
 }
 
-export function formattedDate(date: Date) {
+export function formattedDate(date: any) {
   return moment(date).format("dddd Do  MMMM YYYY");
 }
 

@@ -1,7 +1,8 @@
 <script lang="ts">
 import { destinationStore } from "../store/destinationStore";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   emits: ["runSort"],
 
   setup(props: any) {
@@ -10,7 +11,7 @@ export default {
       props,
     };
   },
-};
+});
 </script>
 
 <template>

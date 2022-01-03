@@ -5,14 +5,14 @@ import { DestinationType } from "../types";
 import { useRoute, useRouter } from "vue-router";
 
 import { appState } from "../store/store";
-import { computed, reactive, ref, watch } from "vue";
+import { computed, defineComponent, reactive, ref, watch } from "vue";
 import Paginator from "../components/paginator/Paginator.vue";
 import { formatPrice, formattedDate } from "../../export";
 import { $axios } from "../http/http.Service";
 import LoadingComponent from "../admin/views/LoadingComponent.vue";
 import { getAllDestinations, runSort } from "../http/client.Service";
 
-export default {
+export default defineComponent({
   components: {
     LoadingComponent,
     SearchBarComponent,
@@ -67,7 +67,7 @@ export default {
       page,
     };
   },
-};
+});
 </script>
 
 <template>

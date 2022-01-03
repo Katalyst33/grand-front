@@ -26,9 +26,9 @@
   </router-link>
 </template>
 <script lang="ts">
-import { PropType } from "vue";
+import { defineComponent, PropType } from "vue";
 
-export default {
+export default defineComponent({
   name: "CompanyLogo",
   props: {
     appState: {
@@ -37,5 +37,5 @@ export default {
     },
     textColor: {},
   },
-};
+});
 </script>

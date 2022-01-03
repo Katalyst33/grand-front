@@ -131,7 +131,7 @@
 </template>
 <script lang="ts">
 import { $axios } from "../http/http.Service";
-import { ref } from "vue";
+import { defineComponent, ref } from "vue";
 import { userForm } from "../types";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
 import { useRouter } from "vue-router";
@@ -145,7 +145,7 @@ import BrowserStorage from "@trapcode/browser-storage";
 const BrowserStore = vueLocalStorage();
 const BrowserSession = BrowserStorage.getSessionStore();
 
-export default {
+export default defineComponent({
   name: "LoginPage",
   components: { VeeFormField, BusyButton, LoginRegisterLogo },
   setup() {
@@ -220,7 +220,7 @@ export default {
       isLoading,
     };
   },
-};
+});
 </script>
 
 <style scoped>

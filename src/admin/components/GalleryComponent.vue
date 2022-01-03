@@ -127,16 +127,15 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
-import Modal from "../../components/Modal.vue";
 import { $axios } from "../../http/http.Service";
 import { useRoute } from "vue-router";
 import { getOneDestinationX } from "../../store/destinationStore";
-import GalleryComponent from "./GalleryComponent.vue";
 import { fileSizes } from "../../../export";
+import { galleryImageTypes } from "../../types";
 
 const imageUploader = ref<HTMLInputElement>();
 const modalOpen = ref(false);
-const galleryImages = ref([]);
+const galleryImages = ref<galleryImageTypes[]>([]);
 const selectedImages = ref<string[]>([]);
 const file = ref([]);
 const url = ref([]) as any;
@@ -160,7 +159,7 @@ function changeImage() {
   console.log(imageUploader.value);
 }
 
-function onFileChange(e: { target: { files: never[] } }) {
+function onFileChange(e: any) {
   file.value = e.target.files;
   // url.value = URL.createObjectURL(file.value);
   // imageData.append("image", file.value);

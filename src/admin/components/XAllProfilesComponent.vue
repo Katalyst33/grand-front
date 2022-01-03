@@ -1,13 +1,13 @@
 <template>
   <section>
-    <template v-if="props.isLoaded">
+    <template v-if="isLoaded">
       <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div
             class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
           >
             <div
-              v-if="props.allProfiles.length"
+              v-if="allProfiles.length"
               class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
             >
               <table class="min-w-full divide-y divide-gray-200">
@@ -44,7 +44,7 @@
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                  <tr v-for="(item, index) in props.allProfiles" :key="index">
+                  <tr v-for="(item, index) in allProfiles" :key="index">
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       {{ index + 1 }}.
                     </td>
@@ -108,18 +108,19 @@
     </template>
   </section>
 </template>
-<script lang="ts" setup>
-import { onMounted } from "vue";
-import {
-  deleteProfile,
-  getAllProfiles,
-  makeProfile,
-} from "../../http/account.Service";
-import { useRoute, useRouter } from "vue-router";
-// const allProfiles = ref<profileTypes[]>([]);
+<script lang="ts">
+import { defineComponent, onMounted } from "vue";
 
-const props = defineProps<{
-  allProfiles: [];
-  isLoaded: boolean;
-}>();
+export default defineComponent({
+  props: {
+    allProfiles: {
+      type: Array as any,
+      required: true,
+    },
+    isLoaded: {
+      type: Boolean,
+      required: true,
+    },
+  },
+});
 </script>

@@ -18,14 +18,16 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "Modal",
   emits: ["closeModal"],
   props: {
     maxSize: { type: String, default: "max-w-3xl" },
     modalContentClass: { type: [String, Object], default: "rounded" },
   },
-};
+});
 </script>
 
 <style lang="scss">

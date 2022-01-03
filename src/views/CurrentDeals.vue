@@ -15,19 +15,6 @@
 import Glide from "@glidejs/glide";
 
 import DealsTileComponent from "../Pages/DestinationTileComponent.vue";
-import {
-  destinationStore,
-  getAllDestinations,
-} from "../store/destinationStore";
-import { onMounted } from "vue";
-
-// onMounted(() => getAllDestinations2());
-
-// console.log( "tetDX");
-
-// getAllDestinations();
-
-// console.log(destinationStore);
 </script>
 
 <style lang="scss" scoped>

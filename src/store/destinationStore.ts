@@ -1,9 +1,10 @@
-import { computed, reactive, readonly, ref, watch } from "vue";
+import { computed, reactive } from "vue";
 import { $axios } from "../http/http.Service";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { DestinationType } from "../types";
 // import { localStore } from "../../export";
 import BrowserStorage from "@trapcode/browser-storage";
+
 const localStore = BrowserStorage.getLocalStore();
 
 const sort = reactive({ field: "createdAt", direction: true });
@@ -29,18 +30,17 @@ export const singleDestinationStore = reactive({
 });
 
 const SET_ONE_DESTINATION = (oneDestination: any) => {
-  const combined = {
+  singleDestinationStore.destination = {
     ...oneDestination.deal,
     images: oneDestination.images,
   };
-  singleDestinationStore.destination = combined;
   singleDestinationStore.isLoadingDeal = true;
 };
 
 const CLEAR_ONE_DESTINATION = () => {
   singleDestinationStore.destination = {
     country: {
-      name: "Selecy",
+      name: "Select one country",
       code: "NDT",
     },
     duration: {
