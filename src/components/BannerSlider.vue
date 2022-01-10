@@ -1,5 +1,9 @@
 <template>
-  <div class="relative w-screen" style="left: calc(-50vw + 50%)">
+  <div
+    v-if="isLoaded"
+    class="relative w-screen"
+    style="left: calc(-50vw + 50%)"
+  >
     <Splide :options="options">
       <SplideSlide
         v-for="(destination, index) in promotedDestinations"
@@ -26,18 +30,6 @@
                   class="h-full w-full object-cover"
                   src="/hero/destinations/no-destination.jpeg"
                 />
-
-                <!--
-                  <img
-                  v-if="destination.images"
-                  class="h-full w-full object-cover"
-                  :src="destination.images[0].path"
-                />
-                <img
-                  v-else
-                  class="h-full w-full object-cover"
-                  src="/hero/destinations/no-destination.jpeg"
-                />-->
               </div>
 
               <div
@@ -93,10 +85,18 @@ export default {
     Splide,
     SplideSlide,
   },
+  props: {
+    promotedDestinations: {
+      type: Array,
+      default: () => [],
+    },
+    isLoaded: {
+      type: Boolean,
+      default: false,
+    },
+  },
 
   setup() {
-    const promotedDestinations = localStore.getArray("promotedDestinations");
-
     const options = reactive({
       gap: "1rem",
       rewind: true,
@@ -107,7 +107,6 @@ export default {
     return {
       options,
       destinationStore,
-      promotedDestinations,
     };
   },
 };

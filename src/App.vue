@@ -1,11 +1,9 @@
 <template>
-  <div class="bg-yellow-50">
-    <GuestNavigationMenu />
-    <div class="container mx-auto h-auto">
-      <router-view />
-    </div>
-    <FooterSection />
+  <GuestNavigationMenu />
+  <div class="container mx-auto h-auto">
+    <router-view />
   </div>
+  <FooterSection />
 </template>
 
 <script lang="ts" setup>
@@ -21,6 +19,7 @@ import BannerSlider from "./components/BannerSlider.vue";
 import { $axios } from "./http/http.Service";
 import { localStore } from "../export";
 import { getPromotedDestination } from "./http/client.Service";
+import { appState } from "./store/store";
 const isLoaded = ref(false);
 const route = useRoute();
 const { x, y } = useWindowScroll();
@@ -68,10 +67,6 @@ useHead({
 }
 
 .regular {
-  @apply text-sm;
-}
-
-.regular-faded {
   @apply text-sm;
 }
 

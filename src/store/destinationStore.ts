@@ -30,10 +30,11 @@ export const singleDestinationStore = reactive({
 });
 
 const SET_ONE_DESTINATION = (oneDestination: any) => {
-  singleDestinationStore.destination = {
+  const combined = {
     ...oneDestination.deal,
     images: oneDestination.images,
   };
+  singleDestinationStore.destination = combined;
   singleDestinationStore.isLoadingDeal = true;
 };
 
@@ -59,7 +60,12 @@ export function getOneDestination(destinationId: any) {
   $axios
     .get(`client/deals/${destinationId}`)
     .then((response: any) => {
-      SET_ONE_DESTINATION(response);
+      const combined = {
+        ...response.deal,
+        images: response.images,
+      };
+      singleDestinationStore.destination = combined;
+      singleDestinationStore.isLoadingDeal = true;
       // localStore.setObject("oneDestination", r.data);
 
       singleDestinationStore.isLoadingDeal = true;

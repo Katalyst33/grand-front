@@ -14,6 +14,7 @@ import {
 } from "../store/destinationStore";
 import CompanyLogo from "../CompanyLogo.vue";
 import ViewDestinationSlider from "../components/ViewDestinationSlider.vue";
+
 import {
   formatPrice,
   formattedDate,

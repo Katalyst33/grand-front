@@ -70,7 +70,7 @@
           <i class="far fa-cloud-upload-alt mr-1"></i> Upload Images
         </button>
       </div>
-      <div>
+      <div v-if="$route.name !== 'GalleryPage'">
         <button
           @click.prevent="useImages"
           class="bg-gray-200 text-gray-500 rounded-full font-medium btn"

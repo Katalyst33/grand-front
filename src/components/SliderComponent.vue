@@ -6,17 +6,19 @@ import {
   Controls,
   Breakpoints,
 } from "@glidejs/glide/dist/glide.modular.esm";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { destinationStore } from "../store/destinationStore";
 import { appState } from "../store/store";
 import HumanDateTimeComponent from "../admin/components/HumanDateTimeComponent.vue";
 import { DestinationType } from "../types";
 import { useRouter } from "vue-router";
 import { formatPrice } from "../../export";
+import { getPromotedDestination } from "../http/client.Service";
 
 const sliderIndex = ref(0);
 let slider: any;
-
+const { fetch, isLoaded, promotedDestinations } = getPromotedDestination();
+onMounted(fetch);
 const router = useRouter();
 
 setTimeout(() => {
@@ -66,11 +68,11 @@ function toViewDestination(destination: DestinationType) {
 </script>
 
 <template>
-  <div class="techie relative">
+  <div v-if="isLoaded" class="techie relative">
     <div class="glide__track" data-glide-el="track">
       <ul class="glide__slides h-screen-80">
         <div
-          v-for="(destination, index) in destinationStore.promotedDestinations"
+          v-for="(destination, index) in promotedDestinations"
           :key="index"
           class="glide__slide group flex flex-col rounded-lg shadow-md overflow-hidden relative"
         >

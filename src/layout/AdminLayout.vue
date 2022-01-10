@@ -116,7 +116,6 @@ import { appState } from "../store/store";
 import { computed, defineComponent } from "vue";
 import { logOutUser } from "../store/store";
 import LogOutComponent from "../components/LogOutComponent.vue";
-import { getOneDestinationX } from "../store/destinationStore";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import { useRoute, useRouter } from "vue-router";
 const userNavigation = [
@@ -150,20 +149,5 @@ export default defineComponent({
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.form-label {
-  @apply text-lg;
-}
-
-.form-input {
-  @apply shadow-sm
-  focus:ring-yellow-500 focus:border-yellow-500
-
-  block
-  w-full
-  sm:text-sm
-  border-gray-300
-  rounded-sm;
 }
 </style>

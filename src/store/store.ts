@@ -16,6 +16,7 @@ export const appState = reactive({
   isDev: import.meta.env.DEV,
   isLoaded: false,
   sidebarOpen: true,
+  pageReady: false,
 }) as appStateTypes;
 
 const SET_AUTH_USER = (user: loggedUser) => {

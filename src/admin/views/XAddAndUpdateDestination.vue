@@ -7,18 +7,17 @@
           <div class="lg:col-span-2 mb-4 lg:mx-4">
             <div class="tileTab space-y-4 py-4">
               <div>
-                <label class="form-label">Title:</label>
+                <label class="form-label w-full">Title:</label>
                 <div class="mt-1">
                   <input
                     v-model="singleDestinationStore.destination.title"
-                    class="form-input"
+                    class="form-input editor-style"
                     type="text"
                   />
                 </div>
               </div>
-              <div class="w-80 md:w-[400px] lg:w-full">
+              <div class="editor-style">
                 <label class="form-label">Description:</label>
-
 
                 <Editor
                   :api-key="tiny.apiKey"
@@ -36,14 +35,14 @@
                 <div class="mt-1">
                   <input
                     v-model="singleDestinationStore.destination.activity"
-                    class="form-input"
+                    class="form-input editor-style"
                     type="text"
                   />
                 </div>
               </div>
               <div>
                 <label class="form-label">Included:</label>
-                <div class="mt-1 w-80 md:w-[400px] lg:w-full">
+                <div class="editor-style">
                   <Editor
                     :api-key="tiny.apiKey"
                     :init="{
@@ -241,4 +240,8 @@ function toggleModal() {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.editor-style {
+  @apply mt-1 w-80 sm:w-[400px] md:w-[600px] lg:w-full;
+}
+</style>
