@@ -10,7 +10,7 @@
               <LoginRegisterLogo />
             </div>
 
-            <div>
+            <div v-if="false">
               <button
                 type="submit"
                 class="w-full text-teal-700 hover:text-white flex justify-center py-3 px-4 border border-2 border-transparent rounded-md shadow-sm text-sm font-medium border-teal-500 hover:bg-teal-600 hover:text-white-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"

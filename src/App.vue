@@ -1,7 +1,11 @@
 <template>
   <GuestNavigationMenu />
   <div class="container mx-auto h-auto">
-    <router-view />
+    <router-view v-slot="{ Component, route }">
+      <transition name="route" mode="out-in">
+        <component :is="Component" :key="route.path" />
+      </transition>
+    </router-view>
   </div>
   <FooterSection />
 </template>
@@ -77,5 +81,21 @@ useHead({
 @font-face {
   font-family: bigJohn;
   src: url("./font/BIG-JOHN.woff");
+}
+
+.route-enter-from {
+  opacity: 0;
+  transform: translateY(100px);
+}
+.route-enter-active {
+  transition: all 0.3s ease-out;
+}
+.route-leave-to {
+  opacity: 0;
+  transform: translateY(-100px);
+}
+
+.route-leave-active {
+  transition: all 0.3s ease-in;
 }
 </style>
