@@ -3,7 +3,7 @@
     <div class="">
       <h2 class="title-2">Our Services</h2>
       <div class="sm:grid sm:grid-cols-2 xl:max-w-none lg:grid-cols-3 gap-4">
-        <div v-for="item in services" class="">
+        <div v-for="item in services" class="my-10">
           <div class="bg-white rounded-lg shadow">
             <div>
               <ImageLoadingComponent
@@ -58,7 +58,7 @@ const services = ref<any>([
     {
       img: "/hero/passport.jpg",
       title: "Visa Arrangement",
-      text: "Guaranteed Student visas and Travel visa to over 30 countries, We make prepare you for visa interviews to get you qulified. ",
+      text: "Guaranteed Student visas and Travel visa to over 30 countries, We make prepare you for visa interviews to get you qualified. ",
       href: "Service",
     },
     {
