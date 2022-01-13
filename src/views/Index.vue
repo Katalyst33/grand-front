@@ -13,20 +13,19 @@
         :promoted-destinations="promotedDestinations"
       />
 
-      <!--      <SliderComponent v-if="false" />-->
-      <div></div>
+      <SliderComponent v-if="false" />
+      <TestSlider />
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import ServiceCards from "../components/ServiceCards.vue";
-import CurrentDeals from "./CurrentDeals.vue";
-import { destinationStore } from "../store/destinationStore";
 import CurrentDealSlide from "./CurrentDealSlide.vue";
 import SliderComponent from "../components/SliderComponent.vue";
 import BannerSlider from "../components/BannerSlider.vue";
 import { getPromotedDestination } from "../http/client.Service";
 import { onMounted } from "vue";
+import TestSlider from "./TestSlider.vue";
 
 const { promotedDestinations, isLoaded, fetch } = getPromotedDestination();
 onMounted(fetch);
