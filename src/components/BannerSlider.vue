@@ -20,15 +20,22 @@
                   class="absolute inset-0 bg-gray-400 mix-blend-multiply"
                 ></div>
 
-                <img
+                <ImageLoadingComponent
                   v-if="destination.thumbnails[0]"
-                  class="h-full w-full object-cover"
-                  :src="destination.thumbnails[0].path"
+                  placeholderStyle="h-[500px] w-[1000px] w-full object-cover
+           "
+                  imageStyle="h-full w-full object-cover "
+                  :image="destination.thumbnails[0].path"
+                  componentStyle=""
                 />
-                <img
+
+                <ImageLoadingComponent
                   v-else
-                  class="h-full w-full object-cover"
-                  src="/hero/destinations/no-destination.jpeg"
+                  placeholderStyle="h-full w-full object-cover w-[1000px]
+           "
+                  imageStyle="h-full w-full object-cover "
+                  image="/hero/destinations/no-destination.jpeg"
+                  componentStyle="h-60"
                 />
               </div>
 
@@ -78,10 +85,12 @@ import {
   getAllDestinations,
   getPromotedDestination,
 } from "../http/client.Service";
+import ImageLoadingComponent from "./ImageLoadingComponent.vue";
 
 export default {
   name: "BannerSlider",
   components: {
+    ImageLoadingComponent,
     Splide,
     SplideSlide,
   },

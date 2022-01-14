@@ -1,5 +1,7 @@
 <template>
-  <!--  <button @click="showImage = !showImage">Change state</button>-->
+  <!--  <button class="bottom-40" @click="showImage = !showImage">
+    Change state
+  </button>-->
 
   <div class="relative" :class="componentStyle">
     <transition name="fade" mode="out-in">

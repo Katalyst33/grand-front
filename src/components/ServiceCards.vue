@@ -9,7 +9,7 @@
               <ImageLoadingComponent
                 placeholderStyle="h-60 rounded-full
             w-96 md:w-72 lg:w-80 xl:w-[400px] flex justify-center mx-2 "
-                imageStyle="rounded-t-2xl h-full w-full "
+                imageStyle="rounded-t-2xl h-full w-full aspect-auto"
                 :image="`${item.img}`"
                 componentStyle="h-60"
               />

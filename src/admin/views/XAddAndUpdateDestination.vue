@@ -242,6 +242,5 @@ function toggleModal() {
 
 <style scoped>
 .editor-style {
-  @apply mt-1 w-80 sm:w-[400px] md:w-[600px] lg:w-full;
 }
 </style>
