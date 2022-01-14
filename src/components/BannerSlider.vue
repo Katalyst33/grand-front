@@ -1,12 +1,11 @@
 <template>
   <div>
+    <!--    <button @click="showImage = !showImage">Click</button>-->
     <div
       v-show="!showImage"
-      class="relative w-screen bg-gray-300 h-96 lg:h-[600px] w-full object-cover bg-cover"
+      class="relative w-screen bg-gray-300 h-96 lg:h-[600px] w-full object-cover bg-cover placeholder-img"
       style="left: calc(-50vw + 50%)"
-    >
-      Loading slider
-    </div>
+    ></div>
     <div v-show="showImage">
       <div
         v-if="isLoaded"
@@ -142,5 +141,27 @@ export default {
 @font-face {
   font-family: bigJohn;
   src: url("../font/BIG-JOHN.woff");
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.placeholder-img {
+  animation-duration: 1.25s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: darkgray;
+  background: linear-gradient(to right, #e0ded1 10%, #fefbeb 18%, #e0ded1 33%);
+  background-size: 1000px 104px;
+
+  padding: 0.5em 0.5em 0.5em;
 }
 </style>

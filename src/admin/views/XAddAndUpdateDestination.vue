@@ -11,7 +11,7 @@
                 <div class="mt-1">
                   <input
                     v-model="singleDestinationStore.destination.title"
-                    class="form-input editor-style"
+                    class="form-input"
                     type="text"
                   />
                 </div>
@@ -35,7 +35,7 @@
                 <div class="mt-1">
                   <input
                     v-model="singleDestinationStore.destination.activity"
-                    class="form-input editor-style"
+                    class="form-input"
                     type="text"
                   />
                 </div>
@@ -241,6 +241,9 @@ function toggleModal() {
 </script>
 
 <style scoped>
+.form-input {
+  @apply bg-white w-full border border-gray-300 rounded-md py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-yellow-500;
+}
 .editor-style {
 }
 </style>
