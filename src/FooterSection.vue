@@ -9,11 +9,11 @@
           </div>
         </div>
         <div class="flex justify-center">
-          <div class="flex flex-row space-x-4 text-white">
+          <div class="flex flex-col md:flex-row text-white">
             <div v-for="(item, index) in footerRoutes" :key="index">
               <router-link
                 :to="{ name: item.href }"
-                class="text-gray-400 hover:text-white font-medium"
+                class="text-gray-400 text-center hover:text-white font-medium"
               >
                 {{ item.name }}</router-link
               >
@@ -22,12 +22,7 @@
         </div>
 
         <div
-          class="
-            mt-8
-            border-t border-gray-700
-            pt-8
-            md:flex md:items-center md:justify-between
-          "
+          class="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between"
         >
           <div class="flex space-x-6 md:order-2">
             <a href="#" class="text-gray-400 hover:text-gray-300">

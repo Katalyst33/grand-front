@@ -9,7 +9,7 @@ import Paginator from "../components/paginator/Paginator.vue";
 import { formatPrice, formattedDate } from "../../export";
 import LoadingComponent from "../admin/views/LoadingComponent.vue";
 import { getAllDestinations, runSort } from "../http/client.Service";
-import DestinationCard from "./DestinationCard.vue";
+import DestinationCard from "../components/DestinationCard.vue";
 
 export default defineComponent({
   components: {

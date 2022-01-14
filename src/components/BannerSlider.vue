@@ -123,7 +123,6 @@ export default {
 
     function imageLoaded() {
       showImage.value = true;
-      console.log("image loaded");
     }
 
     return {

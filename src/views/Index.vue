@@ -9,12 +9,17 @@
       <ServiceCards />
 
       <CurrentDealSlide
+        v-if="false"
         :is-loaded="isLoaded"
         :promoted-destinations="promotedDestinations"
       />
 
-      <SliderComponent v-if="false" />
-      <TestSlider />
+      <SliderComponent :promoted-destinations="promotedDestinations" />
+      <TestSlider
+        v-if="false"
+        :is-loaded="isLoaded"
+        :promoted-destinations="promotedDestinations"
+      />
     </div>
   </div>
 </template>
