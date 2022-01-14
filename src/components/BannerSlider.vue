@@ -113,13 +113,13 @@ export default {
   },
 
   setup() {
-    const showImage = ref(false);
     const options = reactive({
       gap: "1rem",
       rewind: true,
       perPage: 1,
       autoplay: 1000,
     });
+    const showImage = ref(false);
 
     function imageLoaded() {
       showImage.value = true;

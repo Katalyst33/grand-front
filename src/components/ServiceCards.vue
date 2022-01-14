@@ -6,12 +6,18 @@
         <div v-for="item in services" class="my-10">
           <div class="bg-white rounded-lg shadow">
             <div>
-              <ImageLoadingComponent
-                placeholderStyle="h-60 rounded-full
-            w-96 md:w-72 lg:w-80 xl:w-[400px] flex justify-center mx-2 "
-                imageStyle="rounded-t-2xl h-full w-full aspect-auto"
-                :image="`${item.img}`"
-                componentStyle="h-60"
+              <!--              <button @click="showImage = !showImage">clissck</button>-->
+
+              <div
+                v-show="!showImage"
+                class="placeholder-img w-full text-blue-600 bg-red-300 object-fill rounded-t-lg"
+              ></div>
+              <img
+                v-show="showImage"
+                class="h-full w-full object-fill rounded-t-lg"
+                :src="`${item.img}`"
+                :alt="item.title"
+                @load="imageLoaded"
               />
             </div>
 
@@ -55,37 +61,31 @@ SwiperCore.use([Navigation]);
 
 const imageUrl = ref<any>("/hero/register.jpg");
 const services = ref<any>([
-    {
-      img: "/hero/passport.jpg",
-      title: "Visa Arrangement",
-      text: "Guaranteed Student visas and Travel visa to over 30 countries, We make prepare you for visa interviews to get you qualified. ",
-      href: "Service",
-    },
-    {
-      img: "/hero/plane.jpg",
-      title: "Flight Booking",
-      text: "get more information here",
-      href: "Service",
-    },
-    {
-      img: "/hero/accomodation.jpg",
-      title: "Hotel Booking",
-      text: "get more information here",
-      href: "Service",
-    },
-  ]),
-  showImage = ref(false),
-  isLoading = ref(true);
+  {
+    img: "/hero/passport.jpg",
+    title: "Visa Arrangement",
+    text: "Guaranteed Student visas and Travel visa to over 30 countries, We make prepare you for visa interviews to get you qualified. ",
+    href: "Service",
+  },
+  {
+    img: "/hero/plane.jpg",
+    title: "Flight Booking",
+    text: "get more information here",
+    href: "Service",
+  },
+  {
+    img: "/hero/accomodation.jpg",
+    title: "Hotel Booking",
+    text: "get more information here",
+    href: "Service",
+  },
+]);
 
-function imageNotLoaded() {
-  // alert("image not loaded");
-}
+const showImage = ref(false);
 
 function imageLoaded() {
-  setTimeout(() => {
-    showImage.value = true;
-    console.log("image loaded");
-  }, 1000);
+  showImage.value = true;
+  console.log("image loaded");
 }
 </script>
 
@@ -131,5 +131,27 @@ function imageLoaded() {
 
 .image-responsive {
   @apply w-60 h-60;
+}
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.placeholder-img {
+  animation-duration: 1.25s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: darkgray;
+  background: linear-gradient(to right, #e0ded1 10%, #fefbeb 18%, #e0ded1 33%);
+  background-size: 800px 104px;
+
+  padding: 0.5em 0.5em 0.5em;
+  height: 14rem;
 }
 </style>
