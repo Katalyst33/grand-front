@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import Glide from "@glidejs/glide";
 import {
   Images,
@@ -11,7 +11,9 @@ import DestinationCard from "./DestinationCard.vue";
 import { appState } from "../store/store";
 import dummyDestination from "../db/destination.json";
 
-/*const props = defineProps({
+const root = ref(null);
+
+const props = defineProps({
   promotedDestinations: {
     type: Array,
     default: () => [],
@@ -20,7 +22,7 @@ import dummyDestination from "../db/destination.json";
     type: Boolean,
     default: false,
   },
-});*/
+});
 onMounted(() => {
   const slider = new Glide(".glide", {
     type: "carousel",
@@ -42,16 +44,16 @@ onMounted(() => {
 
 <template>
   <div class="">
-    <div class="glide">
+    <div ref="root" class="glide">
       <!--      slider area-->
       <div class="glide__track" data-glide-el="track">
         <ul class="glide__slides">
           <li
             class="glide__slide"
-            v-for="(item, index) in dummyDestination"
+            v-for="(item, index) in promotedDestinations"
             :key="index"
           >
-            <DestinationCard :destination="item" :app-state="appState" />
+            <DestinationCard :destination="item" />
           </li>
         </ul>
       </div>

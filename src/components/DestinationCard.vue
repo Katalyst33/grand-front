@@ -46,19 +46,32 @@
         <p class="mt-3 text-yellow-600 font-medium text-2xl">
           ₦ {{ formatPrice(destination.price) }}
         </p>
-        <div class="text-sm font-medium text-gray-400 pt-4 uppercase">
-          <span
-            class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#44BDEB] text-[#18424C]"
-          >
-            <svg
-              class="mr-1.5 h-2 w-2 text-white"
-              fill="currentColor"
-              viewBox="0 0 8 8"
+        <div class="flex items-center space-x-4">
+          <div class="text-sm font-medium text-gray-400 uppercase">
+            <span
+              class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#44BDEB] text-[#18424C]"
             >
-              <circle cx="4" cy="4" r="3" />
-            </svg>
-            {{ destination.activity }}
-          </span>
+              <svg
+                class="mr-1.5 h-2 w-2 text-white"
+                fill="currentColor"
+                viewBox="0 0 8 8"
+              >
+                <circle cx="4" cy="4" r="3" />
+              </svg>
+              {{ destination.activity }}
+            </span>
+          </div>
+          <div v-show="['staff', 'admin'].includes(appState.user?.role)">
+            <router-link
+              :to="{
+                name: 'UpdateDestination',
+                params: { destinationId: destination.uuid },
+              }"
+              class="mr-40 text-red-600"
+            >
+              <i class="far fa-eye text-2xl"></i>
+            </router-link>
+          </div>
         </div>
       </div>
       <div class="mt-6 flex items-center">
@@ -78,17 +91,6 @@
               {{ formattedDate(destination.duration.end) }}
             </div>
           </div>
-          <template v-if="['staff', 'admin'].includes(appState.user?.role)">
-            <router-link
-              :to="{
-                name: 'UpdateDestination',
-                params: { destinationId: destination.uuid },
-              }"
-              class="p-4 absolute bottom-0 text-red-600 right-0"
-            >
-              <i class="far fa-eye text-2xl"></i>
-            </router-link>
-          </template>
         </div>
       </div>
     </div>
@@ -96,11 +98,11 @@
 </template>
 <script lang="ts">
 import { formatPrice, formattedDate, truncateString } from "../../export";
+import { appState } from "../store/store";
 
 export default {
   name: "DestinationCard",
   props: {
-    appState: {},
     destination: {
       type: Object,
       required: true,
@@ -112,6 +114,7 @@ export default {
       formatPrice,
       formattedDate,
       truncateString,
+      appState,
     };
   },
 };
