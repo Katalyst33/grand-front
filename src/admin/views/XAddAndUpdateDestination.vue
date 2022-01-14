@@ -1,6 +1,8 @@
 <template>
   <div v-if="loadEditor" class="h-screen">
     <DestinationLinks />
+    {{ singleDestinationStore.destination.promoted }}
+    {{ singleDestinationStore.destination.enabled }}
     <template v-if="singleDestinationStore.isLoadingDeal">
       <form>
         <div class="grid lg:grid-cols-3">
@@ -82,11 +84,22 @@
                   </div>
                 </div>
 
-                <div class="border-b">
-                  <label class="form-label">Promoted:</label>
-                  <PromotedToggleComponent
-                    :destination="singleDestinationStore.destination"
-                  />
+                <div class="border-b grid grid-cols-2">
+                  <div>
+                    <label class="my-4 font-medium">Promoted:</label>
+                    <PromotedToggleComponent
+                      :destination="singleDestinationStore.destination"
+                    />
+                  </div>
+                  <div>
+                    <label class="py-4 font-medium text-gray-700"
+                      >Enable Destination:</label
+                    >
+
+                    <EnabledToggleComponent
+                      :destination="singleDestinationStore.destination"
+                    />
+                  </div>
                 </div>
 
                 <div>
@@ -153,6 +166,7 @@ import Modal from "../../components/Modal.vue";
 import GalleryComponent from "../components/GalleryComponent.vue";
 import BusyButton from "../../components/BusyButton.vue";
 import { getPromotedDestination } from "../../http/client.Service";
+import EnabledToggleComponent from "../components/EnabledToggleComponent.vue";
 
 const tiny = {
   apiKey: import.meta.env.VITE_TINY_KEY,
@@ -232,7 +246,9 @@ function createDestination() {
 
       console.log(r);
     })
-    .catch((e) => e);
+    .catch((r) => {
+      return r;
+    });
 }
 
 function toggleModal() {
