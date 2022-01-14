@@ -31,11 +31,11 @@ setTimeout(() => {
     startAt: 0,
     breakpoints: {
       1024: {
-        perView: 3,
-      },
-      800: {
-        startAt: 0,
         perView: 2,
+      },
+      768: {
+        startAt: 0,
+        perView: 1,
         dragThreshold: 120,
       },
     },

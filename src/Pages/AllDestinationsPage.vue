@@ -116,7 +116,7 @@ export default defineComponent({
                   >
                     <img
                       v-if="destination.thumbnails[0]"
-                      class="h-48 w-full object-cover group-hover:border-yellow-400 transition duration-500 ease-in-out border-yellow-50 border-2 rounded-lg"
+                      class="h-48 w-full object-cover group-hover:border-yellow-400 transition duration-500 ease-in-out border-yellow-50 hover:border-2 rounded-t-lg"
                       :src="destination.thumbnails[0].crop['500']"
                       alt=""
                     />
@@ -144,9 +144,10 @@ export default defineComponent({
                 <div class="flex-1 bg-white p-6 flex flex-col justify-between">
                   <div class="flex-1">
                     <a class="block mt-2">
-                      <p class="mt-3 text-base text-gray-700">
-                        {{ destination.title }}, {{ destination.title }}
-                      </p>
+                      <p
+                        v-html="destination.description"
+                        class="mt-3 text-base text-gray-700"
+                      ></p>
                     </a>
                     <p class="mt-3 text-yellow-600 font-medium text-2xl">
                       ₦ {{ formatPrice(destination.price) }}

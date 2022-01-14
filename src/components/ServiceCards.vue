@@ -31,11 +31,13 @@
                     {{ item.text }}
                   </p>
                 </div>
-                <router-link
-                  :to="{ name: item.href }"
-                  class="button w-36 bg-yellow-500 px-3 py-2 rounded-md shadow"
-                  >Learn more</router-link
-                >
+                <div>
+                  <router-link
+                    :to="{ name: item.href }"
+                    class="button w-36 bg-yellow-500 text-white px-3 py-2 rounded-md shadow"
+                    >Learn more</router-link
+                  >
+                </div>
               </div>
             </div>
           </div>
