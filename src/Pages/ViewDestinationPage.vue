@@ -1,19 +1,15 @@
 <script lang="ts" setup>
-import { computed, onBeforeMount, onMounted, ref } from "vue";
+import { computed } from "vue";
 
 import ViewDestinationHero from "../layout/ViewDestinationHero.vue";
 import { appState } from "../store/store";
 
 import { useRoute } from "vue-router";
-import { $axios } from "../http/http.Service";
-import { DestinationType } from "../types";
 import {
   destinationStore,
   getOneDestination,
   singleDestinationStore,
 } from "../store/destinationStore";
-import CompanyLogo from "../CompanyLogo.vue";
-import ViewDestinationSlider from "../components/ViewDestinationSlider.vue";
 
 import {
   formatPrice,
@@ -51,8 +47,6 @@ function addToCart(destination: any) {
     }
   };*/
 
-  console.log(destination.uuid, "wish");
-
   let isAdded = destinationStore.myDestinations.find(
     (item: any) => item.uuid === destination.uuid
   );
@@ -74,12 +68,13 @@ function addToCart(destination: any) {
       class="w-screen relative"
     />
 
-    <!--    {{ singleDestinationStore.destination.images.length }}-->
-
-    <div class="pt-10 h-screen" v-if="singleDestinationStore.isLoadingDeal">
-      <div class="grid md:grid-cols-3 gap-4">
+    <div class="pt-10 h-screen">
+      <div
+        v-if="singleDestinationStore.isLoadingDeal"
+        class="grid md:grid-cols-3 gap-4"
+      >
         <div class="md:col-span-2 tileTab">
-          <div class="unreset">
+          <div class="unreset p-4">
             <div v-html="singleDestinationStore.destination.description"></div>
           </div>
         </div>
@@ -150,11 +145,27 @@ function addToCart(destination: any) {
           </section>
         </div>
       </div>
+      <div v-else class="py-4 grid md:grid-cols-3 gap-4 h-80">
+        <div class="md:col-span-2 bg-white rounded-md shadow-md">
+          <div class="space-y-4 py-4 px-4">
+            <div class="placeholder-img"></div>
+            <div class="placeholder-img"></div>
+            <div class="placeholder-img"></div>
+          </div>
+        </div>
+        <div class="bg-white rounded-md shadow-md">
+          <div class="space-y-4 py-4 px-4">
+            <div class="placeholder-img"></div>
+            <div class="placeholder-img"></div>
+            <div class="placeholder-img"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #hero {
   width: 100vw;
   position: absolute;
@@ -188,5 +199,28 @@ function addToCart(destination: any) {
   h6 {
     @apply text-xs font-bold my-10;
   }
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+.placeholder-img {
+  @apply rounded-full;
+  animation-duration: 1.25s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: darkgray;
+  background: linear-gradient(to right, #e0ded1 10%, #fefbeb 18%, #e0ded1 33%);
+  background-size: 1000px 104px;
+
+  padding: 0.5em 0.5em 0.5em;
 }
 </style>
