@@ -71,7 +71,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="h-screen">
+  <div class="">
     <div class="relative py-20 pt-10 lg:pb-28">
       <div class="relative">
         <div class="text-center">
