@@ -62,11 +62,17 @@ onMounted(() => {
       <!--      arrow-->
       <div class="my-4">
         <div class="glide__arrows" data-glide-el="controls">
-          <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-            prev
+          <button
+            class="glide__arrow glide__arrow--left invisible md:visible"
+            data-glide-dir="<"
+          >
+            <i class="fas fa-chevron-left"></i>
           </button>
-          <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-            next
+          <button
+            class="glide__arrow glide__arrow--right invisible md:visible"
+            data-glide-dir=">"
+          >
+            <i class="fas fa-chevron-right"></i>
           </button>
         </div>
       </div>
@@ -82,14 +88,14 @@ onMounted(() => {
 .glide__arrow {
   position: absolute;
   display: block;
-  top: 0;
+  top: 50%;
   z-index: 2;
-  color: #14f51f;
+  color: black;
   text-transform: uppercase;
-  padding: 9px 12px;
-  background-color: transparent;
+
+  background-color: rgba(187, 184, 184, 0.97);
+  border-radius: 50%;
   border: none;
-  border-radius: 4px;
   box-shadow: none;
   text-shadow: 0 0.25em 0.5em rgb(0 0 0 / 10%);
   opacity: 1;

@@ -17,6 +17,7 @@ import {
   localStore,
   removeDestination,
 } from "../../export";
+import SliderComponent from "../components/SliderComponent.vue";
 
 const route = useRoute();
 
@@ -59,108 +60,124 @@ function addToCart(destination: any) {
     console.log("no");
   }
 }
+
+const promotedDestinations = localStore.getArray("promotedDestinations");
 </script>
 
 <template>
-  <div class="mb-10">
+  <div class="px-4">
     <ViewDestinationHero
       style="left: calc(-50vw + 50%)"
       class="w-screen relative"
     />
 
-    <div class="pt-10 h-screen">
-      <div
-        v-if="singleDestinationStore.isLoadingDeal"
-        class="grid md:grid-cols-3 gap-4"
-      >
-        <div class="md:col-span-2 tileTab">
-          <div class="unreset p-4">
-            <div v-html="singleDestinationStore.destination.description"></div>
-          </div>
-        </div>
-        <div class="tileTab">
-          <template v-if="['staff', 'admin'].includes(appState.user?.role)">
-            <router-link
-              :to="{
-                name: 'UpdateDestination',
-                params: {
-                  destinationId: singleDestinationStore.destination.uuid,
-                },
-              }"
-              class="bottom-0 text-red-600 right-0"
-            >
-              <i class="far fa-eye text-2xl"></i>
-            </router-link>
-          </template>
-          <div>
-            <div class="flex flex-col gap-y-2">
-              <h3 class="text-yellow-600 font-medium">Duration:</h3>
-              <div>
-                <i class="fal fa-calendar-alt"></i>
-                <span class="font-medium px-1">Start:</span>
-                {{
-                  formattedDate(
-                    singleDestinationStore.destination.duration.start
-                  )
-                }}
-              </div>
-
-              <div>
-                <i class="fal fa-calendar-alt"></i>
-                <span class="font-medium px-1">Ends:</span>
-                {{
-                  formattedDate(singleDestinationStore.destination.duration.end)
-                }}
-              </div>
+    <div class="pt-10">
+      <div>
+        <div
+          v-if="singleDestinationStore.isLoadingDeal"
+          class="grid md:grid-cols-3 gap-4"
+        >
+          <div class="md:col-span-2 tileTab">
+            <div class="unreset p-4">
+              <div
+                v-html="singleDestinationStore.destination.description"
+              ></div>
             </div>
           </div>
-          <div>
-            <h3 class="text-yellow-600 font-medium pt-4">Included:</h3>
-
-            <p v-html="singleDestinationStore.destination.included"></p>
-          </div>
-          <h1 class="text-yellow-600 font-medium text-3xl pt-4">
-            N {{ formatPrice(singleDestinationStore.destination.price) }}
-          </h1>
-
-          <section>
-            <div class="flex justify-center pt-6">
-              <button
-                class="dark-button-regular w-full"
-                @click.prevent="
-                  removeDestination(singleDestinationStore.destination)
-                "
-                v-if="isInCart(singleDestinationStore.destination)"
+          <div class="tileTab">
+            <template v-if="['staff', 'admin'].includes(appState.user?.role)">
+              <router-link
+                :to="{
+                  name: 'UpdateDestination',
+                  params: {
+                    destinationId: singleDestinationStore.destination.uuid,
+                  },
+                }"
+                class="bottom-0 text-red-600 right-0"
               >
-                Remove Destination
-              </button>
-              <button
-                v-else
-                @click="addToCart(singleDestinationStore.destination)"
-                class="primary-button-regular w-full p-2 rounded-md"
-              >
-                Select Destination
-              </button>
+                <i class="far fa-eye text-2xl"></i>
+              </router-link>
+            </template>
+            <div>
+              <div class="flex flex-col gap-y-2">
+                <h3 class="text-yellow-600 font-medium">Duration:</h3>
+                <div>
+                  <i class="fal fa-calendar-alt"></i>
+                  <span class="font-medium px-1">Start:</span>
+                  {{
+                    formattedDate(
+                      singleDestinationStore.destination.duration.start
+                    )
+                  }}
+                </div>
+
+                <div>
+                  <i class="fal fa-calendar-alt"></i>
+                  <span class="font-medium px-1">Ends:</span>
+                  {{
+                    formattedDate(
+                      singleDestinationStore.destination.duration.end
+                    )
+                  }}
+                </div>
+              </div>
             </div>
-          </section>
-        </div>
-      </div>
-      <div v-else class="py-4 grid md:grid-cols-3 gap-4 h-80">
-        <div class="md:col-span-2 bg-white rounded-md shadow-md">
-          <div class="space-y-4 py-4 px-4">
-            <div class="placeholder-img"></div>
-            <div class="placeholder-img"></div>
-            <div class="placeholder-img"></div>
+            <div>
+              <h3 class="text-yellow-600 font-medium pt-4">Included:</h3>
+
+              <p v-html="singleDestinationStore.destination.included"></p>
+            </div>
+            <h1 class="text-yellow-600 font-medium text-3xl pt-4">
+              N {{ formatPrice(singleDestinationStore.destination.price) }}
+            </h1>
+
+            <section>
+              <div class="flex justify-center pt-6">
+                <button
+                  class="dark-button-regular w-full"
+                  @click.prevent="
+                    removeDestination(singleDestinationStore.destination)
+                  "
+                  v-if="isInCart(singleDestinationStore.destination)"
+                >
+                  Remove Destination
+                </button>
+                <button
+                  v-else
+                  @click="addToCart(singleDestinationStore.destination)"
+                  class="primary-button-regular w-full p-2 rounded-md"
+                >
+                  Select Destination
+                </button>
+              </div>
+            </section>
           </div>
         </div>
-        <div class="bg-white rounded-md shadow-md">
-          <div class="space-y-4 py-4 px-4">
-            <div class="placeholder-img"></div>
-            <div class="placeholder-img"></div>
-            <div class="placeholder-img"></div>
+        <div v-else class="py-4 grid md:grid-cols-3 gap-4 h-80">
+          <div class="md:col-span-2 bg-white rounded-md shadow-md">
+            <div class="space-y-4 py-4 px-4">
+              <div class="placeholder-img"></div>
+              <div class="placeholder-img"></div>
+              <div class="placeholder-img"></div>
+            </div>
+          </div>
+          <div class="bg-white rounded-md shadow-md">
+            <div class="space-y-4 py-4 px-4">
+              <div class="placeholder-img"></div>
+              <div class="placeholder-img"></div>
+              <div class="placeholder-img"></div>
+            </div>
           </div>
         </div>
       </div>
+
+      <!--      promoted destination-->
+
+      <div class="my-10">
+        <h1 class="text-2xl py-2">Popular Destinations</h1>
+        <SliderComponent :promoted-destinations="promotedDestinations" />
+      </div>
+      <!--      promoted destination-->
     </div>
   </div>
 </template>

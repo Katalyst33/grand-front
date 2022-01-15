@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="flex justify-center">
-          <div class="flex flex-col md:flex-row text-white">
+          <div class="flex flex-col gap-x-4 py-4 md:flex-row text-white">
             <div v-for="(item, index) in footerRoutes" :key="index">
               <router-link
                 :to="{ name: item.href }"
