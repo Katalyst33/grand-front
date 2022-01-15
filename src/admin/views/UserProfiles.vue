@@ -3,7 +3,7 @@
     <div
       class="flex justify-between items-center bg-white border rounded-md my-2 py-1 px-2"
     >
-      <h4 class="text-lg">{{ user.email }}</h4>
+      <h4 class="text-lg">{{ user.email }} - {{ user.role }}</h4>
       <div class="flex items-center gap-4">
         <Listbox as="div" v-model="selected">
           <div class="mt-1 relative w-36">
@@ -73,7 +73,6 @@
           </div>
         </Listbox>
 
-        {{ selected.role }}
         <button
           @click="updateRole"
           class="bg-yellow-500 rounded-md px-2 py-1 text-white"
@@ -120,6 +119,10 @@ const roles = [
 
 const selected = ref(roles[2]);
 const route = useRoute();
+const { fetch, isLoaded, user, allProfiles } = getUserDetails(
+  route.params.userId
+);
+onMounted(fetch);
 
 function updateRole() {
   $axios
@@ -127,15 +130,10 @@ function updateRole() {
       role: selected.value.role,
     })
     .then((r) => {
+      fetch();
       return r.data;
     });
 
   console.log("role", selected.value.role);
 }
-
-const { fetch, isLoaded, user, allProfiles } = getUserDetails(
-  route.params.userId
-);
-
-onMounted(fetch);
 </script>

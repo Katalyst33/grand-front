@@ -233,11 +233,11 @@ const navigation = [
   //   icon: "fad fa-folders",
   // },
 
-  {
+  /*  {
     name: "My Destinations",
     href: "MyDestinations",
     icon: "fad fa-globe-asia",
-  },
+  },*/
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
