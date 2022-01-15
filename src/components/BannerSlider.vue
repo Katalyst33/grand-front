@@ -3,7 +3,7 @@
     <!--    <button @click="showImage = !showImage">Click</button>-->
     <div
       v-show="!showImage"
-      class="relative w-screen bg-gray-300 h-96 lg:h-[600px] w-full object-cover bg-cover placeholder-img"
+      class="relative w-screen bg-gray-300 h-96 lg:h-[600px] object-cover bg-cover placeholder-img"
       style="left: calc(-50vw + 50%)"
     ></div>
     <transition name="fade">
