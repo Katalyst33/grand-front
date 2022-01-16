@@ -224,7 +224,7 @@ const navigation = [
   {
     name: "Profiles",
     href: "AllProfiles",
-    icon: "fad fa-sitemap",
+    icon: "far fa-user-circle",
   },
 
   // {

@@ -121,7 +121,7 @@
         </div>
       </div>
     </template>
-    <div>
+    <div class="pt-10">
       <button class="btn bg-yellow-500" @click="make($router)">
         Add profile
       </button>

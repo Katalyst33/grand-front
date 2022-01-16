@@ -18,6 +18,8 @@ import {
   removeDestination,
 } from "../../export";
 import SliderComponent from "../components/SliderComponent.vue";
+import { $axios } from "../http/http.Service";
+import { addToCart } from "../http/account.Service";
 
 const route = useRoute();
 
@@ -27,38 +29,12 @@ const destinationId = computed(() => {
 
 getOneDestination(destinationId.value);
 
-function addToWishlist(destination: any) {
-  console.log(destination, "wish");
-}
-
 function isInCart(destination: any) {
   return destinationStore.myDestinations.find(
     (item: any) => item.uuid === destination.uuid
   );
 
   // return destinationStore.myDestinations.includes(destination);
-}
-
-function addToCart(destination: any) {
-  /*  const product = () => {
-    for (const item of destinationStore.myDestinations) {
-      if (item.uuid === destination.uuid) {
-        return item;
-      }
-    }
-  };*/
-
-  let isAdded = destinationStore.myDestinations.find(
-    (item: any) => item.uuid === destination.uuid
-  );
-
-  if (isAdded) {
-    return;
-  } else {
-    destinationStore.myDestinations.push(destination);
-    localStore.setArray("myDestinations", destinationStore.myDestinations);
-    console.log("no");
-  }
 }
 
 const promotedDestinations = localStore.getArray("promotedDestinations");

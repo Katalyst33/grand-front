@@ -4,6 +4,8 @@ import { ref } from "vue";
 import { profileTypes } from "../types";
 import { useRouter } from "vue-router";
 import { profileStore } from "../store/profileStore";
+import { destinationStore } from "../store/destinationStore";
+import { localStore } from "../../export";
 
 //
 export function makeProfile() {
@@ -84,5 +86,32 @@ export function deleteProfile(referenceId: string) {
       .finally(() => {
         window.location.reload();
       });
+  }
+}
+
+export function addToCart(destination: any) {
+  let isAdded = destinationStore.myDestinations.find(
+    (item: any) => item.uuid === destination.uuid
+  );
+
+  if (isAdded) {
+    return;
+  } else {
+    destinationStore.myDestinations.push(destination);
+    localStore.setArray("myDestinations", destinationStore.myDestinations);
+
+    if (appState.user) {
+      $axios
+        .post("/profile/add-to-cart", {
+          destinationId: destination.uuid,
+          ownerId: appState.user.uuid,
+        })
+        .then((res) => {
+          return res.data;
+        })
+        .catch((err) => err);
+    } else {
+      return;
+    }
   }
 }
