@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="shadow rounded-md">
     <div class="relative flex-shrink-0">
       <router-link
         :to="{
@@ -36,14 +36,22 @@
     </div>
     <div class="flex-1 bg-white p-6 flex flex-col justify-between">
       <div class="flex-1">
-        <a class="block mt-2">
-          <h1>{{ destination.title }}</h1>
-          <p
-            v-html="truncateString(destination.description, 125)"
-            class="mt-3 text-base text-gray-700"
-          ></p>
-        </a>
-        <p class="mt-3 text-yellow-600 font-medium text-2xl">
+        <router-link
+          :to="{
+            name: 'UpdateDestination',
+            params: { destinationId: destination.uuid },
+          }"
+        >
+          <h1 class="text-yellow-600 font-semibold tracking-wide">
+            {{ destination.title }}
+          </h1>
+        </router-link>
+        <p
+          v-html="truncateString(destination.description, 125)"
+          class="mt-3 text-base text-gray-700"
+        ></p>
+
+        <p class="mt-3 text-gray-500 font-medium text-2xl">
           ₦ {{ formatPrice(destination.price) }}
         </p>
         <div class="flex items-center space-x-4">

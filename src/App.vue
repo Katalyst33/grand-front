@@ -17,13 +17,9 @@ import { useWindowScroll } from "@vueuse/core";
 import { useRoute } from "vue-router";
 import { useHead } from "@vueuse/head";
 import FooterSection from "./FooterSection.vue";
-import HomeHeroComponent from "./views/HomeHeroComponent.vue";
 import GuestNavigationMenu from "./layout/GuestNavigationMenu.vue";
-import BannerSlider from "./components/BannerSlider.vue";
-import { $axios } from "./http/http.Service";
-import { localStore } from "../export";
+
 import { getPromotedDestination } from "./http/client.Service";
-import { appState } from "./store/store";
 const isLoaded = ref(false);
 const route = useRoute();
 const { x, y } = useWindowScroll();

@@ -1,7 +1,7 @@
 import { $axios } from "./http.Service";
 import { appState } from "../store/store";
 import { ref } from "vue";
-import { profileTypes } from "../types";
+import { DestinationType, profileTypes } from "../types";
 import { useRouter } from "vue-router";
 import { profileStore } from "../store/profileStore";
 import { destinationStore } from "../store/destinationStore";
@@ -114,4 +114,21 @@ export function addToCart(destination: any) {
       return;
     }
   }
+}
+
+export function getDbCart() {
+  const destinations = ref<any>([]),
+    isLoaded = ref(false);
+
+  const fetch = () => {
+    $axios
+      .post(`profile/get-cart`, { ownerId: appState.user.uuid })
+      .then((response: any) => {
+        destinationStore.myDestinations = response.allDestinations;
+        destinations.value = response.allDestinations;
+        isLoaded.value = true;
+      })
+      .catch((err) => err);
+  };
+  return { destinations, isLoaded, fetch };
 }

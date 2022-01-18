@@ -88,8 +88,4 @@ input[type="text"] {
   border: none;
   border-bottom: 1px solid #000000;
 }
-
-.search-form {
-  focus: in;
-}
 </style>

@@ -3,6 +3,7 @@ import izitoast from "izitoast";
 import "izitoast/dist/css/iziToast.css";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
 import * as process from "process";
+
 const env = process.env.NODE_ENV;
 
 const BrowserStore = vueLocalStorage();
@@ -12,9 +13,7 @@ if (BrowserStore.has("ge_jwt")) {
 
   if (env === "development") {
     const envValue = "http://_??_:5300";
-    const url = envValue.replace("_??_", window.location.hostname);
-
-    axios.defaults.baseURL = url;
+    axios.defaults.baseURL = envValue.replace("_??_", window.location.hostname);
   } else if (env === "production") {
     // axios.defaults.baseURL = appBaseURL as string;
   }

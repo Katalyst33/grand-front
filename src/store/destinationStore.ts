@@ -4,6 +4,7 @@ import { useRoute } from "vue-router";
 import { DestinationType } from "../types";
 // import { localStore } from "../../export";
 import BrowserStorage from "@trapcode/browser-storage";
+import { appState } from "./store";
 
 const localStore = BrowserStorage.getLocalStore();
 

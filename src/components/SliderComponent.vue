@@ -92,13 +92,12 @@ onMounted(() => {
   z-index: 2;
   color: black;
   text-transform: uppercase;
-
-  background-color: rgba(187, 184, 184, 0.97);
+  background-color: rgba(187, 184, 184, 0.98);
   border-radius: 50%;
   border: none;
   box-shadow: none;
   text-shadow: 0 0.25em 0.5em rgb(0 0 0 / 10%);
-  opacity: 1;
+  opacity: 50%;
   cursor: pointer;
   transition: opacity 150ms ease, border 300ms ease-in-out;
   transform: translateY(-50%);

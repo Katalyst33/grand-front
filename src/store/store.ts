@@ -4,6 +4,7 @@ import { $axios } from "../http/http.Service";
 import { appInfo, appStateTypes, loggedUser } from "../types";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
 import router from "../router/router";
+import { destinationStore } from "./destinationStore";
 const BrowserStore = vueLocalStorage();
 const BrowserSession = BrowserStorage.getSessionStore();
 
