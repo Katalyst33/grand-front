@@ -10,7 +10,7 @@
 
               <div
                 v-show="!showImage"
-                class="placeholder-img w-full text-blue-600 bg-red-300 object-fill rounded-t-lg"
+                class="placeholder-img w-full object-fill rounded-t-lg"
               ></div>
               <img
                 v-show="showImage"
@@ -153,6 +153,5 @@ function imageLoaded() {
   background-size: 800px 104px;
 
   padding: 0.5em 0.5em 0.5em;
-  height: 14rem;
 }
 </style>

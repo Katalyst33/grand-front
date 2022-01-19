@@ -1,6 +1,9 @@
 <template>
   <section>
     <footer class="bg-gray-800 mt-20" aria-labelledby="footerHeading">
+      <!--      <button @click="goToSection" class="text-red-500">
+        go to serivice hompage
+      </button>-->
       <h2 id="footerHeading" class="sr-only">Footer</h2>
       <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div class="flex flex-col items-center justify-between">
@@ -103,4 +106,11 @@ const footerRoutes = [
 const textColor = ref("text-white");
 
 const year = new Date().getFullYear();
+
+const myService = ref("");
+
+function goToSection() {
+  root;
+  console.log("go where?", myService.value);
+}
 </script>

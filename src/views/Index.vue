@@ -6,7 +6,7 @@
         :promoted-destinations="promotedDestinations"
       />
 
-      <ServiceCards />
+      <ServiceCards ref="myService" />
 
       <CurrentDealSlide
         v-if="false"

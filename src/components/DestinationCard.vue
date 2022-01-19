@@ -47,7 +47,7 @@
           </h1>
         </router-link>
         <p
-          v-html="truncateString(destination.description, 125)"
+          v-html="truncateString(destination.description, 50)"
           class="mt-3 text-base text-gray-700"
         ></p>
 
