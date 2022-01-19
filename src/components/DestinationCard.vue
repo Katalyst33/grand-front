@@ -1,5 +1,5 @@
 <template>
-  <div class="shadow rounded-md">
+  <div class="shadow rounded-md bg-white h-full">
     <div class="relative flex-shrink-0">
       <router-link
         :to="{
@@ -34,7 +34,7 @@
 
       <p>{{ destination.country.name }}</p>
     </div>
-    <div class="flex-1 bg-white p-6 flex flex-col justify-between">
+    <div class="flex-1 p-6 flex flex-col justify-between">
       <div class="flex-1">
         <router-link
           :to="{
@@ -82,7 +82,7 @@
           </div>
         </div>
       </div>
-      <div class="mt-6 flex items-center">
+      <div class="mt-6 flex items-center h-full">
         <div class="flex-shrink-0"></div>
         <div class="flex space-x-2">
           <p class="text-sm font-medium text-gray-900"></p>

@@ -1,7 +1,5 @@
 <template>
   <div class="">
-    <div>About This service</div>
-
     <!--    mobil view-->
     <div class="lg:hidden px-4">
       <div v-for="i in 5" class="grid lg:grid-cols-3 my-8">
