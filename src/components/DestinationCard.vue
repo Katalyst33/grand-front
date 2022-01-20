@@ -38,7 +38,7 @@
       <div class="flex-1">
         <router-link
           :to="{
-            name: 'UpdateDestination',
+            name: 'ViewDestinationPage',
             params: { destinationId: destination.uuid },
           }"
         >

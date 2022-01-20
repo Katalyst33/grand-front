@@ -42,7 +42,19 @@
                       scope="col"
                       class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                     >
+                      End Date
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
                       Status
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Action
                     </th>
                   </tr>
                 </thead>
@@ -71,32 +83,39 @@
                       </div>
                     </td>
 
-                    <td class="px-6 py-4 whitespace-nowrap">
-                      <span
-                        :class="
-                          destination.enabled
-                            ? 'bg-green-100 text-green-800'
-                            : 'bg-red-100 text-red-800'
-                        "
-                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
-                      >
-                        {{ destination.enabled ? "Active" : "Disabled" }}
-                      </span>
-                    </td>
                     <td
                       class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
                     >
+                      {{ formattedDate(destination.duration.end) }}
                       <!--                    {{ person.role }}-->
                     </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <span
+                        :class="
+                          destination.status === 'expired'
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : 'bg-green-100 text-green-800'
+                        "
+                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                      >
+                        {{
+                          destination.status === "expired"
+                            ? " Expired"
+                            : "Active"
+                        }}
+                      </span>
+                    </td>
+
                     <td
                       class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
                     >
                       <div class="flex gap-x-10">
-                        <a
-                          href="#"
-                          class="text-indigo-600 hover:text-indigo-900"
-                          >Remove</a
+                        <button
+                          @click="removeDestination(destination.uuid)"
+                          class="text-yellow-600 hover:text-yellow-900 font-semibold underline"
                         >
+                          Remove
+                        </button>
                       </div>
                     </td>
                   </tr>
@@ -115,9 +134,22 @@ import { getDbCart } from "../http/account.Service";
 import { onMounted } from "vue";
 import DestinationCard from "../components/DestinationCard.vue";
 import { appState } from "../store/store";
-import { truncateString } from "../../export";
+import { formattedDate, truncateString } from "../../export";
+import { $axios } from "../http/http.Service";
 
 const { fetch, destinations, isLoaded } = getDbCart();
 
 onMounted(fetch);
+
+function removeDestination(destinationId: string) {
+  $axios
+    .post("/profile/remove-from-cart", {
+      destinationId: destinationId,
+      ownerId: appState.user.uuid,
+    })
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => err);
+}
 </script>
