@@ -54,10 +54,10 @@
         <p class="mt-3 text-gray-500 font-medium text-2xl">
           ₦ {{ formatPrice(destination.price) }}
         </p>
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center">
           <div class="text-sm font-medium text-gray-400 uppercase">
-            <span
-              class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#44BDEB] text-[#18424C]"
+            <div
+              class="flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#44BDEB] text-[#18424C]"
             >
               <svg
                 class="mr-1.5 h-2 w-2 text-white"
@@ -66,16 +66,17 @@
               >
                 <circle cx="4" cy="4" r="3" />
               </svg>
-              {{ destination.activity }}
-            </span>
+              <p>{{ destination.activity }}</p>
+            </div>
           </div>
+
           <div v-show="['staff', 'admin'].includes(appState.user?.role)">
             <router-link
               :to="{
                 name: 'UpdateDestination',
                 params: { destinationId: destination.uuid },
               }"
-              class="mr-40 text-red-600"
+              class="ml-4 text-red-600"
             >
               <i class="far fa-eye text-2xl"></i>
             </router-link>

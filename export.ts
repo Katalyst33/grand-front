@@ -22,27 +22,23 @@ export function truncateString(str: string, n: number) {
 export function formatPrice(price: any) {
   return Number(price).toLocaleString();
 }
-export function removeDestination(destination: any) {
-  destinationStore.myDestinations.splice(
-    destinationStore.myDestinations.indexOf(destination),
+export function removeDestination(destinationId: any) {
+  $axios
+    .post("/profile/remove-from-cart", {
+      destinationId: destinationId,
+      ownerId: appState.user.uuid,
+    })
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => err);
+  /*  destinationStore.myDestinations.splice(
+    destinationStore.myDestinations.indexOf(destinationId),
     1
   );
-  localStore.setArray("myDestinations", destinationStore.myDestinations);
-
-  if (appState.user) {
-    $axios
-      .post("/profile/remove-from-cart", {
-        destinationId: destination.uuid,
-        ownerId: appState.user.uuid,
-      })
-      .then((res) => {
-        return res.data;
-      })
-      .catch((err) => err);
-  } else {
-    return;
-  }
+  localStore.setArray("myDestinations", destinationStore.myDestinations);*/
 }
+
 export function onInvalidSubmit() {
   const submitBtn = document.querySelector(".submit-btn") as HTMLElement;
   submitBtn.classList.add("invalid");

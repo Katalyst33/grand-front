@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, onMounted, ref } from "vue";
 
 import ViewDestinationHero from "../layout/ViewDestinationHero.vue";
 import { appState } from "../store/store";
@@ -11,17 +11,13 @@ import {
   singleDestinationStore,
 } from "../store/destinationStore";
 
-import {
-  formatPrice,
-  formattedDate,
-  localStore,
-  removeDestination,
-} from "../../export";
+import { formatPrice, formattedDate, localStore } from "../../export";
 import SliderComponent from "../components/SliderComponent.vue";
 import { $axios } from "../http/http.Service";
-import { addToCart } from "../http/account.Service";
 
 const route = useRoute();
+
+const isAddedToCart = ref(false);
 
 const destinationId = computed(() => {
   return route.params.destinationId;
@@ -29,12 +25,45 @@ const destinationId = computed(() => {
 
 getOneDestination(destinationId.value);
 
-function isInCart(destination: any) {
-  return destinationStore.myDestinations.find(
-    (item: any) => item.uuid === destination.uuid
-  );
+function isAdded() {
+  $axios
+    .post("profile/get-one-cart", {
+      destinationId: destinationId.value,
+      ownerId: appState.user.uuid,
+    })
+    .then((res: any) => {
+      isAddedToCart.value = res.isAdded;
+    })
+    .catch((err) => err);
+}
 
-  // return destinationStore.myDestinations.includes(destination);
+onMounted(isAdded);
+
+function removeDestination() {
+  $axios
+    .post("/profile/remove-from-cart", {
+      destinationId: destinationId.value,
+      ownerId: appState.user.uuid,
+    })
+    .then((res) => {
+      isAdded();
+
+      return res.data;
+    })
+    .catch((err) => err);
+}
+
+function addToCart() {
+  $axios
+    .post("/profile/add-to-cart", {
+      destinationId: destinationId.value,
+      ownerId: appState.user.uuid,
+    })
+    .then((res) => {
+      isAdded();
+      return res.data;
+    })
+    .catch((err) => err);
 }
 
 const promotedDestinations = localStore.getArray("promotedDestinations");
@@ -111,19 +140,17 @@ const promotedDestinations = localStore.getArray("promotedDestinations");
               <div class="flex justify-center pt-6">
                 <button
                   class="dark-button-regular w-full"
-                  @click.prevent="
-                    removeDestination(singleDestinationStore.destination)
-                  "
-                  v-if="isInCart(singleDestinationStore.destination)"
+                  @click.prevent="removeDestination"
+                  v-if="isAddedToCart"
                 >
                   Remove Destination
                 </button>
                 <button
                   v-else
-                  @click="addToCart(singleDestinationStore.destination)"
+                  @click="addToCart"
                   class="primary-button-regular w-full p-2 rounded-md"
                 >
-                  Select Destination
+                  Save Destination
                 </button>
               </div>
             </section>

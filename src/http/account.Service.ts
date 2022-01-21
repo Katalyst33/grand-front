@@ -90,30 +90,29 @@ export function deleteProfile(referenceId: string) {
 }
 
 export function addToCart(destination: any) {
+  $axios
+    .post("/profile/add-to-cart", {
+      destinationId: destination,
+      ownerId: appState.user.uuid,
+    })
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => err);
+
   let isAdded = destinationStore.myDestinations.find(
-    (item: any) => item.uuid === destination.uuid
+    (item: any) => item === destination
   );
 
-  if (isAdded) {
+  /*  if (isAdded) {
+    console.log("already added??/");
     return;
   } else {
+    console.log("already added");
+
     destinationStore.myDestinations.push(destination);
     localStore.setArray("myDestinations", destinationStore.myDestinations);
-
-    if (appState.user) {
-      $axios
-        .post("/profile/add-to-cart", {
-          destinationId: destination.uuid,
-          ownerId: appState.user.uuid,
-        })
-        .then((res) => {
-          return res.data;
-        })
-        .catch((err) => err);
-    } else {
-      return;
-    }
-  }
+  }*/
 }
 
 export function getDbCart() {
