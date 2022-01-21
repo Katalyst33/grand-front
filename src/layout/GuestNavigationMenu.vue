@@ -15,7 +15,16 @@
             <CompanyLogo :app-state="appState" :text-color="textColor" />
           </a>
         </div>
+
         <div class="flex items-center pr-4 gap-x-4 -mr-2 -my-2 md:hidden">
+          <PopoverButton
+            class="bg-yellow-50 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
+          >
+            <span class="sr-only">Open menu</span>
+            <MenuIcon class="h-6 w-6" aria-hidden="true" />
+          </PopoverButton>
+          <!--                    <MyDestinationCart />-->
+
           <MyDestinationCart class="pr-4" />
         </div>
 
@@ -54,10 +63,10 @@
                   <div
                     class="max-w-7xl mx-auto grid gap-y-6 px-4 py-6 sm:grid-cols-2 sm:gap-8 sm:px-6 sm:py-8 lg:grid-cols-4 lg:px-8 lg:py-12 xl:py-16"
                   >
-                    <a
+                    <router-link
                       v-for="item in solutions"
                       :key="item.name"
-                      :href="item.href"
+                      :to="{ name: item.href }"
                       class="-m-3 p-3 flex flex-col justify-between rounded-lg hover:bg-yellow-100"
                     >
                       <div class="flex md:h-full lg:flex-col">
@@ -90,7 +99,7 @@
                           </p>
                         </div>
                       </div>
-                    </a>
+                    </router-link>
                   </div>
                   <div class="bg-yellow-50">
                     <div
@@ -101,9 +110,9 @@
                         :key="item.name"
                         class="flow-root"
                       >
-                        <a
-                          :href="item.href"
-                          class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-700"
+                        <router-link
+                          :to="{ name: item.href }"
+                          class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-yellow-500"
                         >
                           <component
                             :is="item.icon"
@@ -111,7 +120,7 @@
                             aria-hidden="true"
                           />
                           <span class="ml-3">{{ item.name }}</span>
-                        </a>
+                        </router-link>
                       </div>
                     </div>
                   </div>
@@ -524,25 +533,29 @@ const solutions = [
     name: "Airport Pick up",
     description:
       "Get a better understanding of where your traffic is coming from.",
-    href: "#",
+    href: "Service",
     icon: ChartBarIcon,
   },
   {
     name: "Tour guide",
     description: "Speak directly to your customers in a more meaningful way.",
-    href: "#",
+    href: "Service",
     icon: CursorClickIcon,
   },
   {
     name: "Hotel Reservations",
     description: "Your customers' data will be safe and secure.",
-    href: "#",
+    href: "Service",
     icon: ShieldCheckIcon,
   },
 ];
 const callsToAction = [
-  { name: "View All Destinations", href: "#", icon: CheckCircleIcon },
-  { name: "Contact Sales", href: "#", icon: PhoneIcon },
+  {
+    name: "View All Destinations",
+    href: "Destinations",
+    icon: CheckCircleIcon,
+  },
+  { name: "Contact Sales", href: "Contact", icon: PhoneIcon },
 ];
 const company = [
   { name: "About", href: "#", icon: InformationCircleIcon },
