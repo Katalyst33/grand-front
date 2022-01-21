@@ -114,6 +114,7 @@
                           :to="{ name: item.href }"
                           class="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-yellow-500"
                         >
+
                           <component
                             :is="item.icon"
                             class="flex-shrink-0 h-6 w-6 text-gray-400"
