@@ -234,7 +234,7 @@ const navigation = [
   // },
 
   {
-    name: "My Destinations",
+    name: "My Wish List",
     href: "MyDestinations",
     icon: "fad fa-globe-asia",
   },

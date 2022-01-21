@@ -30,7 +30,7 @@ export default <RouteRecordRaw>{
     },
 
     {
-      path: "my-destinations",
+      path: "my-wish-list",
       name: "MyDestinations",
       component: MyDestinations,
     },

@@ -16,14 +16,7 @@
           </a>
         </div>
         <div class="flex items-center pr-4 gap-x-4 -mr-2 -my-2 md:hidden">
-          <PopoverButton
-            class="bg-yellow-50 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500"
-          >
-            <span class="sr-only">Open menu</span>
-            <MenuIcon class="h-6 w-6" aria-hidden="true" />
-          </PopoverButton>
-          <!--                    <MyDestinationCart />-->
-          <CartIcon class="pr-4" />
+          <MyDestinationCart class="pr-4" />
         </div>
 
         <div

@@ -26,15 +26,17 @@ const destinationId = computed(() => {
 getOneDestination(destinationId.value);
 
 function isAdded() {
-  $axios
-    .post("profile/get-one-cart", {
-      destinationId: destinationId.value,
-      ownerId: appState.user.uuid,
-    })
-    .then((res: any) => {
-      isAddedToCart.value = res.isAdded;
-    })
-    .catch((err) => err);
+  if (appState?.user) {
+    $axios
+      .post("profile/get-one-cart", {
+        destinationId: destinationId.value,
+        ownerId: appState.user.uuid,
+      })
+      .then((res: any) => {
+        isAddedToCart.value = res.isAdded;
+      })
+      .catch((err) => err);
+  }
 }
 
 onMounted(isAdded);
@@ -136,23 +138,31 @@ const promotedDestinations = localStore.getArray("promotedDestinations");
               N {{ formatPrice(singleDestinationStore.destination.price) }}
             </h1>
 
-            <section>
-              <div class="flex justify-center pt-6">
-                <button
-                  class="dark-button-regular w-full"
-                  @click.prevent="removeDestination"
-                  v-if="isAddedToCart"
-                >
-                  Remove Destination
-                </button>
-                <button
-                  v-else
-                  @click="addToCart"
-                  class="primary-button-regular w-full p-2 rounded-md"
-                >
-                  Save Destination
-                </button>
+            <section class="py-4">
+              <div v-if="appState?.user" class="flex justify-center pt-6">
+                <transition name="fade" mode="out-in">
+                  <button
+                    class="dark-button-regular w-full"
+                    @click.prevent="removeDestination"
+                    v-if="isAddedToCart"
+                  >
+                    Remove from Wish List
+                  </button>
+                  <button
+                    v-else
+                    @click="addToCart"
+                    class="primary-button-regular w-full p-2 rounded-md"
+                  >
+                    Save to Wish List
+                  </button>
+                </transition>
               </div>
+              <button
+                v-else
+                class="primary-button-regular w-full p-2 rounded-md"
+              >
+                Login to save to wish list
+              </button>
             </section>
           </div>
         </div>
@@ -186,6 +196,13 @@ const promotedDestinations = localStore.getArray("promotedDestinations");
 </template>
 
 <style lang="scss" scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 #hero {
   width: 100vw;
   position: absolute;

@@ -1,25 +1,10 @@
 <template>
-  <div>
+  <div v-if="isLoaded">
     <div>My Destinations</div>
-    <div>
-      <div v-if="isLoaded">
-        <div
-          class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none"
-        >
-          <div
-            v-for="(destination, index) in destinations"
-            :key="index"
-            class="group flex flex-col rounded-lg shadow-lg overflow-hidden relative px-4 md:px-0"
-          >
-            {{ destination }}
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- This example requires Tailwind CSS v2.0+ -->
 
-    <div class="my-6">
+    <div v-if="destinations.length" class="my-6">
       <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div
@@ -72,9 +57,19 @@
                           </div>
                         </div>
                         <div class="ml-4">
-                          <div class="text-sm font-medium text-gray-900">
-                            {{ destination.title }}
-                          </div>
+                          <router-link
+                            :to="{
+                              name: 'ViewDestinationPage',
+                              params: { destinationId: destination.uuid },
+                            }"
+                          >
+                            <h1
+                              class="text-yellow-600 font-semibold tracking-wide"
+                            >
+                              {{ destination.title }}
+                            </h1>
+                          </router-link>
+
                           <p
                             v-html="truncateString(destination.description, 50)"
                             class="text-sm text-gray-500"
@@ -126,6 +121,21 @@
         </div>
       </div>
     </div>
+    <div v-else>
+      <div class="text-center space-y-4">
+        <i class="fad fa-folder-open text-yellow-400 text-[100px]"></i>
+        <p class="text-2xl my-4 text-grey-600">
+          Add a Destination to your wish list to save it
+        </p>
+        <div>
+          <router-link
+            class="py-4 underline decoration-4 decoration-yellow-500"
+            :to="{ name: 'Destinations' }"
+            >Go To All destination <i class="fad fa-arrow-right"></i
+          ></router-link>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -148,6 +158,7 @@ function removeDestination(destinationId: string) {
       ownerId: appState.user.uuid,
     })
     .then((res) => {
+      fetch();
       return res.data;
     })
     .catch((err) => err);
