@@ -36,7 +36,7 @@
             </div>
           </div>
 
-          <div class="">
+          <div v-if="!loggingIn" class="">
             <nav v-if="appState.isDev" class="flex justify-between py-1">
               <button @click.prevent="normalUser" class="user-buttons">
                 Normal User
@@ -117,6 +117,17 @@
               </VeeForm>
             </div>
           </div>
+          <div v-else class="flex justify-center">
+            <br />
+            <div class="flex flex-col items-center">
+              <div>
+                <i
+                  class="fad fa-spinner-third text-5xl text-yellow-500 animate-spin"
+                ></i>
+              </div>
+              <p class="py-2">Authenticating User ...</p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="hidden lg:block relative w-0 flex-1">
@@ -141,18 +152,21 @@ import BusyButton from "../components/BusyButton.vue";
 import VeeFormField from "../components/Validate/VeeFormField.vue";
 import { onInvalidSubmit } from "../../export";
 import BrowserStorage from "@trapcode/browser-storage";
+import LoadingLogo from "../components/commons/LoadingLogo.vue";
 
 const BrowserStore = vueLocalStorage();
 const BrowserSession = BrowserStorage.getSessionStore();
 
 export default defineComponent({
   name: "LoginPage",
-  components: { VeeFormField, BusyButton, LoginRegisterLogo },
+  components: { LoadingLogo, VeeFormField, BusyButton, LoginRegisterLogo },
   setup() {
     const form = ref<userForm>({
       email: "",
       password: "",
     });
+
+    const loggingIn = ref(false);
 
     const isLoading = ref(false);
     const router = useRouter();
@@ -188,10 +202,13 @@ export default defineComponent({
             BrowserStore.set("ge_jwt", r.token);
             BrowserStore.set("user_role", r.role);
             BrowserSession.setBoolean("isAuth", true);
+            loggingIn.value = true;
           }
 
           if (BrowserStore.get("user_role") === "user") {
-            window.location.href = "/account/dashboard";
+            setTimeout(() => {
+              window.location.href = "/account/dashboard";
+            }, 2000);
           } else if (BrowserStore.get("user_role") !== "user") {
             window.location.href = "/manager/dashboard";
           } else {
@@ -218,6 +235,7 @@ export default defineComponent({
       adminUser,
       form,
       isLoading,
+      loggingIn,
     };
   },
 });
