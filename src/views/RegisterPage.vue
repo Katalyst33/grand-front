@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <div>
     <div class="min-h-screen flex flex-row-reverse">
       <div
         class="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24"
@@ -108,7 +108,7 @@
         />
       </div>
     </div>
-  </section>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from "vue";

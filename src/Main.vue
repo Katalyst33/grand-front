@@ -1,15 +1,20 @@
 <template>
-  <div id="app" class="" v-if="appState.isLoaded">
-    <div v-if="appState.isDev" class="bg-gray-900">
-      <code class="text-green-400">
-        {{ appState.user }} {{ appState.isDev }}</code
-      >
+  <div>
+    <div id="app" class="" v-if="appState.isLoaded">
+      <!--    Show user in development mode -->
+      <div v-if="false" class="bg-gray-900">
+        <code class="text-green-400">
+          {{ appState.user }} {{ appState.isDev }}</code
+        >
+      </div>
+      <!--    Show user in development mode -->
+
+      <router-view v-slot="{ Component, route }">
+        <transition name="route" mode="out-in">
+          <component :is="Component" :key="route.name" />
+        </transition>
+      </router-view>
     </div>
-    <router-view v-slot="{ Component, route }">
-      <transition name="route" mode="out-in">
-        <component :is="Component" :key="route.path" />
-      </transition>
-    </router-view>
   </div>
 </template>
 
