@@ -5,7 +5,11 @@
         {{ appState.user }} {{ appState.isDev }}</code
       >
     </div>
-    <router-view></router-view>
+    <router-view v-slot="{ Component, route }">
+      <transition name="route" mode="out-in">
+        <component :is="Component" :key="route.path" />
+      </transition>
+    </router-view>
   </div>
 </template>
 
@@ -24,5 +28,21 @@ setAppState();
 
 .btn {
   @apply px-2 py-1 text-white rounded-md;
+}
+
+.route-enter-from {
+  opacity: 0;
+  transform: translateY(100px);
+}
+.route-enter-active {
+  transition: all 0.3s ease-out;
+}
+.route-leave-to {
+  opacity: 0;
+  transform: translateY(-100px);
+}
+
+.route-leave-active {
+  transition: all 0.3s ease-in;
 }
 </style>

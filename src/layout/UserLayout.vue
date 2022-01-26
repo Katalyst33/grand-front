@@ -189,9 +189,15 @@
       <h1 class="text-xl py-4 text-gray-500 container mx-auto px-2 md:px-10">
         {{ $route.meta.title }}
       </h1>
+
       <router-view
+        v-slot="{ Component, route }"
         class="h-screen my-auto container mx-auto px-2 md:px-10 pt-4"
-      ></router-view>
+      >
+        <transition name="route" mode="out-in">
+          <component :is="Component" :key="route.path" />
+        </transition>
+      </router-view>
     </div>
   </div>
 </template>
@@ -282,5 +288,20 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   @apply bg-yellow-50;
+}
+.route-enter-from {
+  opacity: 0;
+  transform: translateY(100px);
+}
+.route-enter-active {
+  transition: all 0.3s ease-out;
+}
+.route-leave-to {
+  opacity: 0;
+  transform: translateY(-100px);
+}
+
+.route-leave-active {
+  transition: all 0.3s ease-in;
 }
 </style>
