@@ -1,12 +1,11 @@
 <template>
   <GuestNavigationMenu />
   <div class="container mx-auto h-auto">
-    <router-view></router-view>
-    <!--    <router-view v-slot="{ Component, route }">
+    <router-view v-slot="{ Component, route }">
       <transition name="route" mode="out-in">
         <component :is="Component" :key="route.path" />
       </transition>
-    </router-view>-->
+    </router-view>
   </div>
   <FooterSection />
 </template>

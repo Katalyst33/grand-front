@@ -68,34 +68,34 @@ const router = createRouter({
           name: "Contact",
           component: ContactPage,
         },
+        {
+          path: "/login",
+          name: "Login",
+          component: SignupAndLogin,
+        },
+        {
+          path: "/terms-condition",
+          name: "TermsCondition",
+          component: TermsCondition,
+        },
+        {
+          path: "/terms-condition",
+          name: "PrivacyPolicy",
+          component: PrivacyPolicy,
+        },
+        {
+          path: "/register",
+          name: "Register",
+          component: SignupAndLogin,
+        },
+        {
+          path: "/forgot-password",
+          name: "ForgotPassword",
+          component: SignupAndLogin,
+        },
       ],
     },
 
-    {
-      path: "/login",
-      name: "Login",
-      component: SignupAndLogin,
-    },
-    {
-      path: "/terms-condition",
-      name: "TermsCondition",
-      component: TermsCondition,
-    },
-    {
-      path: "/terms-condition",
-      name: "PrivacyPolicy",
-      component: PrivacyPolicy,
-    },
-    {
-      path: "/register",
-      name: "Register",
-      component: SignupAndLogin,
-    },
-    {
-      path: "/forgot-password",
-      name: "ForgotPassword",
-      component: SignupAndLogin,
-    },
     {
       name: "NotFound",
       path: "/:pathMatch(.*)*",

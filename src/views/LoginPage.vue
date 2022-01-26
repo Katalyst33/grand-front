@@ -1,142 +1,140 @@
 <template>
-  <div>
-    <div class="min-h-screen flex">
-      <div
-        class="flex-1 flex flex-col justify-center py-10 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24"
-      >
-        <div class="mx-auto w-full max-w-sm lg:w-96">
-          <div>
-            <div class="py-4">
-              <LoginRegisterLogo />
-            </div>
+  <div class="min-h-screen flex">
+    <div
+      class="flex-1 flex flex-col justify-center py-10 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24"
+    >
+      <div class="mx-auto w-full max-w-sm lg:w-96">
+        <div>
+          <div class="py-4">
+            <LoginRegisterLogo />
+          </div>
 
-            <div v-if="false">
-              <button
-                type="submit"
-                class="w-full text-teal-700 hover:text-white flex justify-center py-3 px-4 border border-2 border-transparent rounded-md shadow-sm text-sm font-medium border-teal-500 hover:bg-teal-600 hover:text-white-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+          <div v-if="false">
+            <button
+              type="submit"
+              class="w-full text-teal-700 hover:text-white flex justify-center py-3 px-4 border border-2 border-transparent rounded-md shadow-sm text-sm font-medium border-teal-500 hover:bg-teal-600 hover:text-white-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+            >
+              Sign in with google
+            </button>
+            <div class="relative">
+              <div
+                class="absolute inset-0 flex items-center"
+                aria-hidden="true"
               >
-                Sign in with google
-              </button>
-              <div class="relative">
-                <div
-                  class="absolute inset-0 flex items-center"
-                  aria-hidden="true"
+                <div class="w-full border-t border-yellow-400" />
+              </div>
+
+              <div class="relative flex justify-center text-sm">
+                <span
+                  class="px-2 my-4 bg-yellow-50 border border-yellow-500 rounded-full text-gray-500"
                 >
-                  <div class="w-full border-t border-yellow-400" />
-                </div>
-
-                <div class="relative flex justify-center text-sm">
-                  <span
-                    class="px-2 my-4 bg-yellow-50 border border-yellow-500 rounded-full text-gray-500"
-                  >
-                    Or continue with
-                  </span>
-                </div>
+                  Or continue with
+                </span>
               </div>
-            </div>
-          </div>
-
-          <div v-if="!loggingIn" class="">
-            <nav v-if="appState.isDev" class="flex justify-between py-1">
-              <button @click.prevent="normalUser" class="user-buttons">
-                Normal User
-              </button>
-              <button @click.prevent="staffUser" class="user-buttons">
-                Staff User
-              </button>
-              <button @click.prevent="adminUser" class="user-buttons">
-                Admin User
-              </button>
-            </nav>
-
-            <div class="">
-              <VeeForm
-                @submit="LoginUser"
-                @invalid-submit="onInvalidSubmit"
-                action="#"
-                method="POST"
-                class="space-y-6"
-              >
-                <VeeFormField
-                  v-model="form.email"
-                  label="Email address"
-                  name="email"
-                  type="email"
-                  placeholder=""
-                  rules="isRequired|isEmail"
-                  autocomplete="email"
-                />
-
-                <VeeFormField
-                  v-model="form.password"
-                  label="Password"
-                  name="password"
-                  type="password"
-                  placeholder=""
-                  rules="isRequired|isMin:7"
-                />
-
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center">
-                    <input
-                      type="checkbox"
-                      class="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
-                    />
-                    <label class="form-label ml-2"> Remember me </label>
-                  </div>
-
-                  <div class="">
-                    <router-link
-                      :to="{ name: 'ForgotPassword' }"
-                      class="form-label"
-                    >
-                      Forgot your password?
-                    </router-link>
-                  </div>
-                </div>
-
-                <div class="space-y-2">
-                  <button class="w-full">
-                    <BusyButton
-                      :is-loading="isLoading"
-                      class="primary-button-wide w-full submit-btn"
-                      ><span class="text-center">Log in</span></BusyButton
-                    >
-                  </button>
-
-                  <p class="text-gray-500 text-sm text-center py-4">
-                    Don't have an account ?
-                    <router-link
-                      :to="{ name: 'Register' }"
-                      class="text-teal-500 font-medium"
-                    >
-                      Sign up now
-                    </router-link>
-                  </p>
-                </div>
-              </VeeForm>
-            </div>
-          </div>
-          <div v-else class="flex justify-center">
-            <br />
-            <div class="flex flex-col items-center">
-              <div>
-                <i
-                  class="fad fa-spinner-third text-5xl text-yellow-500 animate-spin"
-                ></i>
-              </div>
-              <p class="py-2">Authenticating User ...</p>
             </div>
           </div>
         </div>
+
+        <div v-if="!loggingIn" class="">
+          <nav v-if="appState.isDev" class="flex justify-between py-1">
+            <button @click.prevent="normalUser" class="user-buttons">
+              Normal User
+            </button>
+            <button @click.prevent="staffUser" class="user-buttons">
+              Staff User
+            </button>
+            <button @click.prevent="adminUser" class="user-buttons">
+              Admin User
+            </button>
+          </nav>
+
+          <div class="">
+            <VeeForm
+              @submit="LoginUser"
+              @invalid-submit="onInvalidSubmit"
+              action="#"
+              method="POST"
+              class="space-y-6"
+            >
+              <VeeFormField
+                v-model="form.email"
+                label="Email address"
+                name="email"
+                type="email"
+                placeholder=""
+                rules="isRequired|isEmail"
+                autocomplete="email"
+              />
+
+              <VeeFormField
+                v-model="form.password"
+                label="Password"
+                name="password"
+                type="password"
+                placeholder=""
+                rules="isRequired|isMin:7"
+              />
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <input
+                    type="checkbox"
+                    class="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
+                  />
+                  <label class="form-label ml-2"> Remember me </label>
+                </div>
+
+                <div class="">
+                  <router-link
+                    :to="{ name: 'ForgotPassword' }"
+                    class="form-label"
+                  >
+                    Forgot your password?
+                  </router-link>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <button class="w-full">
+                  <BusyButton
+                    :is-loading="isLoading"
+                    class="primary-button-wide w-full submit-btn"
+                    ><span class="text-center">Log in</span></BusyButton
+                  >
+                </button>
+
+                <p class="text-gray-500 text-sm text-center py-4">
+                  Don't have an account ?
+                  <router-link
+                    :to="{ name: 'Register' }"
+                    class="text-teal-500 font-medium"
+                  >
+                    Sign up now
+                  </router-link>
+                </p>
+              </div>
+            </VeeForm>
+          </div>
+        </div>
+        <div v-else class="flex justify-center">
+          <br />
+          <div class="flex flex-col items-center">
+            <div>
+              <i
+                class="fad fa-spinner-third text-5xl text-yellow-500 animate-spin"
+              ></i>
+            </div>
+            <p class="py-2">Authenticating User ...</p>
+          </div>
+        </div>
       </div>
-      <div class="hidden lg:block relative w-0 flex-1">
-        <img
-          class="absolute inset-0 h-full w-full object-cover"
-          src="/hero/sign-in.jpg"
-          alt=""
-        />
-      </div>
+    </div>
+    <div class="hidden lg:block relative w-0 flex-1">
+      <img
+        class="absolute inset-0 h-full w-full object-cover"
+        src="/hero/sign-in.jpg"
+        alt=""
+      />
     </div>
   </div>
 </template>

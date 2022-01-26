@@ -9,11 +9,7 @@
       </div>
       <!--    Show user in development mode -->
 
-      <router-view v-slot="{ Component, route }">
-        <transition name="route" mode="out-in">
-          <component :is="Component" :key="route.name" />
-        </transition>
-      </router-view>
+      <router-view></router-view>
     </div>
   </div>
 </template>

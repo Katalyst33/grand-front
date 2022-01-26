@@ -8,8 +8,10 @@
             <h1 class="lg:text-3xl">
               Its seem you have missed your Destination
             </h1>
-            <h2>Page not found</h2>
-            <div class="my-8">
+            <h2 class="text-sm py-4">
+              We couldn't find the page you are looking for
+            </h2>
+            <div class="my-4">
               <router-link
                 class="primary-button-regular"
                 :to="{ name: 'Home' }"
