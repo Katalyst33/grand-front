@@ -67,7 +67,7 @@
             v-show="showImage"
             :class="isEven(index) ? 'lg:rounded-l-2xl' : 'lg:rounded-r-2xl'"
             class="w-full h-full"
-            :src="`http://picsum.photos/700/300?random${i}`"
+            :src="`http://picsum.photos/700/300?random${index}`"
             @load="imageLoaded"
           />
         </div>
