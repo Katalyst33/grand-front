@@ -55,6 +55,7 @@
                 rules="isRequired|isEmail"
                 autocomplete="email"
               />
+
               <VeeFormField
                 v-model="form.password"
                 label="Password"

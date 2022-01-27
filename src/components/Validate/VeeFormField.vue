@@ -18,6 +18,7 @@
         :id="name"
         v-bind="$attrs"
         :type="type"
+        :readonly="readonly"
       />
     </div>
     <VeeErrorMessage class="input-error-msg" :name="name" />
@@ -56,6 +57,10 @@ export default {
     modelValue: {
       type: String,
       default: "",
+    },
+    readonly: {
+      type: Boolean,
+      default: false,
     },
   },
 };

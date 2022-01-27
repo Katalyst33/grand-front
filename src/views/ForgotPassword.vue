@@ -8,6 +8,7 @@
           <div>
             <div class="py-4">
               <LoginRegisterLogo />
+              {{ provideEmailOnly }}
             </div>
             <div v-if="!formState.isFinished">
               <template v-if="formState.isEmail && !formState.isCode">
@@ -51,7 +52,6 @@
               </div>
             </template>
           </div>
-
           <div v-if="!formState.isFinished" class="mt-8">
             <div class="">
               <VeeForm
@@ -60,17 +60,30 @@
                 action="#"
                 method="POST"
                 class="space-y-6"
+                :readonly="true"
               >
                 <VeeFormField
-                  v-if="formState.isEmail && !formState.isCode"
+                  v-if="provideEmailOnly"
                   v-model="form.email"
                   label="Email address"
                   name="email"
-                  type="email"
+                  type="email "
                   placeholder=""
                   rules="isRequired|isEmail"
                   autocomplete="email"
+                  ref="emailForm"
+                  :className="
+                    provideEmailOnly ? 'input-box ' : 'input-box  bg-red-500'
+                  "
                 />
+                <input
+                  v-if="!provideEmailOnly"
+                  v-model="form.email"
+                  class="input-box bg-yellow-100"
+                  type="email"
+                  readonly
+                />
+
                 <div v-if="formState.isCode">
                   <VeeFormField
                     v-model="form.reset_code"
@@ -128,7 +141,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed, onMounted, ref, watchEffect } from "vue";
 import LoginRegisterLogo from "./LoginRegisterLogo.vue";
 import BusyButton from "../components/BusyButton.vue";
 import VeeFormField from "../components/Validate/VeeFormField.vue";
@@ -151,6 +164,7 @@ const form = ref({
   isLoading = ref(false);
 
 const router = useRouter();
+const emailForm = ref<HTMLDivElement | null>()!;
 
 function resetPassword() {
   if (formState.value.isEmail || !formState.value.isCode) {
@@ -198,6 +212,10 @@ function resetPassword() {
       });
   }
 }
+
+const provideEmailOnly = computed(() => {
+  return formState.value.isEmail && !formState.value.isCode;
+});
 </script>
 
 <style lang="scss" scoped></style>
