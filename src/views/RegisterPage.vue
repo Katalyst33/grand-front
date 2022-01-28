@@ -174,6 +174,7 @@ export default defineComponent({
       }
     }
 
+
     return {
       form,
       registerUser,
