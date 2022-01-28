@@ -9,7 +9,6 @@
             <div class="py-4">
               <LoginRegisterLogo />
             </div>
-            {{ formStep }}
             <div v-if="false">
               <button
                 type="submit"
@@ -47,7 +46,6 @@
               class="space-y-6"
             >
               <VeeFormField
-                v-if="formStep === 1"
                 v-model="form.username"
                 label="Username"
                 name="username"
@@ -57,7 +55,6 @@
                 autocomplete="username"
               />
               <VeeFormField
-                v-if="formStep === 2"
                 v-model="form.email"
                 label="Email address"
                 name="email"
@@ -66,25 +63,23 @@
                 rules="isRequired|isEmail"
                 autocomplete="email"
               />
-              <template v-if="formStep === 3">
-                <VeeFormField
-                  v-model="form.password"
-                  label="Password"
-                  name="password"
-                  type="password"
-                  placeholder="Strong Password"
-                  rules="isRequired|isMin:7"
-                />
+              <VeeFormField
+                v-model="form.password"
+                label="Password"
+                name="password"
+                type="password"
+                placeholder="Strong Password"
+                rules="isRequired|isMin:7"
+              />
 
-                <VeeFormField
-                  v-model="form.repeat_password"
-                  label="Confirm Password"
-                  name="confirmPassword"
-                  type="password"
-                  placeholder="confirm password"
-                  rules="isRequired|isConfirmed:@password"
-                />
-              </template>
+              <VeeFormField
+                v-model="form.repeat_password"
+                label="Confirm Password"
+                name="confirmPassword"
+                type="password"
+                placeholder="confirm password"
+                rules="isRequired|isConfirmed:@password"
+              />
 
               <div class="space-y-2">
                 <button class="w-full">
@@ -141,8 +136,6 @@ export default defineComponent({
   setup() {
     const isLoading = ref(false);
 
-    const formStep = ref(1);
-
     const form = ref<userForm>({
       email: appState.isDev ? "@gmail.com" : "",
       password: appState.isDev ? "123456789" : "",
@@ -152,28 +145,23 @@ export default defineComponent({
     const router = useRouter();
 
     function registerUser() {
-      if (formStep.value == 3) {
-        isLoading.value = true;
+      isLoading.value = true;
 
-        $axios
-          .post("client/register", form.value)
-          .then((r: any) => {
-            isLoading.value = false;
+      $axios
+        .post("client/register", form.value)
+        .then((r: any) => {
+          isLoading.value = false;
 
-            router.push({ name: "Login" });
+          router.push({ name: "Login" });
 
-            console.log(r);
-          })
-          .catch((r) => {
-            isLoading.value = false;
+          console.log(r);
+        })
+        .catch((r) => {
+          isLoading.value = false;
 
-            return r;
-          });
-      } else {
-        formStep.value++;
-      }
+          return r;
+        });
     }
-
 
     return {
       form,
@@ -181,7 +169,6 @@ export default defineComponent({
       isLoading,
       appState,
       onInvalidSubmit,
-      formStep,
     };
   },
 });
