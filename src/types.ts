@@ -5,6 +5,7 @@ export type userForm = {
   password?: string;
   repeat_password?: string;
   email?: string;
+  username?: string;
 };
 
 export type galleryImageTypes = {

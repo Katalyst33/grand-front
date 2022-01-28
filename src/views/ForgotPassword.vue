@@ -60,6 +60,7 @@
                     readonly
                   />
                   <progress
+                    v-if="timeLeft > 0"
                     ref="progressBar"
                     :value="timeLeft"
                     max="60"
@@ -73,7 +74,10 @@
                     class="flex items-center gap-x-2"
                   >
                     <i class="fad fa-redo-alt font-bold"></i>
-                    <span>Resend Code {{ timeLeft }} </span>
+                    <span
+                      >Resend Code
+                      <template v-if="timeLeft > 0">{{ timeLeft }}</template>
+                    </span>
                   </button>
                 </div>
               </div>
@@ -148,16 +152,6 @@
                       ><span class="text-center"> Confirm</span></BusyButton
                     >
                   </button>
-
-                  <p class="text-gray-500 text-sm text-center py-4">
-                    Don't have an account ?
-                    <router-link
-                      :to="{ name: 'Register' }"
-                      class="text-teal-500 font-medium"
-                    >
-                      Sign up now
-                    </router-link>
-                  </p>
                 </div>
               </VeeForm>
               <div class="space-y-2">
