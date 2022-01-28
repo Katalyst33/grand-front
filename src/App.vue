@@ -59,7 +59,7 @@ useHead({
 
 .title-2 {
   font-family: bigJohn, serif;
-  @apply text-2xl font-normal text-gray-700;
+  @apply text-2xl text-lg font-normal text-gray-700;
 }
 
 .big-john-font {
@@ -93,5 +93,13 @@ useHead({
 
 .route-leave-active {
   transition: all 0.3s ease-in;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

@@ -87,7 +87,7 @@
                 <div class="">
                   <router-link
                     :to="{ name: 'ForgotPassword' }"
-                    class="form-label"
+                    class="form-label underline"
                   >
                     Forgot your password?
                   </router-link>
