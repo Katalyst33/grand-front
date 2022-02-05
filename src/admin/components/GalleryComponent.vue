@@ -160,6 +160,7 @@ function changeImage() {
 }
 
 function onFileChange(e: any) {
+  console.log("i ran");
   file.value = e.target.files;
   // url.value = URL.createObjectURL(file.value);
   // imageData.append("image", file.value);

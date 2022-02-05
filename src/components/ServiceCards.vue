@@ -32,11 +32,16 @@
                   </p>
                 </div>
                 <div>
-                  <router-link
+                  <a
+                    class="button w-36 bg-yellow-500 text-white px-3 py-2 rounded-md shadow"
+                    href="https://wa.me/2348141588051?text=Hello, I need more information about this service"
+                    >Learn more <i class="fab fa-whatsapp"></i
+                  ></a>
+                  <!--                  <router-link
                     :to="{ name: item.href }"
                     class="button w-36 bg-yellow-500 text-white px-3 py-2 rounded-md shadow"
                     >Learn more</router-link
-                  >
+                  >-->
                 </div>
               </div>
             </div>

@@ -24,7 +24,6 @@ const appName = import.meta.env.VITE_COMPANY_NAME;
 
 const NotFound = () => import("../views/NotFound.vue");
 
-
 const router = createRouter({
   history: createWebHistory(),
   routes: [
