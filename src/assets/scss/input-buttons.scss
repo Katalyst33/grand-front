@@ -1,0 +1,44 @@
+.primary-button-wide {
+ @apply bg-yellow-500 hover:bg-yellow-600 transition duration-500 w-full text-white p-3 border shadow-sm rounded-lg focus:ring-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 text-lg font-medium
+}
+
+.primary-button{
+  @apply bg-yellow-500 hover:bg-yellow-600 transition duration-500 text-white text-center
+}
+
+.primary-button-regular{
+  @apply bg-yellow-500 hover:bg-yellow-600  p-2  rounded-md transition duration-500 text-white text-center
+}
+
+.dark-button-regular{
+  @apply bg-gray-800 hover:bg-gray-700  p-2  rounded-md transition duration-500 text-white text-center
+}
+
+.input-box {
+  @apply
+  appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm;
+}
+
+.form-label{
+  @apply  block text-sm font-medium text-gray-700
+}
+
+.input-error-msg {
+  @apply text-red-500 bg-red-200 rounded-full px-2 py-0.5 text-sm font-medium;
+}
+
+.btn-user-dash{
+  @apply  inline-flex
+  items-center
+  justify-center
+  px-4
+  py-2
+  border border-transparent
+  rounded-md
+  shadow-sm
+  text-base
+  font-medium
+  text-white
+  bg-yellow-500
+  hover:bg-yellow-400
+}
