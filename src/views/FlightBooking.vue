@@ -1,58 +1,62 @@
 <script setup lang="ts">
+import { reactive, ref } from "vue";
+import AirportSelector from "../components/AirportSelector.vue";
 
-import {onBeforeMount, ref} from "vue";
-import jsb from "../lib/jsb";
-
-
-
-
-const tripTypes = {"one-way": "One-way", "round-trip": "Round trip"}
+const tripTypes = { "one-way": "One-way", "round-trip": "Round trip" };
 type tripTypes = keyof typeof tripTypes;
 
 const tripType = ref<tripTypes>("one-way");
-const cities = ref<Record<any, any>>([]);
-
-async function getCities() {
-  cities.value = await jsb.getOwnContent("grand-eagle/airports.json", [
-    {apply: "mapPick", args: ["iata", "name", "iso", "type"]}], {
-    // jsonbank will cache this response for 1 month if you set it to "max"
-    cache: "max"
-  })
-}
-
-onBeforeMount(getCities)
-
-
+const form = reactive({
+  from: "ABB",
+  to: "",
+  depart: "",
+  return: "",
+  adults: 1,
+  children: 0,
+  infants: 0,
+});
 </script>
 <template>
   <section class="my-20">
-
     <div class="max-w-5xl mx-auto">
-      <div class=" bg-white  p-3 border rounded-md mb-5 shadow-lg">
+      <div class="bg-white p-3 border rounded-md mb-5 shadow-lg">
         <h4 class="text-xl font-bold">Flight Booking</h4>
 
         <ul class="tabs">
           <template v-for="(val, key) of tripTypes">
-            <li :class="{
+            <li
+              :class="{
              active: tripType === key as tripTypes
-           }">
-              <button @click="() => {
+           }"
+            >
+              <button
+                @click="() => {
               tripType = key as tripTypes
-           }">{{ val }}
+           }"
+              >
+                {{ val }}
               </button>
             </li>
           </template>
         </ul>
 
-        <form @submit="false">
+        <form @submit="false" class="form mt-5">
+          <div class="text-sm">
+            <label>From</label>
+            <AirportSelector v-model="form.from" />
+          </div>
         </form>
       </div>
 
-      <debug :data="{
-        tripType, cities
-     }" class="mt-10" use-parent-name></debug>
+      <debug
+        :data="{
+          tripType,
+          form,
+        }"
+        class="mt-10"
+        use-parent-name
+      ></debug>
     </div>
-
 
     <DebugDock></DebugDock>
   </section>
@@ -63,7 +67,8 @@ onBeforeMount(getCities)
   @apply flex space-x-3 my-2;
 
   li {
-    &.active, &:hover {
+    &.active,
+    &:hover {
       @apply border-b-2  border-blue-800;
     }
 
