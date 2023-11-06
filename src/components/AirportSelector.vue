@@ -81,6 +81,7 @@ function selectAirport(airport: Airport) {
       computedAirports,
     }"
     use-parent-name
+    hide-first
   ></debug>
 </template>
 

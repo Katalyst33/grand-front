@@ -37,7 +37,6 @@ axios.interceptors.response.use(
         message: res.data.message,
       });
     }
-
     return res.data;
   },
   (err) => {

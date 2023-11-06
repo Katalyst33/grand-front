@@ -96,7 +96,6 @@
 </template>
 
 <script lang="ts" setup>
-import { $axios } from "../../http/http.Service";
 import { onMounted, ref } from "vue";
 import { getAllUsers } from "../../http/admin.Service";
 import { formattedDate } from "../../../export";

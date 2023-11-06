@@ -5,18 +5,17 @@ const jsb = new JsonBank({
   keys: { pub: import.meta.env.VITE_JSB_KEY },
 });
 
-
 const { mapPick, filter, reject } = jsb_generateModifierHelpers();
 
 const filterQuery = JSON.stringify({ type: "airport" });
 const rejectQuery = JSON.stringify({ name: null });
 
-export type Airport ={
-    iata: string;
-    name: string;
-    iso: string;
-    type: string;
-}
+export type Airport = {
+  iata: string;
+  name: string;
+  iso: string;
+  type: string;
+};
 
 export async function fetchAirports() {
   return jsb.getOwnContent<Airport[]>(
