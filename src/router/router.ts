@@ -16,6 +16,7 @@ const SignupAndLogin = () => import("../views/SignupAndLogin.vue");
 const ContactPage = () => import("../views/ContactPage.vue");
 const TermsCondition = () => import("../views/TermsCondition.vue");
 const PrivacyPolicy = () => import("../views/PrivacyPolicy.vue");
+const FlightBooking = () => import("../views/FlightBooking.vue");
 import { appState } from "../store/store";
 import { vueLocalStorage } from "@trapcode/browser-storage/vue";
 import BrowserStorage from "@trapcode/browser-storage";
@@ -93,9 +94,13 @@ const router = createRouter({
           name: "ForgotPassword",
           component: SignupAndLogin,
         },
+        {
+          path: "/flight-booking",
+          name: "FlightBooking",
+          component: FlightBooking,
+        }
       ],
     },
-
     {
       name: "NotFound",
       path: "/:pathMatch(.*)*",

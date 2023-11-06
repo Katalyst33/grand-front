@@ -243,3 +243,12 @@ export const allCountries = [
   { name: "Zambia", code: "ZM" },
   { name: "Zimbabwe", code: "ZW" },
 ];
+
+
+export const countryListKeyToName = (() => {
+    const countryListKeyToName: Record<string, string> = {};
+    allCountries.forEach((country) => {
+        countryListKeyToName[country.code] = country.name;
+    });
+    return countryListKeyToName as  Record<string, string>
+})()
